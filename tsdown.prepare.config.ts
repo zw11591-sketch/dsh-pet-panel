@@ -8,4 +8,4 @@ import { clientBundle } from './build/tsdown.client.ts'
  * the modules node half serves lib/client.js to browsers, so a git-installed
  * package must ship it.
  */
-export default clientBundle('dsh-hello-plugin', ['src/index.ts'])
+export default clientBundle('dsh-pet-panel', ['src/index.ts'])

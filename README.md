@@ -1,23 +1,23 @@
-# dsh-hello-plugin
+# dsh-pet-panel
 
 A self-contained **client plugin** for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) Web UI. It contributes two independent surfaces, both riding the slot service's effect wrapper so plugin unload removes them:
 
-- **Hello panel** (`HelloView`) — a conversation-view tab (你好面板 / Hello) showing live context occupancy, session totals, a 7-day activity trend, token-spend ranking, and detailed context analysis of the active session. Renders derived data only; no service, no store.
 - **Desktop pet** (`PetView`) — a global floating pet above every column, independent of the active session. Draggable, skinnable (five SVG species with eye/mouth emotes), resizable, persisted to `localStorage`. Reacts to session lifecycle (running → busy, pending → waiting, finishing → celebration) plus manual feed/play/sleep controls.
+- **Hello panel** (`HelloView`) — a conversation-view tab (你好面板 / Hello) showing live context occupancy, session totals, a 7-day activity trend, token-spend ranking, and detailed context analysis of the active session. Renders derived data only; no service, no store.
 
 It has no host-side service and no model experience: it registers no tool, no prompt section, no context message, and no Remote method.
 
 ## Install
 
 ```sh
-dsh plugin --profile web add github:your-name/dsh-hello-plugin
+dsh plugin --profile web add github:zw11591-sketch/dsh-pet-panel
 ```
 
 This is a git-source install, so pnpm ≥10 blocks the `prepare` build until you allow it. Copy the exact package key pnpm prints into the profile's `pnpm-workspace.yaml` and re-run:
 
 ```yaml
 allowBuilds:
-  dsh-hello-plugin: true
+  dsh-pet-panel: true
 ```
 
 Then start:
@@ -33,8 +33,9 @@ The first install builds `lib/client.js` from source via the `prepare` script (n
 Keep this repo and DeepSeek Harness as siblings so the type gate can resolve the harness checkout:
 
 ```text
-~/git/deepseek-harness
-~/git/dsh-hello-plugin
+../
+├── deepseek-harness   # your DeepSeek Harness checkout
+└── dsh-pet-panel      # this repo
 ```
 
 ```sh

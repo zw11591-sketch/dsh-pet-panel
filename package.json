@@ -1,8 +1,20 @@
 {
-  "name": "dsh-hello-plugin",
-  "description": "Conversation view panel (hello overview) plus a global desktop pet — a self-contained client plugin (no host service) contributed into the conversation view slot and the shell overlay",
+  "name": "dsh-pet-panel",
+  "description": "A desktop pet plus a conversation overview panel for the DeepSeek Harness Web UI — a self-contained client plugin (no host service) contributing a hello overview tab and a floating, draggable, skinnable pet",
   "version": "0.1.0",
   "type": "module",
+  "author": {
+    "name": "zw11591-sketch",
+    "url": "https://github.com/zw11591-sketch"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "plugin",
+    "desktop-pet",
+    "hello-panel"
+  ],
   "packageManager": "pnpm@11.7.0",
   "engines": {
     "node": "^22.19.0 || >=24.0.0"
@@ -75,6 +87,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-name/dsh-hello-plugin.git"
+    "url": "https://github.com/zw11591-sketch/dsh-pet-panel.git"
   }
 }

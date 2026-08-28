@@ -5,4 +5,4 @@ import { clientBundle } from './build/tsdown.client.ts'
 // src/client/index.ts and wrapped so the web runtime loads it through
 // window.__ModuleLoader__.load with @deepseek-ai/* resolved from the module
 // table.
-export default clientBundle('dsh-hello-plugin', ['src/index.ts'])
+export default clientBundle('dsh-pet-panel', ['src/index.ts'])

@@ -569,7 +569,7 @@ export function HelloView(props: HelloViewProps): React.ReactElement {
               <dl className={css.infoGrid}>
                 <div className={css.infoRow}>
                   <dt className={css.infoKey}>插件</dt>
-                  <dd className={css.infoVal}><code>@deepseek-ai/dsh-client-ui-hello</code></dd>
+                  <dd className={css.infoVal}><code>dsh-pet-panel</code></dd>
                 </div>
                 <div className={css.infoRow}>
                   <dt className={css.infoKey}>挂载插槽</dt>

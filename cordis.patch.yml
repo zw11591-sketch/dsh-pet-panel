@@ -1,10 +1,10 @@
-# dsh-hello-plugin bundle patch: inserts its plugin row into the web plugin
+# dsh-pet-panel bundle patch: inserts its plugin row into the web plugin
 # roster. Installing this package into a dsh profile
-# (`dsh plugin --profile web add github:your-name/dsh-hello-plugin`) applies
+# (`dsh plugin --profile web add github:zw11591-sketch/dsh-pet-panel`) applies
 # this layer automatically. The single row mounts the browser half (the
 # modules node half scans dsh.client packages into the web plugin roster,
 # served from this package's lib/client.js). There is no host-side service:
-# the hello panel and the desktop pet both render in the browser only.
+# the pet and the hello panel both render in the browser only.
 - insert:
-    - id: ui-hello
-      name: 'dsh-hello-plugin'
+    - id: pet-panel
+      name: 'dsh-pet-panel'
