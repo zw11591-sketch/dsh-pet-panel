@@ -1,6 +1,6 @@
 {
   "name": "dsh-pet-panel",
-  "description": "A desktop pet plus a conversation overview panel for the DeepSeek Harness Web UI — a self-contained client plugin (no host service) contributing a hello overview tab and a floating, draggable, skinnable pet",
+  "description": "A desktop pet plus a session dashboard for the DeepSeek Harness Web UI — a self-contained client plugin (no host service) contributing a conversation dashboard tab and a floating, draggable, skinnable pet",
   "version": "0.1.0",
   "type": "module",
   "author": {
@@ -13,7 +13,7 @@
     "deepseek-harness",
     "plugin",
     "desktop-pet",
-    "hello-panel"
+    "dashboard"
   ],
   "packageManager": "pnpm@11.7.0",
   "engines": {

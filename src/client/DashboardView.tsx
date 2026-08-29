@@ -1,4 +1,4 @@
-/** The conversation panel view: a self-contained interactive dashboard page. */
+/** The conversation dashboard view: a self-contained interactive metrics page. */
 
 import { useMemo, useState } from 'react'
 import type { ConvViewProps } from '@deepseek-ai/dsh-client-ui-conversation/client'
@@ -7,13 +7,13 @@ import type { PropsLocale } from '@deepseek-ai/dsh-client-ui-slots'
 // Type-only: merges contextPressure/contextBreakdown into SessionProjectionMap
 // so the current session's projectionValues carry them typed.
 import type { ContextBreakdownProjection, ContextPressureProjection, TokenUsageProjection } from '@deepseek-ai/dsh-token-meter/client'
-import css from './HelloView.module.css'
+import css from './DashboardView.module.css'
 
-/** Full props: the conversation-view standard kit plus the hello locale seat. */
-type HelloViewProps = ConvViewProps & PropsLocale<'hello'>
+/** Full props: the conversation-view standard kit plus the dashboard locale seat. */
+type DashboardViewProps = ConvViewProps & PropsLocale<'dashboard'>
 
 /** Inner page sections, switched by the local tab bar. */
-type Section = 'overview' | 'features' | 'about'
+type Section = 'overview' | 'analytics' | 'about'
 
 /** One day's bucket in the trailing-7-day activity chart. */
 interface DayBucket {
@@ -296,11 +296,11 @@ function relatedForks(byId: Record<SessionId, SessionSummary>, archivedIds: read
 }
 
 /**
- * The panel tab body.
+ * The dashboard tab body.
  * @param props - conversation-view standard kit plus the bound translate.
  * @returns the rendered dashboard page.
  */
-export function HelloView(props: HelloViewProps): React.ReactElement {
+export function DashboardView(props: DashboardViewProps): React.ReactElement {
   const { t, sessionId, useSessions, useWorkspaces } = props
   const [section, setSection] = useState<Section>('overview')
   const sessionsById = useSessions(state => state.byId)
@@ -326,8 +326,8 @@ export function HelloView(props: HelloViewProps): React.ReactElement {
         <p className={css.subtitle}>{t('subtitle')}</p>
       </header>
 
-      <nav className={css.tabs} aria-label="hello sections">
-        {(['overview', 'features', 'about'] as const).map(id => (
+      <nav className={css.tabs} aria-label="dashboard sections">
+        {(['overview', 'analytics', 'about'] as const).map(id => (
           <button
             key={id}
             type="button"
@@ -451,7 +451,7 @@ export function HelloView(props: HelloViewProps): React.ReactElement {
         </section>
       )}
 
-      {section === 'features' && (
+      {section === 'analytics' && (
         <section className={css.body}>
           <div className={css.chartCard}>
             <span className={css.cardTitle}>
@@ -546,8 +546,8 @@ export function HelloView(props: HelloViewProps): React.ReactElement {
         <section className={css.body}>
           <div className={css.aboutCard}>
             <p className={css.aboutIntro}>
-              你好面板是一个客户端插件，通过 <code>conversation.view</code> 插槽注册为一个对话
-              Tab 页。它不依赖任何后端服务，所有指标都从框架标准数据实时派生。
+              会话仪表盘是一个客户端插件，通过 <code>conversation.view</code> 插槽注册为一个对话
+              Tab 页。它不依赖任何后端服务，所有指标均从框架标准数据实时派生。
             </p>
 
             <div className={css.aboutSection}>
@@ -558,8 +558,8 @@ export function HelloView(props: HelloViewProps): React.ReactElement {
                   <span className={css.capDesc}>当前会话上下文占用、会话总量统计、近 7 天活跃度趋势</span>
                 </li>
                 <li className={css.capItem}>
-                  <span className={css.capName}>功能</span>
-                  <span className={css.capDesc}>全部会话 Token 花费排行、当前会话上下文详细分析</span>
+                  <span className={css.capName}>用量分析</span>
+                  <span className={css.capDesc}>全部会话 Token 消耗排行、当前会话上下文详细分析</span>
                 </li>
               </ul>
             </div>

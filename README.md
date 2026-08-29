@@ -3,7 +3,7 @@
 A self-contained **client plugin** for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) Web UI. It contributes two independent surfaces, both riding the slot service's effect wrapper so plugin unload removes them:
 
 - **Desktop pet** (`PetView`) — a global floating pet above every column, independent of the active session. Draggable, skinnable (five SVG species with eye/mouth emotes), resizable, persisted to `localStorage`. Reacts to session lifecycle (running → busy, pending → waiting, finishing → celebration) plus manual feed/play/sleep controls.
-- **Hello panel** (`HelloView`) — a conversation-view tab (你好面板 / Hello) showing live context occupancy, session totals, a 7-day activity trend, token-spend ranking, and detailed context analysis of the active session. Renders derived data only; no service, no store.
+- **Session dashboard** (`DashboardView`) — a conversation-view tab (会话仪表盘 / Dashboard) showing live context occupancy, session totals, a 7-day activity trend, token-spend ranking, and detailed context analysis of the active session. Renders derived data only; no service, no store.
 
 It has no host-side service and no model experience: it registers no tool, no prompt section, no context message, and no Remote method.
 

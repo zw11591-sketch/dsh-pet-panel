@@ -1,40 +1,40 @@
-/** `hello` namespace dictionaries (the panel view tab label and page headings). */
+/** `dashboard` namespace dictionaries (the view tab label and page headings). */
 
 /** Dictionary namespace owned by this plugin. */
-export const NS = 'hello'
+export const NS = 'dashboard'
 
-/** The hello dictionary key set (the source of truth for both locales). */
-export type HelloKey =
-  | 'view.hello'
+/** The dashboard dictionary key set (the source of truth for both locales). */
+export type DashboardKey =
+  | 'view.label'
   | 'title'
   | 'subtitle'
   | 'tab.overview'
-  | 'tab.features'
+  | 'tab.analytics'
   | 'tab.about'
 
 declare module '@deepseek-ai/dsh-client-ui-slots' {
   interface LocaleNamespaceMap {
-    /** The panel view tab label and page headings. */
-    'hello': HelloKey
+    /** The view tab label and dashboard page headings. */
+    'dashboard': DashboardKey
   }
 }
 
 /** Simplified Chinese dictionary (the key-set source of truth). */
-export const zh: Record<HelloKey, string> = {
-  'view.hello': '你好面板',
-  'title': '你好，DeepSeek Harness',
-  'subtitle': '通过 conversation.view 插槽注册的自定义面板，实时展示会话与上下文指标。',
+export const zh: Record<DashboardKey, string> = {
+  'view.label': '会话仪表盘',
+  'title': '会话仪表盘',
+  'subtitle': '实时汇总会话、上下文与 Token 用量指标，全部从框架标准数据派生。',
   'tab.overview': '概览',
-  'tab.features': '功能',
+  'tab.analytics': '用量分析',
   'tab.about': '关于',
 }
 
 /** English dictionary. */
-export const en: Record<HelloKey, string> = {
-  'view.hello': 'Hello',
-  'title': 'Hello, DeepSeek Harness',
-  'subtitle': 'A custom panel registered through the conversation.view slot, showing live session and context metrics.',
+export const en: Record<DashboardKey, string> = {
+  'view.label': 'Dashboard',
+  'title': 'Session Dashboard',
+  'subtitle': 'Live session, context, and token-usage metrics, all derived from standard framework data.',
   'tab.overview': 'Overview',
-  'tab.features': 'Features',
+  'tab.analytics': 'Analytics',
   'tab.about': 'About',
 }
