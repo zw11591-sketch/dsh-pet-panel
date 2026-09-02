@@ -8,4 +8,10 @@ import { clientBundle } from './build/tsdown.client.ts'
  * the modules node half serves lib/client.js to browsers, so a git-installed
  * package must ship it.
  */
-export default clientBundle('dsh-pet-panel', ['src/index.ts'])
+export default clientBundle('dsh-pet-panel', ['src/index.ts'], {
+  lib: { target: 'es2022' },
+  libExternal: [
+    '@deepseek-ai/dsh-typert-protocol',
+    '@deepseek-ai/dsh-home-paths',
+  ],
+})

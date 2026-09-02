@@ -1,11 +1,25 @@
 # dsh-pet-panel
 
-A self-contained **client plugin** for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) Web UI. It contributes two independent surfaces, both riding the slot service's effect wrapper so plugin unload removes them:
+A **dual-face plugin** for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) Web UI: a browser half (pet, session dashboard, and three self-service capability panels) plus a host half (skill / MCP / A2A gateways, model-facing A2A tools, and an inbound A2A endpoint), with per-profile data isolation.
 
-- **Desktop pet** (`PetView`) — a global floating pet above every column, independent of the active session. Draggable, skinnable (five SVG species with eye/mouth emotes), resizable, persisted to `localStorage`. Reacts to session lifecycle (running → busy, pending → waiting, finishing → celebration) plus manual feed/play/sleep controls.
-- **Session dashboard** (`DashboardView`) — a conversation-view tab (会话仪表盘 / Dashboard) showing live context occupancy, session totals, a 7-day activity trend, token-spend ranking, and detailed context analysis of the active session. Renders derived data only; no service, no store.
+## Features
 
-It has no host-side service and no model experience: it registers no tool, no prompt section, no context message, and no Remote method.
+### Browser (client)
+
+- **Desktop pet** (`PetView`) — a global floating pet above every column, independent of the active session. Draggable, skinnable (five SVG species with eye/mouth emotes), resizable, persisted to `localStorage`. Reacts to session lifecycle (running → busy, pending → waiting, finishing → celebration) plus manual feed/play/sleep controls. Toggle it from the chat with `/pet on` / `/pet off` / `/pet`.
+- **Session dashboard** (`DashboardView`) — a conversation-view tab (会话仪表盘 / Dashboard) showing live context occupancy, session totals, a 7-day activity trend, token-spend ranking, and detailed context analysis of the active session. Renders derived data only.
+- **Skill Forge** (技能工坊) — list / read / write / delete `SKILL.md` files, and generate a new skill from a natural-language description via the default model.
+- **Tool Integrations** (工具集成) — list / add / edit / delete MCP servers (stdio or streamable-http).
+- **A2A Management** (A2A 管理) — configure this plugin's own Agent Card and register external A2A agents (name / URL / description / capabilities / keywords), with the generated agent-card URL and message/send endpoint shown for copy.
+- **Task manager** — a session-header entry plus overlay panel surfacing the current session's full execution trace (turn → step → tool-call → approval → todo).
+- **Background switcher** — four Papergames official wallpapers with a brightness/dim control, persisted to `localStorage`.
+
+### Host (Node service)
+
+- `SkillForgeGateway`, `ToolIntegrationsGateway`, `A2AConfigGateway` — Typert remotes backing the three panels above.
+- A2A **outbound** tools — `a2a_list_agents` / `a2a_call` let the model discover and call registered external A2A agents.
+- A2A **inbound** endpoint — serves `/.well-known/agent-card.json` and a JSON-RPC `message/send` handler at `/a2a`, so other agents can call this plugin's card.
+- **Per-profile isolation** — skills, MCP config, and A2A config all resolve to the active profile (`~/.dsh/profiles/<name>/`), so each profile sees only its own skills and tools.
 
 ## Install
 
@@ -26,7 +40,7 @@ Then start:
 dsh --profile web
 ```
 
-The first install builds `lib/client.js` from source via the `prepare` script (no type checking — that's what CI does).
+The first install builds `lib/index.js` + `lib/client.js` from source via the `prepare` script (no type checking — that's what CI does).
 
 ## Development
 
@@ -40,7 +54,7 @@ Keep this repo and DeepSeek Harness as siblings so the type gate can resolve the
 
 ```sh
 pnpm install
-pnpm run build      # tsc -b && tsdown — emits lib/index.js + lib/client.js + types
+pnpm run build      # tsc -b && tsdown && postbuild — emits lib/index.js + lib/client.js + types
 pnpm run typecheck  # the type gate (needs the sibling harness checkout)
 ```
 
@@ -60,6 +74,8 @@ The package declares two manifests in `package.json`:
 - `dsh.client` (`platform: web`, `inject: [...]`) → the web module table scans this package into the browser roster and serves `lib/client.js`.
 
 The client bundle is built by `build/tsdown.client.ts` — a self-contained port of DeepSeek Harness's own client-bundle preset. It wraps the plugin in `window.__ModuleLoader__.load({ id, factory })`, compiles CSS Modules through lightningcss, and resolves `@deepseek-ai/*` + `react` through the shell's frozen module table (no globals, no import map).
+
+The host half exposes its services as Typert remotes: `src/client/remote.ts` holds the hand-written `TYPERT_REMOTE` manifest describing each method's wire codec, and the client mounts the namespaces onto the Typert client remote.
 
 ## License
 

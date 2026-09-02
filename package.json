@@ -1,6 +1,6 @@
 {
   "name": "dsh-pet-panel",
-  "description": "A desktop pet plus a session dashboard for the DeepSeek Harness Web UI — a self-contained client plugin (no host service) contributing a conversation dashboard tab and a floating, draggable, skinnable pet",
+  "description": "A dual-face DeepSeek Harness Web UI plugin: desktop pet, session dashboard, and self-service capability panels (Skill Forge, Tool Integrations, A2A Management) with per-profile isolation and a /pet command",
   "version": "0.1.0",
   "type": "module",
   "author": {
@@ -20,10 +20,10 @@
     "node": "^22.19.0 || >=24.0.0"
   },
   "scripts": {
-    "build": "tsc -b && tsdown",
+    "build": "tsc -b && tsdown && node scripts/postbuild.mjs",
     "watch": "tsdown --watch",
     "typecheck": "tsc -b --pretty false",
-    "prepare": "tsdown --config tsdown.prepare.config.ts"
+    "prepare": "tsc -b && tsdown --config tsdown.prepare.config.ts && node scripts/postbuild.mjs"
   },
   "main": "lib/index.js",
   "types": "lib/types/index.d.ts",
@@ -59,7 +59,8 @@
         "@deepseek-ai/dsh-client-locale",
         "@deepseek-ai/dsh-client-runtime",
         "@deepseek-ai/dsh-client-ui-conversation",
-        "@deepseek-ai/dsh-client-ui-layout"
+        "@deepseek-ai/dsh-client-ui-layout",
+        "@deepseek-ai/dsh-client-ui-sidebar"
       ],
       "platform": "web"
     }
@@ -70,10 +71,15 @@
   },
   "devDependencies": {
     "@deepseek-ai/cordis": "^4.0.1",
+    "@deepseek-ai/dsh-home-paths": "^0.1.1-rc.2",
+    "@deepseek-ai/dsh-skill-filesystem": "^0.1.1-rc.2",
+    "@deepseek-ai/dsh-tools": "^0.1.1-rc.2",
+    "@deepseek-ai/dsh-typert-protocol": "^0.1.1-rc.2",
     "@deepseek-ai/dsh-client-locale": "^0.1.1-rc.2",
     "@deepseek-ai/dsh-client-runtime": "^0.1.1-rc.2",
     "@deepseek-ai/dsh-client-ui-conversation": "^0.1.1-rc.2",
     "@deepseek-ai/dsh-client-ui-layout": "^0.1.1-rc.2",
+    "@deepseek-ai/dsh-client-ui-sidebar": "^0.1.1-rc.2",
     "@deepseek-ai/dsh-client-ui-slots": "^0.1.1-rc.2",
     "@deepseek-ai/dsh-token-meter": "^0.1.1-rc.2",
     "@types/react": "~18.3.1",
@@ -83,7 +89,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tsdown": "^0.22.2",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "zod": "^4.4.3"
   },
   "repository": {
     "type": "git",

@@ -2,9 +2,10 @@
  * whose eyes and mouth change per action, driven by session lifecycle plus
  * manual and proactive interactions. */
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react'
 import type { PropsRuntime } from '@deepseek-ai/dsh-client-ui-slots'
 import css from './PetView.module.css'
+import { petStore } from './petStore.ts'
 
 /** Root-scope overlay props: no session, but the global useSessions feed. */
 type PetViewProps = PropsRuntime<'shell.overlay'>
@@ -287,6 +288,8 @@ export function PetView(props: PetViewProps): React.ReactElement {
   const [say, setSay] = useState<string | null>(null)
   const [panelOpen, setPanelOpen] = useState(false)
   const [manual, setManual] = useState<PetAction | null>(null)
+  // 显隐：订阅命令拦截器（/pet on|off）写出的跨 slot store。
+  const visible = useSyncExternalStore(petStore.subscribe, petStore.isVisible)
 
   const rootRef = useRef<HTMLDivElement | null>(null)
   const drag = useRef<{ startX: number; startY: number; grabX: number; grabY: number; moved: boolean } | null>(null)
@@ -395,6 +398,9 @@ export function PetView(props: PetViewProps): React.ReactElement {
     '--pet-scale': String(size.scale),
     ...(pos === null ? {} : { left: `${String(pos.x)}px`, top: `${String(pos.y)}px`, right: 'auto', bottom: 'auto' }),
   } as React.CSSProperties), [size.scale, pos])
+
+  // 隐藏状态：不渲染任何 DOM（包括影子、气泡、菜单）。
+  if (!visible) return <></>
 
   return (
     <div ref={rootRef} className={css.pet} style={style}>

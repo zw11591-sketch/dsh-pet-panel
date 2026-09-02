@@ -1,0 +1,125 @@
+/* 侧边栏底部「更换背景」切换器。颜色复用 dsw-alias token，兼容明暗主题。 */
+
+.wrap {
+  position: relative;
+  flex: none;
+}
+
+.trigger {
+  cursor: pointer;
+  height: 28px;
+  color: var(--dsw-alias-label-secondary);
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  padding: 0 8px;
+  display: inline-flex;
+  font-size: 13px;
+  line-height: 1;
+}
+
+.trigger:hover {
+  background: var(--dsw-alias-interactive-bg-hover);
+  color: var(--dsw-alias-label-primary);
+}
+
+.triggerLabel {
+  white-space: nowrap;
+}
+
+.menu {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 0;
+  z-index: 60;
+  width: 200px;
+  padding: 6px;
+  border: 1px solid var(--dsw-alias-border-l2);
+  border-radius: 12px;
+  background: var(--dsw-alias-bg-layer-2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  flex-direction: column;
+  gap: 2px;
+  display: flex;
+}
+
+.menuTitle {
+  padding: 6px 10px 4px;
+  font-size: 12px;
+  color: var(--dsw-alias-label-secondary);
+}
+
+.item {
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 10px;
+  display: flex;
+  text-align: left;
+  color: var(--dsw-alias-label-primary);
+  font-size: 13px;
+}
+
+.item:hover {
+  background: var(--dsw-alias-interactive-bg-hover);
+}
+
+.itemActive {
+  background: var(--dsw-alias-interactive-bg-active, var(--dsw-alias-interactive-bg-hover));
+}
+
+.swatch {
+  flex: none;
+  width: 26px;
+  height: 18px;
+  border-radius: 4px;
+  background-size: cover;
+  background-position: center;
+  border: 1px solid var(--dsw-alias-border-l2);
+  display: inline-block;
+}
+
+.itemName {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.check {
+  flex: none;
+  color: var(--dsw-alias-brand-primary-new-colorprimary-new-color, #e45753);
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.dimRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 8px 10px 2px;
+  border-top: 1px solid var(--dsw-alias-border-l2);
+}
+
+.dimLabel {
+  flex: none;
+  font-size: 12px;
+  color: var(--dsw-alias-label-secondary);
+}
+
+.dimSlider {
+  flex: 1;
+  min-width: 0;
+  accent-color: var(--dsw-alias-brand-primary-new-colorprimary-new-color, #e45753);
+  cursor: pointer;
+}
