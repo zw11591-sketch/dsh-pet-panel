@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "pages": {
+    "/openwiki/architecture/build-and-packaging.md": {
+      "pageVersion": "sha256:fab23a5d6ca84dae4e357469654e625038386e71bab8bd70f93c552bacad9b85",
+      "completedBy": "openwiki/0.5.0",
+      "completedRunId": "bcf0286c-f0e4-4471-91df-88403563f30c",
+      "gitHead": "2eebf386d9d32a138509954b49245b17bb3d3a94",
+      "sourceFingerprint": "sha256:260e42cd8452fb55212923e0db9bf0aea91c96012e2ef1412eae33a8aedc5007"
+    },
+    "/openwiki/architecture/overview.md": {
+      "pageVersion": "sha256:ea2ee0dd761c6b38740d3523490d6e265663303033933244d81acbd1edf77836",
+      "completedBy": "openwiki/0.5.0",
+      "completedRunId": "bcf0286c-f0e4-4471-91df-88403563f30c",
+      "gitHead": "2eebf386d9d32a138509954b49245b17bb3d3a94",
+      "sourceFingerprint": "sha256:260e42cd8452fb55212923e0db9bf0aea91c96012e2ef1412eae33a8aedc5007"
+    },
+    "/openwiki/architecture/typert-remote-bridge.md": {
+      "pageVersion": "sha256:e643668faed99e4ea66dc269a21270954007a9df1416ecb7c53bcb94ef7466d3",
+      "completedBy": "openwiki/0.5.0",
+      "completedRunId": "bcf0286c-f0e4-4471-91df-88403563f30c",
+      "gitHead": "2eebf386d9d32a138509954b49245b17bb3d3a94",
+      "sourceFingerprint": "sha256:260e42cd8452fb55212923e0db9bf0aea91c96012e2ef1412eae33a8aedc5007"
+    },
+    "/openwiki/concepts/a2a-protocol.md": {
+      "pageVersion": "sha256:92fc921d8557ec98373559f94903d4129605837ebe9bdf8f0af6499d572912f1",
+      "completedBy": "openwiki/0.5.0",
+      "completedRunId": "1734b9f1-b954-498f-9054-77e098fe3a9b",
+      "gitHead": "2eebf386d9d32a138509954b49245b17bb3d3a94",
+      "sourceFingerprint": "sha256:260e42cd8452fb55212923e0db9bf0aea91c96012e2ef1412eae33a8aedc5007"
+    },
+    "/openwiki/concepts/per-profile-isolation.md": {
+      "pageVersion": "sha256:6bd69c906993d0dd40b21f7185c9bcbc04c2c039b6dc6582042268a072d6d829",
+      "completedBy": "openwiki/0.5.0",
+      "completedRunId": "1734b9f1-b954-498f-9054-77e098fe3a9b",
+      "gitHead": "2eebf386d9d32a138509954b49245b17bb3d3a94",
+      "sourceFingerprint": "sha256:260e42cd8452fb55212923e0db9bf0aea91c96012e2ef1412eae33a8aedc5007"
+    },
+    "/openwiki/concepts/session-lifecycle-events.md": {
+      "pageVersion": "sha256:d50a1f4e96471985d6c90836da1d92f61ecc40244d2187279bed93e97436d4fd",
+      "completedBy": "openwiki/0.5.0",
+      "completedRunId": "bcf0286c-f0e4-4471-91df-88403563f30c",
+      "gitHead": "2eebf386d9d32a138509954b49245b17bb3d3a94",
+      "sourceFingerprint": "sha256:260e42cd8452fb55212923e0db9bf0aea91c96012e2ef1412eae33a8aedc5007"
+    },
+    "/openwiki/integrations/deepseek-harness-contract.md": {
+      "pageVersion": "sha256:f6bcbfa1409c07d6e2f43fd7bd86184feb802571f5c192de5a1d6279cd6c354e",
+      "completedBy": "openwiki/0.5.0",
+      "completedRunId": "bcf0286c-f0e4-4471-91df-88403563f30c",
+      "gitHead": "2eebf386d9d32a138509954b49245b17bb3d3a94",
+      "sourceFingerprint": "sha256:260e42cd8452fb55212923e0db9bf0aea91c96012e2ef1412eae33a8aedc5007"
+    },
+    "/openwiki/operations/development.md": {
+      "pageVersion": "sha256:cb7d2a3bdc5be3e33ceaa3ed8dc1de5771b0876bea337f6382cb5d21ad7d68e5",
+      "completedBy": "openwiki/0.5.0",
+      "completedRunId": "bcf0286c-f0e4-4471-91df-88403563f30c",
+      "gitHead": "2eebf386d9d32a138509954b49245b17bb3d3a94",
+      "sourceFingerprint": "sha256:260e42cd8452fb55212923e0db9bf0aea91c96012e2ef1412eae33a8aedc5007"
+    },
+    "/openwiki/quickstart.md": {
+      "pageVersion": "sha256:a32ba0bb7d8b3089aa1f9cdd3b1667b7cd577ac2bd86f09f6178b602c6f581fc",
+      "completedBy": "openwiki/0.5.0",
+      "completedRunId": "1734b9f1-b954-498f-9054-77e098fe3a9b",
+      "gitHead": "2eebf386d9d32a138509954b49245b17bb3d3a94",
+      "sourceFingerprint": "sha256:260e42cd8452fb55212923e0db9bf0aea91c96012e2ef1412eae33a8aedc5007"
+    },
+    "/openwiki/workflows/client-surface.md": {
+      "pageVersion": "sha256:d57ae23f83910acda932abaebdc4d58710004f69775d26e1dcfa3fa18729301e",
+      "completedBy": "openwiki/0.5.0",
+      "completedRunId": "bcf0286c-f0e4-4471-91df-88403563f30c",
+      "gitHead": "2eebf386d9d32a138509954b49245b17bb3d3a94",
+      "sourceFingerprint": "sha256:260e42cd8452fb55212923e0db9bf0aea91c96012e2ef1412eae33a8aedc5007"
+    },
+    "/openwiki/workflows/skill-forge.md": {
+      "pageVersion": "sha256:62f5e622b4e53dc987504463ab91dac15df8eab681db91859e9483cabd7e5439",
+      "completedBy": "openwiki/0.5.0",
+      "completedRunId": "bcf0286c-f0e4-4471-91df-88403563f30c",
+      "gitHead": "2eebf386d9d32a138509954b49245b17bb3d3a94",
+      "sourceFingerprint": "sha256:260e42cd8452fb55212923e0db9bf0aea91c96012e2ef1412eae33a8aedc5007"
+    },
+    "/openwiki/workflows/tool-integrations.md": {
+      "pageVersion": "sha256:ddbe508881bd267edbc4562863f336c1318d9f6be6e9c8386e7b420dcd96a0e5",
+      "completedBy": "openwiki/0.5.0",
+      "completedRunId": "bcf0286c-f0e4-4471-91df-88403563f30c",
+      "gitHead": "2eebf386d9d32a138509954b49245b17bb3d3a94",
+      "sourceFingerprint": "sha256:260e42cd8452fb55212923e0db9bf0aea91c96012e2ef1412eae33a8aedc5007"
+    }
+  }
+}

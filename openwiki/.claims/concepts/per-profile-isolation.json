@@ -1,0 +1,172 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:6bd69c906993d0dd40b21f7185c9bcbc04c2c039b6dc6582042268a072d6d829",
+  "claims": [
+    {
+      "id": "claim_6d1e2d4064314707bdf1da2b72a2ae9c",
+      "statement": "Each dsh profile sees only its own data because dsh-pet-panel resolves the skills directory, MCP server config, and A2A agent registry under $DSH_HOME/profiles/<name>/, not under a profile-agnostic global home.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L23-L26",
+          "version": "repo-lines-v1:sha256:9b45885f82a0d7a1f425bbbfc89066485a36f677bee39bc861f5cbcef1967277:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGJlZGRhNjVlYjNiYmYxMTIzYzlhOTA2NGY4ZTIyY2U2MThmMDNlYThlNTFkNzZmYzIxYmFiYzBjNjZlNDEwZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTIyZmFhNTM1YmQyZWEzZDUyZTc0MWVkNDU0NDM1YjdmZTQ5ZTgzNTg2ZTk0M2Q5OGQ4MmJiZmIyNGQxZjVjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDQ3ZjIyMDNkZTNhY2E2NWE2NWE2MWZiNTcyZWY5NGQxMDljNDc5ZmI0NDMyNmQxOGFlYTM0ZTZiOGI1MzliNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzA4MGIwNzJkZGYzOGExOTA0ZmM1N2YxZTA3ZWFlYTc5YmRjMzZiMTUzYzBkMDRiOGJlOWFkZjI3YmIxZGQwMyJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L414-L417",
+          "version": "repo-lines-v1:sha256:7232a386bf96c5a296b3de275e2994689fc39407709c15d5c07fce24d4717629:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZmUxYWEzMDY1OTNiNjkwNzRhNTE5NDY1YTA1YWU1MmM5OWRjNzRhZjBhNzQ5ZWY3YmM1NTNkOWI1MDI4YjQ2ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTIyZmFhNTM1YmQyZWEzZDUyZTc0MWVkNDU0NDM1YjdmZTQ5ZTgzNTg2ZTk0M2Q5OGQ4MmJiZmIyNGQxZjVjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjBmMjAxZWUwMzhjNTIwOTJlNzU5OTUyYTczNjkyZTc0NTMxMmFhYmFhYjE4NTc4MTEwMWQzMjIyYTE5N2FkNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTRkMDAyMDdhYTYzMDhhZTYxNGYxMWQ5YTU2NDg3YTZmZjJkMWMxYzA3ODJlMGI0MDNjMzYwOTBhZGM1Mzc2ZCJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L587-L587",
+          "version": "repo-lines-v1:sha256:e9f84d681d63656ea58964550e02ac06ec984c3ab1b45993bb330bf184fce3f1:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTlmODRkNjgxZDYzNjU2ZWE1ODk2NDU1MGUwMmFjMDZlYzk4NGMzYWIxYjQ1OTkzYmIzMzBiZjE4NGZjZTNmMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTlmODRkNjgxZDYzNjU2ZWE1ODk2NDU1MGUwMmFjMDZlYzk4NGMzYWIxYjQ1OTkzYmIzMzBiZjE4NGZjZTNmMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTE2MjAzM2E5ZDg5NmIyZDNlZTA0M2I4MGE1ZDI2MzlhNWFjYTcyMjgyYWZmMTdmZTMwZGUwOGUzMTZkYjQ2YSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYTY4Y2I1OTY0MmI1NTQ5YTRhNzhmOGFkZTkwODhlMTBlOTZmNjhjM2EwOGQ2NjY2ZmI5YzY1OTUxYjYwMDIzMCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_e264baf2872342d7b22a75d0aecde112",
+      "statement": "profileNameFromArgv() derives the active profile from process.argv by parsing --profile <name> or --profile=<name>, which is the only reliable profile signal because dsh does not chdir into the profile directory and does not expose it to plugins.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L566-L578",
+          "version": "repo-lines-v1:sha256:82a299fe918c08e17951114060302e7f59459685aa6c071fca5464df485d6c3b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ1ZDVhYmFjYTIyNjgwYWU5NTMzNjcwMGRmNzY2MzYxOTdhN2NiNmMwMDRmNGNkNzlhYzFiMWZkMmYwYWM0YTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM1ZGM1OWY4YTcwNWM1YTYwYjdiOTY2MTA4OWQ2MWY0ZTdmYjliN2Y2YTdmZDg4NDBjMDIyYTIxZDViY2UzNjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU4ZDg3NDlkYjA1MGE4ZGE1OTVhYTk0ODI4Yjc5MjI5NzRmZDg4YzE5ZTU1MGU1YjM0Mjg0MjBlM2Y3OTRiZDYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ad20d5dfded84f23a741a90e35b9cc21",
+      "statement": "Every profile surface path is built through dshHomePath() from @deepseek-ai/dsh-home-paths, which joins segments onto a single resolved dsh home (DSH_HOME or ~/.dsh), so all profile data stays under one home root regardless of launch cwd.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L1-L2",
+          "version": "repo-lines-v1:sha256:70b3866f56401398cda53107263a615d4dd6a7b1c491fdf6bc9e70c0e18127b6:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTU2NmQ4NzY2OGY4NDdiNmViNjJhNDViZTUwOTVjMzI2OWQ4MWI2NWJmNzFhYjk0YTYwNDg1ZDc0ZGNiNGYxNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTg1YThmZTEzMDRkZDFjNDcxMTkxMWY3OTRjM2IwNDc5NjlkNzBkM2Q2NmVkYjBlOTJiNGQ2ZTE2OWJiNTdkMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYTMyNDA4MzQ0ZGFmMjczMDRkMmRjMDI0YjM5Y2EwZGM2ODhlMWQxNjVmZjc1OWI1ZjZhNTY5NGY0NGQyZjYxZCJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L23-L26",
+          "version": "repo-lines-v1:sha256:9b45885f82a0d7a1f425bbbfc89066485a36f677bee39bc861f5cbcef1967277:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGJlZGRhNjVlYjNiYmYxMTIzYzlhOTA2NGY4ZTIyY2U2MThmMDNlYThlNTFkNzZmYzIxYmFiYzBjNjZlNDEwZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTIyZmFhNTM1YmQyZWEzZDUyZTc0MWVkNDU0NDM1YjdmZTQ5ZTgzNTg2ZTk0M2Q5OGQ4MmJiZmIyNGQxZjVjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDQ3ZjIyMDNkZTNhY2E2NWE2NWE2MWZiNTcyZWY5NGQxMDljNDc5ZmI0NDMyNmQxOGFlYTM0ZTZiOGI1MzliNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzA4MGIwNzJkZGYzOGExOTA0ZmM1N2YxZTA3ZWFlYTc5YmRjMzZiMTUzYzBkMDRiOGJlOWFkZjI3YmIxZGQwMyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_75473bb172b347cc8fc7a1a96aaa057b",
+      "statement": "ProfileSkillProviderPlugin registers a FileSystemSkillProvider with includeDefaultRoots: false and customSkillDirs: [skillRoot()], so only the active profile's skills load and dsh's global ~/.dsh/skills and ~/.agents/skills roots are excluded.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L1062-L1076",
+          "version": "repo-lines-v1:sha256:9ad526a38c0c01e61d4b1aca6e27960a808f06f8abdd6490ffdc687e5fa13def:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYzNjIxYjMwM2FjMGNlOTMxMDJkMTYyNWU0ZGJkMWYwOTM3MmEyZTRiZTg3ODI5NDBjYTFjNGVmOWJmOTdkOTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVmYTlkNTFiMTA0ODdiOTBlNTBkY2IwODc3Nzc2YzdhYzA3M2MyZGY0MDRlNGU1OTFjM2E2ZWU1MmM5MWE3OWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJkOWFlMzFiNTI1NzFmYWJjYjY2NGE5OGY0MGY5ZDY2MjZhNGM0MTU3YTNiNWYwZTA3ZDc4ZDM2NDgyZDkwMWYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9644e534eb1c4387acbc1a6cdc0548c3",
+      "statement": "ProfileSkillProviderPlugin reuses @deepseek-ai/dsh-skill-filesystem's FileSystemSkillProvider so the plugin inherits dsh's own YAML-frontmatter parsing and isSkillName validation rather than reimplementing skill loading.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L1057-L1061",
+          "version": "repo-lines-v1:sha256:734945a4d13228ac8e3d3d08f03aea30e201304136cfc1146c4877b7b01f239a:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDVkNWFiYWNhMjI2ODBhZTk1MzM2NzAwZGY3NjYzNjE5N2E3Y2I2YzAwNGY0Y2Q3OWFjMWIxZmQyZjBhYzRhNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZWRiNTQ0YTU4ODYzNDM1MGMxOTE2OWE4MjQzYjUzMWJmMzA5NWViNTdjOGZiMDNlNDQ4MzY5NDNmMDgxNjg4MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDQ3ZjIyMDNkZTNhY2E2NWE2NWE2MWZiNTcyZWY5NGQxMDljNDc5ZmI0NDMyNmQxOGFlYTM0ZTZiOGI1MzliNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTQxYWQ1NDgzMzBkMzQ2NDk1Mjg2OTJjMWEyNmI0N2FiNTRlZjIxMmQ2YTdhZmQxMTg2MmZmM2VmODg5ODBjYiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_12aa91145fd848068f267b4a37ae4f94",
+      "statement": "The ProfileSkillProviderPlugin is registered with watch: false, disabling filesystem watching because the profile skill directory is the plugin's own authored surface rather than an externally-edited tree.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L1062-L1076",
+          "version": "repo-lines-v1:sha256:9ad526a38c0c01e61d4b1aca6e27960a808f06f8abdd6490ffdc687e5fa13def:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYzNjIxYjMwM2FjMGNlOTMxMDJkMTYyNWU0ZGJkMWYwOTM3MmEyZTRiZTg3ODI5NDBjYTFjNGVmOWJmOTdkOTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVmYTlkNTFiMTA0ODdiOTBlNTBkY2IwODc3Nzc2YzdhYzA3M2MyZGY0MDRlNGU1OTFjM2E2ZWU1MmM5MWE3OWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJkOWFlMzFiNTI1NzFmYWJjYjY2NGE5OGY0MGY5ZDY2MjZhNGM0MTU3YTNiNWYwZTA3ZDc4ZDM2NDgyZDkwMWYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_de5d522dfa2449ff9b9fb75af0614c29",
+      "statement": "The A2A config directory resolves to dshHomePath('profiles', profile) when a profile is active, and deliberately avoids depending on process.cwd() because a cwd-derived path would split a profile's A2A configuration into two copies depending on where the process was launched.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L580-L594",
+          "version": "repo-lines-v1:sha256:952e1fa051d08f2a231cb7d001bc3a221f90160142646047056a4e9419a4378b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ1ZDVhYmFjYTIyNjgwYWU5NTMzNjcwMGRmNzY2MzYxOTdhN2NiNmMwMDRmNGNkNzlhYzFiMWZkMmYwYWM0YTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk4NDVhZDc4NTIxZjViYWVlYTU0MzMxNzcxOTBjYzM4MjczNTI0OWMwMmJkNGUxZjM1YTM2OTFkYjA3Y2MwNWIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU3ZDc4MWQ0M2UxNjkzZmFjYTRhZGVmZTY3MDVkNWE4ZTQ0MGMwYmI0M2QyZGRjODFkOTczYjM1OWY1MTNhM2MifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_502b00689d4d43a99f7d397ad5a93aa7",
+      "statement": "The a2aConfigDir() fallback heuristic for non-profile launches checks DSH_PROFILE_DIR, then a cwd containing cordis.yml, then the global dsh home; this global-home fallback is the contamination risk shared by all three surfaces when --profile is absent or unparsable.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L585-L594",
+          "version": "repo-lines-v1:sha256:11994c708f6c413839cc0f3c4accdf8ad2a53fc022e935bdd32b101f012f2db7:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJiYzQzNGNkZDI2ZTcyMTc2NDJmOWQ5N2IxZTM2MmQ2ZGI2YTk1ZDFiNjYyZGViNTYwOWVmMTFhMmNlN2M2ZGYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU1N2NkODdmZWUwNWY3M2MxYzFiNmFmOTA0ZDhhN2ZiMWMyZDUwMTVmZDhkNzdmYTI2YjI0ODM4YjVlNjYwODIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU3ZDc4MWQ0M2UxNjkzZmFjYTRhZGVmZTY3MDVkNWE4ZTQ0MGMwYmI0M2QyZGRjODFkOTczYjM1OWY1MTNhM2MifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d8afd174f5a3425aa2ee09a873c23b8b",
+      "statement": "Skill names are validated against ^[A-Za-z0-9_-]{1,64}$ via assertName() before joining onto the profile skills path, blocking path traversal out of the profile's skills directory.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L14-L21",
+          "version": "repo-lines-v1:sha256:2f1a8a1d172e073132ec9e7714aa57d8b46f7368a60cf5f481cb4d5d15a24484:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTFiMmNiODNiNzU2ZGRjODIxYzRiOTYwNzNmYmE3NmZhZDRhN2ZjMmQxYzY2ZTI5ODMyYjYxMjFhODc5MjRkNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTIyZmFhNTM1YmQyZWEzZDUyZTc0MWVkNDU0NDM1YjdmZTQ5ZTgzNTg2ZTk0M2Q5OGQ4MmJiZmIyNGQxZjVjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZGUxZDJlMGIyZWY2MGMxYmI3NjFkZWM3NDIzZTIxY2FhYjVhMWYyMzdjMzYzN2EzNjQ5ZWMyNDhmNzBmMmIxNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWRjNDQ4MWQ3NGU1YmYyOGZiYmFiMGEzOTgzNTk0MzE5N2VhOTg4Yzk4OGI2OTExODQ2ZjQxMWVkZDk2ZmI0MyJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L196-L216",
+          "version": "repo-lines-v1:sha256:360cb411a35c063187f1c6a006fee1d726ebfe7822a088799e532da5a08787f3:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZjYjg4ZjkwNzA5YTQwY2FlNzkyMGNmMWUxMjkwOTFmZWMwYzAzNDk0ZTQxMjY0ZTQwYmFmNWRlMzJkZWEwYjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxMzQ1MTgwMTA1YjBjNjZhNzdkYWQ1MWJiMzc5MDFhMzczMmM5NjU0YmE0ZGUzOTgxZjgxZTE4MTc1MjQ4YmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFhNGI1ODg5N2ZlNDdmN2JlMjUyMDAzNzZhMDAwMTEwMTA0ZDAyZTNhNDIyOTRiNGU5ODVjZDI2MTY5ZjI1ZWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjIyY2QyYjcyNTYxN2E4Y2Y3NGU2YTk3MmIxNzM3ZTNkNmU0MDZjY2Q5YTM4ZThiZGMxY2U4MmE3YWM1ZDk4NzQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_875715f5a2e14a79be597fa758ac1206",
+      "statement": "The A2A config file is join(a2aConfigDir(), 'a2a-agents.json'), so the card and external-agent registry persist to $DSH_HOME/profiles/<name>/a2a-agents.json for the active profile.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L596-L598",
+          "version": "repo-lines-v1:sha256:45b8cdae7ac9dd460f9966e62a4c04e367dc13128a2041c289d8f5a7440aee82:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjM0ODQyZjcyMDc0OTBiZGNkMDM5YTM1NWI2NzUxY2I4MjU5MGVlMTAzMzY1MTY2N2M1YTJjOWU3NDg3NjkxNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTIyZmFhNTM1YmQyZWEzZDUyZTc0MWVkNDU0NDM1YjdmZTQ5ZTgzNTg2ZTk0M2Q5OGQ4MmJiZmIyNGQxZjVjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYWRkNDNhMjg0ZjA5YmZkMDFkMWVmMGNiYjJiZmY0OWIxMWRjZTg4MTNjNTU2ZDJiNzhkMzlmMzVhYThlZmJlMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDg3Mjg3NTUxNTkyMTRkZTJhMWVjOWVhZjg2MzNlMzQ0ZDFmMmQ3NzE3NDE0ZWQ0OTBjMjg3ODcyNDdlNWM3YSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_2d4aa822e84e4e8b95a7bbda65eecd16",
+      "statement": "The MCP server config file is <profiles>/<name>/mcp-servers.json for the active profile, otherwise dshHomePath('mcp-servers.json'), and ToolIntegrationsGateway reads/writes it and hot-mounts servers through ctx.loader.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L414-L417",
+          "version": "repo-lines-v1:sha256:7232a386bf96c5a296b3de275e2994689fc39407709c15d5c07fce24d4717629:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZmUxYWEzMDY1OTNiNjkwNzRhNTE5NDY1YTA1YWU1MmM5OWRjNzRhZjBhNzQ5ZWY3YmM1NTNkOWI1MDI4YjQ2ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTIyZmFhNTM1YmQyZWEzZDUyZTc0MWVkNDU0NDM1YjdmZTQ5ZTgzNTg2ZTk0M2Q5OGQ4MmJiZmIyNGQxZjVjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjBmMjAxZWUwMzhjNTIwOTJlNzU5OTUyYTczNjkyZTc0NTMxMmFhYmFhYjE4NTc4MTEwMWQzMjIyYTE5N2FkNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTRkMDAyMDdhYTYzMDhhZTYxNGYxMWQ5YTU2NDg3YTZmZjJkMWMxYzA3ODJlMGI0MDNjMzYwOTBhZGM1Mzc2ZCJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L444-L457",
+          "version": "repo-lines-v1:sha256:28104dc9dc671e8d104ddb27cb7218a69063fbd7361be926f2dadeef47e8d394:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI3M2U5YzlkODA3YTNmMzc2YjcyMWU1OTYzMmQxNmY4ZTA1N2IwYjE0NmQ1ZmViM2UxOWFlZjc4NTRkOTE0ZmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxMzQ1MTgwMTA1YjBjNjZhNzdkYWQ1MWJiMzc5MDFhMzczMmM5NjU0YmE0ZGUzOTgxZjgxZTE4MTc1MjQ4YmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZmMjI1ZmZiNTc5MmU5NTRhYTViYzBmMDE0ODI1YzA0ZjYwOTIwOTE2MTQyODkxODgyOTQxZTQ0YTEzYWNhYTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImMwOWY4N2RlMTNhYjEwZTVmODYwNjUzYTg2MWJmY2MxN2MyMzExMmViYjQzMjNlZDMzOTUyMzdmMDdkNGYyYzMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d6e438fdf7f149038f77997ea4f410cb",
+      "statement": "The SkillForgeGateway reads and writes active-profile SKILL.md files at <skillRoot>/<name>/SKILL.md for its list/read/write/delete remote methods, where skillRoot() resolves to the active profile's skills dir.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L171-L216",
+          "version": "repo-lines-v1:sha256:b6b61c623012df87c1eb97fe21d3f5ae2b940d8402e2044bcfc9fc3c04a89f96:eyJzZWxlY3RlZExpbmVDb3VudCI6NDYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk0Yjk4YmZhMWJmOTY2NGRlZmU3Y2Y0OTg4NTFiNDU1ZTVkNTUyMjQwYTYwMjNkMGFlNGRiZjcwZjI1ZjdhMzkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxMzQ1MTgwMTA1YjBjNjZhNzdkYWQ1MWJiMzc5MDFhMzczMmM5NjU0YmE0ZGUzOTgxZjgxZTE4MTc1MjQ4YmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc3YjgyYzEzZjhjMzE0NmY5YTZlZmZlNjE0NjE2MzNlZDY3MDRmNzg2YjRjMGJiNjI0MWZkNzU1ZGE1ZGUwYzYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjIyY2QyYjcyNTYxN2E4Y2Y3NGU2YTk3MmIxNzM3ZTNkNmU0MDZjY2Q5YTM4ZThiZGMxY2U4MmE3YWM1ZDk4NzQifQ"
+        },
+        {
+          "resource": "repo://src/index.ts#L23-L26",
+          "version": "repo-lines-v1:sha256:9b45885f82a0d7a1f425bbbfc89066485a36f677bee39bc861f5cbcef1967277:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGJlZGRhNjVlYjNiYmYxMTIzYzlhOTA2NGY4ZTIyY2U2MThmMDNlYThlNTFkNzZmYzIxYmFiYzBjNjZlNDEwZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTIyZmFhNTM1YmQyZWEzZDUyZTc0MWVkNDU0NDM1YjdmZTQ5ZTgzNTg2ZTk0M2Q5OGQ4MmJiZmIyNGQxZjVjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDQ3ZjIyMDNkZTNhY2E2NWE2NWE2MWZiNTcyZWY5NGQxMDljNDc5ZmI0NDMyNmQxOGFlYTM0ZTZiOGI1MzliNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzA4MGIwNzJkZGYzOGExOTA0ZmM1N2YxZTA3ZWFlYTc5YmRjMzZiMTUzYzBkMDRiOGJlOWFkZjI3YmIxZGQwMyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_28f31eb339834954a799f2ada68f1839",
+      "statement": "The client capability views (SkillForgeView, ToolIntegrationsView, A2AView) operate on the current profile's data, documenting that their backing remotes are per-profile isolated.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/A2AView.tsx#L1-L2",
+          "version": "repo-lines-v1:sha256:a017051aaa72cc4aeb24c0b340ba214aadc0863e4626e594b71e4e031ae27bc5:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZGRlMmI0N2QzY2I1M2NiYTFhMzAzYTYzODBlOWMyMTEyOTFlYzg2NWUwZTg1N2IxMDFmM2JiMmUyOGE1MmY5MSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjg3MjdiNDQyZjk4ZWVjMTk4YTY1NmZkZjM4OWM3MjAxNzkyOGE2MzJkYzQ2NTU4MGIzNGQxYTU3ZWMyZDYyNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWM4YWU3NGQzZDdjMmQ2NzE0ZDE5NjIyNGE4YzdlM2RiYTZiNjI4MjhhNDY1MDI3N2ZlYzZmMjgyMjI3MmY5NCJ9"
+        },
+        {
+          "resource": "repo://src/client/SkillForgeView.tsx#L1-L1",
+          "version": "repo-lines-v1:sha256:04363365a49072e135f8db5a4a6ff462bb56f9ec85775bae3bf966f27f0c3571:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDQzNjMzNjVhNDkwNzJlMTM1ZjhkYjVhNGE2ZmY0NjJiYjU2ZjllYzg1Nzc1YmFlM2JmOTY2ZjI3ZjBjMzU3MSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDQzNjMzNjVhNDkwNzJlMTM1ZjhkYjVhNGE2ZmY0NjJiYjU2ZjllYzg1Nzc1YmFlM2JmOTY2ZjI3ZjBjMzU3MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjg3ODNkOTEyZTFjN2EwMTY1Mjc0NTA5ZDQ1Nzk2MjFkNWJjYWE1OGZhOTYyODliZjIyN2Y4NTI1OWQ2NmY2NCJ9"
+        },
+        {
+          "resource": "repo://src/client/ToolIntegrationsView.tsx#L1-L1",
+          "version": "repo-lines-v1:sha256:e9ffb93603613ca84d7a4f35bec782ba8855658c0fe7b9a6e1f401427cd56795:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTlmZmI5MzYwMzYxM2NhODRkN2E0ZjM1YmVjNzgyYmE4ODU1NjU4YzBmZTdiOWE2ZTFmNDAxNDI3Y2Q1Njc5NSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTlmZmI5MzYwMzYxM2NhODRkN2E0ZjM1YmVjNzgyYmE4ODU1NjU4YzBmZTdiOWE2ZTFmNDAxNDI3Y2Q1Njc5NSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjk4ODM2ZjRkY2RhN2NmY2U5MzcyZDI0ZGIwZWU2MzdmMmVkODNhNWQ0NmNlZjkwYjIyN2FmMDlmYmIyZTY2MyJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-03T03:19:03.904Z"
+  }
+}

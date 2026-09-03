@@ -1,0 +1,176 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:92fc921d8557ec98373559f94903d4129605837ebe9bdf8f0af6499d572912f1",
+  "claims": [
+    {
+      "id": "claim_e69e2fcf4ba647ca876fc4e3b081b920",
+      "statement": "The A2A domain model in src/index.ts is three interfaces: A2ACard ({ name, description, capabilities }), A2AExternalAgent ({ name, url, description, capabilities, keywords?, examples? }), and A2AConfig ({ card, agents }), where url is the external agent's agent-card endpoint and keywords/examples are routing hints normalized to empty arrays before persistence.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L539-L564",
+          "version": "repo-lines-v1:sha256:69629fd3469a2063e2d0d9b49b8a05e47910966d25513d333c57e77caa0ba6b4:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRkM2NkZWRlMDQwYTQ2YjBmZWNiYTNmY2JhMzkwMjI1NDA5MzE4ODMxZDk0NWZhMmVjZWU5NzU4YzBhNmI5ZTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImEzMjQxY2Q3YzUwMWJiY2FhNzZlYmZmOGY4ZjIyMTUwNGVkMjE4NWFlOGMyNzMyMzg4MjdjZDNmZmIxYjA1NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhmNDZlMjI3MTEwYzdlOWRlZjE4OGUwOWQ5MTczNjlmOGRkNWYzYzA3NTE1NjdkZGRmN2U3YzNjNTQyMDBlZDQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_cd66cd427b15413786cdbeac62d8b46f",
+      "statement": "The A2A registry is the plugin's third per-profile data surface, persisted as a2a-agents.json under join(a2aConfigDir(), 'a2a-agents.json'), where a2aConfigDir() returns dshHomePath('profiles', profile) when --profile is present in process.argv and otherwise falls back to DSH_PROFILE_DIR, a cordis.yml-bearing cwd, then the global home.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L585-L598",
+          "version": "repo-lines-v1:sha256:7bd0e63a0f88c75231e9529b41fbd6fe7702e4a26c34a19daf13450f9f355980:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJiYzQzNGNkZDI2ZTcyMTc2NDJmOWQ5N2IxZTM2MmQ2ZGI2YTk1ZDFiNjYyZGViNTYwOWVmMTFhMmNlN2M2ZGYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU1N2NkODdmZWUwNWY3M2MxYzFiNmFmOTA0ZDhhN2ZiMWMyZDUwMTVmZDhkNzdmYTI2YjI0ODM4YjVlNjYwODIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ4NzI4NzU1MTU5MjE0ZGUyYTFlYzllYWY4NjMzZTM0NGQxZjJkNzcxNzQxNGVkNDkwYzI4Nzg3MjQ3ZTVjN2EifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_afab1b7949e44f96b7fb21442da2dbe2",
+      "statement": "profileNameFromArgv() derives the active profile from process.argv (--profile <name> or --profile=<name>) rather than process.cwd(), which is the isolation invariant that keeps a profile's A2A registry from being split into a global-home copy and a profile copy when launched from different directories.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L566-L578",
+          "version": "repo-lines-v1:sha256:82a299fe918c08e17951114060302e7f59459685aa6c071fca5464df485d6c3b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ1ZDVhYmFjYTIyNjgwYWU5NTMzNjcwMGRmNzY2MzYxOTdhN2NiNmMwMDRmNGNkNzlhYzFiMWZkMmYwYWM0YTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM1ZGM1OWY4YTcwNWM1YTYwYjdiOTY2MTA4OWQ2MWY0ZTdmYjliN2Y2YTdmZDg4NDBjMDIyYTIxZDViY2UzNjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU4ZDg3NDlkYjA1MGE4ZGE1OTVhYTk0ODI4Yjc5MjI5NzRmZDg4YzE5ZTU1MGU1YjM0Mjg0MjBlM2Y3OTRiZDYifQ"
+        },
+        {
+          "resource": "repo://src/index.ts#L580-L594",
+          "version": "repo-lines-v1:sha256:952e1fa051d08f2a231cb7d001bc3a221f90160142646047056a4e9419a4378b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ1ZDVhYmFjYTIyNjgwYWU5NTMzNjcwMGRmNzY2MzYxOTdhN2NiNmMwMDRmNGNkNzlhYzFiMWZkMmYwYWM0YTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk4NDVhZDc4NTIxZjViYWVlYTU0MzMxNzcxOTBjYzM4MjczNTI0OWMwMmJkNGUxZjM1YTM2OTFkYjA3Y2MwNWIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU3ZDc4MWQ0M2UxNjkzZmFjYTRhZGVmZTY3MDVkNWE4ZTQ0MGMwYmI0M2QyZGRjODFkOTczYjM1OWY1MTNhM2MifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ddcc8d75a5f94a9d8108a3955ed3f821",
+      "statement": "loadA2AConfig() reads and validates a2a-agents.json, dropping any agent lacking a string name and a string url and returning a deep copy of DEFAULT_A2A_CONFIG when the file is missing or malformed; saveA2AConfig() mkdir -ps the config dir and writes pretty-printed JSON.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L600-L636",
+          "version": "repo-lines-v1:sha256:541f3d79c31deb68754b268ea5e23a890723d71aa034805fcbb2c57a4c6d6fe9:eyJzZWxlY3RlZExpbmVDb3VudCI6MzcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNlYjRjNWVmZmVmZTFlYTRiNDRiOTU4M2VmOTEzMTkxZjMzNzllODU5YTBmOTNjNTM0ZWRmMmQxNDQwMWU1ZWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijg2ZDgzMTRlZWYzM2E4NDQ1ZjljZjY3NDdkNWZhODQ3M2QxMTk2ZjkwYmNkNDE2ZGNlNDNjZGM4OWY5OTc0MGIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE0YzkyYjFjNDUwOWYyMDMzZjFmNTU1NTMwOTZjMDQwMjgzMDBkZmUwNTczYzQwZTM4ZmNlZjBiNDY5OGI3NDMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_72fc75e8408040d387af69a40123c21d",
+      "statement": "A2AConfigGateway is a TypertRemoteService host gateway exposing @Remote-decorated get / setCard / upsertAgent / delete methods, where setCard and upsertAgent validate non-empty names and urls and normalize optional fields to arrays, so malformed cards or agents never reach disk and returned values are always JSON-safe without compact().",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L638-L704",
+          "version": "repo-lines-v1:sha256:15a375574b4d393cc2cfc7de71a33714eb3f60e0edc84262654ec4ffcdc0cc8b:eyJzZWxlY3RlZExpbmVDb3VudCI6NjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2ZDhkOWI3YTY1N2Q2ZTBhODk5YTYxYmQ5ZGE0OTQxMGY0N2MxNjI5NGY5MzA2NjYyN2Q3NjM4Y2NiYWIxMTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM2MTE0NGI4YWQ0NjI1MWQ0MDI5OWE4ZDVjN2YxODQ2NGMyMWRkMjhmYTk3YzFiOTVhNTZlYTM2NmIxNTkxNTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE2MmYyOGI0MDIzOWU4OWY1NzNjZGY4N2ZkMTUzNWE1Y2FkZjVhZGY2NDUxMGQ4NjBjNmE1NTAxMDY3M2JhOWIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_96d4432587d4465b90f4a6463ce25ea3",
+      "statement": "The a2aConfig namespace is part of the hand-written TYPERT_REMOTE manifest in src/client/remote.ts, whose a2aCard / a2aExternalAgent / a2aConfigResult / a2aCardResult / a2aNameResult zod codecs (with .optional() keywords and examples) and four descriptors must be kept in sync with A2AConfigGateway's @Remote methods.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/remote.ts#L153-L158",
+          "version": "repo-lines-v1:sha256:18f66eb63790bcfba87267ddf890985a7ee8729cb080bc8f5a1cf2256c7cb3bf:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTA2OTA2NGI4NWQ1ZGM0MDNkMTNiMGI3NzkxNzBlMTAyMjIyZGJiMzljMzQ2YjVhYmY2OTRiODE2NTYxYzE3ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2VhYTQ5YWVjNDJmMmI3YThjOWZmN2YyYjQzYjMwMzc3NzhjYmNkMjc5ZDYyNTVlMmU1YzQ2NzJhYTNkMDkxNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNmFhNTg4YjE3ZmQ4YjcyODg5YmQzYWNkYzlkMDgxYzk3YTQzYmRjZWZjMjY3NmZiNTg2MDBmNzBhMGY5MWQ3MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjEsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTIyZmFhNTM1YmQyZWEzZDUyZTc0MWVkNDU0NDM1YjdmZTQ5ZTgzNTg2ZTk0M2Q5OGQ4MmJiZmIyNGQxZjVjNSJ9"
+        },
+        {
+          "resource": "repo://src/client/remote.ts#L77-L98",
+          "version": "repo-lines-v1:sha256:727988cbe1a0c3d8ef7817fbb0f5acda1a4c3de3a415393f74e7c08eab87668a:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYxOTJmZDliNzEyOTk4Zjg0ZGQzYzczMTlmY2VlZGFhZGZiZTY5MWRlZGEwZTUyMjg1Y2MxYjExZTUxNjdmNmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk4MDUyMTI4ZWFhYzRkZmE0NTMwNTI4MTgwMWM4ZmY3N2JhNjI1MGU2ZDQwMWRkY2NiMDM1ODRiMjE5ZDc3NGEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdmYWRiZThiNzFkYTJjZjZhOTFlMjg2OWMxMzcyNDZmMmQ3OGE0NjYyNGQ0ZmVhNDg3OWEzYzhjOWM3Mzc1NDUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA5ZGJmN2I4MzM3NWU0ODA0MGY3NDkyYThlZjFlZmRlNTY1MWI3MWI3ZmRlNzFlZTdjOTYyZGEzMmU0NjY2YmMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_eda58039e5b44d37a19b87a4af331a72",
+      "statement": "The browser A2AView.tsx builds an A2AApi of { get, setCard, upsertAgent, delete } wrapping each ctx.remote.a2aConfig call in the unwrap() envelope helper, renders a card form, a read-only derived cardUrl ({origin}/.well-known/agent-card.json) and messageUrl ({origin}/a2a), and an external-agent add/edit/delete list.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/A2AView.tsx#L29-L40",
+          "version": "repo-lines-v1:sha256:0fe56362945cc0ba7f497d0dbac1587dbdc3a7fd6c7c1a38143ae39b6ff48eb4:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBkNGYyMWMyYjM4ZTA3NWI3MjE2OTJhYmMwZmUwOTc3MDhiYmI5NmVkNjc1ZDhkZjk2MmNkY2ZjZDAxMTg2MWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjliNTAwNmFhYzU4ODIwYzA5ODc1NzJkNmJjZTYyNWY4YmRkYTQxNGZlMzRkNTdiMDA2ZmZmZTgxZGY0ZDg3ZjIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIyMzM0ZGYzNDYyOGMwNmM0ZDg0NmVlYzQxYzJlODRjYWUzYjEzOTE0YTk4MzY3NzFkNDlmNTcyYzRlMTAwMDYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA3ZWIyM2Y0YmYxMDhkOWJjOTAwODNhNzUyMmM0OWU0ZDBkODFjOTYwY2RiNjVlZmYyYWUzZTJlODQzZThmMjMifQ"
+        },
+        {
+          "resource": "repo://src/client/index.ts#L113-L118",
+          "version": "repo-lines-v1:sha256:7ecc31999b579eda5d390f3fd77516e120f0df9e49612ab8eef398912d78dd94:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzBlZmUwZDk4ZWI1NmY3ZDcyYWJlYjc3YWRiMjFjM2Y0YjFmNzgwNTVmOTU5YmM5MWJmM2FkZTQyYmY3MDlkZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzEzNDUxODAxMDViMGM2NmE3N2RhZDUxYmIzNzkwMWEzNzMyYzk2NTRiYTRkZTM5ODFmODFlMTgxNzUyNDhiZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNTI5MGI5YTRlMzhiY2M3NzJkNjQ4ZTlmZDNhOGVmZGEwZTEwZDYzZjBjNjEyZGE2MTM2NWVmMWJkNDMwNjE1MCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjlkNTM3N2Q0ZmRlYzgyZWMwZDgxNjc5ZjBhNjM5NjM4NzI5YWM5MmMxZDUyM2FjYWUzMDc5YzMxZjEwOGI0NSJ9"
+        },
+        {
+          "resource": "repo://src/client/index.ts#L138-L145",
+          "version": "repo-lines-v1:sha256:11ae07121525b175354eda04de19c3ef7a9a2f7f8707850473fea5a59e87945a:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2UxYzA1NDNlMjJlYTQ4NTA2NzQ0NGVlOTQzMDg3YWZkOWUyMjAyMDM2YzdkMzFkOTUxNTFiMjIxMzgwNTE3YSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTM2MzIyY2Y1MDFkMDZhZmVhNzQ3NGVhYzUwZWUxYTJkMTBmZmM4MzAwNWE1NmFlOTYxMjJmYTNjYjY2NDAzYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzY1NmVmZjcxNDU5NmFmYTRjZTI0ZTViMWJlZjE0NTlkMTgzYTE0NDEyNTBmZDg5ZjRmNmRmM2Q1MDIyZjJhMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzUxZDMxMWEyNWUwNzc3ODBiZjQ0YTAyNzM2ZGZiODJiNTI3ODA5MjQwYTQ3ODIyZjQ1MGE2OWRhYTU0ODJlNCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_b0ab2bc81b694c2f8d6facd7bedd300d",
+      "statement": "registerA2ATools() registers the model-facing a2a_list_agents (zero-parameter discovery of name, url, description, capabilities, keywords, examples) and a2a_call (agent + message) tools, hosted by the A2AToolsPlugin cordis Service that injects 'tools'.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L812-L914",
+          "version": "repo-lines-v1:sha256:e513fb021296fa498e2bfa220c3b886c3550ca6418aa32f60a352b7a6d7a8aab:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAzLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI2Y2FhNTM5ZGM5YjRjMjMwOGJjNmZmN2UxOGY1NGU3ZDI4NmM4MTdiNDFhN2Y3YzcwMWRjMDQ0YmM3MjQ1NDYxIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJlMjJmYWE1MzViZDJlYTNkNTJlNzQxZWQ0NTQ0MzViN2ZlNDllODM1ODZlOTQzZDk4ZDgyYmJmYjI0ZDFmNWM1IiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI5ODQ1YWQ3ODUyMWY1YmFlZWE1NDMzMTc3MTkwY2MzODI3MzUyNDljMDJiZDRlMWYzNWEzNjkxZGIwN2NjMDViIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiI5OTU0YjliYjBlY2MyY2EwZjBmNjEzZDY4ZGE1ZmNiODllMzFhYmVjZjM3MzYwMjg4YTBiOTcwZGY1ZjFjYWRlIn0"
+        }
+      ]
+    },
+    {
+      "id": "claim_1262c6d42cc94c51ad848d10ce3a6c7d",
+      "statement": "resolveAgent() resolves an external agent through an exact → normalized → substring → Levenshtein chain and returns only a unique match; normalized matching lowercases and strips spaces/hyphens/underscores/interpuncts, substring matching is case-insensitive containment in either direction, and Levenshtein keeps candidates within max(2, floor(norm.length/3)) returning the unique lowest score.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L761-L810",
+          "version": "repo-lines-v1:sha256:490ab11437a08c85971aea44bfa9cfb6bcd0a3d8dd17237d8896d6da48d35a65:eyJzZWxlY3RlZExpbmVDb3VudCI6NTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdlYjcwMjU3NTkzZGEwNmY2ODJhM2RkZGE1NGE5ZDI2MGQ0ZmM1MTRmNjQ1MjM3ZjVjYTc0YjA4ZjhkYTYxYTYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk5MmUzNGM1ZmQ1ZWMzNzkwNTkwNzJkOGE1NTdhM2I2YmI4MTYwZTFiODNkMGNjMjg4N2U0M2JkMDFmMGQ3ODciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFjMTRmNGQ2NjY0Y2M1MmZjMmZiNTM3YWY5NTRlMGFhOTllZWI2N2ZjMWNmZGM0MjNkNGRiMjVjZTFjODI1NzkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d80c1e84b5f540c5bce45bcfc12e4381",
+      "statement": "When resolveAgent() returns null, a2a_call does not throw; it returns a candidate-closure reply listing every registered agent's name and description with an empty agent field, so the model can self-correct on the next tool call instead of the request failing hard.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L890-L901",
+          "version": "repo-lines-v1:sha256:2c406307b058f333c0651732e9e3c497a2823def80872cad728fdc85ea3f30fc:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU4ZDNhOTM0MTNhYmQwYjlhZmZhYzMxM2FkMzY1YmU4N2I3Mjk4YTc4OTdjN2JjMjUyNGQ5NDAxNWMzNzYxNTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU0MzlhN2NjNzBmYmJkNDFiZjQ2MzBmOTliNDM0NzU3MTVmNmZiNjJhODUxYjYzYzk3ZTllMjY4OTgxN2U2NTYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY1Y2E2NDg2NzE3ZDBjMmFkZWE5YzNmYTkxNGJjYjU5YTc5Njk2NWU5YzZlY2Q5ZWIyYzNhYWQ3MDQ4NjNiN2UiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZjMjVmMGUxOGQ4YmQ0ZjA0MzI4ODMxNjcxNGViZTkwN2IzYjZkNDU5ZWY5ZDBkZjMzODhlZWViYjI3NGYwZDAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4085786e67d24fb390657e21ccc013b3",
+      "statement": "a2aSendMessage() posts a JSON-RPC message/send request to the endpoint derived by a2aBaseUrl() (which strips /.well-known/agent-card.json and /agent-card.json suffixes and trailing slashes), aborts after 120s, and extractA2AReply() tolerates both the A2A v0.2 Task shape (result.status.message) and v0.3 direct Message shape (result.message), throwing on an empty or missing reply.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L708-L760",
+          "version": "repo-lines-v1:sha256:8c5db2b9dcda3f95ce8abee43e6e52cb13a0715ae00f6742c54cf667014463c1:eyJzZWxlY3RlZExpbmVDb3VudCI6NTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAzMDAzZmE3NTc0NDJiYTc0YzA4NWUyOTIzMDhmZjA5MzJjNTJhMTFiZDEwNGNlNjgyODg3ZGIzNzMzNzhlYjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE2MmYyOGI0MDIzOWU4OWY1NzNjZGY4N2ZkMTUzNWE1Y2FkZjVhZGY2NDUxMGQ4NjBjNmE1NTAxMDY3M2JhOWIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVmNWRmYzFhM2I5NTcwMTljNWMxNTA1ZmM3OTljMWI2OTVlN2VjZWI0NDI5NjI2ODEyMzQxNjM4ZmY0ODQ2ZmUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1184ce1c76a54822913164ed4f581123",
+      "statement": "A2AInboundPlugin registers an exact /.well-known/agent-card.json route that serves the card built from the registry (advertising the Host-derived /a2a message URL, version 1.0.0, non-streaming capabilities, text modes, and capabilities mapped to skills) and a prefix /a2a route that requires POST and dispatches only JSON-RPC message/send, returning 405 for non-POST and -32601 for unknown methods.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L953-L1010",
+          "version": "repo-lines-v1:sha256:95356eb944966cf6eb88bf0a119ced3b3251fea6d51a37706347a39088f1064d:eyJzZWxlY3RlZExpbmVDb3VudCI6NTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkyZmM3YzU4NjBlYzJlZjQ0YThkMDk3OTE5NTc0MTdlYmQ2ZWQ0ZmU5MjNjYTczZWEyOGEwMjk5ZGIyYzgzYjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImExYjYxOTU5OWQzYjQ2OTAyNDZjNTU2Yjc3ZDdhNDY3ODBmMjBkYzRkYWUxYTM1MDA4Mzg4YTA1OWE0N2U0YTYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk4MGY2ZDVjMzNmMGZmNzI0ZmU0MTg5YjRkNGU5NGZlNGNhYzMyMTYwZjU5NTNkYWM0ZjFlMWI0MjdlZTY0ZTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjExMTFmODVjODIwY2E4MTBiMWI5MmZhNjY1ZTE1NDg3M2YwNmU5YjMzZDU1MjZmMjdhMzZlMWFlNzQwMWQ4NzYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_03021ecc108e44f5807159ee3eb47bfc",
+      "statement": "The inbound message/send handler assembleAs the system prompt from the registry card (name, description, joined capabilities, plus a respond-concisely-in-Chinese instruction), selects the model via agentDefaultModel.currentSelection(), streams through llm.stream accumulating text-delta chunks and folding a finish error chunk into a thrown Error, and wraps the trimmed reply as { kind: 'message', role: 'agent', parts } in a JSON-RPC result echoing the inbound id.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L1013-L1054",
+          "version": "repo-lines-v1:sha256:91e503ec335892a67510430bbec10e71e1b89af2a74757ca149162a4308c703f:eyJzZWxlY3RlZExpbmVDb3VudCI6NDIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY0N2NlZDJmYWY5Mjk3YzhiMjdjNGMwMzRhMjBmZjgxNjAyMjAwMGQxOGViMTUxMGZhZmFmN2FhNTgwNzE4MTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxMzQ1MTgwMTA1YjBjNjZhNzdkYWQ1MWJiMzc5MDFhMzczMmM5NjU0YmE0ZGUzOTgxZjgxZTE4MTc1MjQ4YmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjlmYTJhMGViNGZlNzNiZjRiZDBkNmM3ODg4YjU3MTVkMzBlMTI5ZTMyN2I0ZDBkZjg3ZTBiYTY2NjJhY2MyNjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg2MzYzYjkzODlkNGM2OTQ1NTU2YjdjMGU0Y2YxNjljN2ZhYjFlZGU5OTNlZmJlMTZlMjNiZGM5ZTExY2NhODYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_dcddff072f5f4510a47015390f594897",
+      "statement": "The inbound endpoint is deliberately a lightweight single-turn, model-only reply with no tool-calling or multi-turn memory (which would need a preset mount), marking that as an intentional deferred extension boundary.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L1016-L1018",
+          "version": "repo-lines-v1:sha256:bc9bc70cf744fa70f020ab7c41f5137243473920d29acceccf837104376e7d18:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiN2ViNzAyNTc1OTNkYTA2ZjY4MmEzZGRkYTU0YTlkMjYwZDRmYzUxNGY2NDUyMzdmNWNhNzRiMDhmOGRhNjFhNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiN2M1ZGI4MWIwN2QzNWIwYzEzYjU2YjBkZjFkYWJlZmNlZmUxYTc3MzI1NzJhZTQ1MmEyMjM0OWZlNWYyYjg5NCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWEyZmE3ZmQ3M2M0OTdiYTlkOWE2ODAwYzU4NTZiNjRlNWQ5ZmFhOWZjMzMxZWMzY2I0ZTlhOTU3MTk5ZDU3YSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNmRhNWY3OWE1ZDY3YWIwNGUzY2QzOTFjNWQ4NjlmNDAzMjMzNWQxNDUzNjU5YjdjZTZiODJiNjk5ODg2ODM3NyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_fa38685bfb8e4653ac1a7465bd72fc04",
+      "statement": "The A2A surface registers three host plugins in apply(): A2AConfigGateway, A2AToolsPlugin, and A2AInboundPlugin.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L1078-L1085",
+          "version": "repo-lines-v1:sha256:cca270151fe87e678c9df96dc43fc70ace738369fc97cc70e6145498ac9d3fc3:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDNlMDU4ODJlNmNlYzEzYzM0NjA0ZTBiMTIwZTg1ZWE1NmYwYjA3ZDVhNmM5N2RiNjVlNDIyZWJlNmVlNDI4OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTIyZmFhNTM1YmQyZWEzZDUyZTc0MWVkNDU0NDM1YjdmZTQ5ZTgzNTg2ZTk0M2Q5OGQ4MmJiZmIyNGQxZjVjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDQ3ZjIyMDNkZTNhY2E2NWE2NWE2MWZiNTcyZWY5NGQxMDljNDc5ZmI0NDMyNmQxOGFlYTM0ZTZiOGI1MzliNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-03T03:19:03.904Z"
+  }
+}

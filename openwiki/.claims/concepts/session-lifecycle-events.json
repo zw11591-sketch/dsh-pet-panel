@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:d50a1f4e96471985d6c90836da1d92f61ecc40244d2187279bed93e97436d4fd",
+  "claims": [
+    {
+      "id": "claim_84aed26892ad49c58375d48eb923d40d",
+      "statement": "The session execution trace is exposed as the sixth method of the skillForge namespace: `SkillForgeGateway.lifecycle(sessionId)` returns a `LifecycleSnapshot`, and the browser client consumes it through an `unwrap()`-wrapped `ctx.remote.skillForge.lifecycle(...)` that is injected into `TaskManagerView` as the optional `lifecycle` prop from the pet-panel-capabilities child plugin.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/TaskManagerView.tsx#L26-L28",
+          "version": "repo-lines-v1:sha256:cbab611aeabb72c6eb1bd8ec9a6c301094ed08b1d20b7d36c2b0e5fcb42c69ca:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDUxMTM3MzhlZmZkNjUzY2I2MmNjYjc0NTE1Mjc5OGJlODdhYTQxYzFkYzdkM2Q2M2YzODc0ZWRkMzRlNjQxOCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTA3N2VmMjA0NGJkYjdhMjA1OTBkOGRkN2ZjZDExNTQ4MjY1ODZmY2E4NjI5MjI2MTI4MjQyNzVmN2U1MjVhYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzJiZTRlNmRkMDMyMjZjYzIxYTQ4ZjY3YmU4NWEzZjllNWFjZmRkYmVhMmQ5M2NjOGQxODdmNjQxMDY3OTg5ZiJ9"
+        },
+        {
+          "resource": "repo://src/client/index.ts#L150-L157",
+          "version": "repo-lines-v1:sha256:6a9962e8d08a7924817deb1ba36671b4e37b516ad6de5b720c1ba9bce1063ed4:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTM3NDcwMTk2NDdlNDhiYjQwMjNkYWQ3MmE4YmY4NDY3MGM1ZGQ5YTg0MmE2OTQ3YjY1MTI3YTE3OWRjMDljNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTc1MzAyYjkxZDRiNThiMjZhOWFlODFlN2FjYjljNTk2YTIzZjIyYjRiM2M1ZmU3NWNmZGJiNDNlMmRhZmNmMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTJmNDhjZmU2N2U4ZjVhMjM3ODVhN2JlYjM2YmNmYzkwNjc4OWFjNmJhOWJjNjJiNTQ3MmU5NWM1YjE4NzQxNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODYzNjNiOTM4OWQ0YzY5NDU1NTZiN2MwZTRjZjE2OWM3ZmFiMWVkZTk5M2VmYmUxNmUyM2JkYzllMTFjY2E4NiJ9"
+        },
+        {
+          "resource": "repo://src/client/remote.ts#L147-L147",
+          "version": "repo-lines-v1:sha256:98f22fae970cf8193085856b8beb9ec5458c1846ae03a5bfde5631fa3e87efea:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOThmMjJmYWU5NzBjZjgxOTMwODU4NTZiOGJlYjllYzU0NThjMTg0NmFlMDNhNWJmZGU1NjMxZmEzZTg3ZWZlYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOThmMjJmYWU5NzBjZjgxOTMwODU4NTZiOGJlYjllYzU0NThjMTg0NmFlMDNhNWJmZGU1NjMxZmEzZTg3ZWZlYSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiN2Y1YWIwZjAxYWJkNTMyYzE5MWRiYjc3NjMwYjI1YzA2ZThmMDJmZThlYjdhYTRjNDQwYzg1ODk1NTlhZWY5NyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjEzYThjM2ExMDAyNDZlNzIyZWM3MDY5ZDA2MzYyZmZlYmJlMmQ1ZGZkYzhkZDFjMzljMmI0OWE0MGFkZDUwZSJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L303-L410",
+          "version": "repo-lines-v1:sha256:6424d673440c89af43469ec78e8ced859492d518d129c7123b310c50ad6aab35:eyJzZWxlY3RlZExpbmVDb3VudCI6MTA4LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI3NzU4ZGY4NTM5NDIwZDcwNzY5MjQ0MGEyMmM3MzdmYWIyYTViNGIwM2M4NTUwOWI2MWI5NDZlNDU4OWM3MzVkIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJlMjJmYWE1MzViZDJlYTNkNTJlNzQxZWQ0NTQ0MzViN2ZlNDllODM1ODZlOTQzZDk4ZDgyYmJmYjI0ZDFmNWM1IiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJkNmU1ZGNjMTllNThhNzQ2ZDExOWQ4MDY1MTg4NzMyYjNkMGNmNGY4MjQ5NTRmYjY0ZjU2NWI0YTk2Y2VkMTQ1IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJmMGYyMDFlZTAzOGM1MjA5MmU3NTk5NTJhNzM2OTJlNzQ1MzEyYWFiYWFiMTg1NzgxMTAxZDMyMjJhMTk3YWQ0In0"
+        }
+      ]
+    },
+    {
+      "id": "claim_21efd09424454fa589696828f4306343",
+      "statement": "`findSessionFile()` locates a session log by scanning the `$DSH_HOME/sessions` workspace tree for `<workspace>/<sessionId>/session.jsonl.zstd`, returning the first existing file and `null` when none exists (which the `lifecycle` method turns into a thrown `找不到会话日志` error); the session id is validated against `^session-[A-Za-z0-9-]+$` before any filesystem access, preventing path traversal.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L306-L310",
+          "version": "repo-lines-v1:sha256:6de266eb97fcc76326b6714767dc18a502aa484b084ad6011efedba990ea90c9:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYWYwODU0YmY5YjQwYzU2Zjc5NTM0NmU0YjM5OTljYzRkMDQ2NWVmNDFlZmE4OTRkM2Y4ZTIyZGM4OGQzMmE4MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTVmMDdkY2EyZjRmNGMxZDk0NzdjYzkyMTNiYjRiMWQ5Y2Q1ZTNlMzNkMDNmYjkyODc1NWIyMzM0YjQyZDFhNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDQ5MGRlMzVmOTE4YTljZjk1NTVjOGI0NTU3MTZmYzRiMTBmY2I5ODlhOTU4NTU3YzFkMjk2OGVkOGI4NmRhMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNGY2ZDIwMDk2YjkyYzIwMWM3ZTU4M2FiYTk4NmFjYTczNzc5YmI5NzQxYjI5ZTUwZTJmOWVmZjE0NjJlZjliNiJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L97-L117",
+          "version": "repo-lines-v1:sha256:40ef4f10418b660571ec6f1316a3087e411bfa2edb34102df340af82778eaa3a:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM2MjcxNDFhZjUwNWIxNGNhNGIxMDkyNTY1NmY5OGJlNzM0YzI5MDEwYzYxZTgxNTg4YzZjNDI5OWUwOTM2YjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhkY2M5OGE0YTFmZWNlNjZkOWY1NGIxZDZkNDdmZTVkNGM2NWVjMjRhMTE3MDkwYzFhYjdjMDljMWViMDY0NjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNlNmI1MDFjZjM0YzBjNjViYzQ4NmFiMzQ5Y2ZjM2VlYmM3Y2U0MmFjMjBiOWU5YjE0ZDA2MGM4ODdhNDE4NjQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_85b32a6e63b8456ea38cead51466a49d",
+      "statement": "`decompressZstdFrames()` scans the byte buffer for the zstd frame magic bytes `28 B5 2F FD` and decompresses each frame independently with `zstdDecompressSync`, skipping a corrupt frame per-frame (never failing the whole trace) and returning an empty string when no magic bytes are found, so a truncated or non-zstd log degrades to zero events rather than throwing.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L76-L95",
+          "version": "repo-lines-v1:sha256:9a41d1e808b95f19518d2292c7e25a9b4712c148c694131380d278921d3880af:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU3MDlkMzE2MTk4MzRiNWY3M2U2YzM5NDQ5ODY2ZDMzZjliMDA4MDcwMzRjOTFhM2ViNWZjNzcyNWQ0ZjNhYjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjJiM2U5MDY2ZTE3YzI2YzUwZTczZjg2YjI1OGQyNWNmNGM4ZWVkYmNiOWJkYWQzMmIwMTc5ZDM3OWFjNzNjZjYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY5YjZjMzhlNjExZWZhYzE3OGUxYThmZjViZTAxMmI3MGQ5NWUzNWJlZjg0ZTJjNThkYTg1MTE1MDMyZmM0OTkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a915977fa29a40ea89c872ea37e9a2f9",
+      "statement": "The lifecycle parser splits the decoded JSONL text into lines, parses each as JSON inside a try/catch, and switches on `rec.type` to emit a flat `LifecycleEvent` with a `kind` the client understands while also updating scalar aggregates: `session/title` sets title, `turn/start` sets `turns`, `step/start` increments `steps`, `tool/call` increments `toolCalls`, `approval/asked` increments `approvals`, `todo/write` increments `todoWrites`; an unhandled record type yields no event and no counter change.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L325-L405",
+          "version": "repo-lines-v1:sha256:b8bdad1bf655b908600ac9aeb206eeddcfaf3f960e817daf19367d8667a7b59a:eyJzZWxlY3RlZExpbmVDb3VudCI6ODEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg0Zjc1NDgyYWU0NDNiZTJkNDFmZDE1ZjRkNWQxOTMyOTY5NjJmNDY2NTIyZmE3NmU3OWJiNGQyN2NjNzZkNjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVlMTIzNmYyYWVhMWNlNDJmYTJiMGNjYjI3ODMyYzc4ZjVkOGMxYzE5MjM4YTI0MDkyMjEwNjYzZDUzOWVkNjEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUyZjIxMGUzYzVmMzZiMmIxODk2OTFmODc0OWJlZmViODBjNzhhZjFhY2YyMjdiZDRlODNiMzI2ZDRmZmRlNTciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjExOWQxYmJlMDQ2Y2U5NzRhYTNkNjY2ZDYzYjgyODg0ZDYwZTU2MDYwZjVhZDdkYzQ2YzgyMGQxZTZhOGY0NjIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_56106def36f84ee6a5f366c5b8a01712",
+      "statement": "Turn and step counting differ deliberately because step numbering resets each turn: `turns` uses `Math.max(turns, turn)` over turn numbers while `steps` increments once per `step/start` event, which is the only reliable total step count.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L344-L355",
+          "version": "repo-lines-v1:sha256:d5e6c63863f55298cd991b40a45bfa56a320290a401a13a623d107eb484d8595:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUwMWU2ZDAzODZhOGIyYTRmOWE4YTVhNmFlZGU0ZDU5NDFmODlhZGIwZDU2ZmUxODcyY2NlYjJhOTAxODg2MTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNmMTc2OGZiZTU5MjA1ZDE4YzI5YTExNDhjYjBjNGEwZGZmZTQ4MTdlM2YzMzY0OTE4ZmUwOTY2ZTIxN2RiNTIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE0Zjc2YTQ4YmI0NjNhNWViZmRiZWQyNzk5NDM0ODk0NTQzMTUzYjQxZDM5ZmVjOGU4OTJkNTE1MWJiZGJiN2IiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZlNzExZDM4ZTc1MjM4OTg0OWUzZTY2MTI0YTI1MGY3Y2U4ZTA3NDcxOTM0YmZiZTlmZWI5NWQwNjVjMzIxZjMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_260558b9850f44c99de195aacaca1e53",
+      "statement": "The trace's long text and argument fields are bounded before crossing the boundary: `user`/`assistant` and `tool-result` text are truncated to 400 chars, and `tool-call` toolArgs plus `approval-asked` reason are truncated to 200 chars via `truncate()`, so a single huge tool result or message cannot bloat the flat event payload.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L143-L145",
+          "version": "repo-lines-v1:sha256:885318435d9769f05d2ab769fc963c58e1c6eb8e45f3ffdd636206bf0b2b8e4a:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDFkN2YzYjdjMWQzNzE5YjY4Y2U4Y2ZmMjA3ZGJkZmE4Zjk3MGQ4NjliZDQzOGE3Y2VhNDU2NTNkZWI4ODNhMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTIyZmFhNTM1YmQyZWEzZDUyZTc0MWVkNDU0NDM1YjdmZTQ5ZTgzNTg2ZTk0M2Q5OGQ4MmJiZmIyNGQxZjVjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDIwMjg0OWM0YzZiNTcwYWVjN2UyMzE5YTYzNTZlZmI1MGFkMGZiYTk4MTFlYTM3NWU0NjlhZjA5OGNlOWNkOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiM2Q4NjZlYWUyOGIwODgyZGQ4OTllMmI3YWM4ZjY3MWJjZGM4ZThkMjlmMDIxMjVlMTM1ODdiODJiNTUzNTE1YiJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L358-L403",
+          "version": "repo-lines-v1:sha256:dee81bd58654b08a510e5703e44d1682ebdcf8a9ab4a0e0158eac7dfc95ff118:eyJzZWxlY3RlZExpbmVDb3VudCI6NDYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBlODFiNjI2MDgwNzZjYjAwMDQwNjMyNDgxNjc2NjAwOTU1ODQ1YWRhOTM5YjNiMzQ0NDdlOWYzMjllNGRkZDQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY2YTQ4ZmIzNDI2MDQ3MDQ0NGM4NjQwMWYyNTRhMmQwYjU0Zjc0MzA4YzhlZmNjMGZkOTdmMGE2YzMxZDEyM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA2NjBmYWJiOWMwYzdmNTMyZTcyNGRlNTk5MjBkZDAyOTM4NmE2NzgwZjhmOTU1MDFmZWU2ZDY1Zjg1MzYxYWYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImEzZDBiMGIwYmY2MjA4MjA1ODA3YzE1M2VmMGU5NGQ0MTdmZjgyNzFmZWZkM2Q3MzA2Y2M3NDc5NDM2YmYyNGQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4ebdd770bfa54910b12990913eb232c2",
+      "statement": "`compact()` strips own properties whose value is `undefined` and is required for the lifecycle result to pass the Typert boundary JSON-safety check: each event literal is compacted as it is pushed and the final snapshot is compacted again, because the zod-optional `turn`/`step`/`text`/`toolName`/`toolArgs`/`isError`/`outcome`/`reason`/`todos` fields are only sometimes present and an `undefined`-valued own property would be rejected as not JSON-safe.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/remote.ts#L30-L55",
+          "version": "repo-lines-v1:sha256:3b57ec729d185988e7fffc4e3a3f12bbe9c16b7615e14dac338b85402c7e5ef4:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA3YTRkYmVhMGVlYWJjM2QxOGE0ODM3OTZlZGEzNmE1MTZmM2RlYWRkMmFiNDE4N2JmZmZjNjA2MmEwMjcxMGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjEwYThmNjBmZTNjNTBiMGNmNTM0NzIyMTEzZmU5MGQ3MzQxNDM4N2NlOTJlNTk3OGM4MmNiZDgwMWNjMDUwMGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAyY2UzNWIyM2Y0Y2Y3ZTI2MTI5ZDdmMWRmMmEwOTIxYjhhZjAzNDQ5YTU4Y2E2OGVjYTljNGNmZGVhNTIyYTIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA0ZTA4OTY3NTk2ZTZhMzQwODM3YTcwMDA5ZjNlYmJhODI0NDNjNWM4MWVlODA0YzNjMmUwZmE5YWVhMTgwNTMifQ"
+        },
+        {
+          "resource": "repo://src/index.ts#L151-L157",
+          "version": "repo-lines-v1:sha256:405c05fd806e6cf50fb3cbc9e06af9e1d869d22eefa01670c6d7d3890d892e20:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzQzMjM0MTMzNTIwNWZkMTMwNmQ0N2M1YWQ1ZTQxMjFmYWIyOGVjZjc3YjRmNDIyOWFlNDAwYTA0MGZhZjM3MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTIyZmFhNTM1YmQyZWEzZDUyZTc0MWVkNDU0NDM1YjdmZTQ5ZTgzNTg2ZTk0M2Q5OGQ4MmJiZmIyNGQxZjVjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzUwOWQ0NzFhMDYwYTdkMTcyOWU2ODUxNmZmMzU2YTc0ZDYxZmRkM2M5MTYwYzNjNzExMzZlNjc0MDNiYWNjNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYTA2NjU5NWIzYjFjZjZiNTA0ZDU3OWNiNzczMTY5NTEwZDA3MzBiOGEzYzk5OGI2OTcyNWUxMDM0YTIwYmUxZiJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L346-L408",
+          "version": "repo-lines-v1:sha256:a47c377f968f075df944d825b5242aee227385fb5321656bd025ef337b9d7b97:eyJzZWxlY3RlZExpbmVDb3VudCI6NjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ1ZTRjZjY1ZTExZmI5MWYxYzMyZTk2YjA2NGJiZTcxN2YwM2M0OWE2MGFmMmQ4NDc3MTk1ZGQ1OWFjNjM1MzUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMzZGQ2YzIwNzA3ZmY4MWY2YzAzNmE3ZWU1MGMzMzc1NDIwZmI1MzI2ZTNiZThjMmNmZGU4N2VmNTU4ZTUxZjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU2OWIzYmIwMjg1NTA4YmFkNTc0MjUzYjVhOGMzOGEwNzcwMTdjMjJhODQyYTk0ZWYzNWRjMGM4Yjk2ODQ1MWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ0N2YyMjAzZGUzYWNhNjVhNjVhNjFmYjU3MmVmOTRkMTA5YzQ3OWZiNDQzMjZkMThhZWEzNGU2YjhiNTM5YjUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_cd0cae7f052e484981d96785b1806c55",
+      "statement": "The client re-groups the flat `LifecycleSnapshot.events` stream by turn at render time rather than trusting `snap.turns`: `LifecycleTimeline` walks events, advances a currentTurn counter on each `turn-start` with a defined turn, buckets each event under `ev.turn ?? currentTurn`, sorts turn keys ascending, and defaults to opening turn 1.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/TaskManagerView.tsx#L153-L165",
+          "version": "repo-lines-v1:sha256:7bfcf741c6211b0c1d6cb835990401389cce84a85e7afa8e565e5962a0b0698f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjllYTAzMTE5Y2JmZjRlNWVkYjJjMzJmNGJhMjY2ZGI4NDM4ODY5OWFiYjY3YWYxZjAxNDA4YjlhZjdmNDI4OGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkyZWRlYTM0YmE5Yzc2ZTk2OGJhOTU4ZjZlMTZhMTgzZmI4NTFlODEwYWFkOGQ2N2ZkMzVkOWQxNTNmYzM5YjUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY3NTNmZmM3ZGVkMjE5OWQ2MTM4OTQwM2UzMjI1MzBmZmEzYWU2M2FlZmVmZDBjY2EzZGMwZTU5YWI0MmUxYTUifQ"
+        },
+        {
+          "resource": "repo://src/client/TaskManagerView.tsx#L191-L207",
+          "version": "repo-lines-v1:sha256:2a776e1573c4544e38f19c3b4bd2f38f1fd425514ca8d5e16271f37bfdbe8b06:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU0MzgxOGVhZTgzMjc3ODI4ZDhkNGEyNzdmZjcwM2U0OTRhY2ZiYzgzYjBhMDU0M2YwNDEzMWU4ZjgzYzZhMzAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMThhMDRhNTE5MGQzYWRjODhlNDUxZGZjNTMzNDdmNmUzM2IwM2FkN2Q1ODMyZjViYzc1ZDIxNWRlYzQxYTIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZjZjBiODcyZjUyM2Y0OGM2ZGNjODBkYzg2MzI4ZGI1NjcxYzQwMzIzNDYwZDU2YTg1MjY3NjU3NjljZDkyOTIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQyMGFlNWJiOGEzOTVlYmE1NGFmYzE0NjAyOGY2YWViOTcwZjVhMGE1OWYxNmQ0ODY0ZjczMTZhYTZiNzk3ODYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b4981cd343964212b97716cd4357c9ce",
+      "statement": "The Task Manager caches each fetched lifecycle snapshot per session id in a `cache` map, tracks a single `loadingId` and an `errorMap`, and surfaces a loading hint or per-node error when a snapshot is unavailable; a draft/blank session without turn-start events renders the `无执行记录（草稿会话）` empty state.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/TaskManagerView.tsx#L184-L186",
+          "version": "repo-lines-v1:sha256:005a3f79e27d203c8c047d138791cb0cb253815e71051b19a63576077e5b8ff0:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjdlZTVlYTU2YjY1NDMzNDBjYjI1YTY4OWJlOGY5OGIwMWI1MTU4NzMzODU5Yjg1YjQwYTcxNWE3MzAwMWE0MSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNjFlYzNhYTBhZGY4YmVlYTZhOTkyZmZmZDgwN2ExNWM5NzNlZmM1MmZjZDY1MDU5ZmU1YjM1NThhMGRlY2Q1MyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzg5MmE0NWYxNDI2OGIzNWFjZmViMGYxMjJkNDY3YTIxNTE0MWZiZWRlYTI1MmE4YmM0MTBiNjUzZjU4NjliMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWVkNDg2YWE0YjRjZjFlYWIyODY1NmI3MGM4ZmQxNGNiYTVmNzU5NTQ3MzhiM2NlYjZhZDFkZGUwYWM2NTBhZSJ9"
+        },
+        {
+          "resource": "repo://src/client/TaskManagerView.tsx#L293-L313",
+          "version": "repo-lines-v1:sha256:687985c759a85cbe558886fc853c8b58f1a4b4dab9664ce532600adce0631a59:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4MTc3MGU3Y2RjMGI3MzVjZTczZGJkMWRhN2JlZjgwZTM3MzQ0YjFhOTdjYTRiODc0ZGIzZWM5YWU3ZmQ2YmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUwNGQ0ZjMzYThjZGVhMmI3ZjlmYWY4ODgwZDM4ZmUyN2I4YTM1NzJjNzFlMDFjNTYwMzhkNTRhNWIxODljMmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNlYTNhYWJiYmJlMTUxZGUwOWM2MGJhNTU2ODQyZDZiYzhiYTM3NzI2ZmY3ZDQ0ZTEwOTUxN2MzOWRlMjU1NTUifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-03T02:25:20.569Z"
+  }
+}

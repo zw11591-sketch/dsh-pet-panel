@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:f6bcbfa1409c07d6e2f43fd7bd86184feb802571f5c192de5a1d6279cd6c354e",
+  "claims": [
+    {
+      "id": "claim_fb21cf293ebf4aadbefbaf301d0e84f5",
+      "statement": "The package.json `dsh` object is the plugin's whole mount-announcement contract to the harness: `dsh.engines.dsh` sets the minimum harness version (currently \">=0.1.1-rc.1\"), `dsh.bundle.patch` points at ./cordis.patch.yml, and `dsh.client` declares platform \"web\" plus an inject list of five client shell faces (locale, runtime, ui-conversation, ui-layout, ui-sidebar), which makes the web module table scan the package into the browser roster and serve lib/client.js.",
+      "evidence": [
+        {
+          "resource": "repo://package.json#L50-L67",
+          "version": "repo-lines-v1:sha256:a34f03d6e2e6166cba10206b57a685f9a8c5d3601488d2545c73abb4cb9d016b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJhNjc2YTNmYzgxMjYwNDgyYzY5MGM3ZGI5MTUyMzljZTRmN2NjZGYzZTIxZGFmNzg3ZTU5ODUxZTY0NzZhMTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkNWNkMmZiNGYzZGY4ODQ1MTUyNTViMzk1MjNmMmY4YjU0NzJiZWVhOWY1NjZmZmNhMjA0ZGI4MDI1NjEwNDEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAzNjVkZjY5NzMxNDBlNjI5MmQ0ZjMzZGE3MzhhYWQwZTgxNTBjN2JjOTY1YTY1YmVjMDk2NGIwZjdhOWZjNDAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhmZDRlZjNkMDQ2MDE1MDEyYmY5NDY3ZjNiY2ExNGE5Nzc0YWI5NTI4ZGE3MWZlMDk4NDhiNDM0OTIxY2UxMDIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_199384e9805f4fc382443a0dd8a62585",
+      "statement": "dsh.bundle.patch points at cordis.patch.yml, which insert-only adds the `pet-panel` row to the web profile plugin roster; the row is the single mount entry for both faces — the modules Node half scans dsh.client packages into the web roster (serving lib/client.js), and the host half (src/index.ts) registers the skill/MCP/A2A gateways and the A2A inbound endpoint, applied automatically on install.",
+      "evidence": [
+        {
+          "resource": "repo://cordis.patch.yml#L1-L10",
+          "version": "repo-lines-v1:sha256:250837cf4ce85d325f96a9f0cca58d6a378aa370829b6eb383102fd462c084cd:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE0MzIzNmQ4MDQ0YmFjNDFlMDhlNDZiYTY1MGUwYWFiNDI3NDQ2YTliYTI4NTQyZWRlNzUzMTViN2QwZmYxYzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNjZjYxNGQyNDE2MDZkMTFlZTdhMjE2NDM4NDI2ODUzOWI2YWI2YTRlYzFkODlhODE3MGU3NWMzN2I0NDVkMTUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://package.json#L54-L56",
+          "version": "repo-lines-v1:sha256:396b951a3d02d511a6b99ba0cb723082011496203e0b796ba2cf9b33bf3a0ab4:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTJjMDU5YmI4YzA4OGMyZjkwMDQ5YjcxY2ViY2MwYmI0NDczMDA1Y2VlZGM0ZWUzNDJmM2NlYzM3MDMyMGY2ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMWYwY2RiOTcyYTdiZmI3ZWQyNDZmOWZmNjcyMzg1ZTU1ZjQ5NjhmYzExMDQzZGM1YjY4NGQ1MWRmYTMxZGJjYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTNmY2QyMWY4ZGNkZjIxZWQ4NzI2MzI1ZjM4N2U4NGQ2NzY4YmMxNTQ3ZWEwOWI0NDZlZjc4NGIxY2YxMzg3YSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWYxMWRlZGE5YzM4MmQ4MmJjNzFmODdkYzlmMWM2YmFkOWZkMTI0NTY2OTI3ODhhMmUxODQ2MmE5ZDY3ZjUzYiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_6a501fc9c448472f9dd251a00f7821e0",
+      "statement": "The host face's six plugins inject the cordis services they consume: SkillForgeGateway injects ['llm','agentDefaultModel']; ToolIntegrationsGateway injects ['loader'] to hot-mount MCP loader entries; A2AToolsPlugin injects ['tools'] to register model-facing tools; A2AInboundPlugin injects ['webServer','llm','agentDefaultModel'] to register the agent-card and /a2a endpoints; ProfileSkillProviderPlugin injects ['skills'] to register a per-profile skill provider; A2AConfigGateway is pure file-backed and injects no harness service.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L1063-L1063",
+          "version": "repo-lines-v1:sha256:426aba7dc532cd12e8ac2a8b056048a15cc2c3c68670cf3bda5fad5a67c12f82:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDI2YWJhN2RjNTMyY2QxMmU4YWMyYThiMDU2MDQ4YTE1Y2MyYzNjNjg2NzBjZjNiZGE1ZmFkNWE2N2MxMmY4MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDI2YWJhN2RjNTMyY2QxMmU4YWMyYThiMDU2MDQ4YTE1Y2MyYzNjNjg2NzBjZjNiZGE1ZmFkNWE2N2MxMmY4MiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODMzOTk1MTMwNjVkN2YzNGUyYTM4M2ViOTBiNzUwZDRhOWViZjdiNGE5MzQ3OWU1YjhiMzBjM2RlM2Q0MDc2OSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMmMzYzlkMzAzYzFmZTZhZmIyYzViNjU4NjZiMGFiZTAwNWM2MDc1OGJhZjNjNjUxMjIyZDNlZjMyZDJkMTMyNSJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L1078-L1085",
+          "version": "repo-lines-v1:sha256:cca270151fe87e678c9df96dc43fc70ace738369fc97cc70e6145498ac9d3fc3:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDNlMDU4ODJlNmNlYzEzYzM0NjA0ZTBiMTIwZTg1ZWE1NmYwYjA3ZDVhNmM5N2RiNjVlNDIyZWJlNmVlNDI4OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTIyZmFhNTM1YmQyZWEzZDUyZTc0MWVkNDU0NDM1YjdmZTQ5ZTgzNTg2ZTk0M2Q5OGQ4MmJiZmIyNGQxZjVjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDQ3ZjIyMDNkZTNhY2E2NWE2NWE2MWZiNTcyZWY5NGQxMDljNDc5ZmI0NDMyNmQxOGFlYTM0ZTZiOGI1MzliNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L908-L908",
+          "version": "repo-lines-v1:sha256:49023d5a97f37cc15c66762e60112713ba3201cf785da50baf9d98ffa892d487:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDkwMjNkNWE5N2YzN2NjMTVjNjY3NjJlNjAxMTI3MTNiYTMyMDFjZjc4NWRhNTBiYWY5ZDk4ZmZhODkyZDQ4NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDkwMjNkNWE5N2YzN2NjMTVjNjY3NjJlNjAxMTI3MTNiYTMyMDFjZjc4NWRhNTBiYWY5ZDk4ZmZhODkyZDQ4NyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMWU4YTFhNDkxNmJmOGY3ODlhZjU1YzZmMWEzN2Q3NTAyNWMyNzAzNGZjZTM2MGU5YzQ4Nzg2ZGIxMjcwM2QyMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTlmNzQ0Zjc5MWQ3OTQ0M2Y3NTM1YjllNDljMDk0NTQ2NTMyZWIyZTMyNTNlZmE1NDY3N2I4NzU2NGNhYmI0NSJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L941-L941",
+          "version": "repo-lines-v1:sha256:8f84e2f86d7304086133713e5446473c33b5b5711b0605920831f63d06e66808:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGY4NGUyZjg2ZDczMDQwODYxMzM3MTNlNTQ0NjQ3M2MzM2I1YjU3MTFiMDYwNTkyMDgzMWY2M2QwNmU2NjgwOCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOGY4NGUyZjg2ZDczMDQwODYxMzM3MTNlNTQ0NjQ3M2MzM2I1YjU3MTFiMDYwNTkyMDgzMWY2M2QwNmU2NjgwOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDIzOGI4MzI2MDBlNThjYzNiMjlhNzFlNzAyNGE5Y2NjZmNlNmU5ZjljYTNjNTdlZDQ5MGI1YmMyYzBmZTgyMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWRjMTU3YzM5ODQyYzVmMDY0MGYzNWVmMTMwNWZkZmRiYjNmN2FjNGFjNDFiMGM5ZmM4M2E3YmMzY2NjMDMzYSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_1c040b3484ce411ca8406879cf82a7e1",
+      "statement": "The client face injects its services across three cordis plugins: the main apply(ctx) injects ['slots','locale','remote'] and mounts the Typert remote manifest via ctx.remote.$mount(TYPERT_REMOTE); the pet-panel-capabilities child plugin injects ['slots','locale','remote','remote.skillForge','remote.toolIntegrations','remote.a2aConfig'] so the remote.<ns> namespaces resolve only against the already-mounted services; the pet-panel-command child plugin injects ['inputTriggers','sessions'] to register the /pet slash source and consume input via the slash/input-consume-token bail event.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/index.ts#L181-L183",
+          "version": "repo-lines-v1:sha256:0d385127eb4bf01d2b764d5ca7c890ab836a9d2bf1777c9f82d650b19f7d58e9:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYjVlYzljYzQ4OWE4NmJiM2Q0ZGE2MjQ2OTUxZWU1N2QyNGMwYzQxYmE1MjgxMTNjOTZlZjU0YmM4YjRkZTVkZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTg5YjZmMjI3YTIyY2ExN2Q1NmRmM2JhMmI3MGI0M2UwZGVmYzFmNjE5ZGIwMTlkODgzZDg1NDA1YjA0ODc2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWYzMmNmNzAzZTczNWQyMTU2NmMyYTliMWMyNzZmMDE3M2U1YTBiMzQ0MzJlZTdlZTRlYjU1OWVjZDQ5OWFkOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDc0OTMyNzkwMjBjZDljMGY2Y2I4MDQ2ZjgwMDViOTdjYjI1MGI4ZmVmYWNiOTMxNGM2MTk2MTU4NzcyMzg0ZSJ9"
+        },
+        {
+          "resource": "repo://src/client/index.ts#L221-L228",
+          "version": "repo-lines-v1:sha256:6f61a8a471017791c998a7bc2ecad458e08623ccf0900565f159260c18308414:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYmQyNTkzMjhkODEyN2U1ZjAxOWNkNzhiM2IzMDQ4ZGVjMTU2ZjlmMGYxMjdmOWE5MGYxNzYwZGViNDVhMDUzMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2JiNjVjNDI4OGNmNzllN2RlNGU2OTQ1ZDM4N2RjZWJmOGJhNTA5MTk4NWRlYzFhMjczZjNjNWY1N2FjMGM2MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDZlM2Q0MzE3ZTIzNjNlMDNkZmE2MGZlMTQxYjJiOTM4ZjNkYzQ0YmYwNDBkMWY3NTg0N2E2MWU2MTBmZjljMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmM4YWIwYzczOGRiOGFjZmYxNjJkNzFhMGIwYTU2YzdiOTdlODk2MDY4ZWIyZTZjNDIyNTk4Mzc1NjMzMzdkOCJ9"
+        },
+        {
+          "resource": "repo://src/client/index.ts#L231-L237",
+          "version": "repo-lines-v1:sha256:4d7eceadbc3a9f7c7f42198f4089fd83cd6859889d3421f74e7a943f7b4b748e:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzFjN2I5ZDg5Y2U0YzBhZjVkM2Q4ZDdjNjU3MjY1ZmU4YzlhZmU0NGQzYmYzY2UzZDlmZWNhYzMwZjBmYjE1OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2JiNjVjNDI4OGNmNzllN2RlNGU2OTQ1ZDM4N2RjZWJmOGJhNTA5MTk4NWRlYzFhMjczZjNjNWY1N2FjMGM2MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjNhODM4OWFmNTcxZjhlMTg2NDU4MmM2NWI0MGJkNzc1Mzg1MmI2MzdmZDc2ZGFiMjk3MzM5ZDY0ODI0YTgyOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjEsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTIyZmFhNTM1YmQyZWEzZDUyZTc0MWVkNDU0NDM1YjdmZTQ5ZTgzNTg2ZTk0M2Q5OGQ4MmJiZmIyNGQxZjVjNSJ9"
+        },
+        {
+          "resource": "repo://src/client/index.ts#L33-L34",
+          "version": "repo-lines-v1:sha256:559b7a8bacec3e436e913678188ccc459e19fb5e65626d0d4cc2abbd083a20fd:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYjA4Y2FhN2FkZmY4NmE3OTU2YzVjZDY1YTZmNDNjMzA1MzY2ZWVlM2ZiYTZkYThkOGJhMDIzMzZlZWY4NWRhMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjQ5Y2Y4NjQ1OTZlYjFkYzYxNjA5MjM3NjJlMmVhNDU2YzhhOGQ2ZjNhOTIyZmI2YmZjZTkyMGUwZTI0NjhmOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYWI2YTQ2MDE5OTY5OWYzZDdhMWE4MzIzZWM3NGVjZGJjZDc1NzZjNzY4ZGU2NTY3YjFjOWZkYWVmMTVhN2YyMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTBkZWZkNjMxMTY3NDU4NGVjNWY3YzFlODFlMGQzMGRiZTk0MDhkZmUwNjhiMDdmY2NiOWNkNzc0MTM1ZmIxOSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_bec5dd32cdbd4c4a9b399c53a12ee9d7",
+      "statement": "The client registers components into seven harness-declared SlotMap rows: conversation.view (dashboard order 20, skill-forge 30, tool-integrations 40, a2a-management 50), shell.overlay (pet, task-manager-panel order 100), sidebar.brand.mark and sidebar.brand.name (priority -1, PapergamesLogo/Wordmark), conversation.hero.brand.mark (priority -1, PapergamesLogo), sidebar.footer.action (order 10, BackgroundSwitcher), and conversation.session.header.actions (order 20, TaskManagerTrigger); registration correctness depends on the harness semantics that list rows render by ascending order and single brand/hero rows resolve by lowest priority.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/index.ts#L120-L157",
+          "version": "repo-lines-v1:sha256:254bce2671a4bbf7515db0c03cb1a26a0e8c5cb2913ea24169282cfbeb331f8f:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNlMWMwNTQzZTIyZWE0ODUwNjc0NDRlZTk0MzA4N2FmZDllMjIwMjAzNmM3ZDMxZDk1MTUxYjIyMTM4MDUxN2EiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3NTMwMmI5MWQ0YjU4YjI2YTlhZTgxZTdhY2I5YzU5NmEyM2YyMmI0YjNjNWZlNzVjZmRiYjQzZTJkYWZjZjMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRiNGYwNmNlYTUzZTg1NjZkYTM5ZmM0MWUyMjgzMjI0NjRkYmMwNTQ0MmRhZmMyYmQ5ZmVjNzY3NjdiOWNiNGEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg2MzYzYjkzODlkNGM2OTQ1NTU2YjdjMGU0Y2YxNjljN2ZhYjFlZGU5OTNlZmJlMTZlMjNiZGM5ZTExY2NhODYifQ"
+        },
+        {
+          "resource": "repo://src/client/index.ts#L186-L219",
+          "version": "repo-lines-v1:sha256:af5f5d0e915b4c774fa008d99c75e4fc1c015430ed061b0da048c79571e189ef:eyJzZWxlY3RlZExpbmVDb3VudCI6MzQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNlMWMwNTQzZTIyZWE0ODUwNjc0NDRlZTk0MzA4N2FmZDllMjIwMjAzNmM3ZDMxZDk1MTUxYjIyMTM4MDUxN2EiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYyNjc1MzgxYzRmZTIwZWEzNzdkYTJjNGUwMTE3YjI3YjNmZmQ0ZmNlNjNkMGZkYWM5MjhmZDlhNzZjMGE4YTAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYxMDcwZjE0NTM3ZWJhNjc5Njg4N2ZkNDA0ZWY1MjkxY2VkNzkwZDNiOWJmZTA4Y2M1NjdlOGMxMzQyYmNlMGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQyZGFkODgxODg0ZDYyMDMyM2RlMjVjZDcxMjFkY2ZlYzA5M2QwMWNkMjE2NmQ2MTY4MjRhMWEyM2E2YTRkMDUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_60809ef07c964bb2a141856fc6bbea6d",
+      "statement": "The host Node bundle resolves its harness-runtime dependencies as externals rather than bundling them from the repo install, declared in tsdown.config.ts libExternal: @deepseek-ai/cordis, @deepseek-ai/dsh-typert-protocol, @deepseek-ai/dsh-home-paths, @deepseek-ai/dsh-tools, and @deepseek-ai/dsh-skill-filesystem — all resolved from the dsh profile tree at runtime, the same stance as cordis.",
+      "evidence": [
+        {
+          "resource": "repo://tsdown.config.ts#L15-L21",
+          "version": "repo-lines-v1:sha256:9dc6150df1f1ddadcd7b3551bd5cefe83b6c2112bfafcfb65ce5ce1a573bbf77:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWY5NWFlNGUzZjhhODQzNDMxZTk2ZjZmNTlmYmY4NDJiM2M2NjAwYWRiYzdmODNjODZmYmIyNDZhNGM4M2M2NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTY0ZDhjMDczNDI5ODkzMTAxNTc2ZDg4ZDk5MTI3ZTg5ZDY4OTFkM2IxN2U4OWRmMDJlYzlhZTcwNzA1ZDhiZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTg1ZWMyZmViNmI5OGNiZDI5MjI4ZmY5MGE3Y2MxMGZkZWEzMjZhNTc1MmRiNWMyZWVkZTg2YmVkNDc1ZTFkNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjEsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODU4MGI3NjUxOGRhZTk3OWZhZWJkMDIzNjdhMjkyOTJhNTBkOTc2MDkyMjUxYTM4YTZjZTMwODgwYmE0MjgyNSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_0577dc5b338a4289b7fc858038be8938",
+      "statement": "@deepseek-ai/dsh-mcp-client is not a direct import in the host bundle: it is the loader entry name (MCP_CLIENT) passed to ctx.loader.create for each configured MCP server, so it resolves through the harness loader rather than through the bundler.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L418-L418",
+          "version": "repo-lines-v1:sha256:928aeba594dd316c9db6449404696aee8fd8c564c73780e18b5a197a8c5b6f75:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTI4YWViYTU5NGRkMzE2YzlkYjY0NDk0MDQ2OTZhZWU4ZmQ4YzU2NGM3Mzc4MGUxOGI1YTE5N2E4YzViNmY3NSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTI4YWViYTU5NGRkMzE2YzlkYjY0NDk0MDQ2OTZhZWU4ZmQ4YzU2NGM3Mzc4MGUxOGI1YTE5N2E4YzViNmY3NSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNGNmMjY4ODRhNzQ2MDFkNTgxNWY4MTRiNjRlMTBiYzk4MzI1YmYwYTUyNDI5ZDBiOGE5NjdmN2M3NmIzNzVjNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWIxZjRiMTY0Mzg1NDEyOWYwMWE3YjE1MzczOTkxMzQ0NDk0MTNjNWU1MGMxNDgwNjA0ZDBlNGI2YWRiYjE1MiJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L474-L481",
+          "version": "repo-lines-v1:sha256:835ad5d11a85fdb1a07b53ab62a80cedf95d5549e7111a3f38644991d5af9bd7:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiM2FhYjMxN2QxMWFiNmI1NWNhODZhZjUzMzViMjY0OGZhNWU3NjgxNjczNmVhY2ZiYmY0MjA4MmU0ZjA3MTY4NiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzEzNDUxODAxMDViMGM2NmE3N2RhZDUxYmIzNzkwMWEzNzMyYzk2NTRiYTRkZTM5ODFmODFlMTgxNzUyNDhiZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNTg1MDhiNmNiMDU4OWFiYTc1MDMyMDJkZTJjOGY4N2VkOWIxOWNkNTg2NTNmZDAxYTNlNjc1ZTNhYjdiNTk2NyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNmY0Mjc1YmU0YTlkZmRlYzNmN2ZiYWYwOWZiNmZmMzQ1ZDJiOTc4ZGRkZThlOGMyOGI1Y2QxOWQ0OWFjNDIxNyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_df860e2b2329452abf69d24da4c3ffaa",
+      "statement": "The frozen browser module table is the single shared list of modules the shell shares into the web module table — react, react/jsx-runtime, react-dom, react-dom/client, @deepseek-ai/cordis, @deepseek-ai/dsh-client-ui-slots, @deepseek-ai/dsh-client-ui-primitives — and the client bundle resolves these as externals via CLIENT_EXTERNALS = [...PLATFORM_MODULES, RUNTIME_STORE_EXEMPTION]; @deepseek-ai/dsh-client-runtime/client is a documented temporary exemption, not a platform module.",
+      "evidence": [
+        {
+          "resource": "repo://build/web-platform.ts#L11-L16",
+          "version": "repo-lines-v1:sha256:b6f67a3aad1a3eccbb1a71634f32a80a62a089bbe3eaf41cd077d5a2e930ece8:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDViNWQ0ZjVjN2ZiNWEyZDdkYTA5NWFlODNlNTRhYTE3MzIyZmQ0N2Q5YTQ2MjEyMDBjYjFiYjI2MDIzMGQ0NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDUxZTkxOTUzMDIyZmIyMGU1MDRlODUyMWY5YmJmYmE1MThjZWZlM2Y1NjA4MDQ3NTllZjUyNzNhNjU1OThlZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzNmOTI0ZTk3MzZhYzBkMzFmNGQ0MWUwNzZiZmJlODBhYmE2NDRkMzYzM2NiMGE3OThjZTBkMWZhMTc1NmFlYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_b59c501c4a16413eb4fdb3eceb0c81d7",
+      "statement": "The package declares peer runtime requirements: engines.node \"^22.19.0 || >=24.0.0\" for the harness host, and peerDependencies react/react-dom \"^18.2.0\" matching the frozen module-table react/react-dom entries the loader table must provide.",
+      "evidence": [
+        {
+          "resource": "repo://package.json#L19-L21",
+          "version": "repo-lines-v1:sha256:9ce50131880f34972260bd460284c95a95c04e6e8d7b4c704a06eb0470b2f934:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWY2MDE1NTQxMjJlZmU4NTVkNTZlMTBjYzliYWYyMDMxY2EzZjRhYjExY2RiYTIyZjFlYmM1ZDM5YTc1NTgyNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGQ1Y2QyZmI0ZjNkZjg4NDUxNTI1NWIzOTUyM2YyZjhiNTQ3MmJlZWE5ZjU2NmZmY2EyMDRkYjgwMjU2MTA0MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTc1MDdjOTU2NTdiOTlmNDRiNzBjODdkOTNhMmRlZTI5MmFhZmQyMzZlNDdiMzYzOGFmZWM4N2JkNGU5OGMxNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiN2E3OWRmNDg1MDc2OGEwZTQ4MGUyMWFiZTgxMDdjYzkzNmZlZjEwODY4NGVkMGQ5NWMxNjk1ODRkMDA5MWY0ZCJ9"
+        },
+        {
+          "resource": "repo://package.json#L68-L71",
+          "version": "repo-lines-v1:sha256:4c2d2ad0ce3bd390a5c7b64d66b6f3edd64e9eac59e4f8fd1a1b327a6b5a7789:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTY0MWY3NmI1NzQ4YmYxZjA4ZTAyNDY3ZTllMmQ4ZmFhOTYxY2RkYTk3N2NjMThjZDNmMWU4Nzg0ZmQxZDcxYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGQ1Y2QyZmI0ZjNkZjg4NDUxNTI1NWIzOTUyM2YyZjhiNTQ3MmJlZWE5ZjU2NmZmY2EyMDRkYjgwMjU2MTA0MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzNkNGM4Zjc2NzViYzAxMDhjYmJlMjViN2MzMTM2MTUzYTBmMDM0ZDUwZDYzZDFiY2E4NzJmNWFhZjQ3NTZkMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjcwODVkNTkwOTEyMTE3YjEwNmM1ZjdlZDUwM2IxZDExYWI3MWIwMmFhNDM5YjBlNzRiYjBkMTFmM2EzZWVmMSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_fd18a5de86a344b9b751fba83da74c8f",
+      "statement": "The contract's per-profile isolation is realized in the host data surfaces: skillRoot(), MCP_FILE(), and a2aConfigDir() resolve to the active profile's directory under $DSH_HOME/profiles/<name>/ rather than to process.cwd(), parsed from the always-present --profile flag in process.argv (with a non-profile fallback), so dsh --profile <name> from any cwd and cd <profile> && dsh land on the same config.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L23-L26",
+          "version": "repo-lines-v1:sha256:9b45885f82a0d7a1f425bbbfc89066485a36f677bee39bc861f5cbcef1967277:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGJlZGRhNjVlYjNiYmYxMTIzYzlhOTA2NGY4ZTIyY2U2MThmMDNlYThlNTFkNzZmYzIxYmFiYzBjNjZlNDEwZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTIyZmFhNTM1YmQyZWEzZDUyZTc0MWVkNDU0NDM1YjdmZTQ5ZTgzNTg2ZTk0M2Q5OGQ4MmJiZmIyNGQxZjVjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDQ3ZjIyMDNkZTNhY2E2NWE2NWE2MWZiNTcyZWY5NGQxMDljNDc5ZmI0NDMyNmQxOGFlYTM0ZTZiOGI1MzliNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzA4MGIwNzJkZGYzOGExOTA0ZmM1N2YxZTA3ZWFlYTc5YmRjMzZiMTUzYzBkMDRiOGJlOWFkZjI3YmIxZGQwMyJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L414-L417",
+          "version": "repo-lines-v1:sha256:7232a386bf96c5a296b3de275e2994689fc39407709c15d5c07fce24d4717629:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZmUxYWEzMDY1OTNiNjkwNzRhNTE5NDY1YTA1YWU1MmM5OWRjNzRhZjBhNzQ5ZWY3YmM1NTNkOWI1MDI4YjQ2ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTIyZmFhNTM1YmQyZWEzZDUyZTc0MWVkNDU0NDM1YjdmZTQ5ZTgzNTg2ZTk0M2Q5OGQ4MmJiZmIyNGQxZjVjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjBmMjAxZWUwMzhjNTIwOTJlNzU5OTUyYTczNjkyZTc0NTMxMmFhYmFhYjE4NTc4MTEwMWQzMjIyYTE5N2FkNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTRkMDAyMDdhYTYzMDhhZTYxNGYxMWQ5YTU2NDg3YTZmZjJkMWMxYzA3ODJlMGI0MDNjMzYwOTBhZGM1Mzc2ZCJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L571-L598",
+          "version": "repo-lines-v1:sha256:f368b76fbee0ee3de4de444ec0e83f5943cdef5a57b06edda3ed076afef847f0:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU5ZGMxYjc2MWRhMWU0MmQyYmYxZTFiYWQxZjk5NTRhMzkzMmI5NDIyMjY3NWE2N2Y3Y2Y4NmJmOWNiMzY1MDAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQwNWE5YzQ5OGVmZTBhZDEwOTUzYzk2MTkwNTU2ODQ1ODFjZDRjNzExMWMwZWNiYWJkNzcxNTdkYzYyOTBiODAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ4NzI4NzU1MTU5MjE0ZGUyYTFlYzllYWY4NjMzZTM0NGQxZjJkNzcxNzQxNGVkNDkwYzI4Nzg3MjQ3ZTVjN2EifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-03T02:25:20.569Z"
+  }
+}

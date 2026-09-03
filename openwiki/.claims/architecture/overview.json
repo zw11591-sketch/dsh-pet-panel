@@ -1,0 +1,226 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:ea2ee0dd761c6b38740d3523490d6e265663303033933244d81acbd1edf77836",
+  "claims": [
+    {
+      "id": "claim_15b0a03178bc4d64b24b166875d27757",
+      "statement": "dsh-pet-panel is a single npm package that mounts into a DeepSeek Harness web profile as two separately-built faces: a Node host half (lib/index.js built from src/index.ts, exposing cordis Gateways and Typert remotes) and a browser client half (lib/client.js built from src/client/index.ts, applying slot components). The packaging contract in package.json maps \".\" to the host bundle and \"./client\" to the browser bundle.",
+      "evidence": [
+        {
+          "resource": "repo://package.json#L28-L41",
+          "version": "repo-lines-v1:sha256:ca801db927b024fc7509b7851833326d6d9bf0de289e84c54fe857e518568f21:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg1ZTcwMWM0NGVmNzBkOTllNjFmNjJkZTY0ZTg3NzIyNTE4ZmU3YmI3NDA3ZTgzZDBkM2YzZTk5N2U0MDI2MGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkNWNkMmZiNGYzZGY4ODQ1MTUyNTViMzk1MjNmMmY4YjU0NzJiZWVhOWY1NjZmZmNhMjA0ZGI4MDI1NjEwNDEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNkZmNkMDVhNmMxOGRmNzhkYjMxNzc4OTE2ZDQ2YzZhY2UxMTc3YTk0NjA5NTc3M2EzYWI5ODY5MDI4MDk3ZWIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImViYzdkNDg5ZDkzNDcyMDU3MTI2NGMwZmRmYzUzYzk1MmE0Yjc0ZmFjOWM3ZWUzNDQzMzAwNzk4N2QwZjY5ODAifQ"
+        },
+        {
+          "resource": "repo://src/client/index.ts#L1-L34",
+          "version": "repo-lines-v1:sha256:5fa54d6657b4a216cdd4a024980ac3dd1e6da1315d0846474c5759f905c8c93e:eyJzZWxlY3RlZExpbmVDb3VudCI6MzQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ1ZDVhYmFjYTIyNjgwYWU5NTMzNjcwMGRmNzY2MzYxOTdhN2NiNmMwMDRmNGNkNzlhYzFiMWZkMmYwYWM0YTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY0OWNmODY0NTk2ZWIxZGM2MTYwOTIzNzYyZTJlYTQ1NmM4YThkNmYzYTkyMmZiNmJmY2U5MjBlMGUyNDY4ZjgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUwZGVmZDYzMTE2NzQ1ODRlYzVmN2MxZTgxZTBkMzBkYmU5NDA4ZGZlMDY4YjA3ZmNjYjljZDc3NDEzNWZiMTkifQ"
+        },
+        {
+          "resource": "repo://src/index.ts#L1078-L1085",
+          "version": "repo-lines-v1:sha256:cca270151fe87e678c9df96dc43fc70ace738369fc97cc70e6145498ac9d3fc3:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDNlMDU4ODJlNmNlYzEzYzM0NjA0ZTBiMTIwZTg1ZWE1NmYwYjA3ZDVhNmM5N2RiNjVlNDIyZWJlNmVlNDI4OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTIyZmFhNTM1YmQyZWEzZDUyZTc0MWVkNDU0NDM1YjdmZTQ5ZTgzNTg2ZTk0M2Q5OGQ4MmJiZmIyNGQxZjVjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDQ3ZjIyMDNkZTNhY2E2NWE2NWE2MWZiNTcyZWY5NGQxMDljNDc5ZmI0NDMyNmQxOGFlYTM0ZTZiOGI1MzliNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_e5394fc2b23c4090a110577a79c2decc",
+      "statement": "The package's mount contract has two parts in package.json: dsh.bundle.patch points at cordis.patch.yml (which inserts the pet-panel row into the web profile roster, mounting both halves), and dsh.client (platform web, inject of locale/runtime/ui-conversation/ui-layout/ui-sidebar) makes the web module table scan the package into the browser roster and serve lib/client.js.",
+      "evidence": [
+        {
+          "resource": "repo://cordis.patch.yml#L1-L10",
+          "version": "repo-lines-v1:sha256:250837cf4ce85d325f96a9f0cca58d6a378aa370829b6eb383102fd462c084cd:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE0MzIzNmQ4MDQ0YmFjNDFlMDhlNDZiYTY1MGUwYWFiNDI3NDQ2YTliYTI4NTQyZWRlNzUzMTViN2QwZmYxYzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNjZjYxNGQyNDE2MDZkMTFlZTdhMjE2NDM4NDI2ODUzOWI2YWI2YTRlYzFkODlhODE3MGU3NWMzN2I0NDVkMTUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://package.json#L50-L67",
+          "version": "repo-lines-v1:sha256:a34f03d6e2e6166cba10206b57a685f9a8c5d3601488d2545c73abb4cb9d016b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJhNjc2YTNmYzgxMjYwNDgyYzY5MGM3ZGI5MTUyMzljZTRmN2NjZGYzZTIxZGFmNzg3ZTU5ODUxZTY0NzZhMTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkNWNkMmZiNGYzZGY4ODQ1MTUyNTViMzk1MjNmMmY4YjU0NzJiZWVhOWY1NjZmZmNhMjA0ZGI4MDI1NjEwNDEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAzNjVkZjY5NzMxNDBlNjI5MmQ0ZjMzZGE3MzhhYWQwZTgxNTBjN2JjOTY1YTY1YmVjMDk2NGIwZjdhOWZjNDAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhmZDRlZjNkMDQ2MDE1MDEyYmY5NDY3ZjNiY2ExNGE5Nzc0YWI5NTI4ZGE3MWZlMDk4NDhiNDM0OTIxY2UxMDIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e7424f22ea324d419bcc64d055880287",
+      "statement": "src/index.ts exports a single apply(ctx) that registers exactly six cordis plugins: ProfileSkillProviderPlugin, SkillForgeGateway, ToolIntegrationsGateway, A2AConfigGateway, A2AToolsPlugin, and A2AInboundPlugin.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L1078-L1085",
+          "version": "repo-lines-v1:sha256:cca270151fe87e678c9df96dc43fc70ace738369fc97cc70e6145498ac9d3fc3:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDNlMDU4ODJlNmNlYzEzYzM0NjA0ZTBiMTIwZTg1ZWE1NmYwYjA3ZDVhNmM5N2RiNjVlNDIyZWJlNmVlNDI4OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTIyZmFhNTM1YmQyZWEzZDUyZTc0MWVkNDU0NDM1YjdmZTQ5ZTgzNTg2ZTk0M2Q5OGQ4MmJiZmIyNGQxZjVjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDQ3ZjIyMDNkZTNhY2E2NWE2NWE2MWZiNTcyZWY5NGQxMDljNDc5ZmI0NDMyNmQxOGFlYTM0ZTZiOGI1MzliNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_19e35002e0e7427ba3345becccdc3423",
+      "statement": "ProfileSkillProviderPlugin registers a FileSystemSkillProvider scoped to the current profile's skills/ directory with includeDefaultRoots: false, so only that profile's skills load and the dsh default global root is disabled.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L1062-L1076",
+          "version": "repo-lines-v1:sha256:9ad526a38c0c01e61d4b1aca6e27960a808f06f8abdd6490ffdc687e5fa13def:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYzNjIxYjMwM2FjMGNlOTMxMDJkMTYyNWU0ZGJkMWYwOTM3MmEyZTRiZTg3ODI5NDBjYTFjNGVmOWJmOTdkOTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVmYTlkNTFiMTA0ODdiOTBlNTBkY2IwODc3Nzc2YzdhYzA3M2MyZGY0MDRlNGU1OTFjM2E2ZWU1MmM5MWE3OWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJkOWFlMzFiNTI1NzFmYWJjYjY2NGE5OGY0MGY5ZDY2MjZhNGM0MTU3YTNiNWYwZTA3ZDc4ZDM2NDgyZDkwMWYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7a862cd1de6b4de28d28f77e414b1da2",
+      "statement": "The three host gateways (SkillForgeGateway, ToolIntegrationsGateway, A2AConfigGateway) are TypertRemoteService subclasses whose public methods carry @Remote(...) decorators; the framework discovers the method set from the typertRemote binding plus the @Remote markers in source mode, so no generated /typert artifact is needed, and each method returns a JSON-safe business value wrapped into a { ok: true, value } | { ok: false, error } envelope.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/remote.ts#L1-L13",
+          "version": "repo-lines-v1:sha256:1fd8c456fecff0217f82f9ac88b2513d653228ee5d1f9f920147c1fb2e4b558b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ1ZDVhYmFjYTIyNjgwYWU5NTMzNjcwMGRmNzY2MzYxOTdhN2NiNmMwMDRmNGNkNzlhYzFiMWZkMmYwYWM0YTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVkYjU0NGE1ODg2MzQzNTBjMTkxNjlhODI0M2I1MzFiZjMwOTVlYjU3YzhmYjAzZTQ0ODM2OTQzZjA4MTY4ODEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdlNGQxMjE0NGIwNTdlN2FkZmUwOWRiODBlODIyOTczYjViZGNlZDQ1NGIzMjA1NjliOTA0ZjYxMzYyYTYxYjIifQ"
+        },
+        {
+          "resource": "repo://src/index.ts#L159-L171",
+          "version": "repo-lines-v1:sha256:3262a5ba9c3fa68d5400d2503e5a1ab18f179071db77fca02484d339c5334b5f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxNTNjNjVkYTkxMzNiOTJhM2U2MzkyNWEyZDQ3ZjJlMDdjNDBkNWQwNzRlNTExOTA3NmY4MGQ0MTEwYjA4N2EiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk0Yjk4YmZhMWJmOTY2NGRlZmU3Y2Y0OTg4NTFiNDU1ZTVkNTUyMjQwYTYwMjNkMGFlNGRiZjcwZjI1ZjdhMzkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQwMDU0OTdkZWUwM2YwYmFjMGNhNDg3MjA5MWUzMjlkODI0Y2NjNzM5MzhmYmZjZTY2OTFjYjFiMDMxNGMxY2EiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk3MjMyYjc1YTEwNTUxZGI1OGI5ZGJmZDJlOTkwZjcyNmIwNjNhZTJjNjMxZmZjYjdjY2JiOWYyNjU4NDljMjAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7d1e7627fdeb4a27b1742ba8ad906d16",
+      "statement": "Per-profile isolation is deterministic: dsh does not chdir to the profile directory or expose it to plugins, so profileNameFromArgv parses --profile from process.argv (always present) and the data roots skillRoot(), MCP_FILE(), and a2aConfigDir() all build $DSH_HOME/profiles/<profile>/... from it, making dsh --profile <name> from any cwd land on the same config as cd <profile> && dsh.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L23-L26",
+          "version": "repo-lines-v1:sha256:9b45885f82a0d7a1f425bbbfc89066485a36f677bee39bc861f5cbcef1967277:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGJlZGRhNjVlYjNiYmYxMTIzYzlhOTA2NGY4ZTIyY2U2MThmMDNlYThlNTFkNzZmYzIxYmFiYzBjNjZlNDEwZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTIyZmFhNTM1YmQyZWEzZDUyZTc0MWVkNDU0NDM1YjdmZTQ5ZTgzNTg2ZTk0M2Q5OGQ4MmJiZmIyNGQxZjVjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDQ3ZjIyMDNkZTNhY2E2NWE2NWE2MWZiNTcyZWY5NGQxMDljNDc5ZmI0NDMyNmQxOGFlYTM0ZTZiOGI1MzliNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzA4MGIwNzJkZGYzOGExOTA0ZmM1N2YxZTA3ZWFlYTc5YmRjMzZiMTUzYzBkMDRiOGJlOWFkZjI3YmIxZGQwMyJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L414-L417",
+          "version": "repo-lines-v1:sha256:7232a386bf96c5a296b3de275e2994689fc39407709c15d5c07fce24d4717629:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZmUxYWEzMDY1OTNiNjkwNzRhNTE5NDY1YTA1YWU1MmM5OWRjNzRhZjBhNzQ5ZWY3YmM1NTNkOWI1MDI4YjQ2ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTIyZmFhNTM1YmQyZWEzZDUyZTc0MWVkNDU0NDM1YjdmZTQ5ZTgzNTg2ZTk0M2Q5OGQ4MmJiZmIyNGQxZjVjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjBmMjAxZWUwMzhjNTIwOTJlNzU5OTUyYTczNjkyZTc0NTMxMmFhYmFhYjE4NTc4MTEwMWQzMjIyYTE5N2FkNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTRkMDAyMDdhYTYzMDhhZTYxNGYxMWQ5YTU2NDg3YTZmZjJkMWMxYzA3ODJlMGI0MDNjMzYwOTBhZGM1Mzc2ZCJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L571-L598",
+          "version": "repo-lines-v1:sha256:f368b76fbee0ee3de4de444ec0e83f5943cdef5a57b06edda3ed076afef847f0:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU5ZGMxYjc2MWRhMWU0MmQyYmYxZTFiYWQxZjk5NTRhMzkzMmI5NDIyMjY3NWE2N2Y3Y2Y4NmJmOWNiMzY1MDAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQwNWE5YzQ5OGVmZTBhZDEwOTUzYzk2MTkwNTU2ODQ1ODFjZDRjNzExMWMwZWNiYWJkNzcxNTdkYzYyOTBiODAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ4NzI4NzU1MTU5MjE0ZGUyYTFlYzllYWY4NjMzZTM0NGQxZjJkNzcxNzQxNGVkNDkwYzI4Nzg3MjQ3ZTVjN2EifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_8829db08129249819c513011a3f2ee0b",
+      "statement": "The client mounts the Typert namespaces by calling ctx.remote.$mount(TYPERT_REMOTE), where TYPERT_REMOTE is a hand-written manifest in src/client/remote.ts declaring the skillForge, toolIntegrations, and a2aConfig namespaces plus per-method zod wire codecs (JSON position parameters and strict result schemas). The client unwraps each response with a helper that throws r.error.message when r.ok is false.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/index.ts#L181-L183",
+          "version": "repo-lines-v1:sha256:0d385127eb4bf01d2b764d5ca7c890ab836a9d2bf1777c9f82d650b19f7d58e9:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYjVlYzljYzQ4OWE4NmJiM2Q0ZGE2MjQ2OTUxZWU1N2QyNGMwYzQxYmE1MjgxMTNjOTZlZjU0YmM4YjRkZTVkZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTg5YjZmMjI3YTIyY2ExN2Q1NmRmM2JhMmI3MGI0M2UwZGVmYzFmNjE5ZGIwMTlkODgzZDg1NDA1YjA0ODc2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWYzMmNmNzAzZTczNWQyMTU2NmMyYTliMWMyNzZmMDE3M2U1YTBiMzQ0MzJlZTdlZTRlYjU1OWVjZDQ5OWFkOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDc0OTMyNzkwMjBjZDljMGY2Y2I4MDQ2ZjgwMDViOTdjYjI1MGI4ZmVmYWNiOTMxNGM2MTk2MTU4NzcyMzg0ZSJ9"
+        },
+        {
+          "resource": "repo://src/client/index.ts#L36-L40",
+          "version": "repo-lines-v1:sha256:6ee71680a1f95cb4e2606bd055165e5a54e72f60dc89cd90e00763951c5e9f55:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTc2ZjVhMDM3MDA1M2JhMjUwNTlhYmQ0YzJjYTM4MDhiYzkzYjI1YzBiYzc4Yjk0NjNkOGIzZmZkOWZjZDUxMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTIyZmFhNTM1YmQyZWEzZDUyZTc0MWVkNDU0NDM1YjdmZTQ5ZTgzNTg2ZTk0M2Q5OGQ4MmJiZmIyNGQxZjVjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNmRiY2RmZTRiOTc1ZGU1YWRjYmYxMWIwNmM3YjdkOThhNWYwZGQwN2U3YTkwMTliMzEzZWY4Y2FlNWFlNWY3YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDcwZjljNTZiYTFmNmIyYmY4MzFkMDE4NWRmMGZkOGE3NTUxNmYyMGNiMzk0NGQ2NmI3NzlmYTAzOWFkY2U2OSJ9"
+        },
+        {
+          "resource": "repo://src/client/remote.ts#L100-L159",
+          "version": "repo-lines-v1:sha256:cb649f65e0149477c40471bf95f44d52f1e097d6a452eb23e1707fdd16f2cd4d:eyJzZWxlY3RlZExpbmVDb3VudCI6NjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAyZmNjOTJlZTcyYzIzZWYyMzZiNGI1YTdmMTQzNjIyMjdlM2Q0MTMxZGE5OGFlMzAwN2M1ZGNiNzFlYjAxNTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU1OTM0NGIyODlkODY5NDE0MDMwYzM1ZTNiZTgxYjczODlmYTM0Y2MzZDFhMmY5Mjc4ODIwOTI1MmU2ZmFjMmYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7fe15706e9bc4cbb80f1853363bec752",
+      "statement": "compact() strips own-properties whose value is undefined before returning a Typert remote result, because zod .optional() fields can otherwise leave an undefined own-property that makes Typert's assertJsonValue throw 'undefined is not JSON-safe' and surface as a bogus 'business result failed boundary validation'.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L147-L157",
+          "version": "repo-lines-v1:sha256:0023c13ab37f30054a689f81e263520c4adb3b0e82d14c333151be7ad7e2c832:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ3MjM5OTFmNzI0ODdmNDBkYjY5ZjA3MmQxOTY1NjlkYmEwYWZhNGM3OTJlMzcxYjM5MmMzNDcyZmU0ZDhkNGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUxM2VjMDJhNTFlMWQ1MzJmNzg2MTQ1NjFjMGRmZmE5NmE4ZGFiOWNjZmM4MmFiODhmMDBlZjYzNWYwOGY4NDciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImEwNjY1OTViM2IxY2Y2YjUwNGQ1NzljYjc3MzE2OTUxMGQwNzMwYjhhM2M5OThiNjk3MjVlMTAzNGEyMGJlMWYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_41be068aa0cc4ce6a377daea06aaff6f",
+      "statement": "The three capability panels (SkillForgeView, ToolIntegrationsView, A2AView) are registered inside a child plugin pet-panel-capabilities whose inject includes the mounted namespace services remote.skillForge, remote.toolIntegrations, and remote.a2aConfig; they cannot live in the main apply(ctx) because ctx there only holds remote and touching remote.skillForge would throw 'without inject'.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/index.ts#L147-L157",
+          "version": "repo-lines-v1:sha256:33652d6746dacb50cb4cafa690db150b7628653e8466825ea23c72acfd5174d3:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY0YzRhNTczMDYwZmU3ZDcwZGUzY2ZkYjM5NWQ2Y2Q1ZWNlNjA2YzI3YWQxZTk5N2FmYjAxYzliMDgyMDU3MDEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3NTMwMmI5MWQ0YjU4YjI2YTlhZTgxZTdhY2I5YzU5NmEyM2YyMmI0YjNjNWZlNzVjZmRiYjQzZTJkYWZjZjMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRkM2E1NzBmMGQ2NGMwNjg5NzFkM2QwODI0OWU5M2EwMGFiNzM1NTMxNjA3NTI5OGRlMTg4NmI2NjI3MDE2NDAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg2MzYzYjkzODlkNGM2OTQ1NTU2YjdjMGU0Y2YxNjljN2ZhYjFlZGU5OTNlZmJlMTZlMjNiZGM5ZTExY2NhODYifQ"
+        },
+        {
+          "resource": "repo://src/client/index.ts#L221-L228",
+          "version": "repo-lines-v1:sha256:6f61a8a471017791c998a7bc2ecad458e08623ccf0900565f159260c18308414:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYmQyNTkzMjhkODEyN2U1ZjAxOWNkNzhiM2IzMDQ4ZGVjMTU2ZjlmMGYxMjdmOWE5MGYxNzYwZGViNDVhMDUzMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2JiNjVjNDI4OGNmNzllN2RlNGU2OTQ1ZDM4N2RjZWJmOGJhNTA5MTk4NWRlYzFhMjczZjNjNWY1N2FjMGM2MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDZlM2Q0MzE3ZTIzNjNlMDNkZmE2MGZlMTQxYjJiOTM4ZjNkYzQ0YmYwNDBkMWY3NTg0N2E2MWU2MTBmZjljMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmM4YWIwYzczOGRiOGFjZmYxNjJkNzFhMGIwYTU2YzdiOTdlODk2MDY4ZWIyZTZjNDIyNTk4Mzc1NjMzMzdkOCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_23c9a1e75b4c4359b44c1e47ac500b5a",
+      "statement": "The /pet on | off | toggle command is isolated in a pet-panel-command child plugin injecting inputTriggers and sessions; the interceptor registers an input-trigger source on '/' after the built-in command source so it wins by first-non-undefined adjudication, returns 'handled' to consume the line before the model, and clears the input via the slash/input-consume-token bail event.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/index.ts#L230-L237",
+          "version": "repo-lines-v1:sha256:9a1136773272fd60f68c39dccf3ff75a353e594b444ffc7964e27227be5ed256:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGVmOTdkZjQ0YTY1NmYzNzc0MWQ0ZTVlNTg5MTQ4MDZmYTY5MDE4ZWE1NTJmZjRhYWY3NjRiOWEyZjE5YWE2ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2JiNjVjNDI4OGNmNzllN2RlNGU2OTQ1ZDM4N2RjZWJmOGJhNTA5MTk4NWRlYzFhMjczZjNjNWY1N2FjMGM2MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzBlZGZkZDkzZDk5NDVlZTQyZTU4MTE1OWE3ODg5NWI1ZjM5MmUxMzFjODRjNTYwMzIxYmRhOWMyNWQwZTRkNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjEsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTIyZmFhNTM1YmQyZWEzZDUyZTc0MWVkNDU0NDM1YjdmZTQ5ZTgzNTg2ZTk0M2Q5OGQ4MmJiZmIyNGQxZjVjNSJ9"
+        },
+        {
+          "resource": "repo://src/client/index.ts#L42-L96",
+          "version": "repo-lines-v1:sha256:7456aecf75cc9b7d9134e397aa71de22bde2f2659d98c8109271d6d08c7b9ae5:eyJzZWxlY3RlZExpbmVDb3VudCI6NTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ1ZDVhYmFjYTIyNjgwYWU5NTMzNjcwMGRmNzY2MzYxOTdhN2NiNmMwMDRmNGNkNzlhYzFiMWZkMmYwYWM0YTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY4YWQzMzcxMjdlOGE2ZWNmNGM0YjI0NzUyZjI5MTM2MzkzYTM1ZjAyNWMyYzIzZTIwZjA2NTUwZDVkMzc1OTYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRkYjBiODY1ODUzNTU3ODE3ZDQ3Mzk4OWQwNTRjMzNmODgzNzY2YTE4ZGZkNzZhOWMzYmIyMzE0NTg1YTc1ZTgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b01da6fc4f224d65ac0fcb6022359e56",
+      "statement": "PetView (shell.overlay) and the /pet command interceptor live in different slots and cannot share React context, so pet visibility state is bridged by a module-level publish/subscribe store (petStore.ts) exposing a stable getSnapshot/subscribe surface for useSyncExternalStore; the task manager uses the same pattern via taskPanelStore.ts.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/petStore.ts#L1-L47",
+          "version": "repo-lines-v1:sha256:dceacb4d19190c9c262a077b868fb537e64be68bcc5d846b0522029c018b50cd:eyJzZWxlY3RlZExpbmVDb3VudCI6NDcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://src/client/taskStore.ts#L1-L45",
+          "version": "repo-lines-v1:sha256:c3f31362b55df051ab93f50e0ab54362dc424aef7bfd8bb76d0bc3f5eeb75f6a:eyJzZWxlY3RlZExpbmVDb3VudCI6NDUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_34f79c1c7c6a40f5920b26a4c3e05fb2",
+      "statement": "The Papergames brand occupants register at priority -1 to shadow the official DeepSeek whale in the single brand slots (lowest priority renders), and the theme remap injects a <style> on body rather than :root because the host installs its tokens on body and a :root rule loses to the descendant body rule.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/brand.tsx#L1-L63",
+          "version": "repo-lines-v1:sha256:69fbc214176118128f030160bcbe97afc3d699c57b561913e7de5ba26ff8a042:eyJzZWxlY3RlZExpbmVDb3VudCI6NjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA1NGYyMTc0N2I1ODU3OGRmNGU4Zjc1ZTBmNWJlYjZkNzkwNzY0MzA2OTVjOWViOWZlNGEzZDc4YjgwYTQyN2QifQ"
+        },
+        {
+          "resource": "repo://src/client/theme.ts#L21-L57",
+          "version": "repo-lines-v1:sha256:bc1621b08f8b81e7bc730e724d615f75a715d49c792ae126471fde1e39231630:eyJzZWxlY3RlZExpbmVDb3VudCI6MzcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRiMWU5N2FmMjNlN2UwNTBkMzljMTJlZDhjZmM1MDQzYmNkOGE4ODdmZWEyNzBhN2FmNWYyYzI1Y2E4YWE3OWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVmZDFkYzYxMDE3NmY0NjI0MWYyYmRiYzM1ODFmMWQzYWJlM2M5ODE4Nzk3MGYwNWIzMDc4YTcyZDMwMzUwYzQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkyMDZkOTQxOTIzZThlMTA2ZGE2Mjc5YWQ5NjExNjZhMjU5MmY5ZjE5NjEyZmJhMGI2NDk0ZTMxMmJlYTVlZTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6bbfb251546c4f2d96d20852a003986c",
+      "statement": "A2A is wired both directions on the host face: A2AToolsPlugin registers the model-facing a2a_list_agents and a2a_call tools, and a2a_call resolves an agent by exact then normalized then substring then Levenshtein distance (unique hit only), returning a candidate-closure message when resolution fails so the model can retry rather than error; A2AInboundPlugin serves /.well-known/agent-card.json and a JSON-RPC message/send handler at the /a2a prefix, replying via llm.stream using the configured card as the system prompt.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L762-L904",
+          "version": "repo-lines-v1:sha256:45622be7c5d604a48d61e395784cf7869223a6b0e33b90867ae58eda36e0762d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQzLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI3M2RmY2EwN2M3ZjVjMzNmYjNiMDVhMDEyNmQ2ZTQyYjE1OWZkNDcyMDA4NzlkYjJmMGJlODVjZDk0YTFjZjk3IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJlMjJmYWE1MzViZDJlYTNkNTJlNzQxZWQ0NTQ0MzViN2ZlNDllODM1ODZlOTQzZDk4ZDgyYmJmYjI0ZDFmNWM1IiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiIyNzFmY2VkNTE2MTNhZjMxMzE1ODViZjgxYTZhOTYzODhlNzI5MjRiZmYzYmIzYzNiNmVlMGFhNjMwMWY0NDJlIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiIxZThhMWE0OTE2YmY4Zjc4OWFmNTVjNmYxYTM3ZDc1MDI1YzI3MDM0ZmNlMzYwZTljNDg3ODZkYjEyNzAzZDIwIn0"
+        },
+        {
+          "resource": "repo://src/index.ts#L918-L1054",
+          "version": "repo-lines-v1:sha256:20b715134814e354e3a396de7d54c7f5a54d10d10e6388ea9eab75610896cde9:eyJzZWxlY3RlZExpbmVDb3VudCI6MTM3LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJkMTA0ZmM5NjE2NzllODM2OTg0YmY3YjdmMGZiZWVlZmVhNGQ2NGZmOTg0MGNkODM4NjQ5MzA1MmVlZWEzMjViIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI3MTM0NTE4MDEwNWIwYzY2YTc3ZGFkNTFiYjM3OTAxYTM3MzJjOTY1NGJhNGRlMzk4MWY4MWUxODE3NTI0OGJmIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI5OTU0YjliYjBlY2MyY2EwZjBmNjEzZDY4ZGE1ZmNiODllMzFhYmVjZjM3MzYwMjg4YTBiOTcwZGY1ZjFjYWRlIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiI4NjM2M2I5Mzg5ZDRjNjk0NTU1NmI3YzBlNGNmMTY5YzdmYWIxZWRlOTkzZWZiZTE2ZTIzYmRjOWUxMWNjYTg2In0"
+        }
+      ]
+    },
+    {
+      "id": "claim_2f866a9b9a504309a74b12e40e1b96ed",
+      "statement": "SkillForgeGateway.lifecycle reads a session's session.jsonl.zstd, decompresses it by scanning for zstd frame magic bytes (one frame per dsh write batch) since the single-frame API only decodes the first frame, and folds the parsed records into a flat LifecycleSnapshot with turn/step/tool/approval/todo counters and events.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L304-L409",
+          "version": "repo-lines-v1:sha256:50f657632a7ef016c79d3c992f35075034a5bb6869c62a4244debba681df6111:eyJzZWxlY3RlZExpbmVDb3VudCI6MTA2LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI2YWI4OTk3ZTY4Y2YzMzA5YWRlMWU4ZDhhZDVlNWI3MTVhYmYzNTI2MWE5YTRlMDczMDE0ODkwM2M5NmJhN2E3IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI3MTM0NTE4MDEwNWIwYzY2YTc3ZGFkNTFiYjM3OTAxYTM3MzJjOTY1NGJhNGRlMzk4MWY4MWUxODE3NTI0OGJmIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiIxZjAxODExNTJlZTE2N2E0ZWQ3N2Y4NDIwMjBjYjczYjEyM2RkMGIwODZkMWZiODUzYTM4YzgyMWYxMzMzZjU3IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlYmExZmM2ZGI2YjRmMTU5OGNiNzhjMjg3NWMzYWM0YTQ2Y2MwZmI1MTdiZWZiMDI3ZGFlMjI0N2ZhOGE2NGU5In0"
+        },
+        {
+          "resource": "repo://src/index.ts#L76-L95",
+          "version": "repo-lines-v1:sha256:9a41d1e808b95f19518d2292c7e25a9b4712c148c694131380d278921d3880af:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU3MDlkMzE2MTk4MzRiNWY3M2U2YzM5NDQ5ODY2ZDMzZjliMDA4MDcwMzRjOTFhM2ViNWZjNzcyNWQ0ZjNhYjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjJiM2U5MDY2ZTE3YzI2YzUwZTczZjg2YjI1OGQyNWNmNGM4ZWVkYmNiOWJkYWQzMmIwMTc5ZDM3OWFjNzNjZjYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY5YjZjMzhlNjExZWZhYzE3OGUxYThmZjViZTAxMmI3MGQ5NWUzNWJlZjg0ZTJjNThkYTg1MTE1MDMyZmM0OTkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_16546cd524d34199a006287a16922b83",
+      "statement": "ToolIntegrationsGateway hot-mounts MCP servers through ctx.loader.create/remove, tracking serverName to entry id for each configured server, and its write remote unmounts the old entry then mounts the new one so the agent immediately gains the tool without restart.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L431-L535",
+          "version": "repo-lines-v1:sha256:54040753d31fced49a7c8d64b8384bb6e9ec14d43527fc8124eac1a8356f1c82:eyJzZWxlY3RlZExpbmVDb3VudCI6MTA1LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiIyOTlhNDI1NDMyMThkZjg5MDhkNmM4NzlmNDljOThiNWJmNDhkZjgwMzQ1MDAwM2RjN2IyNTRlYWE3OTRkZDc0IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJlMjJmYWE1MzViZDJlYTNkNTJlNzQxZWQ0NTQ0MzViN2ZlNDllODM1ODZlOTQzZDk4ZDgyYmJmYjI0ZDFmNWM1IiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI4YzIwMTFiZjU1ZGU0YTAwMTYxYWRlYzlkYTY3ZGE4MjUyZjk3ODZlNzBiMWRhYzFmZDlmNGRmYjZjNmEwNmMyIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJhMzI0MWNkN2M1MDFiYmNhYTc2ZWJmZjhmOGYyMjE1MDRlZDIxODVhZThjMjczMjM4ODI3Y2QzZmZiMWIwNTU1In0"
+        }
+      ]
+    },
+    {
+      "id": "claim_d562d2a511cf4adda9bb24f610009fe8",
+      "statement": "SkillForgeGateway.generate picks the current default model from agentDefaultModel.currentSelection() and only falls back to the first registered provider/model if the selection is absent, because blindly taking providers[0] may select a provider with insufficient balance or no configuration.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L218-L301",
+          "version": "repo-lines-v1:sha256:f360aabf9230fa745d9d0f6f1424ef31053cf557123da994820e2f2370b9ecde:eyJzZWxlY3RlZExpbmVDb3VudCI6ODQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFjNmY2YzVkYjNlMzZiNmVmNWMxZmEzOTFkMTBlNDdiMWU1NDM0MDliOTUyMmE4Yzc3NzI1OTRmMmM1N2E5YzUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxMzQ1MTgwMTA1YjBjNjZhNzdkYWQ1MWJiMzc5MDFhMzczMmM5NjU0YmE0ZGUzOTgxZjgxZTE4MTc1MjQ4YmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVkZGRkMDkwNTJhNjU4ODA0NWU4ZWJhYWJhZmVmMzA5ZTJhY2YwMWZiNzJhMjMwMGE2NzNkZWI4OWUyMWIxNTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE4NTQ5NmY5N2Q2ODc3ZTVkNmNmYjk3MTQwNzNkZjM1NjNlNWQ3ZGY3MTZkZGExYzMyMDVlMmIyZDg1NTQ3MDYifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-03T02:25:20.569Z"
+  }
+}

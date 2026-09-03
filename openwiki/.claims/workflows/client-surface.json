@@ -1,0 +1,270 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:d57ae23f83910acda932abaebdc4d58710004f69775d26e1dcfa3fa18729301e",
+  "claims": [
+    {
+      "id": "claim_83af2386248242d68bc24b8a05544028",
+      "statement": "The browser face mounts into the harness shell purely through ctx.slots.inject into named slot maps, where the slot name and the register({ name, id, order|priority }) identity decide visibility and ordering; there is no imperative React mounting. The dashboard (order 20), skill-forge (30), tool-integrations (40), and a2a-management (50) tabs fill conversation.view; the pet and task-manager-panel (order 100) fill shell.overlay; the Papergames logo/wordmark shadow the brand slots at priority -1; the background switcher (order 10) and task-manager trigger (order 20) fill sidebar.footer.action and conversation.session.header.actions.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/index.ts#L120-L157",
+          "version": "repo-lines-v1:sha256:254bce2671a4bbf7515db0c03cb1a26a0e8c5cb2913ea24169282cfbeb331f8f:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNlMWMwNTQzZTIyZWE0ODUwNjc0NDRlZTk0MzA4N2FmZDllMjIwMjAzNmM3ZDMxZDk1MTUxYjIyMTM4MDUxN2EiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3NTMwMmI5MWQ0YjU4YjI2YTlhZTgxZTdhY2I5YzU5NmEyM2YyMmI0YjNjNWZlNzVjZmRiYjQzZTJkYWZjZjMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRiNGYwNmNlYTUzZTg1NjZkYTM5ZmM0MWUyMjgzMjI0NjRkYmMwNTQ0MmRhZmMyYmQ5ZmVjNzY3NjdiOWNiNGEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg2MzYzYjkzODlkNGM2OTQ1NTU2YjdjMGU0Y2YxNjljN2ZhYjFlZGU5OTNlZmJlMTZlMjNiZGM5ZTExY2NhODYifQ"
+        },
+        {
+          "resource": "repo://src/client/index.ts#L186-L219",
+          "version": "repo-lines-v1:sha256:af5f5d0e915b4c774fa008d99c75e4fc1c015430ed061b0da048c79571e189ef:eyJzZWxlY3RlZExpbmVDb3VudCI6MzQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNlMWMwNTQzZTIyZWE0ODUwNjc0NDRlZTk0MzA4N2FmZDllMjIwMjAzNmM3ZDMxZDk1MTUxYjIyMTM4MDUxN2EiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYyNjc1MzgxYzRmZTIwZWEzNzdkYTJjNGUwMTE3YjI3YjNmZmQ0ZmNlNjNkMGZkYWM5MjhmZDlhNzZjMGE4YTAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYxMDcwZjE0NTM3ZWJhNjc5Njg4N2ZkNDA0ZWY1MjkxY2VkNzkwZDNiOWJmZTA4Y2M1NjdlOGMxMzQyYmNlMGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQyZGFkODgxODg0ZDYyMDMyM2RlMjVjZDcxMjFkY2ZlYzA5M2QwMWNkMjE2NmQ2MTY4MjRhMWEyM2E2YTRkMDUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d102843a9ef947639a3410541745e85a",
+      "statement": "The task-manager-panel slot (TaskManagerView) is registered inside the pet-panel-capabilities child plugin, not the main apply() function, because its inject closure reads remote.skillForge which only resolves after Typert $mount and only inside a child context whose inject array lists remote.skillForge; the main apply() context holds remote but not remote.skillForge and accessing it throws 'without inject'.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/index.ts#L147-L157",
+          "version": "repo-lines-v1:sha256:33652d6746dacb50cb4cafa690db150b7628653e8466825ea23c72acfd5174d3:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY0YzRhNTczMDYwZmU3ZDcwZGUzY2ZkYjM5NWQ2Y2Q1ZWNlNjA2YzI3YWQxZTk5N2FmYjAxYzliMDgyMDU3MDEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3NTMwMmI5MWQ0YjU4YjI2YTlhZTgxZTdhY2I5YzU5NmEyM2YyMmI0YjNjNWZlNzVjZmRiYjQzZTJkYWZjZjMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRkM2E1NzBmMGQ2NGMwNjg5NzFkM2QwODI0OWU5M2EwMGFiNzM1NTMxNjA3NTI5OGRlMTg4NmI2NjI3MDE2NDAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg2MzYzYjkzODlkNGM2OTQ1NTU2YjdjMGU0Y2YxNjljN2ZhYjFlZGU5OTNlZmJlMTZlMjNiZGM5ZTExY2NhODYifQ"
+        },
+        {
+          "resource": "repo://src/client/index.ts#L222-L228",
+          "version": "repo-lines-v1:sha256:aefa12d98df084b9c1aa2d7aaa08bdd7e65773cfa23d34862b9073c804e46a26:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzFjN2I5ZDg5Y2U0YzBhZjVkM2Q4ZDdjNjU3MjY1ZmU4YzlhZmU0NGQzYmYzY2UzZDlmZWNhYzMwZjBmYjE1OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2JiNjVjNDI4OGNmNzllN2RlNGU2OTQ1ZDM4N2RjZWJmOGJhNTA5MTk4NWRlYzFhMjczZjNjNWY1N2FjMGM2MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWIwNGIyYjU5MWFkMDZhY2FiYWI1ZTliYTEyM2U3MmY1N2MwYjNlY2VjMDU0ZDc3ZWUyZTM3Njc5ZjBiNTdhOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmM4YWIwYzczOGRiOGFjZmYxNjJkNzFhMGIwYTU2YzdiOTdlODk2MDY4ZWIyZTZjNDIyNTk4Mzc1NjMzMzdkOCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_2d0ecb65ef964935b0afd59bad7c2ca4",
+      "statement": "Cross-slot state (pet visibility, task panel open/close) is bridged by module-level publish/subscribe stores (petStore, taskStore) exposing a stable getSnapshot plus subscribe for useSyncExternalStore, because the writer and reader components live in different slot maps and React context cannot cross a slot boundary. Both stores use a boolean snapshot that changes identity only on a real show/hide or open/close transition.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/PetView.tsx#L292-L292",
+          "version": "repo-lines-v1:sha256:cee9110273053b9d042b95f1ea01969736c2774980e2dc36d29209e3446432af:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2VlOTExMDI3MzA1M2I5ZDA0MmI5NWYxZWEwMTk2OTczNmMyNzc0OTgwZTJkYzM2ZDI5MjA5ZTM0NDY0MzJhZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2VlOTExMDI3MzA1M2I5ZDA0MmI5NWYxZWEwMTk2OTczNmMyNzc0OTgwZTJkYzM2ZDI5MjA5ZTM0NDY0MzJhZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTk2Y2I0ODI2ZmMzMDA3NDI4ZjNlMzVhOTQxNjNkZmMzNDZlZGY2N2ViZjNkOWNmM2QxNzA0NDAxNWM0ZDA4ZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjYyZGI4NjViNTdjNGU1ZjkwYTM3NDRjMTJmYjdiMzY2MGM2YjA5NWE2MGRhOGY0YmNkNGYxNjMxYmVjZGE0ZiJ9"
+        },
+        {
+          "resource": "repo://src/client/TaskManagerView.tsx#L273-L273",
+          "version": "repo-lines-v1:sha256:8b9ed6d0d4010368cc1cf65962327b53fdc5706d12d8eb25d7acd75e7263c417:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGI5ZWQ2ZDBkNDAxMDM2OGNjMWNmNjU5NjIzMjdiNTNmZGM1NzA2ZDEyZDhlYjI1ZDdhY2Q3NWU3MjYzYzQxNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOGI5ZWQ2ZDBkNDAxMDM2OGNjMWNmNjU5NjIzMjdiNTNmZGM1NzA2ZDEyZDhlYjI1ZDdhY2Q3NWU3MjYzYzQxNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZGEwNTBlYTRkNmE3NGJiNjQ5ZDYzMGIyZjhkMjA1OTc3ZTFiNTdmMDg3N2I1NmJjMzAxNjRhOWM1NTE0OGY4YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMmU1YmZmMmYyZGRlZDI0NTkwMDAyYzkwZDFlOGI3YTk5NTRjOGE4NGU0ZWRjYTc2MmNmNzU5YWIyMGY4ODNmYyJ9"
+        },
+        {
+          "resource": "repo://src/client/petStore.ts#L1-L46",
+          "version": "repo-lines-v1:sha256:bf8330d4735c7cd7db936f0cf05bea209be27d8df26784990a5c5e0934e29c52:eyJzZWxlY3RlZExpbmVDb3VudCI6NDYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkNWNkMmZiNGYzZGY4ODQ1MTUyNTViMzk1MjNmMmY4YjU0NzJiZWVhOWY1NjZmZmNhMjA0ZGI4MDI1NjEwNDEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        },
+        {
+          "resource": "repo://src/client/taskStore.ts#L1-L45",
+          "version": "repo-lines-v1:sha256:c3f31362b55df051ab93f50e0ab54362dc424aef7bfd8bb76d0bc3f5eeb75f6a:eyJzZWxlY3RlZExpbmVDb3VudCI6NDUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7d3888750feb45ceb1be727d8d795948",
+      "statement": "PetView is a root-scope shell.overlay component that draws five inline-SVG species (cat, dog, rabbit, chick, dragon) that all reuse one shared FACES expression table; a Face selects an EyeKind, MouthKind, blink flag, optional talk/chomp animation, and optional cheeks. No binary sprite assets ship. Its resting action derives from the global useSessions feed (any running session -> busy; any pendingInteraction -> waiting; else idle) and a manual feed/play/sleep action overrides it for 4000ms before reverting.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/PetView.tsx#L137-L205",
+          "version": "repo-lines-v1:sha256:9de04ca7ec527d215a9001368cee752253ff8e82294e881b8f390a057f2a405d:eyJzZWxlY3RlZExpbmVDb3VudCI6NjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRiZjEyZTQzOTNlZjBkYWQxMjNmNDZkNzUyMmJkYTgwYWEwYWVjNzgzNTk0ZDJmMTM2NDhkNWM4YTMxZjUzMWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY5NDE2ZTA5Zjc4YmEzMTZjMDMyNTY4MjEzYjg1NWVlNzU2ZTQxNTY1ZDkxOGYwOTUxOWM4MWZkNjIwZjQwNjAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjJlNGQzNGU0OGNkYzdhNDZiYzMwYjhjOWZiNzRmOGVhZGQ3NWRmMjQxMjAyNjMwNjFiMWU1ZmE3NGJjNzYxYmYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImViZDBmODlmNDVlZDQ1MDk5ZmM5NDVhYjIxYzBkZjU3ZmU3NDQwOTcyYWFmMDUyODAxMjY5MTFiMjBlYzQ3MjcifQ"
+        },
+        {
+          "resource": "repo://src/client/PetView.tsx#L303-L306",
+          "version": "repo-lines-v1:sha256:e046575c96be25b39d8bd435732240248ada3f400964a3bcfe9280e1549e2335:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTJiYmYxMmQ0ODNjM2EyY2Y5MTJkNDJkZDEzN2UyMGUwMjBmMzU0ZDJkOTk0ZmUwYmYzOTUwNmE3NGUwMmE3MSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYmUyMjU2ZmZiZGM4NzZmNGNjNWE3YWIyZmFjM2I0YzRlNzgwMWQwYjY2Y2JhNzI2NzRkNTI3YzViYzUzMGExOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWU4NGI4YTljMDNiN2NlODM0ZTViM2E0YWU3YjJjNDkzMDhiZTgxNWQzZThjNzczNjEyNjg1MzRmZjg1MzI5NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWRhM2VlNWIxZDJmYzdlZDMwYTMyMjEzYjYxY2IyNGJiNjdmMGVjMWNkMDU5MjRhZDkwMGYxMDFjNjRjNWU2MCJ9"
+        },
+        {
+          "resource": "repo://src/client/PetView.tsx#L314-L319",
+          "version": "repo-lines-v1:sha256:73eaa7aab90c3e7ad8ac11e2d5dfe0ecbbdd44c6f13ffa503e196fde650d7ac6:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGZlNzkwNWYyZjhkMmI0MDkwZjkwN2Q4MmU3OWE1MWMyODgwZWJhYTNiMjM2MzVkN2QyZGVjNGI4MjVmZmE5NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjY0ZGJkNDBjYzZlMmE2MTNhYTAwMDdhN2U0ZDhlNjBiM2M4ZDUxYzMyZjFiMDhhZTY3ZDM5YWQ1OGU4ZjJkMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTc2MWFjNjFjMjBlM2U2ODAyMGM2MDEzMzQ5ZmJhNzE2ZDc2NmUyMDUxMjA0MjUzOGY2ZjI4NGQ5OWQzMmM4NCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmNmNmIwZDlkZmU5NTAyMjYxMjYyMGU2MjlhNDZiN2U3ZGE3YjUxOGZjOWFhYzE0MzYzNWVkNGJiNzhjZDYzZiJ9"
+        },
+        {
+          "resource": "repo://src/client/PetView.tsx#L40-L48",
+          "version": "repo-lines-v1:sha256:70a826beb56a18d664e9efc1856028c1ec3ff6eb6e4a16466053c763f511bad9:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOWY2ZDZlMjc5ZDdhN2ZjMDg3ZTcwYzcyMzBhY2Q5MWQzNjU5NTlmYWMxYmFkNjRlYTg4NDc0ZjhkZDhlMTU3MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjRjNTkxMDUwNzQ5MzM1MGRiMzFhOGYyNjhiNmIzYjcxZTc5MjhkN2NkMDgxY2ZjZTVlOTYzOTIyNmM4MTI2YiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNmUzOTQ3ODRhY2FmYzQ0NDQ2ODk0MzM5MDU4NDkxMzg4OGU4MTkxZjM2MjRhMmQ3NDE5YzAxMTIwZDhmOWJjYyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_7d073e0a14154d49822dac2258cee836",
+      "statement": "PetView's drag uses pointer capture on the element that owns the handlers (.body) so pointermove/up are not retargeted, clamps the sprite to the viewport minus the scaled box (72 * size.scale), and uses a 4px drag threshold so a pointerup that never moved toggles the control panel and speaks an idle line. Drag position is local (not persisted); only the selected skin and size persist to localStorage (dsh-pet-skin, dsh-pet-size) with clamped reads for missing/out-of-range indices.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/PetView.tsx#L260-L268",
+          "version": "repo-lines-v1:sha256:2300c84f00a6f83a69816488710971b66f5ec274b962914e0761b668d75c9c07:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjkzMzJiMDhiYTZlYTMzOTBmMDM1NWY1MDNmYmE3MjBmN2NhNDBlNGU4OWRjZGNkMDA4MGFjZjEyNzNhNTZmMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTM2MDEyZmRlMjE5ZDIxM2M4ZDM0YTE1MWRhYTZmNDYxMDQ0OTBlZGQwYWVlMjE4NjA5NjczNmVjYzY2NjY0MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjhhZTRmNzY2MDMyZGNkODljNTI3Y2MwZmJiMDgyOWM4ODM5ODVlZDQwNjEzYzEyNDg5ODMzMDU1YTc5Njk1NSJ9"
+        },
+        {
+          "resource": "repo://src/client/PetView.tsx#L341-L342",
+          "version": "repo-lines-v1:sha256:35db68f03417470b19c675f6fc3b247842c9a9dadb350efdce79d9dac6ad063a:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDExM2I1MzE0Y2ViMDk1MDMxZThjMjM2OGIyODczNWU5NmUwZTZlNTIxZTIyMzAwNjEzMGY2YzZjZDc4YjY2NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDA5ODY5OWYyMjAzM2E0NzhlZTU3Mzc1YTFmMzA1OGVlMTBmMzY3OWVkYjZjZjk3NDYxMDIyZjM2NmE5MGQyMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjkwZmEyOTUyYWU0MTNmZjhkYjY1NTE3YmE0NjUwYTZjZDdhZjBmMTY5MmVjYjg2ZTgxZmZiMTc1YzgwY2E1OSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTFkMGZlMmNjNjc4ZTgzNjZkOGM0ZmE4MjFhNTdjZGExN2UxNjcxOTRhYTA3YjhlZTA5MTVlMzdjNzA0MzFlZSJ9"
+        },
+        {
+          "resource": "repo://src/client/PetView.tsx#L349-L385",
+          "version": "repo-lines-v1:sha256:7c2d8f91a85f616082f567933183609540e355d71d34a6b40b377b7155d690dd:eyJzZWxlY3RlZExpbmVDb3VudCI6MzcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNjZmIyNzY5ZTRjYTc3ZWZmNTk4NDYyOTBmNjdmY2VkNDdkN2JjN2M4ZWQ1N2NiMzA0NDVlMTIyYTQ2NjNhMWIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2NGRiZDQwY2M2ZTJhNjEzYWEwMDA3YTdlNGQ4ZTYwYjNjOGQ1MWMzMmYxYjA4YWU2N2QzOWFkNThlOGYyZDMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU2MTI4YjQ2YmE0ODBjODM3ZDQwM2FlNjZiNjA5YTJjZTc4OWZiNzI2MjljZGE5MjRjYjBlNzEzMDBmMzViNjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ2M2UwMjBhMjQwNTYyYmZmZDVlZjdjZDQwYmQ2ZGQ3ZTE3MWIxMjQ1ZTcwYWQ0OTM5Y2RkYjE1Y2U1YTkzYTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ee9b373d593d47aebb9eacdae2f1691a",
+      "statement": "When pet visibility is false, PetView returns an empty fragment before any JSX, so a hidden pet renders no sprite, bubble, menu, or shadow DOM. The pet defaults to visible.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/PetView.tsx#L403-L403",
+          "version": "repo-lines-v1:sha256:98175e91747f48f1aab4770b738dffa6a6cc4e6e1aab0d268ebb2cd660020739:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTgxNzVlOTE3NDdmNDhmMWFhYjQ3NzBiNzM4ZGZmYTZhNmNjNGU2ZTFhYWIwZDI2OGViYjJjZDY2MDAyMDczOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTgxNzVlOTE3NDdmNDhmMWFhYjQ3NzBiNzM4ZGZmYTZhNmNjNGU2ZTFhYWIwZDI2OGViYjJjZDY2MDAyMDczOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmUzZWZiOWJhMGUxNWE3ZGI5MTY4MGIxNmNlZmMyYzdiMGQyNzJlYTIyMTI1MDgwMTE3M2E3ZDU1M2M1ZDhiZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDRjOTJiZmM2N2MxZjg3OWY4ZmM2N2U3ZDZlY2NmZDU3MDVlYzc0MTIzZjAxZDJlZDA0YTZkNjEzM2VmYjk5NSJ9"
+        },
+        {
+          "resource": "repo://src/client/petStore.ts#L9-L10",
+          "version": "repo-lines-v1:sha256:868040e34f4bc8acf2812aa22dec35b4548743eeff0e3cb3d3510cc72c7e7892:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2RiY2RhM2E1YzRkNzA3OWU1MTdjY2Y1ODAzM2Q3YTY5OThlMmExMDAzYjRmNTcyODFlOTgzMDg5M2VhMjI1NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYjE3NGY2ZWY1OTc4ODBkMTZlNWI3NjgwYWU2ZmU3ZjJkNjhlZWNiNjQ1MzIyNzIwNGZmNjRjYTlkN2FhMzg1YSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYWI2MDMwMjNmOTBiYzY5NWFmYjJkM2Y5ZTVhYWQ1ZmQ1NDU5NDg5OTc4MmM0ODI5MmNhZTU2ODVkYjI2MWMzMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzcyMjUxZWY0ZmVkNGQwYjBmZmU5MThmNjAxNjUwNjkwYjVkNjE2ZDU4NDEwMTk0NWU1NDQ5OTAyM2EwMDBjMyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_db1ad7e3eb534a51a0aa69721b60ee7a",
+      "statement": "The Papergames theme override (applyPapergamesTheme) injects a <style data-papergames-theme> through ctx.effect (auto-removed on plugin dispose) and MUST target body, not :root, because the host installs its tokens on body and a :root rule loses to the host's body rule which re-declares the same custom properties. It remaps the --dsw-static-deepseek-* blue ramp (brand #4176e6) onto a coral ramp anchored at #F36864 along with background-glass and base-bg token overrides.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/theme.ts#L1-L47",
+          "version": "repo-lines-v1:sha256:3da459f733473bd6199b12fe23ef84bc220f0062cbd9f4faf6e9798937dde547:eyJzZWxlY3RlZExpbmVDb3VudCI6NDcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZmViNjBkNGUxMDM1M2Y0ODQ0YWJiYzQ5MzNmNTM3N2U0YzUwNjk3MjkxZTliZjRmMDNhNjc4OWRiN2Y4ZGUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg3NmE2YzA0ZmI1NGEyNjk5NmQ0N2RhODIxZmUxOTA0Yzg2Y2FiNzcxZjczN2FlNDI2M2VkOTUwMDE2MjUzZGQifQ"
+        },
+        {
+          "resource": "repo://src/client/theme.ts#L50-L57",
+          "version": "repo-lines-v1:sha256:0518f36c80e08a7d47e8f3816bb9a72d9bfd199b96d7d90422a6c6afcfcf6544:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYmE3ZTQ1MjgwMDhiN2VhNGZmNmM3ZTEwM2JhMzAxZDZlOTgxY2Y4Zjg0MWIwNmRhNTkwZDZkNmQ4NmE5ZTExMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWZkMWRjNjEwMTc2ZjQ2MjQxZjJiZGJjMzU4MWYxZDNhYmUzYzk4MTg3OTcwZjA1YjMwNzhhNzJkMzAzNTBjNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiY2JkOWExYzE1OWQwM2Q5MWVhZjBmMjlhYzNkZGExNzU4ZTYxYzIxMDFlNDIxNTcxZWViYjgxMGNlYTZlNDRjOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjEsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_08a05008f14c45e89ce0cadff901ebe7",
+      "statement": "The Papergames brand swap uses priority -1 to shadow the host's whale mark: sidebar.brand.mark, sidebar.brand.name, and conversation.hero.brand.mark are single slots with default priority 0 filled by dsh-client-ui-brand-official, and the lowest-priority occupant renders. applyPapergamesFavicon repoints link[rel=icon].href to an inline SVG data URI; applyHeroCopyRewrite uses a MutationObserver to rewrite the DeepSeek slogan and hide the preview badge at the DOM level (rather than re-registering the locale, which would throw 'already has locale'), returning a dispose function.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/brand.tsx#L1-L8",
+          "version": "repo-lines-v1:sha256:f5dc5ac9809a394d294c2afc8d647da63dd463f0ffbee5647ebc78b4e1c0a892:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWFmMjJjZjA3MzI1OTJjMjQ3MTQxY2JlNjFlZmExMTAxMjYxMmY1YTMxMjJiOWFmOWJiYWY1MmY1NzI0ZDE5NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTcyYTQyOTM4MmIyZTE0NzE4ZTBlMzdiMDU3MGE4YTE3MDI5OTFmY2Q4NDk4Y2Q4NDA2MGE4YmY0ZjA1MDE3YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNmIxZjRkNTlmMmJkMDljNmNmOTkyNjIwOGZiNjY0MTI1NmY1NWI1MjkwN2ZkMDBjZmI0ODAxY2Y4ZmY5ZDk2NSJ9"
+        },
+        {
+          "resource": "repo://src/client/brand.tsx#L95-L150",
+          "version": "repo-lines-v1:sha256:f436d468394ad5bc1c80f2a9bb909e95d9fa5755b0d12e30e73a5d2f31c2398c:eyJzZWxlY3RlZExpbmVDb3VudCI6NTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkMzBhNjU3ZThjYTI0YmI3MTk5NGYxODYwMzgwZjljZDk5MDA2YWNhZWMwYTY1Y2VjN2VlYjZhZmU4MTZhOTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI3Y2I2MGMzZGI4ZDI3ZjM5MDZkMjM4MWVkYWUyMzM0OWQ1Njg0MmEyZjg1ZTUyZGViZWUxMzdiODUyNzQ0MGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6d2ad06ac7b94d89b4718aefd8e53de1",
+      "statement": "DashboardView derives every metric from standard framework feeds (useSessions byId summaries, useWorkspaces archived ids, and dsh-token-meter projection values) via pure helpers wrapped in useMemo: weeklyActivity (trailing 7-day buckets), sessionStats (total/running/today), tokenOverview (cumulative whole-log billed tokens ranking top spenders), and contextUsage/contextAnalysis (context gauge, remaining budget, system/tools/messages breakdown, billing buckets, cache-hit share). The context gauge mirrors the composer's ContextMeter: numerator is provider-anchored projectedTokens falling back to pressureTokens, denominator is the newest route contextWindow.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/DashboardView.tsx#L133-L149",
+          "version": "repo-lines-v1:sha256:c710d3bb969fe84f93ab829102ed4cfe1033f5212044137b67073a34cab1c204:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyYTU3YmEwNjJjMTBlZDBkY2I2N2E5ZjVjODA4NDI1MDA4ZDJhODk2YjdiYzUzMmUxNjUzZjRhZjhlNzZmYjAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRjMzQ4ZjUzOTYwZGZiOGQ5MTU3ZTFiNDBiZjcyNTY3N2M0NzE5YmI0ODVkMmY0ZGFlMTgwMzgyZTQ0N2JjNzkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUyODU0MzY3Njg2NzMyY2NhMzI1NDEwYzgxZDEzZjk5MjAzM2VhYWQ3MWUwOWJhYTFhM2ZlMjFlZDQyMmZmNDUifQ"
+        },
+        {
+          "resource": "repo://src/client/DashboardView.tsx#L180-L192",
+          "version": "repo-lines-v1:sha256:28cc3532af2d770c449eaeb350bc92209e657472277fc73f6f42098a6950fc79:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdjYTAyMjVkZmM0YjU1M2NiNmYwZThkMjhlMTllNTkxMDJlMGMzYzU3NTMyZDhhNTM3NWI0NzYyZGFkNTI0ZDIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkwZGQ4ZDA1OTNkOWE3ZTUwM2U0YmE5ZjllNmJkNGJmZGQ4ZTU4OTJjYzg2ODZjY2FlNmY3MTZmNTZjNmVlNzEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY2ZmQyZmFmODRjMWNiNjEyMTk4ZjllNGIyZmI0MWI2MDJhZmU3YWY5ZjY3NThiNzg5Y2U4YzYwMTEyZDJhYzAifQ"
+        },
+        {
+          "resource": "repo://src/client/DashboardView.tsx#L303-L319",
+          "version": "repo-lines-v1:sha256:510f0a84f8913efd7002b601f7ca7e527223316d4a9925a5950050bdc0ebf5ad:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkwNzc2NTIwYzgzY2NiMDcwN2E4Yjg3MmUxOGFiOGJlNWJhZTE1MWUzZTI5YjFlNDEyMjMxMDRhMGY0MGYzMWIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE1MzQ2YTJmZWU3MTc4NjU4MmM2NTlhZmZkYTFjZDYyNDYwNGRjMGYxNjIxMzg5M2EzZmI5ODQyNTI0MTg3MjgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijg1MDJjYTdkMDNkNjY1MWYzMzM1YzNiOWI1MTQxMzM1MTY1NjFlMDMyZmE3NDdhMjBkNjk0MTJhMDIzZTk3YTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ1NDk3ZDg2ZGE0ODc0MzMwMGJhZGQyNzU2Y2UwNGRiNWVhNGViMWUxMzExMDM3NDIyMTNjMDAxOGE2MDcwMGYifQ"
+        },
+        {
+          "resource": "repo://src/client/DashboardView.tsx#L346-L366",
+          "version": "repo-lines-v1:sha256:c2c934d8a406306278d2de50349ea204491498bf0239419e6eaabba2fb859e4d:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVjMmIxNGM4ZGU0OTk5NzFlNzAyZTQxYTIyYTBiZGM0YzI2NjA4Yzg3ZDY4MTA2OWE4NzgwOTEzZGM3NmM4MWIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg3YTdiZmUwODMxZmNlNzA4MzNiOWU5NzVlNGM1N2M5MTcyZDA5YWM3N2I5NTFjNmJiZGI0YTAyMjFmOTU3ZWYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk1NWY1MDMyYjJjNmQwZWVhMjk4MWZhN2MyNmUzMzUzMWIwM2Q3YjY3ZTYwYzA3ODQ5MzY0OThjOGRjMDQ4NDUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM1MTNjYzk3OTU0ZTBiZGNlNmVjMzhlODE2OWYwMmFmZDY2MjgyOWI4ZjFmYmUxYjNhYTQwODc1MjkwMDJjMWQifQ"
+        },
+        {
+          "resource": "repo://src/client/DashboardView.tsx#L55-L74",
+          "version": "repo-lines-v1:sha256:9c93b9fbd38358961589a51f4c60d39c115505fa561a7908ce257328e0b06956:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM5MDVjMGRhMjVjYjg4OTBlMTgwNjlmYzVkYTA5YzkzOTc0Mzg5ZjM0NTllMjU4YjgzYjg2MDZjNDZkNzdkNWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY1OGU5MmNkYjZmMmYyN2RlOWEyMzg4NmRlNTRjZWE1NzAyYjE2ZTJkMDgzMzg3ODA0ZTA1MTQyMGFhMzI2NjUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJlYTljYWU3MTY5Yjg4YmU2ZGFkMTU5MTRlMDM5NDA2NDcxMDBkMmRkZTk4ODRiNTFlNDU0MTYyMzY0MTA0OTcifQ"
+        },
+        {
+          "resource": "repo://src/client/DashboardView.tsx#L83-L93",
+          "version": "repo-lines-v1:sha256:b1da2fbd02767d7d2df19290bd413510b7f4e1ad421940075781f9f8ab7c0c3e:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYwYTc3NTY4YmNiMjA5NjVmZjRiMDJjYWQ1NWMyNzM0ZWQ3Njg5OTQ4YmQ5OTIwMWY2OTJhNWNlY2NlZjk2NWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBjNTFhODNiNmRhM2VkYzE5NzkyOTA4Yjk4YmY5ZjNlZWM0NzI0NWE4MTg1MzZiYzYwOTQwNmEzNzhkZGRkNmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI1MTNmZjM1YTVkMjgxMDJkYmVhYjkwY2E3M2ZlYTYyMTgyZTg5OWE3ZmFhMGFjYmNiN2E3ZGZmNTA5ZDdiYjEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3b470e1df9bc466c888ff920ce7516e3",
+      "statement": "The SkillForge, ToolIntegrations, and A2A conversation.view tabs (orders 30/40/50) are thin CRUD editors that receive an injected api object whose methods are unwrap()-wrapped calls into ctx.remote.skillForge / toolIntegrations / a2aConfig. The views themselves are read-only consumers of the injected api and never touch ctx.remote directly. A2AView derives its card and message URLs from window.location.origin.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/A2AView.tsx#L29-L32",
+          "version": "repo-lines-v1:sha256:ab74b63c99e03c6ddfc62f4e4412807dc912d72d5317d3c8957012a2b996e439:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMGQ0ZjIxYzJiMzhlMDc1YjcyMTY5MmFiYzBmZTA5NzcwOGJiYjk2ZWQ2NzVkOGRmOTYyY2RjZmNkMDExODYxZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDg1NzZiYTNjNjlhNWU1YTljM2ExM2ExMGU2NTNiZjY4YmNkZjMwNWNlYzc5YjQxMjdlZGM2Y2IzZmExYTE3ZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjIzMzRkZjM0NjI4YzA2YzRkODQ2ZWVjNDFjMmU4NGNhZTNiMTM5MTRhOTgzNjc3MWQ0OWY1NzJjNGUxMDAwNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDRjODg1NTNhMjY3YzIzOTUzMDEzZWRkYzJlMTc0ZDNlOTg3NzJkMTZiY2Q0NjA2NWQyN2ZjNjQzYjNlODQ2MSJ9"
+        },
+        {
+          "resource": "repo://src/client/SkillForgeView.tsx#L1-L69",
+          "version": "repo-lines-v1:sha256:7783fd58ae3f508a5d916973b6e171a47f223b17e80a6bf23443bbcbcca95073:eyJzZWxlY3RlZExpbmVDb3VudCI6NjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA0MzYzMzY1YTQ5MDcyZTEzNWY4ZGI1YTRhNmZmNDYyYmI1NmY5ZWM4NTc3NWJhZTNiZjk2NmYyN2YwYzM1NzEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdlYjcwMjU3NTkzZGEwNmY2ODJhM2RkZGE1NGE5ZDI2MGQ0ZmM1MTRmNjQ1MjM3ZjVjYTc0YjA4ZjhkYTYxYTYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjEzYTRkNjNkOTQyMDk1OGZlMjZkZmExMDQ0YTlkZjg0MTIyZjE1NDA2ZTM2ZmYxODliYWFiYWYzZDg3NGMxZGUifQ"
+        },
+        {
+          "resource": "repo://src/client/index.ts#L100-L118",
+          "version": "repo-lines-v1:sha256:fac35ab2c1bafa7b833fda9d1baf92e3435b64d66485a00c45fe1c87ff1a0d80:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZiYWMyZjhmODU2MGZjOTBjYzVmZjRjZmJmOTc3M2VmYWRmY2I2MTNhMTk5MmQzMjZlMDlkOTEyMWU5NmJiYmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxMzQ1MTgwMTA1YjBjNjZhNzdkYWQ1MWJiMzc5MDFhMzczMmM5NjU0YmE0ZGUzOTgxZjgxZTE4MTc1MjQ4YmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRkYjBiODY1ODUzNTU3ODE3ZDQ3Mzk4OWQwNTRjMzNmODgzNzY2YTE4ZGZkNzZhOWMzYmIyMzE0NTg1YTc1ZTgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY5ZDUzNzdkNGZkZWM4MmVjMGQ4MTY3OWYwYTYzOTYzODcyOWFjOTJjMWQ1MjNhY2FlMzA3OWMzMWYxMDhiNDUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a3a478f20da6415f88959478dbaa5d9c",
+      "statement": "The Task Manager is a two-piece surface bridged by taskPanelStore: TaskManagerTrigger (conversation.session.header.actions, order 20) only calls taskPanelStore.openPanel on click, and TaskManagerView (shell.overlay, order 100) is root-scope, returns null when the store reports closed, and renders a full-screen overlay that closes on outside click. The list tab reads projectionValues.todos (a locally-declared TodoItem type mirroring dsh-session to avoid adding the dsh-tool-todo dependency). The flow tab builds a parentId lineage tree and lazily fetches a per-session LifecycleSnapshot via the injected lifecycle wrapper (unwrap of remote.skillForge.lifecycle), caching results and tracking loading/error per node.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/TaskManagerTrigger.tsx#L21-L33",
+          "version": "repo-lines-v1:sha256:f51df7f3e44a7324aa9441cb16116caad3330f26390bb389106330a9bcbf305b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU1NTRjYmRhYTEwODU5M2FlMjBlNWVmZDE0MzhiOGFjOGZiMmFjNDY2OTIyOGMyMzViOTk3N2UwYzYxNGI5YTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU2MjY3OTM1ZmM2MzM0NjVkODQ4YjQwYTRlZDY5NjdlN2I3YTMyM2Y4MWNkNTNjMTEwYWUyMTAyOTY4N2FhMTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU2OTA2MmY4MmViYTYxMjg2NDNiNjViODg1NGNlZTUyZTE3NjFhM2Y3ZmU1ZmQ0YWIxNGJjZTZmMDUwY2Y1ODQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        },
+        {
+          "resource": "repo://src/client/TaskManagerView.tsx#L16-L24",
+          "version": "repo-lines-v1:sha256:356a0c561c4bd4a4f9eaff5257502c0eca26cefa96c2603eaa6ea8245a9236fa:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWFmMjJjZjA3MzI1OTJjMjQ3MTQxY2JlNjFlZmExMTAxMjYxMmY1YTMxMjJiOWFmOWJiYWY1MmY1NzI0ZDE5NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWMwNzU5MTE5MTZmNDdjZjE4N2MzNjFmY2Y5MzBhYTM1ZjA2ODdlMzAxMjBkZjAwMDllMjMwNDUxNDhjMmZkZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiY2E3N2ZiODVkNzE0OGU5MmI1ZWJiYzgyMGYzY2JjOTNjMWRhZGY2NDRkMDI0MDUyZmM5MTczYjRmODJmMTFhOCJ9"
+        },
+        {
+          "resource": "repo://src/client/TaskManagerView.tsx#L293-L313",
+          "version": "repo-lines-v1:sha256:687985c759a85cbe558886fc853c8b58f1a4b4dab9664ce532600adce0631a59:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4MTc3MGU3Y2RjMGI3MzVjZTczZGJkMWRhN2JlZjgwZTM3MzQ0YjFhOTdjYTRiODc0ZGIzZWM5YWU3ZmQ2YmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUwNGQ0ZjMzYThjZGVhMmI3ZjlmYWY4ODgwZDM4ZmUyN2I4YTM1NzJjNzFlMDFjNTYwMzhkNTRhNWIxODljMmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNlYTNhYWJiYmJlMTUxZGUwOWM2MGJhNTU2ODQyZDZiYzhiYTM3NzI2ZmY3ZDQ0ZTEwOTUxN2MzOWRlMjU1NTUifQ"
+        },
+        {
+          "resource": "repo://src/client/TaskManagerView.tsx#L51-L68",
+          "version": "repo-lines-v1:sha256:82e90a9d14658b975712525300e7044a66916477ce92a3d156f476057188e49b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZkNzc5OTdhNGQwZTY3OTRmMTNjM2EzMjQ2ZDk3OTdhYTg2MGFiYTZhNDE2YzgyOTAzYzVjYjZkMGRhZDk0YTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhlNWE4ZGVhY2UwODg0MmQ5ZmM5YmVhOGEzZTZhMzQyMGM3Njg4MjE5YzEzOGNjY2ZmYjEwZWZlYjVjYzI2NmUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdmNjkzMjRjNzNiNTZjMWY1OTVmNzg0MDJlNGI5MDQ5M2MxZGFhOTE0OGFhNWQ0MjJiNjY1NzNlOTgwZTZlMGUifQ"
+        },
+        {
+          "resource": "repo://src/client/index.ts#L150-L151",
+          "version": "repo-lines-v1:sha256:955499d0e9fe7a50b1aaca42f6c8725bfb13a7e1d7d9b131a3477dd11f0754e1:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTM3NDcwMTk2NDdlNDhiYjQwMjNkYWQ3MmE4YmY4NDY3MGM1ZGQ5YTg0MmE2OTQ3YjY1MTI3YTE3OWRjMDljNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMmY4MDkzNjQ3MjllMWQwZmI0MDM5MjQzYWY1OGE1MDc1Y2I1YzIxOWYyNTM2ZjI5ZDU1ZmE2NTYyNzAxOThkYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTJmNDhjZmU2N2U4ZjVhMjM3ODVhN2JlYjM2YmNmYzkwNjc4OWFjNmJhOWJjNjJiNTQ3MmU5NWM1YjE4NzQxNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDczZjgyMzFjNmVhNmQxOGNjMjEzNWNkYmNlZTJiYjI0Mjk4N2FkNzNmYWRhYjIwMjk3YTVlNzdmNjkzYzg3NiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_b62422e75ea34155b5d98cf4350950e6",
+      "statement": "BackgroundSwitcher lists GAME_BACKGROUNDS and a dim slider, persisting choices to localStorage and reapplying them on startup in apply(). applyBackground writes --pg-bg-image on body and persists the key; applyDim clamps to [0,1], then writes --pg-bg-dim (black-overlay strength 0..0.7) and a derived glass-layer alpha into --dsw-specific-sidebar-fill and the --dsw-alias-bg-base/layer-1..3 tokens so wallpaper translucency and text legibility stay coupled. The wallpapers are inlined base64 data:image/webp URIs rather than served assets, and the --pg-bg-* variables are the seam the Papergames theme references.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/BackgroundSwitcher.tsx#L27-L100",
+          "version": "repo-lines-v1:sha256:c8d205bae03f307f63c04bc3851e00867c96b031a49404d22e3108c4cb892b71:eyJzZWxlY3RlZExpbmVDb3VudCI6NzQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA0ODZkY2MzYmExYTZjOTI3NTZkNGI4ZGM5ZjVlYjU1MWNkOTBjY2FkMjE5YzNiYzU0NzJlNGE3NzEzNDdlYTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU2MjY3OTM1ZmM2MzM0NjVkODQ4YjQwYTRlZDY5NjdlN2I3YTMyM2Y4MWNkNTNjMTEwYWUyMTAyOTY4N2FhMTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkwNmRiOTRhM2Y5MWI1NWVkZGRkNzZlY2Y3NTYwM2U5YmE4ZTBlYTMyMDY4MGUxNjQwZTA1MGQ2OGU0OWI4NTgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        },
+        {
+          "resource": "repo://src/client/bg.ts#L1-L21",
+          "version": "repo-lines-v1:sha256:e85d5c58e884b9527fe9bf25cddcfb49d4d5d6806465c8b98b323bdd11116d5e:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2NDFmZjQxZjFjYmUzN2JkZWVmMzZmZWM2ODg0YzdmYzhhMGViZGMwYmVmN2Y1OWQ0MGMxMzVmYjM5ODQ2NTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxNmM2NWMwODM0ZDZmOTg4ZjQ0MGQxZTgzMDJiNTZjYjc3ZTA4YTZhOTU5YmZlY2JjNzhhZjkyYTFlOGVmYTUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImIwM2ZhZGUyYjQ5YzY3YmU4YjBlY2NjZTc5NjQwMDlhZTg2MjU0M2U0MDk4Y2FmZmFhNWY4MzVjNWFkNTJkZTAifQ"
+        },
+        {
+          "resource": "repo://src/client/bg.ts#L45-L54",
+          "version": "repo-lines-v1:sha256:1f4fab43729fb4388c5fd1e2e69dcab04e64b91666c06d0204307edca813046d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUzN2QyZGQ3ODNmNzI2YTlhM2JhZWE3NTRhZTU1NzlmOTJmZjk1OThmZWY3YmVjMWYwNGY4MDhmYThkMDExNGYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQxYTNhNDgyMmRiZDhjZDIxN2VkOTJmNWNiMGE5ZDdhZjEzMjc0MjRmMDIzY2JhNzVmNDI2MmE4Y2MzY2JkZjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM5NzU0MDczMTdkNTNmMTY3NTEzZDZhZWFiNmE4NTNkZDFiZTI0ZDliODcxZWVhZDNkM2U4NzE4MTQwMWNiNTcifQ"
+        },
+        {
+          "resource": "repo://src/client/bg.ts#L84-L102",
+          "version": "repo-lines-v1:sha256:5fbebea67da613ee89e689f45e8b300da4848a8ced5a830901044c8baa8cd940:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkzZjNlMTIzNGU4ZDRlMjQ2YTI0MTliNjY2NmE0YTAyMDM4ZDhiZmZmYmY0YTk2MjMxMjljZGZjNTkwNWJmMjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZlNzhjODA4ZmMxMDMzMmRiYzc2YjNlMzcxZWJjMjBjODk5ODA3NjEwN2ZhODQxYTc2NTc3ODA3NjQ2NTFlMDgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://src/client/theme.ts#L40-L40",
+          "version": "repo-lines-v1:sha256:e56c70bd7e480f8e9b0db1e518c7163500063d13b27fc1edc18231a17460c976:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTU2YzcwYmQ3ZTQ4MGY4ZTliMGRiMWU1MThjNzE2MzUwMDA2M2QxM2IyN2ZjMWVkYzE4MjMxYTE3NDYwYzk3NiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTU2YzcwYmQ3ZTQ4MGY4ZTliMGRiMWU1MThjNzE2MzUwMDA2M2QxM2IyN2ZjMWVkYzE4MjMxYTE3NDYwYzk3NiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMWI0OTFjZWM0MTNmMGRmYjVkNDc2MDlhZDEwYjk1NDQzNzRkOTI2MzMyNGM3MTNiZGRlMDQyOTkzYWZlZDUwMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYThlMjVmZjMwMzk4MzE2ZTU5N2QxMWJlYWZlMzdmZDdhNWFhODJkNDlhNTEwOWViNTljMWE2NWM1MTQzNTUxMiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_ab78ccc61fe94957bb7dd3b553378b73",
+      "statement": "The /pet on|off|toggle command is a client inputTriggers source on the '/' trigger registered after the built-in dsh command source, so adjudicate's first-non-undefined (registration-ordered) polling lets it take over /pet for unknown commands. matchEnter matches /^\\/pet(?:\\s+(on|off|toggle))?$/i, calls the petStore show/hide/toggle (defaulting to toggle), consumes the line via slash/input-consume-token with a bare-token guard, and returns 'handled' so the line is never sent to the model. onPick consumes the input with a span guard. Consumption failures are caught and ignored without rolling back the pet state change.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/index.ts#L231-L237",
+          "version": "repo-lines-v1:sha256:4d7eceadbc3a9f7c7f42198f4089fd83cd6859889d3421f74e7a943f7b4b748e:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzFjN2I5ZDg5Y2U0YzBhZjVkM2Q4ZDdjNjU3MjY1ZmU4YzlhZmU0NGQzYmYzY2UzZDlmZWNhYzMwZjBmYjE1OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2JiNjVjNDI4OGNmNzllN2RlNGU2OTQ1ZDM4N2RjZWJmOGJhNTA5MTk4NWRlYzFhMjczZjNjNWY1N2FjMGM2MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjNhODM4OWFmNTcxZjhlMTg2NDU4MmM2NWI0MGJkNzc1Mzg1MmI2MzdmZDc2ZGFiMjk3MzM5ZDY0ODI0YTgyOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjEsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTIyZmFhNTM1YmQyZWEzZDUyZTc0MWVkNDU0NDM1YjdmZTQ5ZTgzNTg2ZTk0M2Q5OGQ4MmJiZmIyNGQxZjVjNSJ9"
+        },
+        {
+          "resource": "repo://src/client/index.ts#L42-L96",
+          "version": "repo-lines-v1:sha256:7456aecf75cc9b7d9134e397aa71de22bde2f2659d98c8109271d6d08c7b9ae5:eyJzZWxlY3RlZExpbmVDb3VudCI6NTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ1ZDVhYmFjYTIyNjgwYWU5NTMzNjcwMGRmNzY2MzYxOTdhN2NiNmMwMDRmNGNkNzlhYzFiMWZkMmYwYWM0YTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY4YWQzMzcxMjdlOGE2ZWNmNGM0YjI0NzUyZjI5MTM2MzkzYTM1ZjAyNWMyYzIzZTIwZjA2NTUwZDVkMzc1OTYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRkYjBiODY1ODUzNTU3ODE3ZDQ3Mzk4OWQwNTRjMzNmODgzNzY2YTE4ZGZkNzZhOWMzYmIyMzE0NTg1YTc1ZTgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c88b07de54e0460eaf35ad550d6932b6",
+      "statement": "The client ships zh/en dictionaries under the 'dashboard' locale namespace (declared in locales.ts and typed into the slot LocaleNamespaceMap), registered in apply() via ctx.locale.register(NS, {zh, en}) with bound translate t used to label the dashboard tab and the skill-forge / tool-integrations / a2a tabs.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/index.ts#L178-L179",
+          "version": "repo-lines-v1:sha256:e9946129dfcae5a4d7143ceb584dfc7748bbfaf3db7236335ad6009619746460:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZGRlN2Y2NGFmZTA3NDM2ZjI1YjQwYjE0MjRlNmMyMmU0NGFhZDA2MDE2M2I4NzliYTZhZmMzNjUwNTVmZWU0NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWZkNDNlN2E5NzhhYjliNzA4MmU3ZTY1OWIwODQ1Njg1YjBiNTI0OGY1MWQyODg1YzRmN2Q1MzQzMmQwM2FiNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTFhYWI4NzQ4OTc5MjYxNWZmYzMzMTcyNTcyN2MxNzBjNWNhYjcxYWE5ZTEzMjM0NjE5ZGYyNWQwODA2YjcwYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjllZWZmMWRkMGM1Y2UxNGRhYzNjOWQxYjE3NTU2NzA4MjgxYmE2NGVjY2JjMDQxNGZlZGFlZjg2MGEzZjFiNCJ9"
+        },
+        {
+          "resource": "repo://src/client/locales.ts#L4-L23",
+          "version": "repo-lines-v1:sha256:0a0e57f7a66b2e1c13f9794c48038abe55059b7556c682eb64aa195a80f8e753:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhZDVjZjc4NTUwOTQ2Mzk3YWExM2U2MmFjNmM1OGVhZjg3ZDI3ZmVkYWRjNjZlNGM3YzAxOTY1NjUyMDhmOWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM3YmU3OGJiMjY5YzYxZmIyOWRkYjU0NjQxMGI2MTJjMTRhMWIxMWE5ZTk0YmI3YWM5ODZlMjc0M2EyMDMxZDMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImYxMGRmNmEzNDk4YzcxNzVjNTI2NzZiYmRjMDFlMzU3MTFhMDkyY2U3ZTdjYmY5OWNkMmIxOTc1NDRmMGQxMDQifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-03T02:25:20.569Z"
+  }
+}

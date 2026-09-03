@@ -1,0 +1,228 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:fab23a5d6ca84dae4e357469654e625038386e71bab8bd70f93c552bacad9b85",
+  "claims": [
+    {
+      "id": "claim_8cfb70b3999645b3b32eadba6877d0d9",
+      "statement": "dsh-pet-panel's build is a four-step chain driven by the npm scripts `build`/`prepare` (`tsc -b && tsdown && node scripts/postbuild.mjs`): tsc -b type-checks and emits the lib/types tree, tsdown runs rolldown to emit lib/index.js and lib/client.js, and postbuild overwrites lib/index.js with lib/types/index.js.",
+      "evidence": [
+        {
+          "resource": "repo://package.json#L22-L27",
+          "version": "repo-lines-v1:sha256:c1bf62b4560e90bc0a534eeb7543dd378224b1bdb17ccb630fecdcc7e022843e:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzQ4MzNkNTk0OWMwM2E0MGNhOTUyNDkxNjEwYTY2NTk2NDRiM2FhNDY2MzYyZjc5OTAyMGRiZjE5ODE1NDdkYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGQ1Y2QyZmI0ZjNkZjg4NDUxNTI1NWIzOTUyM2YyZjhiNTQ3MmJlZWE5ZjU2NmZmY2EyMDRkYjgwMjU2MTA0MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWNlNTAxMzE4ODBmMzQ5NzIyNjBiZDQ2MDI4NGM5NWE5NWMwNGU2ZThkN2I0YzcwNGEwNmViMDQ3MGIyZjkzNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDA3MzVlZGE1NWNkZmY4ZGNlYzQ0ZDU4MGQ3MGQyYzI1MGRkZDMzMTM4ZTZjMWMzZDE1YjZjMWU4MDU4MGY4ZiJ9"
+        },
+        {
+          "resource": "repo://tsconfig.json#L16-L21",
+          "version": "repo-lines-v1:sha256:f63022e5b83432ace02cc67d15e536bcbf6c34eea097b1a4a05cb0599ca89044:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDU0ZTM4NzczZGE2NDBiOGQ4OWZkYzBhNTQwOGUyYzhmYjVhZTc1MzRjNTdlMjVhODE5NTBiNjkzODFhMWRjOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMWYzNjE4YjM2OWQzNWE3YWExYjY3NDkwOTBlZTUxN2NiMTRlYjhiMGMzNWIyYjE1NmUyODZmMTdlMGEzZjE1YyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiM2U5Nzc2ZTYzOTkxZTYzOWE4NzVkZDE3NGI5MGUzY2IzZWRjMjM5MzhiNDU3NWYxZTM4MmZhMmRhZmRmZmRiOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjdjOGE0N2MzNTUwMjhmMmNmYzIwNjIzOWRjM2Y0MWE5MmIwZTliZmU5MGRmMjdiNjk5NjI5NmU0NmUxNmVlMSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_e62e6abe213d4a6b9cf4eff1574d295c",
+      "statement": "rolldown (via tsdown) does not lower Stage-3 @Remote decorators, so a raw rolldown lib/index.js keeps the decorator syntax verbatim and Node's ESM loader throws `SyntaxError: Invalid or unexpected token`; tsc does lower them to __esDecorate, and scripts/postbuild.mjs copies the tsc-emitted lib/types/index.js (same `export function apply` surface) over the rolldown output as the authoritative fix.",
+      "evidence": [
+        {
+          "resource": "repo://lib/index.js#L8-L8",
+          "version": "repo-lines-v1:sha256:a50addfd6cc955f5025c80e7bcd9a9d6082e09576ba9ab983ba41749e833c2c3:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTUwYWRkZmQ2Y2M5NTVmNTAyNWM4MGU3YmNkOWE5ZDYwODJlMDk1NzZiYTlhYjk4M2JhNDE3NDllODMzYzJjMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTUwYWRkZmQ2Y2M5NTVmNTAyNWM4MGU3YmNkOWE5ZDYwODJlMDk1NzZiYTlhYjk4M2JhNDE3NDllODMzYzJjMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzE5MTRjNDFlMjc1MDhkNTc4YWRmOTIyMjk4NDZkNGYyMTU5ZWUyZmRkODg3NjljNjI3ZjM4YTJiOTlmZTEzYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMmNmYjU3YWQzZGFiZmVhMDIwYTY2NDU3NTRmYzgyYjRhNjUwYTRjMmZkYWRhNjUzODA1MDFkOTFmZGM4NmIzMyJ9"
+        },
+        {
+          "resource": "repo://lib/types/index.js#L8-L8",
+          "version": "repo-lines-v1:sha256:a50addfd6cc955f5025c80e7bcd9a9d6082e09576ba9ab983ba41749e833c2c3:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTUwYWRkZmQ2Y2M5NTVmNTAyNWM4MGU3YmNkOWE5ZDYwODJlMDk1NzZiYTlhYjk4M2JhNDE3NDllODMzYzJjMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTUwYWRkZmQ2Y2M5NTVmNTAyNWM4MGU3YmNkOWE5ZDYwODJlMDk1NzZiYTlhYjk4M2JhNDE3NDllODMzYzJjMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzE5MTRjNDFlMjc1MDhkNTc4YWRmOTIyMjk4NDZkNGYyMTU5ZWUyZmRkODg3NjljNjI3ZjM4YTJiOTlmZTEzYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMmNmYjU3YWQzZGFiZmVhMDIwYTY2NDU3NTRmYzgyYjRhNjUwYTRjMmZkYWRhNjUzODA1MDFkOTFmZGM4NmIzMyJ9"
+        },
+        {
+          "resource": "repo://scripts/postbuild.mjs#L1-L18",
+          "version": "repo-lines-v1:sha256:501dc18903fbf235763a0ad08241c4545adf86ff16b138003ea88f0950792c21:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgyNGU3ODQyMzY1NWZkMDA5Yjc1YTUxM2M4MDY1NGE0ODQ3MDFkYjc1Y2ViNGRjOTAwMDVkNTkyYTRkZTY2ZDAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ3OWM3ZTE1OWNlN2M4NTY1YWU3MGZiMzU4YzUxMWMxYTc5NzA1ZTUzM2MwZDg2M2ExOTBkYTQzM2I2MDRjMTEifQ"
+        },
+        {
+          "resource": "repo://src/index.ts#L1078-L1085",
+          "version": "repo-lines-v1:sha256:cca270151fe87e678c9df96dc43fc70ace738369fc97cc70e6145498ac9d3fc3:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDNlMDU4ODJlNmNlYzEzYzM0NjA0ZTBiMTIwZTg1ZWE1NmYwYjA3ZDVhNmM5N2RiNjVlNDIyZWJlNmVlNDI4OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTIyZmFhNTM1YmQyZWEzZDUyZTc0MWVkNDU0NDM1YjdmZTQ5ZTgzNTg2ZTk0M2Q5OGQ4MmJiZmIyNGQxZjVjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDQ3ZjIyMDNkZTNhY2E2NWE2NWE2MWZiNTcyZWY5NGQxMDljNDc5ZmI0NDMyNmQxOGFlYTM0ZTZiOGI1MzliNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_03fa13c393c841bf82c88a26a76fdba4",
+      "statement": "build/tsdown.client.ts exports clientBundle(id, libEntry, options), the shared single source of truth for the package build; it returns an ENV-selected tsdown config that emits the Node-side clientLibraryConfig plus a browser clientConfig when src/client/index.ts exists, and since a package-level tsdown.config.ts replaces the root workspace layout the lib half must be restated in the preset.",
+      "evidence": [
+        {
+          "resource": "repo://build/tsdown.client.ts#L95-L129",
+          "version": "repo-lines-v1:sha256:03fec6e259d7d0fe920cb158074e9239dcbba2e0520268129c9b24a56b881e04:eyJzZWxlY3RlZExpbmVDb3VudCI6MzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM3MGNjMTVjNGE5MGVkMWY4MDgzM2U1M2IxYzU1OTQwYjhjZjM3ZGU0MDM4ZTg3MTA0ZDQ0ZWFkYTA3YTQ1M2YiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFmMTk0MTQ4ZmZlNTQ2ZWJiZTY0NTg0OWQzNThiZDVjM2U4ODAxNWU5NzNiZjg0NWUxNTQ1MGUyMzQzNmU5OGUifQ"
+        },
+        {
+          "resource": "repo://tsdown.config.ts#L1-L22",
+          "version": "repo-lines-v1:sha256:7e3b2d8ced632210d2c448a6760b8402a7064299416d5d491fdea9404691858f:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQwMDdiZmY3NmIwMjUxOThiMzY0NDk1ZjYwODJiM2VjMWFiYWFmOTU4ODQ2NTg3MWM4NDg4MjNkODI0YTBmNGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg1ODBiNzY1MThkYWU5NzlmYWViZDAyMzY3YTI5MjkyYTUwZDk3NjA5MjI1MWEzOGE2Y2UzMDg4MGJhNDI4MjUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a087d83229ef4c1a834f5d07a367e876",
+      "statement": "The browser client bundle is a closure-factory artifact: the banner calls `window.__ModuleLoader__.load({ id, factory: (require) => {`, the intro seeds `var module = { exports: {} }; var exports = module.exports;`, and the footer closes with `return module.exports; } });`, resolving externals through the injected require backed by the loader's frozen module table.",
+      "evidence": [
+        {
+          "resource": "repo://build/tsdown.client.ts#L331-L341",
+          "version": "repo-lines-v1:sha256:995b35eee9f2d50b3bfc7da9dbbc6e57764c62860aca0d40476c1ced57d93a95:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxOWQ1OTIxNjI0MWQ0YzQzYjE3OTAxYjRhYWFkZDkzMmM1NTg3MDhlODNmOGVjZWM1N2ZlZGYxZGE5NDE0ZGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFmMGNkYjk3MmE3YmZiN2VkMjQ2ZjlmZjY3MjM4NWU1NWY0OTY4ZmMxMTA0M2RjNWI2ODRkNTFkZmEzMWRiY2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM4MTdiNjExNGMwYTVhY2RjOTYwMDIxNzcyZDdkMDhjYWQ1ZGE0YzBkNGFhODE2ZDRmODg4ZmYyMjZiMjgzMjMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_421288b4e3504908acd85416acfd4c25",
+      "statement": "PLATFORM_MODULES in build/web-platform.ts is the single shared list of frozen browser modules (react, react/jsx-runtime, react-dom, react-dom/client, @deepseek-ai/cordis, @deepseek-ai/dsh-client-ui-slots, @deepseek-ai/dsh-client-ui-primitives) consumed by seeding, bundling externals, and Vite aliases so identities cannot drift, verified against the shell's 0.1.1-rc.2 dist set.",
+      "evidence": [
+        {
+          "resource": "repo://build/web-platform.ts#L11-L16",
+          "version": "repo-lines-v1:sha256:b6f67a3aad1a3eccbb1a71634f32a80a62a089bbe3eaf41cd077d5a2e930ece8:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDViNWQ0ZjVjN2ZiNWEyZDdkYTA5NWFlODNlNTRhYTE3MzIyZmQ0N2Q5YTQ2MjEyMDBjYjFiYjI2MDIzMGQ0NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDUxZTkxOTUzMDIyZmIyMGU1MDRlODUyMWY5YmJmYmE1MThjZWZlM2Y1NjA4MDQ3NTllZjUyNzNhNjU1OThlZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzNmOTI0ZTk3MzZhYzBkMzFmNGQ0MWUwNzZiZmJlODBhYmE2NDRkMzYzM2NiMGE3OThjZTBkMWZhMTc1NmFlYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_a6b1df94b90b43be8ffec38fe0b04d6a",
+      "statement": "CLIENT_EXTERNALS are `[...PLATFORM_MODULES, RUNTIME_STORE_EXEMPTION]`; the browser config's noExternal matcher inlines every specifier not in that list, because a require the module table cannot answer is a guaranteed runtime throw.",
+      "evidence": [
+        {
+          "resource": "repo://build/tsdown.client.ts#L259-L264",
+          "version": "repo-lines-v1:sha256:400b81b910382a753aa9cfaead7af4a60e209f122a1840be7ab749a89c2cf8f8:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNmQzMDJkNjEzM2M0MzhkN2RiNzdmMDFjOTBkMDkwNzhkMTE5ZTdiMWI2ZmQ2NmVlZDVlNThjZWU4MmEyYTY5MyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTRjMzA2ZTc4YTA5ZTU4Yzg3YzJlZjExZTlkNjAyOWI0OGFkMTYzZjVmYWYzNTFjZjUwNWE0NDNiOTA3OWVhZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTcwODgyZTI1M2YwOTVkZGJlNGQ5ZmMzZjVkZGVkNDE2ZDJmMTkxZTBjMjBiOWRiOGQxODQwZjE2OWE0OWE0MCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzhkODRkMTMxNGY4MmRkMDU5MTRjZGVjMDgxMzA3OTFmMzJjNDkwMzI5MDM4NjEyNmQ5ZDQ2OGUwYTBmOTkyZSJ9"
+        },
+        {
+          "resource": "repo://build/tsdown.client.ts#L59-L62",
+          "version": "repo-lines-v1:sha256:869cda5a2be195eb995fce260532baf49d5a30990d2303bca215d5fe8b2929b4:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDE0YzMzYTllY2U1OTAxMTBlODJlNGQ1ZTQ1Y2Y0NDQ5MWE5M2Y3ZmQ4MWFkNzg1Zjc0NTdkNTk1NmExZTQ3ZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOWQ3MTRhYjEwOTgxNTczMGRlOTQyMDM3ZDMzN2YxMjA3YzI3ZjQ1ZGQwYzJlYjI2OGExNDkxN2ZhMzk0YmEzOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNTJmZjhiNTdjMmUyYmM1M2U0NTg3YTIwMTI5NzQ0MmZhNGFlMzhhYmUwYTY5ODYzOWFjZWU0MjJjYTBmZDVjZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYWY2ZmZjMGYyODI5ODg5NGZjMzMwNDA2NDM3N2M1MzkyZWNlYzI3NzcyMDllYzU0Y2M5MDEyNWIwOGE2N2YyOCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_5e2078a1d0064cf9b3c7a337cfd497c5",
+      "statement": "@deepseek-ai/dsh-client-runtime/client is a documented TEMPORARY runtime-store exemption (not a platform module, so absent from web-platform.ts) for the snapshot-store engine (createSnapshotStore/defineStore/shallowEqual) used by locale, ui-layout, and ui-conversation importers; at runtime the lazy CJS table answers it natively because runtime is an immediately-tier row registered before any dependent bundle materializes.",
+      "evidence": [
+        {
+          "resource": "repo://build/tsdown.client.ts#L49-L62",
+          "version": "repo-lines-v1:sha256:ba6aa57ceabc1936f28c94424b5a59b55f2c3439a8b1b4e3f01e12ec5fd289c2:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlkNzE0YWIxMDk4MTU3MzBkZTk0MjAzN2QzMzdmMTIwN2MyN2Y0NWRkMGMyZWIyNjhhMTQ5MTdmYTM5NGJhMzkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc0NTE4M2ZlZGFmYWFlN2JlOTgzMTQ2M2IzZTUxNGNkMjM5YzVlM2VhYmYzODJhNzc5MTQ2NTFjZDNkN2MwN2IiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFmNmZmYzBmMjgyOTg4OTRmYzMzMDQwNjQzNzdjNTM5MmVjZWMyNzc3MjA5ZWM1NGNjOTAxMjViMDhhNjdmMjgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ccfb25c62ea647bc9c4feab1a000acb3",
+      "statement": "The dsh-client-bundle-purity resolveId plugin is a build-time mirror of the module-edge rules: it rejects every @deepseek-ai value import that is neither a platform external (CLIENT_EXTERNALS) nor an inline-safe wire layer, since a cross-plugin value import either inlines a duplicate runtime instance or requires a specifier the frozen module table cannot answer; cross-plugin collaboration goes through cordis services instead, and type-only imports are erased before reaching the gate.",
+      "evidence": [
+        {
+          "resource": "repo://build/tsdown.client.ts#L265-L281",
+          "version": "repo-lines-v1:sha256:946d0b5b7ddbca49e4bd17efc8d3b069e3680a49d22f2c5324965ced1f7e3d42:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg4ZDMxMDE4MzQxMTZmOTQ5YWYzOWZjODk3NWJlNzA1ZWJiYTMzMmUxM2Y0MTFlMWI0M2U0YzNlZGViNzU2ODkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI5NzhlMjUwM2I4Y2YzN2EwNmY3ZDZmMGEzYTZiNmZlMzU2OTFmYmNhYjUwYjg3NzVjYWI2ZmFiYzcxYzU5MmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE5YjRhZGMxOTBhN2FmZWEyNTEwNTMyN2JmYmY4ZDMxMDA1YzQzMjFmYjdmNjYzMjRiMDQxN2E3MzIxMGY0YjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQyMTIwY2FiY2JmMDZlYmJmYjZlNDI2MmVhNTYwMzRjMDVhZDBiNWZkYzQxOGJlMTEzNDNjNWRmMjA1NTc1YTIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5b00d16f0f1349c3bcd5c10a8beec394",
+      "statement": "Two regexes carve out what a client bundle may inline: INLINE_SAFE (`@deepseek-ai/dsh-(host-apiproxy|session|llm|tools|brand)`) for browser-safe wire contract surfaces with no shared runtime identity, and GENERATED_REMOTE (`@deepseek-ai/dsh-*/remote`) for generated descriptor/codec contributions with no shared runtime identity.",
+      "evidence": [
+        {
+          "resource": "repo://build/tsdown.client.ts#L32-L41",
+          "version": "repo-lines-v1:sha256:01ee0268c1bc61e1a3913f09dff751cc5edc310398b65a0ebb0a97e6b3e718da:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI1MmIzZDk5NmIzNjk5MDQ1Y2VmYmM2ZGI1ZDU2NDQwNTk4NmNmNThiNWFkMzQyNmNjZDU1Mzc4NTIxN2IwNmQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJmNDkxYjMyMDc4YmQxNWMzNzg5ZGM3Y2UwNTBiNmVkZmM1ZjU1Y2JmMWIzODIyOTQ2MDMyOWM0ZDI5NmJhZTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQyZjc3NmYzYjZjNjBiZTc2NzVlNTQxNGQxNTM1NTE5ODZlYTJiYzE0ZDJjYmJjNThhMjFlNWMwOGU2ZGZlZGQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1a8f49361de942e6baaa9cb0a8f9ab72",
+      "statement": "CSS Modules are compiled by lightningcss inside the bundle and auto-injected as a `<style data-plugin>` tag at factory execution; the module id is virtualized as `\\0dsh-css:<repo-relative-path>.mjs` to keep it out of tsdown's own css pipeline (whose guard matches ids ending in `.css`), and the stylesheet is re-registered as a rolldown watch dependency.",
+      "evidence": [
+        {
+          "resource": "repo://build/tsdown.client.ts#L24-L30",
+          "version": "repo-lines-v1:sha256:5d4ee448cdb586a5abfc6d7eaa964278d3df93b442c87640fee1a954f2422890:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWFmMjJjZjA3MzI1OTJjMjQ3MTQxY2JlNjFlZmExMTAxMjYxMmY1YTMxMjJiOWFmOWJiYWY1MmY1NzI0ZDE5NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDhmYzk2YTk0YzUwZjY3MDdkMzNjMTAzMTlhMDhmYzgwYzU1MmNmM2Q3YmU0NWZkN2U5ZmRlNzMxZTdhYjg3NSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzJjNTY3YTI5M2RiYTdiZTc5ZjlkZDgyZDIzYTdlNzM0MzYyOTA0NDRmODBlODE2OWFjMDc3ZGRjZDAzOTY3ZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDcxMDA2YmYwY2EyYjZiYWMxOGRkNWVjZGExYzkyYWMzNjgwM2UyZDA0NmYyODRmMzcxZDBkNTMzOWU1ZmMzMyJ9"
+        },
+        {
+          "resource": "repo://build/tsdown.client.ts#L283-L329",
+          "version": "repo-lines-v1:sha256:448b22ba615335f1f8863f9269ff6aba267aaab76f095057f554bf5b67b7bb55:eyJzZWxlY3RlZExpbmVDb3VudCI6NDcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJkOGYwYjE2YWFlN2IyYmNjNzliZTQyMmViNTA5MGY0YTY4MzJjNDRmZjFhYzYzZTIxNTI1OWFhZjFjMjZjNTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI5NzhlMjUwM2I4Y2YzN2EwNmY3ZDZmMGEzYTZiNmZlMzU2OTFmYmNhYjUwYjg3NzVjYWI2ZmFiYzcxYzU5MmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU4ODc2MTUwMTc1YTIwMGQ2MWY5ZTYzNjBlOWM3YTc5YjVlOWVlMjUxMzlkZTk0MTQ5YTY4ODFlMjk4MTA2YTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImIxYjFjY2QwM2M0YWFhMTFiNGRjOGM4NGRhZThlNjNlNTc0ZmU5NjA5NTI5MmU1ODZkNjU5NjdhMzJkMTI1ODIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6a577152a0b445c7ad0669b5e07ec0f5",
+      "statement": "The built browser bundle differs from a plain inline: clientConfig emits `__DSH_PKG_VERSION__` from the package's package.json version so the anonymous install heartbeat can report the running release, and substitutes `process.env.NODE_ENV`, `import.meta.env.MODE`, and the bare `import.meta.env` key so node-idiom deps like zustand/immer do not throw ReferenceError at boot.",
+      "evidence": [
+        {
+          "resource": "repo://build/tsdown.client.ts#L253-L258",
+          "version": "repo-lines-v1:sha256:3c61aae031aa234337325a47025b430ab39352e89d9641b0ca3fc15cede3e6cb:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTE3NDdhNWRhZjMxZWZmZGFhNGUxM2JhNzE1MWI3YTA0ODhhZDIxODBmOTZkOGE0NjIyZDdjNzc4ZDIxNTI2OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMWYwY2RiOTcyYTdiZmI3ZWQyNDZmOWZmNjcyMzg1ZTU1ZjQ5NjhmYzExMDQzZGM1YjY4NGQ1MWRmYTMxZGJjYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWU4YjA1NTk2ZWY0ZjViNjZiMTkxNmZmN2I0MmEzMjNiZTdlOWQ1NTRjZjEyMjhlODQ1ZmUzNDJlNzFlNThhZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWQzYjFlZWZkZmI5ODgyMjU2MWVlMDljZjVmYWQ5MmZhODUyN2ZkMjY5YmM3NjYwMjAzN2QxNTFmMTlhNmNkYyJ9"
+        },
+        {
+          "resource": "repo://build/tsdown.client.ts#L66-L78",
+          "version": "repo-lines-v1:sha256:e5f931b3699af2382afc9c5b42a08d217c4afdc3df2a46cc12a3b723103b81ea:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFmNmZmYzBmMjgyOTg4OTRmYzMzMDQwNjQzNzdjNTM5MmVjZWMyNzc3MjA5ZWM1NGNjOTAxMjViMDhhNjdmMjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNmZGFjZTYzZTQ0Mjg1YmIzMGY0NDVhOWRmNzI0NWIyYzlhYTEzZmQ4YzA5Y2ZmMTY5MDE5Y2MwZmJmZWU0MGIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1d6569f7990e4ab1b896f98bd9f0348c",
+      "statement": "tsdown.config.ts (dev/CI Build) declares the host half's full libExternal set (@deepseek-ai/cordis, dsh-typert-protocol, dsh-home-paths, dsh-tools, dsh-skill-filesystem) with lib target es2015, while tsdown.prepare.config.ts (the git-install `prepare` build) uses a lighter libExternal (dsh-typert-protocol, dsh-home-paths) with lib target es2022 and transpiles straight from src without tsc project references because types are only checked by `pnpm run typecheck`.",
+      "evidence": [
+        {
+          "resource": "repo://tsdown.config.ts#L10-L22",
+          "version": "repo-lines-v1:sha256:33c89dbed9dddc197b7a35ce9deb7e1fa1272d1b7154fffdde77d407dafbba9f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc4NTRmMTc1ZGQ4MjEyMjBlYmQ4NjFmNmNmMGM2ZDgyMTZhODljNGJhZDEzODQzMDY3NmIxOThkZjUyZDg2ZDciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg1ODBiNzY1MThkYWU5NzlmYWViZDAyMzY3YTI5MjkyYTUwZDk3NjA5MjI1MWEzOGE2Y2UzMDg4MGJhNDI4MjUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZiMGMzMzg2NTlmZTA5YTkwNWI5ODA2ZGU5NjVkYmI4ZWE0ZDU5ZWUyYWM5Y2M0MjFhNmU1MmVmMzllNjA3ZjMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://tsdown.prepare.config.ts#L11-L17",
+          "version": "repo-lines-v1:sha256:c752889912baa3539640e2f0e6744c63cc34784d59cd83c8f4a4193c3bfa05c6:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzg1NGYxNzVkZDgyMTIyMGViZDg2MWY2Y2YwYzZkODIxNmE4OWM0YmFkMTM4NDMwNjc2YjE5OGRmNTJkODZkNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODU4MGI3NjUxOGRhZTk3OWZhZWJkMDIzNjdhMjkyOTJhNTBkOTc2MDkyMjUxYTM4YTZjZTMwODgwYmE0MjgyNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzI2ZjA3YWU5NGRmMzY3YzRiYzFlYmVhNGU5NDI5MmJhMzYzYTAzMjllOWY5OGY3ZWMwZmMyNTRkY2IzNDM4NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_1a4da84b7c3240ddb4c59149f4ac91cb",
+      "statement": "The cordis framework is always listed as an external in clientLibraryConfig because its built declarations carry .ts-suffixed relative imports rolldown cannot follow and it resolves at runtime from the dsh profile tree rather than this repo's install; libExternal augments that always-present external entry.",
+      "evidence": [
+        {
+          "resource": "repo://build/tsdown.client.ts#L201-L224",
+          "version": "repo-lines-v1:sha256:84b39a90abd5fce5c10f9352f91b999ea0e13b78a00eb6ac5808a1a9a0d14a2c:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVkZGY0ZTI3N2QyNDQzMjYxYTQ2YTU5NjY3M2M2Y2YyMDI4ZDQ3NTNmYzM2NTcwZWMwNjIyMzM2OGUwZjZkNGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU3YTQzYmQyODM3Mjg3YjAzODNkZmY0YTAyNjExNjgyNzk2ODhmMWNhMTQ4MzQ5NTRmMzQwYWY1NTNhNzNiYTYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQwZDViYzU3MDk5NjdiZmUxMDNmNzg4N2M4NzJlNjg0NjlhZGMwMjc3ZjBlMDFlZjg4YzZiZmFjYWMxNWY4Y2QifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_95caf2a66dce4d80ae64054f15ae3b17",
+      "statement": "package.json maps the two halves through main/types/exports: `.` resolves to lib/index.js plus lib/types/index.d.ts, `./client` to lib/client.js plus lib/types/client/index.d.ts, and files ships lib/**/*.js, lib/**/*.js.map, lib/**/*.d.ts, src, and cordis.patch.yml.",
+      "evidence": [
+        {
+          "resource": "repo://package.json#L28-L48",
+          "version": "repo-lines-v1:sha256:c4f708495b05e07148d7646bf508af95919d932c1345270edc28f183ac5cd369:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg1ZTcwMWM0NGVmNzBkOTllNjFmNjJkZTY0ZTg3NzIyNTE4ZmU3YmI3NDA3ZTgzZDBkM2YzZTk5N2U0MDI2MGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk2NGQ4YzA3MzQyOTg5MzEwMTU3NmQ4OGQ5OTEyN2U4OWQ2ODkxZDNiMTdlODlkZjAyZWM5YWU3MDcwNWQ4YmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNkZmNkMDVhNmMxOGRmNzhkYjMxNzc4OTE2ZDQ2YzZhY2UxMTc3YTk0NjA5NTc3M2EzYWI5ODY5MDI4MDk3ZWIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRmMzQ4OTQ4MzhlMGNiZGM1YjAyZDFjYjc1MmY2NWM0Zjg3OWZiY2IzMmI2NDJlM2JlNjRhYzJiZmFjOWQ5ZjkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3d2c6c2ef1fb45dd8447dc0e729de84d",
+      "statement": "dsh.bundle.patch -> cordis.patch.yml inserts the plugin row into the web profile roster (mounting both the modules Node half that serves lib/client.js and the host half), and dsh.client sets platform web with an inject list of dsh-client-locale/runtime/ui-conversation/ui-layout/ui-sidebar so the web module table scans the package into the browser roster.",
+      "evidence": [
+        {
+          "resource": "repo://cordis.patch.yml#L1-L10",
+          "version": "repo-lines-v1:sha256:250837cf4ce85d325f96a9f0cca58d6a378aa370829b6eb383102fd462c084cd:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE0MzIzNmQ4MDQ0YmFjNDFlMDhlNDZiYTY1MGUwYWFiNDI3NDQ2YTliYTI4NTQyZWRlNzUzMTViN2QwZmYxYzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNjZjYxNGQyNDE2MDZkMTFlZTdhMjE2NDM4NDI2ODUzOWI2YWI2YTRlYzFkODlhODE3MGU3NWMzN2I0NDVkMTUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://package.json#L50-L67",
+          "version": "repo-lines-v1:sha256:a34f03d6e2e6166cba10206b57a685f9a8c5d3601488d2545c73abb4cb9d016b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJhNjc2YTNmYzgxMjYwNDgyYzY5MGM3ZGI5MTUyMzljZTRmN2NjZGYzZTIxZGFmNzg3ZTU5ODUxZTY0NzZhMTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkNWNkMmZiNGYzZGY4ODQ1MTUyNTViMzk1MjNmMmY4YjU0NzJiZWVhOWY1NjZmZmNhMjA0ZGI4MDI1NjEwNDEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAzNjVkZjY5NzMxNDBlNjI5MmQ0ZjMzZGE3MzhhYWQwZTgxNTBjN2JjOTY1YTY1YmVjMDk2NGIwZjdhOWZjNDAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhmZDRlZjNkMDQ2MDE1MDEyYmY5NDY3ZjNiY2ExNGE5Nzc0YWI5NTI4ZGE3MWZlMDk4NDhiNDM0OTIxY2UxMDIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f218380875c5481bb67473504ea34136",
+      "statement": "tsdown --env.DSH_BUILD_FACE selects the build phase; buildFace validates the value must be host or client and throws otherwise, and ClientBundleOptions.hostPhase lets a package emit its Node-side artifacts during the Host pass instead of the Client pass.",
+      "evidence": [
+        {
+          "resource": "repo://build/tsdown.client.ts#L181-L199",
+          "version": "repo-lines-v1:sha256:fa3c7d8f27c8b64127bec0d1c58dd9c0d322d27bd6d261b8f2b250dd54c186a5:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY4MDY4OTBlMGQ1OTgyZDY0ODM1YjljY2NjNTNjZjM3Yzk4MWMxNTEzYjBjZThiNzdkZDc2YmYyMDY1YWFmMzIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzNmVkMjJhOWM1YzBjYTAxNGM5NzkyNDlmYTZlNzg3MTg3ZTMzYjA3NzQ2ZjdmZTAwODc1MWFiNzEyMDU1MzQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0344beef922444bfaa4ba85bdc556fcf",
+      "statement": "The host half exposes its services as Typert remotes: src/index.ts contains bare @Remote markers on the Gateways and src/client/remote.ts holds a hand-written TYPERT_REMOTE manifest describing each method's wire codec, so no generated /typert artifact is needed and the client mounts the namespaces onto the Typert client remote.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/remote.ts#L1-L13",
+          "version": "repo-lines-v1:sha256:1fd8c456fecff0217f82f9ac88b2513d653228ee5d1f9f920147c1fb2e4b558b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ1ZDVhYmFjYTIyNjgwYWU5NTMzNjcwMGRmNzY2MzYxOTdhN2NiNmMwMDRmNGNkNzlhYzFiMWZkMmYwYWM0YTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVkYjU0NGE1ODg2MzQzNTBjMTkxNjlhODI0M2I1MzFiZjMwOTVlYjU3YzhmYjAzZTQ0ODM2OTQzZjA4MTY4ODEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdlNGQxMjE0NGIwNTdlN2FkZmUwOWRiODBlODIyOTczYjViZGNlZDQ1NGIzMjA1NjliOTA0ZjYxMzYyYTYxYjIifQ"
+        },
+        {
+          "resource": "repo://src/index.ts#L1078-L1085",
+          "version": "repo-lines-v1:sha256:cca270151fe87e678c9df96dc43fc70ace738369fc97cc70e6145498ac9d3fc3:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDNlMDU4ODJlNmNlYzEzYzM0NjA0ZTBiMTIwZTg1ZWE1NmYwYjA3ZDVhNmM5N2RiNjVlNDIyZWJlNmVlNDI4OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTIyZmFhNTM1YmQyZWEzZDUyZTc0MWVkNDU0NDM1YjdmZTQ5ZTgzNTg2ZTk0M2Q5OGQ4MmJiZmIyNGQxZjVjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDQ3ZjIyMDNkZTNhY2E2NWE2NWE2MWZiNTcyZWY5NGQxMDljNDc5ZmI0NDMyNmQxOGFlYTM0ZTZiOGI1MzliNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L171-L171",
+          "version": "repo-lines-v1:sha256:94b98bfa1bf9664defe7cf498851b455e5d552240a6023d0ae4dbf70f25f7a39:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTRiOThiZmExYmY5NjY0ZGVmZTdjZjQ5ODg1MWI0NTVlNWQ1NTIyNDBhNjAyM2QwYWU0ZGJmNzBmMjVmN2EzOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTRiOThiZmExYmY5NjY0ZGVmZTdjZjQ5ODg1MWI0NTVlNWQ1NTIyNDBhNjAyM2QwYWU0ZGJmNzBmMjVmN2EzOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzdiODJjMTNmOGMzMTQ2ZjlhNmVmZmU2MTQ2MTYzM2VkNjcwNGY3ODZiNGMwYmI2MjQxZmQ3NTVkYTVkZTBjNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTcyMzJiNzVhMTA1NTFkYjU4YjlkYmZkMmU5OTBmNzI2YjA2M2FlMmM2MzFmZmNiN2NjYmI5ZjI2NTg0OWMyMCJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-03T02:25:20.569Z"
+  }
+}

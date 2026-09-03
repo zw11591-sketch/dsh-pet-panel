@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:62f5e622b4e53dc987504463ab91dac15df8eab681db91859e9483cabd7e5439",
+  "claims": [
+    {
+      "id": "claim_ab88e973a7a64369b5b0bd71d29e634b",
+      "statement": "Every skill name reaching the filesystem in the skillForge namespace is validated by assertName() against NAME_RE (/^[A-Za-z0-9_-]{1,64}$/) before join() appends the single segment and the fixed SKILL.md filename, so a read/write/delete call like read('../other') is rejected and can never escape the skill root.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L14-L35",
+          "version": "repo-lines-v1:sha256:90fd900758d30c497714294ad25c4334e8f85da1913c7e0e02fef0e77a1edd0d:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImExYjJjYjgzYjc1NmRkYzgyMWM0Yjk2MDczZmJhNzZmYWQ0YTdmYzJkMWM2NmUyOTgzMmI2MTIxYTg3OTI0ZDQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImRlMWQyZTBiMmVmNjBjMWJiNzYxZGVjNzQyM2UyMWNhYWI1YTFmMjM3YzM2MzdhMzY0OWVjMjQ4ZjcwZjJiMTQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImMyNDYxNDZlYmUyNWJjYjdkMDYwNmJjYjI3OTkwYmQyODI0OTMxMDdjODVlMmQwMjEzMTZjMjc4YTk0OTEzOTAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_17ff4c337f0649d288b1fab39e9d0226",
+      "statement": "skillRoot() resolves the active profile from process.argv via profileNameFromArgv and returns dshHomePath('profiles', <profile>, 'skills') when a profile is active, else dshHomePath('skills'), so each skill lives at <skillRoot>/<name>/SKILL.md scoped to the active profile.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L23-L26",
+          "version": "repo-lines-v1:sha256:9b45885f82a0d7a1f425bbbfc89066485a36f677bee39bc861f5cbcef1967277:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGJlZGRhNjVlYjNiYmYxMTIzYzlhOTA2NGY4ZTIyY2U2MThmMDNlYThlNTFkNzZmYzIxYmFiYzBjNjZlNDEwZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTIyZmFhNTM1YmQyZWEzZDUyZTc0MWVkNDU0NDM1YjdmZTQ5ZTgzNTg2ZTk0M2Q5OGQ4MmJiZmIyNGQxZjVjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDQ3ZjIyMDNkZTNhY2E2NWE2NWE2MWZiNTcyZWY5NGQxMDljNDc5ZmI0NDMyNmQxOGFlYTM0ZTZiOGI1MzliNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzA4MGIwNzJkZGYzOGExOTA0ZmM1N2YxZTA3ZWFlYTc5YmRjMzZiMTUzYzBkMDRiOGJlOWFkZjI3YmIxZGQwMyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_2753f740777140ceb66f98a4e9894735",
+      "statement": "parseFrontmatter() extracts title (from the frontmatter name: line) and description (from the frontmatter description: line) by regexing the leading --- block, and list() then sets title: title || name so a missing or empty frontmatter name falls back to the on-disk directory name while description stays empty when absent.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L181-L193",
+          "version": "repo-lines-v1:sha256:a3d32cf53701b6012ae80ccb240ab709aab88e0259ab922f97869eaf5aeaffe6:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ1ZTdjZGUwOTNiZmM1NmFmODgzMzliNDZhMDI4OTM5M2M1ZjRhZGI1OTkzM2MzYjQyODIwYzMwMzJiZjliMGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ1NzgwNjhlZGYzN2QwYmZkMGVmMzNkMWNlZjVkYWY5ODVkNDY0MDllYjRkZDNiY2E2ODQzYTUzOTJlYzEwYzIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgzYzUxMDExM2Y3MTUyNzdhOGM4MWNhMjJjOGRmMDNlOTkwMzA4NGVlODUwZjkyZDdmYzVkOWU0NGMxODkyZDIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQwZWE4OTA1MDM3MmQ3ZTgzOGY1N2ExMjc2MjRmYjFkMWMxMTY5OGMwYTk0NzQwZWI0YzdlZDAxNmZmOWU4MTYifQ"
+        },
+        {
+          "resource": "repo://src/index.ts#L37-L43",
+          "version": "repo-lines-v1:sha256:e3f913d36d908c048bbf1eb6486bfcc641312839f474fb2af852f4c5dafb7ba9:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTEzYzZjODUzYWMyZjNhMzE0OTE5ODZhZWFlM2I1MDU1YTU2ODI5MDNjZGNkNzcwMjY1NmYzNDFhNDg4NTA0NSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTIyZmFhNTM1YmQyZWEzZDUyZTc0MWVkNDU0NDM1YjdmZTQ5ZTgzNTg2ZTk0M2Q5OGQ4MmJiZmIyNGQxZjVjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODFlN2U4NGEzZmI2NDFjNTRlZGVlOTkyYWEwNjJjZjMxY2JhOTZjMzJjMzMzNjJjYjIyNGQwZmY0OTY4M2RlNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZWY1MjRiOGQ5ZjczZTg3YzIzNDAwOWExMmJmMWNmNWRjOTg0MjJiN2UxN2Q3YjFhOThmY2YyYTM3YzQ0NzhlMSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_a89921c273a24bf99264e53ff51b281d",
+      "statement": "SkillForgeGateway.list() returns { items: [] } when the skill root does not exist or cannot be read, and sorts the returned items by name with localeCompare; each item's content is read from <name>/SKILL.md and its frontmatter parsed, with a read failure producing a bare { name, title: name, description: '' } fallback item.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L171-L194",
+          "version": "repo-lines-v1:sha256:9131e17a1c09856c931b16f037a5afbdf16a6bd86451dd6939c7ee59bec819fb:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk0Yjk4YmZhMWJmOTY2NGRlZmU3Y2Y0OTg4NTFiNDU1ZTVkNTUyMjQwYTYwMjNkMGFlNGRiZjcwZjI1ZjdhMzkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxMzQ1MTgwMTA1YjBjNjZhNzdkYWQ1MWJiMzc5MDFhMzczMmM5NjU0YmE0ZGUzOTgxZjgxZTE4MTc1MjQ4YmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc3YjgyYzEzZjhjMzE0NmY5YTZlZmZlNjE0NjE2MzNlZDY3MDRmNzg2YjRjMGJiNjI0MWZkNzU1ZGE1ZGUwYzYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM5YjY3NjBjNDQ1MTUzYTBkMmY2OTM0YmY2OTIwNjEyMWYyM2U3MTlmNmMzMGIyNDU5ZTQ3MDZkZjg4NDBjMjcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ded04918e8b74be5be244a5182bfb1e9",
+      "statement": "SkillForgeGateway.write asserts the name, mkdirs the skill directory with recursive: true, and writes SKILL.md as UTF-8 returning { name }; delete asserts the name and removes the whole skill directory with rm(..., { recursive: true, force: true }), making a missing directory a no-op rather than an error.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L203-L216",
+          "version": "repo-lines-v1:sha256:4408be9a74e80881c8da4f214114c3d227f2b24443797122e0629fa8eca1d5bf:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVmMWI3OWFiYWI1ZGE2OTNlMmExYTRkNGQ3ZDU5YmMyMDgxMDlkMTM4Zjg3ZTkyMzA4ODdhM2E0M2Q2YmYyNzEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxMzQ1MTgwMTA1YjBjNjZhNzdkYWQ1MWJiMzc5MDFhMzczMmM5NjU0YmE0ZGUzOTgxZjgxZTE4MTc1MjQ4YmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNjYTg5Yjg3ZmY4YjI0MmRkNjY1ODhmYWZlNjRlNTg4YTY1Zjc3MzgzY2NjM2VmNDAwYzY2YjA4OGQ3MWU1OWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjIyY2QyYjcyNTYxN2E4Y2Y3NGU2YTk3MmIxNzM3ZTNkNmU0MDZjY2Q5YTM4ZThiZGMxY2U4MmE3YWM1ZDk4NzQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e9885ef673154c9dae7a4cb554b1dfc8",
+      "statement": "SkillForgeGateway.generate prefers the current default model read live from agentDefaultModel.currentSelection() and only falls back to llm.listProviders()[0].id plus llm.listModels(provider)[0].id when the default is unavailable; it deliberately does not assume providers[0] is configured, and throws a user-facing Chinese error if there is no provider or no model.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L159-L169",
+          "version": "repo-lines-v1:sha256:41d3435f705e94cb3cb840de1117351f591f3a8052e30603a1f33cf84a9e8d15:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxNTNjNjVkYTkxMzNiOTJhM2U2MzkyNWEyZDQ3ZjJlMDdjNDBkNWQwNzRlNTExOTA3NmY4MGQ0MTEwYjA4N2EiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxMzQ1MTgwMTA1YjBjNjZhNzdkYWQ1MWJiMzc5MDFhMzczMmM5NjU0YmE0ZGUzOTgxZjgxZTE4MTc1MjQ4YmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQwMDU0OTdkZWUwM2YwYmFjMGNhNDg3MjA5MWUzMjlkODI0Y2NjNzM5MzhmYmZjZTY2OTFjYjFiMDMxNGMxY2EiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU1MDIzM2Q4M2U5YWFmZDAzODRkOWY2NTczMmJiNzAxZjI3OWM4YWMxNjE5NzNhMDhlYWM2OWE0ODNjNzQ4NmEifQ"
+        },
+        {
+          "resource": "repo://src/index.ts#L225-L249",
+          "version": "repo-lines-v1:sha256:541cfc51c7a6893e0e29720c928250547e4808f5e114ee129b44d63b833ace97:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFiODM0ODliMGFmYmMzM2JiMDc3MTQ5OTEyOWI0N2IxMGVkNDQ0NzUxOTM5ZTcwMTg3ZGQ3OTM5ODVhZDViNDAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE0MTlhNmRjYzA0ZTIxM2EzYzdhNzdhNDU2YjAxZTc2ZDFlZjc4Y2QwMGJiZWMxZDhmODE0NThmZTkzZWRjNTYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQyMDk4NWMzYTczMWU1YzE1MzU2NjMzNDg1MmI5MDcwNDNjNTkwZmYyZGNiMDcwMGE5Y2MxNTk0ZWRlY2I3YjMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhmMmMxMTAxYWVlOGFjNmYzODJjNGY2NWRkZTkxNmZjN2YwNGE5ZjAxMTRlM2I3NWViYzUxZDMxMjE2YTlmYjgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c2a89fd9fe29454398225339fa8c756f",
+      "statement": "SkillForgeGateway.generate accumulates text-delta chunks from llm.stream({ provider, model, system, messages, temperature: 0.3 }), captures reason.failure on a finish chunk whose reason.kind is error or aborted, throws 模型调用失败：<message>（<code>） HTTP <status> on failure, and throws 生成失败：模型没有返回内容。 when no text is produced.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L265-L300",
+          "version": "repo-lines-v1:sha256:64e09789a98d61ca7297978b34d8f5112ce191738d88a331edb47f115c857199:eyJzZWxlY3RlZExpbmVDb3VudCI6MzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU3ODY5NjBmYzJkYzBjNjA4MDVjNGJmOTkwOTA5MmM3ZTViZTAwMzIwOTkxMjBhN2RkMzFmZTYxZjJmNzIxNzEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhlZGI2YTZkNmNmYjU0MzM4ZjllODQ5MmZmMTUwM2YzY2ExMDE0OGY5ZjI4OTYzYWEzMjVhOTZkNzA3YzUyYzMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA4MTI4MGYwZjE1N2Q0ZjIxYTQ1MmY2MWRlZWVmYTMzMDg5YzA2NTg5NzczMTc4MTA1MmYyNTZjOWY4M2RmNDciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFmMDE4MTE1MmVlMTY3YTRlZDc3Zjg0MjAyMGNiNzNiMTIzZGQwYjA4NmQxZmI4NTNhMzhjODIxZjEzMzNmNTcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a24258fab3c14b1e8d2e919cfe71630d",
+      "statement": "lifecycle(sessionId) is the sixth @Remote method on the skillForge namespace, validating the id against /^session-[A-Za-z0-9-]+$/, locating the session's session.jsonl.zstd under the $DSH_HOME/sessions workspace tree, decompressing its zstd frames, folding JSONL records into a flat LifecycleEvent stream, and returning a compacted LifecycleSnapshot; it is a read-only inspection sharing the skillForge namespace rather than a separate lifecycle service.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/remote.ts#L147-L147",
+          "version": "repo-lines-v1:sha256:98f22fae970cf8193085856b8beb9ec5458c1846ae03a5bfde5631fa3e87efea:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOThmMjJmYWU5NzBjZjgxOTMwODU4NTZiOGJlYjllYzU0NThjMTg0NmFlMDNhNWJmZGU1NjMxZmEzZTg3ZWZlYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOThmMjJmYWU5NzBjZjgxOTMwODU4NTZiOGJlYjllYzU0NThjMTg0NmFlMDNhNWJmZGU1NjMxZmEzZTg3ZWZlYSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiN2Y1YWIwZjAxYWJkNTMyYzE5MWRiYjc3NjMwYjI1YzA2ZThmMDJmZThlYjdhYTRjNDQwYzg1ODk1NTlhZWY5NyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjEzYThjM2ExMDAyNDZlNzIyZWM3MDY5ZDA2MzYyZmZlYmJlMmQ1ZGZkYzhkZDFjMzljMmI0OWE0MGFkZDUwZSJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L303-L410",
+          "version": "repo-lines-v1:sha256:6424d673440c89af43469ec78e8ced859492d518d129c7123b310c50ad6aab35:eyJzZWxlY3RlZExpbmVDb3VudCI6MTA4LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI3NzU4ZGY4NTM5NDIwZDcwNzY5MjQ0MGEyMmM3MzdmYWIyYTViNGIwM2M4NTUwOWI2MWI5NDZlNDU4OWM3MzVkIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJlMjJmYWE1MzViZDJlYTNkNTJlNzQxZWQ0NTQ0MzViN2ZlNDllODM1ODZlOTQzZDk4ZDgyYmJmYjI0ZDFmNWM1IiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJkNmU1ZGNjMTllNThhNzQ2ZDExOWQ4MDY1MTg4NzMyYjNkMGNmNGY4MjQ5NTRmYjY0ZjU2NWI0YTk2Y2VkMTQ1IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJmMGYyMDFlZTAzOGM1MjA5MmU3NTk5NTJhNzM2OTJlNzQ1MzEyYWFiYWFiMTg1NzgxMTAxZDMyMjJhMTk3YWQ0In0"
+        }
+      ]
+    },
+    {
+      "id": "claim_d1389ba4cc1743c68fd0c2f26bea0706",
+      "statement": "The browser SkillForgeView receives a SkillApi built in src/client/index.ts by wrapping every ctx.remote.skillForge.* call in unwrap(), which throws on the { ok: false } branch so a host-side failure surfaces as a Promise rejection the view renders as an inline error; the view validates the frontmatter name: against /^[A-Za-z0-9_-]{1,64}$/ before calling api.write, mirroring the host assertName().",
+      "evidence": [
+        {
+          "resource": "repo://src/client/SkillForgeView.tsx#L70-L89",
+          "version": "repo-lines-v1:sha256:7cd143f8045391f9a6a4a5c8decf5823fb0cda679a12ba81064a72637b206a33:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFjNjViZjAwNDAwN2QzNWEyZmU4NTIyNGI1MzUwNDVkNDk1ODg3Mjg2YmZmOTMyMjQ5NTU1ZTI5ZjA3MGE1ZWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ5ZjFlYWY3YjRkNDIwZmE1MmNmM2ZjODFkNTk2MTNmOGNmY2ZjZGY0YmQ3Y2I2NmEyNDc0MTRiMTc0ZTA1MzEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkxMjUzMDU2OGI5YTQ4YWNlMGVkMDkyY2U2OTFmZmIwMmJiODcwNzQ3MDQ0ZmI0OTdiY2NiYzNhMDM0ZjdjZmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhiZWM3NjdkNzQwMjAwNjBkNTVlMDk2NGFhMzVjOWIyY2E3NmU5MjgxODFhNjE3N2I2M2JiOGJhNzliMTVlOWEifQ"
+        },
+        {
+          "resource": "repo://src/client/index.ts#L36-L40",
+          "version": "repo-lines-v1:sha256:6ee71680a1f95cb4e2606bd055165e5a54e72f60dc89cd90e00763951c5e9f55:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTc2ZjVhMDM3MDA1M2JhMjUwNTlhYmQ0YzJjYTM4MDhiYzkzYjI1YzBiYzc4Yjk0NjNkOGIzZmZkOWZjZDUxMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTIyZmFhNTM1YmQyZWEzZDUyZTc0MWVkNDU0NDM1YjdmZTQ5ZTgzNTg2ZTk0M2Q5OGQ4MmJiZmIyNGQxZjVjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNmRiY2RmZTRiOTc1ZGU1YWRjYmYxMWIwNmM3YjdkOThhNWYwZGQwN2U3YTkwMTliMzEzZWY4Y2FlNWFlNWY3YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDcwZjljNTZiYTFmNmIyYmY4MzFkMDE4NWRmMGZkOGE3NTUxNmYyMGNiMzk0NGQ2NmI3NzlmYTAzOWFkY2U2OSJ9"
+        },
+        {
+          "resource": "repo://src/client/index.ts#L99-L127",
+          "version": "repo-lines-v1:sha256:8a124a295c2b9189e877a0d0c8afe238d7894b4887eff9533f4b1535eb4399d5:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg2NGYyNGJlZDdlNzA4MWUyZGZjZjc1ZjMyZDViYTEyYjk0MDkyZjhiOGRmZWUwZWI4YzQ4ZjdhMzNiOTg0MDIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE4OWU2ZjUzNWFmZTBiN2IwNzcxMDYzMDM3MDA2YTYzYjY2N2E3YTZjNmYwODgxMjg5YjVkMWMxYTVhOTIwNjIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgyMDY4YmQ4MjAyYzYzMjU3NzZkODAyYWU3OWI4ZGY5MGJhNmUxYzA4YmQ3MjkyOGFkMGQ4ZDE2MWIzMjJiZjUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY5ZDUzNzdkNGZkZWM4MmVjMGQ4MTY3OWYwYTYzOTYzODcyOWFjOTJjMWQ1MjNhY2FlMzA3OWMzMWYxMDhiNDUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_8684999b628746cb98963f3fac6c81c3",
+      "statement": "SkillForgeView uses the sentinels '__new__' (create) and '__generated__' (generate completion) for editor selections that are not yet real skills, rendering the editor path as 新技能 or 智能生成结果 and hiding the delete button, while any real selection renders <name>/SKILL.md; generate() displays the model's returned content via a typewriter effect driven by setTimeout before setting it as the editor content.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/SkillForgeView.tsx#L118-L145",
+          "version": "repo-lines-v1:sha256:1bdca32ff440f51599906cfb4d014384ed7812e557f87850e0b075865ece04cc:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI2ZGZiYThmMzUxZWI3MzUxYjIwMDNhYTU3OWZkODAxZTBmZjdlYmYxZGE5NWQyNTAyNjczNzRiYTE1NDIzZjgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIwNzZkOGE0OTMzZDM1MTZkYmU5NTJjZDZmOWFlNGZjMmVlZDM5NDE2NTEzODY3ODE2NzFhZjUyMzMxMDQ5Y2EiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNjYWU0ODE2ZjI2MjQxNzg0NmQ0MmViNDcyZWJjZGVlZGViZmM1Yjc1YTI3Mjg2OGQ0OTFmMDBjNTAyYWZhNzYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY2NjUwM2Q2MTU2ZTI5NWJlNmU1NzZlMWJiYjk5YzhkMTU1MGRjNGVhZjMyMWU1Njg4NDdlNWYyYWYyZDhlMjMifQ"
+        },
+        {
+          "resource": "repo://src/client/SkillForgeView.tsx#L210-L210",
+          "version": "repo-lines-v1:sha256:951995b32c06308a3f2459bb5e8246bc2c705202f1bfa9d436f32eed8c43d21b:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTUxOTk1YjMyYzA2MzA4YTNmMjQ1OWJiNWU4MjQ2YmMyYzcwNTIwMmYxYmZhOWQ0MzZmMzJlZWQ4YzQzZDIxYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTUxOTk1YjMyYzA2MzA4YTNmMjQ1OWJiNWU4MjQ2YmMyYzcwNTIwMmYxYmZhOWQ0MzZmMzJlZWQ4YzQzZDIxYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTRiYzg3Yzk3OWYwY2ZhNWExYmI2ZDgyZGFmY2I1MWVkMzUzN2M5YzRhYTNmOGNmYzI0Y2RkODdlMjYxZTk2MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjlhNmRhYzZkOGQ0OGY5OWUxZGNhOTg5ZGY4MTgzZmJlM2EwZDIzNTlhNTI5YTdiYmIzMmE0NGMxMWRiNzgxYyJ9"
+        },
+        {
+          "resource": "repo://src/client/SkillForgeView.tsx#L64-L68",
+          "version": "repo-lines-v1:sha256:5ab1dabadd98c57b6cac770faf247eb1ae7571df8269d5283ee2e8c74f224418:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmZlOTEwMjgyOGM0ZjY0YjdjZDM4YmFjNWU4ZjRmYjYzNjk0ZDE0Y2ZjNjk4YWQ5ZTA2MDA3ZGJhMDBjNDJmMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTk0Zjk2NGQ4MWY4NzljZWE1ZDNlNjUyMDNhZjIzMTk4ZTdjMDQwYTdjNjQ2YmVmZjFhNDlhZWQ4MmM1MzgwMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTZkYjIwYTNlMWZhNDY2NzdmOTE2OGJkYTg3NTUxZDQ5NDI3OGFlN2YzYjE5NmM3NTk3ZGQ3MjU4ODZhNjcyNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmUxYzY0ZGYwMWFkNTZjNTc5NjYwNzE1MThiZDAzMWQzN2VjMTM3MTVhYjRjNjM4MjdmZjg1MjllNjc4NDUwNSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-03T02:25:20.569Z"
+  }
+}

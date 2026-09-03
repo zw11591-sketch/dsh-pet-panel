@@ -1,0 +1,220 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:ddbe508881bd267edbc4562863f336c1318d9f6be6e9c8386e7b420dcd96a0e5",
+  "claims": [
+    {
+      "id": "claim_62eb93056464485a8a17440a7cd20a62",
+      "statement": "The `toolIntegrations` namespace is backed by `ToolIntegrationsGateway`, a `TypertRemoteService` subclass registered on the host face via `apply()` (`ctx.plugin(ToolIntegrationsGateway)`). It injects `['loader']`, binds its wire namespace to `toolIntegrations` in its constructor (`super(ctx, 'toolIntegrations')`), and exposes four `@Remote` methods — `list`, `read`, `write`, `delete` — that the browser client consumes through the mounted Typert remote.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/remote.ts#L148-L152",
+          "version": "repo-lines-v1:sha256:5555a904b551d2ecda0428ce96b02bb71fd774e3a9c92b6719c04318b2f59d0e:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzZjNDg3ZDY5NGI0NjMxOTM1ZmQ5OTQ2NzM1ZWU1MTJlNmUwOWI0MzM4ZWRmYmM4YWQ5NzdmNDQwN2UwNzllZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjkzMDVjNjY0NjEzM2QzNDM3MDU3MjFmY2I4Nzg2ODJhZjMxYWI0YTNmZGFkOGEyNjhhYmE0OWQyMDZjMjY5MiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTFiNmRkZTFiZmFkNzkzOTJhNGJhNmQ1ODM3YWExMjQxZjlhNjYzYzVmNWE3MjZjNWY2OTc5N2YzOWFjMDU2NyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDEwNTNkYjdkMmE2ZDljYzJkNzM4NGE5ZjY0MzU1MDM1OWY1YzdlYTc4ZTIzYWEyNzhmOWMzMzY1MzcxMzEwOCJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L1078-L1085",
+          "version": "repo-lines-v1:sha256:cca270151fe87e678c9df96dc43fc70ace738369fc97cc70e6145498ac9d3fc3:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDNlMDU4ODJlNmNlYzEzYzM0NjA0ZTBiMTIwZTg1ZWE1NmYwYjA3ZDVhNmM5N2RiNjVlNDIyZWJlNmVlNDI4OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTIyZmFhNTM1YmQyZWEzZDUyZTc0MWVkNDU0NDM1YjdmZTQ5ZTgzNTg2ZTk0M2Q5OGQ4MmJiZmIyNGQxZjVjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDQ3ZjIyMDNkZTNhY2E2NWE2NWE2MWZiNTcyZWY5NGQxMDljNDc5ZmI0NDMyNmQxOGFlYTM0ZTZiOGI1MzliNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L431-L442",
+          "version": "repo-lines-v1:sha256:4778fc636b82e2937ee6d682cf7b1c62e334235d9e4cbdfe0422a5f2ae2060be:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI5OWE0MjU0MzIxOGRmODkwOGQ2Yzg3OWY0OWM5OGI1YmY0OGRmODAzNDUwMDAzZGM3YjI1NGVhYTc5NGRkNzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxMzQ1MTgwMTA1YjBjNjZhNzdkYWQ1MWJiMzc5MDFhMzczMmM5NjU0YmE0ZGUzOTgxZjgxZTE4MTc1MjQ4YmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhjMjAxMWJmNTVkZTRhMDAxNjFhZGVjOWRhNjdkYTgyNTJmOTc4NmU3MGIxZGFjMWZkOWY0ZGZiNmM2YTA2YzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU2YjQwNjA1MjZiODU4MTE4ZmQwODM5YjFiYmQ4OTM2MGRmM2E1MTI5NGQ1ZWM3MThmZjgyOGU4MzgyYTk5YzAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1e660d5550264fc0a2d4166c4ff4ccee",
+      "statement": "The `mounted` map — `private mounted = new Map<string, string>()` mapping `serverName` → loader entry id — is the authoritative source of whether a configured MCP server is live. `list()` derives each item's `mounted` flag directly from it (`this.mounted.has(c.serverName)`), so the config file being present never implies the server's tools are actually available; a saved-but-not-mounted server reports `mounted: false`.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L435-L435",
+          "version": "repo-lines-v1:sha256:e2475800704bc3dbdc5ab89f515326a332e38d8a9764539a7bae58dad9c4f5c3:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTI0NzU4MDA3MDRiYzNkYmRjNWFiODlmNTE1MzI2YTMzMmUzOGQ4YTk3NjQ1MzlhN2JhZTU4ZGFkOWM0ZjVjMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTI0NzU4MDA3MDRiYzNkYmRjNWFiODlmNTE1MzI2YTMzMmUzOGQ4YTk3NjQ1MzlhN2JhZTU4ZGFkOWM0ZjVjMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjc0NTk2YWE5YjgwZDNkNDQ5YTU1ZDUzN2IzNzNiNjI3YzcxMmI3MmFkN2FkZGZmODlkOTdlN2Q2ZGQyMDliNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjkxZGEyYjgzYmZhOTEwNmViZjg4MmE5M2UzNmVhNjdhMWU3YzM2YmUxZWM1ZTQ1YjlkN2I0ODYxNTRhYmIxZiJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L494-L498",
+          "version": "repo-lines-v1:sha256:f4ccccb2953cb6a6458e6079aefaec6372d39ffbb7dfaf5cdd0df8e27e04b556:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTRiOThiZmExYmY5NjY0ZGVmZTdjZjQ5ODg1MWI0NTVlNWQ1NTIyNDBhNjAyM2QwYWU0ZGJmNzBmMjVmN2EzOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzEzNDUxODAxMDViMGM2NmE3N2RhZDUxYmIzNzkwMWEzNzMyYzk2NTRiYTRkZTM5ODFmODFlMTgxNzUyNDhiZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNTg1MDhiNmNiMDU4OWFiYTc1MDMyMDJkZTJjOGY4N2VkOWIxOWNkNTg2NTNmZDAxYTNlNjc1ZTNhYjdiNTk2NyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjIwMWVlODljOGFkYTQ5ZGZlODM2NGY5NjhmNTEwYWNkMmQ2NDFmNDExMzU5Nzg2M2FlNGMwYTRkOWI5YjE3MyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_6de47ad01e214da3b1266c4db33d1444",
+      "statement": "The MCP config is persisted to a per-profile `mcp-servers.json`. `MCP_FILE()` derives the active profile freshly from `process.argv` on every call via `profileNameFromArgv`, returning `dshHomePath('profiles', profile, 'mcp-servers.json')` when a profile is active, else the global `dshHomePath('mcp-servers.json')`.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L414-L417",
+          "version": "repo-lines-v1:sha256:7232a386bf96c5a296b3de275e2994689fc39407709c15d5c07fce24d4717629:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZmUxYWEzMDY1OTNiNjkwNzRhNTE5NDY1YTA1YWU1MmM5OWRjNzRhZjBhNzQ5ZWY3YmM1NTNkOWI1MDI4YjQ2ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTIyZmFhNTM1YmQyZWEzZDUyZTc0MWVkNDU0NDM1YjdmZTQ5ZTgzNTg2ZTk0M2Q5OGQ4MmJiZmIyNGQxZjVjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjBmMjAxZWUwMzhjNTIwOTJlNzU5OTUyYTczNjkyZTc0NTMxMmFhYmFhYjE4NTc4MTEwMWQzMjIyYTE5N2FkNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTRkMDAyMDdhYTYzMDhhZTYxNGYxMWQ5YTU2NDg3YTZmZjJkMWMxYzA3ODJlMGI0MDNjMzYwOTBhZGM1Mzc2ZCJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L566-L578",
+          "version": "repo-lines-v1:sha256:82a299fe918c08e17951114060302e7f59459685aa6c071fca5464df485d6c3b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ1ZDVhYmFjYTIyNjgwYWU5NTMzNjcwMGRmNzY2MzYxOTdhN2NiNmMwMDRmNGNkNzlhYzFiMWZkMmYwYWM0YTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM1ZGM1OWY4YTcwNWM1YTYwYjdiOTY2MTA4OWQ2MWY0ZTdmYjliN2Y2YTdmZDg4NDBjMDIyYTIxZDViY2UzNjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU4ZDg3NDlkYjA1MGE4ZGE1OTVhYTk0ODI4Yjc5MjI5NzRmZDg4YzE5ZTU1MGU1YjM0Mjg0MjBlM2Y3OTRiZDYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_cdcc8c884cc44483a35a603f18a4d3d1",
+      "statement": "The file is a flat JSON **array** of `McpConfig` objects, not a name-keyed map. `loadConfigs()` returns `[]` when the file is absent or unparseable (a fresh profile is not an error), and `saveConfigs()` `mkdir`s the dsh home `recursive: true` then writes the array as 2-space-indented JSON. `read` finds by `serverName` (throwing `mcp server not found` when absent), `write` replace-or-pushes at the found index, and `delete` filters the array out.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L444-L457",
+          "version": "repo-lines-v1:sha256:28104dc9dc671e8d104ddb27cb7218a69063fbd7361be926f2dadeef47e8d394:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI3M2U5YzlkODA3YTNmMzc2YjcyMWU1OTYzMmQxNmY4ZTA1N2IwYjE0NmQ1ZmViM2UxOWFlZjc4NTRkOTE0ZmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxMzQ1MTgwMTA1YjBjNjZhNzdkYWQ1MWJiMzc5MDFhMzczMmM5NjU0YmE0ZGUzOTgxZjgxZTE4MTc1MjQ4YmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZmMjI1ZmZiNTc5MmU5NTRhYTViYzBmMDE0ODI1YzA0ZjYwOTIwOTE2MTQyODkxODgyOTQxZTQ0YTEzYWNhYTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImMwOWY4N2RlMTNhYjEwZTVmODYwNjUzYTg2MWJmY2MxN2MyMzExMmViYjQzMjNlZDMzOTUyMzdmMDdkNGYyYzMifQ"
+        },
+        {
+          "resource": "repo://src/index.ts#L500-L513",
+          "version": "repo-lines-v1:sha256:13054cfc2fb7851ae49b9384a50174612f39edf592e1ed86671bee16755e4646:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZjYjg4ZjkwNzA5YTQwY2FlNzkyMGNmMWUxMjkwOTFmZWMwYzAzNDk0ZTQxMjY0ZTQwYmFmNWRlMzJkZWEwYjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRmNDk3ZGQwZDdhYWYxOTFjZjVkOWIwYzdiM2QxNDYwYmJjNDAwMzYzN2ZjNzFkNDY2MTc1NDIzMGUzMzdhYjIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc2YzcyYTQ2NDE3NGVjNDg1NGFhYmM1YWRkZDkyZmQ3Mjc0MTI0YjA3Y2YzYzIzY2Q5YmQ4ZmVjNmNmMWQwNzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ1M2Y0NDg3MTFiNWVmMzlmZTYxOTIyYjE0YjhkNjgyMjJjYTEzOTk3YzJlZjUwMWQzY2QxMTk2MGM4NjZhZjUifQ"
+        },
+        {
+          "resource": "repo://src/index.ts#L527-L534",
+          "version": "repo-lines-v1:sha256:572b757ca1a7a5248f4b04b60aed72002b2727914249acb2ba9bca9d332032af:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiN2U4ODE1Njg1ZTY3OTMyYTE4MGE5OTYzYjMwYTljOGRmZjRkNjY5ODYwNDA5YzQ3MTFkNTAzMTkwMGZkNTdlMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzEzNDUxODAxMDViMGM2NmE3N2RhZDUxYmIzNzkwMWEzNzMyYzk2NTRiYTRkZTM5ODFmODFlMTgxNzUyNDhiZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmM5OTY1ODUwYWQ3N2I0NDEzNzk1NjA0NTQ0YTE0NTk5NmZlZmY1NWJiZGIzYTAzMjNmNThkYzdkNWRlYzZkNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjIzYzIyOTU5ZDUwNTYzNTY0ZjZkNDFhNjNjODZlMjMxNmIxNjg3ZjRmMGMwNzU3ODRiZDQzNGYyODU1NTcyMSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_31da0d2046954343a87bf350a319c382",
+      "statement": "The `McpConfig` shape discriminates by `transport: 'stdio' | 'streamable-http'`. `command`/`args`/`env`/`cwd` describe a `stdio` server, while `url`/`headers` describe a `streamable-http` server; all transport-specific fields are optional and only the matching branch is populated. The client `McpConfig` interface and the host interface mirror each other exactly.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/ToolIntegrationsView.tsx#L10-L19",
+          "version": "repo-lines-v1:sha256:7e8a018d728cd2c13a369ac3262cb8d39e198a7e0dc63d2f494d74780981f2a6:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgyMGEyZDE1ZmRhMmJhZDc2YTM3ZTc1YTM2ZTIyNzc5NDcwODdlZTgwYTY0MTBhMjVhMjc3OTQxNzJhZTgxZWIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFlMTUxYzNlMTdjMjJlMGVhYjA0MzllYzdjNWMxOGVmMGUwMzUyNjBkYWJmMWI3MGJhNzE0ZGFjN2M0ODdlM2YiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA4ZTkwZjEwMWMxMjRkZTdjYmQ3OWYxOGY5NTczMWNmMWE5YWMyNTE5ZDE1ZTQzMGMxOGExMjFiZDBmNDI1ODgifQ"
+        },
+        {
+          "resource": "repo://src/index.ts#L420-L429",
+          "version": "repo-lines-v1:sha256:7e8a018d728cd2c13a369ac3262cb8d39e198a7e0dc63d2f494d74780981f2a6:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgyMGEyZDE1ZmRhMmJhZDc2YTM3ZTc1YTM2ZTIyNzc5NDcwODdlZTgwYTY0MTBhMjVhMjc3OTQxNzJhZTgxZWIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJmMGQwMmUzYzRmNzFmYjJjMGE2MmI5NmZjZjNlZTBhOWNlNjZlMzMzMzYzNmQ4YmUxMjQ3Mjc4NmMzZDA1NzYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ3ZjNkOTAwMjA4MDQyNjhkNGZjNTVlYmRiZjM4YzljZGYxZWMwMzUwYzY2NzhiZWY0MjlkMjZmMWM4MDc1N2YifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_edc19f4e7c924a498792eb8d32fcff76",
+      "statement": "`entryFor(cfg)` turns a config into a loader entry with a deterministic id `mcp-<serverName>` and `name: '@deepseek-ai/dsh-mcp-client'` (the `MCP_CLIENT` constant), passing the original config (minus `serverName`, re-added as `serverName`) into the entry. Because the id is derived from the serverName, the `mounted` map's key/value pairing is self-consistent and the hot-replace's remove-then-create is predictable.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L418-L418",
+          "version": "repo-lines-v1:sha256:928aeba594dd316c9db6449404696aee8fd8c564c73780e18b5a197a8c5b6f75:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTI4YWViYTU5NGRkMzE2YzlkYjY0NDk0MDQ2OTZhZWU4ZmQ4YzU2NGM3Mzc4MGUxOGI1YTE5N2E4YzViNmY3NSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTI4YWViYTU5NGRkMzE2YzlkYjY0NDk0MDQ2OTZhZWU4ZmQ4YzU2NGM3Mzc4MGUxOGI1YTE5N2E4YzViNmY3NSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNGNmMjY4ODRhNzQ2MDFkNTgxNWY4MTRiNjRlMTBiYzk4MzI1YmYwYTUyNDI5ZDBiOGE5NjdmN2M3NmIzNzVjNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWIxZjRiMTY0Mzg1NDEyOWYwMWE3YjE1MzczOTkxMzQ0NDk0MTNjNWU1MGMxNDgwNjA0ZDBlNGI2YWRiYjE1MiJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L474-L481",
+          "version": "repo-lines-v1:sha256:835ad5d11a85fdb1a07b53ab62a80cedf95d5549e7111a3f38644991d5af9bd7:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiM2FhYjMxN2QxMWFiNmI1NWNhODZhZjUzMzViMjY0OGZhNWU3NjgxNjczNmVhY2ZiYmY0MjA4MmU0ZjA3MTY4NiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzEzNDUxODAxMDViMGM2NmE3N2RhZDUxYmIzNzkwMWEzNzMyYzk2NTRiYTRkZTM5ODFmODFlMTgxNzUyNDhiZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNTg1MDhiNmNiMDU4OWFiYTc1MDMyMDJkZTJjOGY4N2VkOWIxOWNkNTg2NTNmZDAxYTNlNjc1ZTNhYjdiNTk2NyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNmY0Mjc1YmU0YTlkZmRlYzNmN2ZiYWYwOWZiNmZmMzQ1ZDJiOTc4ZGRkZThlOGMyOGI1Y2QxOWQ0OWFjNDIxNyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_360aa766eba14e3b9523e36a59129ead",
+      "statement": "Startup mounting is non-blocking: the `ToolIntegrationsGateway` constructor fires `void this.mountAll().catch(() => {})`, so construction never waits on loader creation. `mountAll()` loops over loaded configs and each `loader.create` is wrapped in its own `try/catch`; a single failing mount deletes that serverName from `mounted` (so it shows `mounted: false`) and continues, so one server failing to mount does not fail the others.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L437-L442",
+          "version": "repo-lines-v1:sha256:81603ae47b06dc8a3251d181d550186b6c7f42847948e3748a55d88a68cca783:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzcxMDRhMzUyMTE2ZjliYTU5ODQ1NjUwMjc0YzJlMzdkZGI4NDQ1OTkxMjg5YjJhNzE3YjY4NjA1MTVjYmUzOCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzEzNDUxODAxMDViMGM2NmE3N2RhZDUxYmIzNzkwMWEzNzMyYzk2NTRiYTRkZTM5ODFmODFlMTgxNzUyNDhiZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMGUxODUxOGE5YTg2Mjk2YjE1MWZkYWQ1YjJkYTljZWU1NGRiZTAzYjQ3ODkyMWIwMTMxZThjNGM1OTVjZTE1OSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTZiNDA2MDUyNmI4NTgxMThmZDA4MzliMWJiZDg5MzYwZGYzYTUxMjk0ZDVlYzcxOGZmODI4ZTgzODJhOTljMCJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L460-L472",
+          "version": "repo-lines-v1:sha256:909e823506b427df3e879f76efbb344a20aac4e3901113e04bb35e4b93f06f6b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk1ZGZhODdmZTgxYWMxOGUxYTcxYWI1OWYyMjAwYzg4NmQ4NmU1MjMwNmYxNzg4ZmUwNzFjYTZlZTYwNmM5Y2QiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxMzQ1MTgwMTA1YjBjNjZhNzdkYWQ1MWJiMzc5MDFhMzczMmM5NjU0YmE0ZGUzOTgxZjgxZTE4MTc1MjQ4YmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE5MThhNTk3NTgxNDI3NWJjNDVkOGExZmRhY2IwZmEzYzE3OTYzNTkzN2NkNTc1YjJlYTBjMDllYWUwMDRhNzUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYyMzhkMmUzZGI3NDI0ODgwNDRlOTE2ZjQwNjQwYzhiMTIwOGNkOWUxNWMwNjVhN2NmYjY3NDBiOGZiOGNjMzcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d9ece6686f4548f9afb8a8a86b0fc45e",
+      "statement": "`write()` performs the live hot-replace: persist the config first (replace-or-push then `saveConfigs`), unmount the old entry via `this.unmount(serverName)`, then `loader.create(this.entryFor(config))` and record the new id in `mounted`. The new mount is isolated in `try/catch`; on failure the serverName is deleted from `mounted` but the method still returns `{ serverName }` — the save succeeded and the disk config is authoritative, so the failure is surfaced through the `mounted` flag rather than as a rejection.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L508-L525",
+          "version": "repo-lines-v1:sha256:0906ae9e7e1d09183c686c9c1f23f353b6fec01cae95a94211aed8617acfbf19:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVmMWI3OWFiYWI1ZGE2OTNlMmExYTRkNGQ3ZDU5YmMyMDgxMDlkMTM4Zjg3ZTkyMzA4ODdhM2E0M2Q2YmYyNzEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxMzQ1MTgwMTA1YjBjNjZhNzdkYWQ1MWJiMzc5MDFhMzczMmM5NjU0YmE0ZGUzOTgxZjgxZTE4MTc1MjQ4YmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhjOGVjYzM3YTM1N2U3ZThmOGNjZTk0ZDY2MzQ0ODVmYzZjNzczZjM5ODQ4NDJhNzMxNGQ5YmVhNmMxMzFhNWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImExMDdkNjcyNzIwNjQ4N2IwZTZmMzQwYTVlYjA1YTkyOTBiMjY1OTdjMmMwNWIwNjA4M2RmMmJhYzZjNjQ2MTIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_15abe0aae8d243ada7f36febb0dfbb55",
+      "statement": "`unmount(serverName)` uses a `try/finally`: it looks up the mounted loader id and, when present, calls `loader.remove(id)` inside `try`, then unconditionally `mounted.delete(serverName)` in `finally`. This guarantees the `mounted` map never retains a stale id even if `loader.remove` throws.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L483-L492",
+          "version": "repo-lines-v1:sha256:b26ede0bbc245cc9b20dfb96ebec2c0ab2ceb075e8da2fdb3e7d37865927ee6e:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYyMjdkMmFmYjljYjI2NGVhMGFkMTUzM2E3ODVkMjE5OWM1MGZlYjRjMjlmMzBkODhmZDFlOTQ5Y2NkNTJhZjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxMzQ1MTgwMTA1YjBjNjZhNzdkYWQ1MWJiMzc5MDFhMzczMmM5NjU0YmE0ZGUzOTgxZjgxZTE4MTc1MjQ4YmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU4NTA4YjZjYjA1ODlhYmE3NTAzMjAyZGUyYzhmODdlZDliMTljZDU4NjUzZmQwMWEzZTY3NWUzYWI3YjU5NjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc1OWIzNTlkZWQwODdhMDAzYjMxNzM4MjA5ODNlZTE2MzZhYzNjYjdiODM5NWE1ODU3YjYxY2YyMjU1ODZlY2EifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_15b29572ce8d40a9b5276080462213fb",
+      "statement": "`delete()` removes the config and then unmounts the live entry. Because `unmount()` is a no-op when the server was already unmounted (no id in the `mounted` map), the loader side of `delete` is idempotent; the view confirms with `window.confirm(...)` that the server's tools will immediately become invalid.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/ToolIntegrationsView.tsx#L149-L162",
+          "version": "repo-lines-v1:sha256:385cc2f3e0d2298ba46bf3fb614a1a5a0c433605b167269875f06221d3f473f0:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYzYjllMWE3ZDQ4YzkwM2VjYTEzMjViZTc2NDRiZmEzNWUyYTRmMzE5NGU0NDk1OTY4MTkxYTBjMDUzZjNlZTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjljYTJjOTk1NjkyMmQzOTc4NTdhMzQyMThmNWM0OTZmNTgzZjAyMWVmNWQyMDlhMzE1ZjAxMDBlNzgyMTIwOTUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkzNDBjYmZhNjQzY2RhZjk0ZjZlN2IzZjlhZTExNTY0MjlhYmZhOTVkYzFjMzRlNDlkMzA5YjFjMDAyMWFhYmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRiZTdhYjAwMjM2MmQ0ZDhjODdmNTNjNTA4OGUxYmE3ZGYyZjE2MjIxYmUzN2MyMjExZTY2NjJkZTAwZTdkZjAifQ"
+        },
+        {
+          "resource": "repo://src/index.ts#L527-L534",
+          "version": "repo-lines-v1:sha256:572b757ca1a7a5248f4b04b60aed72002b2727914249acb2ba9bca9d332032af:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiN2U4ODE1Njg1ZTY3OTMyYTE4MGE5OTYzYjMwYTljOGRmZjRkNjY5ODYwNDA5YzQ3MTFkNTAzMTkwMGZkNTdlMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzEzNDUxODAxMDViMGM2NmE3N2RhZDUxYmIzNzkwMWEzNzMyYzk2NTRiYTRkZTM5ODFmODFlMTgxNzUyNDhiZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmM5OTY1ODUwYWQ3N2I0NDEzNzk1NjA0NTQ0YTE0NTk5NmZlZmY1NWJiZGIzYTAzMjNmNThkYzdkNWRlYzZkNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjIzYzIyOTU5ZDUwNTYzNTY0ZjZkNDFhNjNjODZlMjMxNmIxNjg3ZjRmMGMwNzU3ODRiZDQzNGYyODU1NTcyMSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_39031c393d8f43c1bf9dc58e897f1394",
+      "statement": "On the client face, `registerCapabilityViews` builds `mcpApi` by wrapping each `ctx.remote.toolIntegrations.<method>()` call in `unwrap()` (which collapses the `{ ok, value } | { ok, error }` envelope and throws on `ok: false`), then injects it into the `conversation.view` slot row with `id: 'tool-integrations'` and `order: 40`. A host failure such as `read('not-present')` thus surfaces as the view's inline error.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/index.ts#L107-L112",
+          "version": "repo-lines-v1:sha256:d528613fe2cc898176982dd572d8f64f64ed1decd2474662b39e5c5e2cd656ea:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDc4YzM1M2E2MzI2MWExM2NmYWMyNjJkMGE0MmM3Y2VjNGQ2NzZjNjEwYTAxMjYzY2VmZTk5OWFlZjUzZGRhMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzEzNDUxODAxMDViMGM2NmE3N2RhZDUxYmIzNzkwMWEzNzMyYzk2NTRiYTRkZTM5ODFmODFlMTgxNzUyNDhiZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODBkOThiNDU2YWNlMmFmNmJjNDM2YWQ3MzIxMGRkMmEzZjcyNmIyYWM5NmMzYWUxNDMzODE0YzliYmVlMjEzNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZWQzZGUyN2NmYWZmMzM0ZTkwNWU1YmZkZTliZGJkNDYyM2ZmZWVmNmMwYTJkMDhiMzdiNjAyNzc3MjAxMTEyZSJ9"
+        },
+        {
+          "resource": "repo://src/client/index.ts#L129-L136",
+          "version": "repo-lines-v1:sha256:b5c5771f6ffe35a2022d2da746973812e9086bf3e04bcb21c3a491f011bfe71f:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2UxYzA1NDNlMjJlYTQ4NTA2NzQ0NGVlOTQzMDg3YWZkOWUyMjAyMDM2YzdkMzFkOTUxNTFiMjIxMzgwNTE3YSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNjgwNTI5ODQ5MTE2ZjM1ZWViMjYyNzNhZDg4NGY2NGJjYTY3M2FmMzU5NjViM2JlY2I1OWRlMzgxZmY3NTNkYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjZmOTMyZGMwYWM1YWNhM2NiMGE5MTQwOGUwZDNkZWZjYWY3OWI3MDUzZTI1OGMwMDVkZjNkOTE0NGUwNDBlMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjlkNTM3N2Q0ZmRlYzgyZWMwZDgxNjc5ZjBhNjM5NjM4NzI5YWM5MmMxZDUyM2FjYWUzMDc5YzMxZjEwOGI0NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_97a2c51819ac4e1ebb06bb783f733872",
+      "statement": "The client `toolIntegrations` namespace follows the same load-order constraint as the other namespaces: the `TYPERT_REMOTE` manifest must be `$mount`ed onto `ctx.remote` before the child plugin that injects `remote.toolIntegrations` runs. `apply()` mounts the manifest first, then defers capability-view registration to a child plugin whose inject list includes `remote.toolIntegrations`.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/index.ts#L182-L182",
+          "version": "repo-lines-v1:sha256:4c38180d118b27b2919c5fec85aacf8080faa93da7522f34006fae9fc6ef62d4:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNGMzODE4MGQxMThiMjdiMjkxOWM1ZmVjODVhYWNmODA4MGZhYTkzZGE3NTIyZjM0MDA2ZmFlOWZjNmVmNjJkNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGMzODE4MGQxMThiMjdiMjkxOWM1ZmVjODVhYWNmODA4MGZhYTkzZGE3NTIyZjM0MDA2ZmFlOWZjNmVmNjJkNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTVlY2M0ODdlNjg3YWM1ZDMyNjIwZTZjOWMyYmNkNzg5ZGFiNjczMDA1NTJiZmIxNGQ4N2JlZDc3YTMxMDFmYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjEwNzBmMTQ1MzdlYmE2Nzk2ODg3ZmQ0MDRlZjUyOTFjZWQ3OTBkM2I5YmZlMDhjYzU2N2U4YzEzNDJiY2UwZCJ9"
+        },
+        {
+          "resource": "repo://src/client/index.ts#L222-L228",
+          "version": "repo-lines-v1:sha256:aefa12d98df084b9c1aa2d7aaa08bdd7e65773cfa23d34862b9073c804e46a26:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzFjN2I5ZDg5Y2U0YzBhZjVkM2Q4ZDdjNjU3MjY1ZmU4YzlhZmU0NGQzYmYzY2UzZDlmZWNhYzMwZjBmYjE1OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2JiNjVjNDI4OGNmNzllN2RlNGU2OTQ1ZDM4N2RjZWJmOGJhNTA5MTk4NWRlYzFhMjczZjNjNWY1N2FjMGM2MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWIwNGIyYjU5MWFkMDZhY2FiYWI1ZTliYTEyM2U3MmY1N2MwYjNlY2VjMDU0ZDc3ZWUyZTM3Njc5ZjBiNTdhOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmM4YWIwYzczOGRiOGFjZmYxNjJkNzFhMGIwYTU2YzdiOTdlODk2MDY4ZWIyZTZjNDIyNTk4Mzc1NjMzMzdkOCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_7d77949db1504f7a85e506c25ea6ea9b",
+      "statement": "`ToolIntegrationsView` validates the `serverName` against `/^[A-Za-z0-9_-]{1,32}$/` before saving (bailing with an inline error otherwise), builds the `McpConfig` with only the transport-matching fields (splitting `args` by newline, parsing `env`/`headers` as key=value-per-line via `parsePairs`/`stringifyPairs`), and keeps the `serverName` input read-only while editing so the replace-and-mount in `write` keys off a stable identity.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/ToolIntegrationsView.tsx#L114-L147",
+          "version": "repo-lines-v1:sha256:0eb2e5905e4eff558e4c0dfae8fce01171a7aa35f396125d64ce71b2354e0841:eyJzZWxlY3RlZExpbmVDb3VudCI6MzQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFjNjViZjAwNDAwN2QzNWEyZmU4NTIyNGI1MzUwNDVkNDk1ODg3Mjg2YmZmOTMyMjQ5NTU1ZTI5ZjA3MGE1ZWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMyZjMxMWFmYzkyMjJmNGM2NTI3ZWI4MTI5YTk2MWVkNmY3MGY1ZTI5MzU5MDUzZWMwZDA4YzYyOGU0ZTRhYmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE2ZGIyMGEzZTFmYTQ2Njc3ZjkxNjhiZGE4NzU1MWQ0OTQyNzhhZTdmM2IxOTZjNzU5N2RkNzI1ODg2YTY3MjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE4Y2YzNWRiMTA5ZmNiYzEzMDI0Y2Q1ODk0ZWMyYmZmZTZjNzNjZWI0MDZiZjU5NjVjYTUzMDdiZDMxZjE1ZmUifQ"
+        },
+        {
+          "resource": "repo://src/client/ToolIntegrationsView.tsx#L203-L203",
+          "version": "repo-lines-v1:sha256:af50b8c2f981ca75536130d02626ee458ed67f41a6c9c69f85bda918b1b77074:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYWY1MGI4YzJmOTgxY2E3NTUzNjEzMGQwMjYyNmVlNDU4ZWQ2N2Y0MWE2YzljNjlmODViZGE5MThiMWI3NzA3NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYWY1MGI4YzJmOTgxY2E3NTUzNjEzMGQwMjYyNmVlNDU4ZWQ2N2Y0MWE2YzljNjlmODViZGE5MThiMWI3NzA3NCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiY2ZhYmRhMTllOWM2MTIzYzI3ODA3YjcwYTJhNjkyNjZlZDQwMTQzNWMxN2ZmNTg3YjY0ODJhNzEwNmU1YWNhOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDAwNjE1NTI5Y2ExOGViMzA1MDcyODJlZGI4ODI4OTI2ZGYyMmI2ZTk3YWM3MmQ2OTFlMWI0ZWViZjJkYTA0NSJ9"
+        },
+        {
+          "resource": "repo://src/client/ToolIntegrationsView.tsx#L36-L52",
+          "version": "repo-lines-v1:sha256:823d9f15f2e4aec3b13cfb6a5a7b80880324c44a179c408115f709bcc4de1884:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU4OTc4ZjZhYTFlNDRmMDRjZTY4N2VkOTRhODE2MGU1ZDlkM2U0ZWMxNWQ0YWU3NTEzM2FkMzIyNWQyYzc3MDQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE0NDllMzVmZTRhY2I4NDQ5NWJhNTU1ODIzNGNiNTFkZjljNjQ3MWVkMDM3ZjZiYjUyYzNlZDI4Y2I5OGNjNWYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImIzMzExM2UwMTU4NzU2YjEzZGFkM2MxMjUwMzE2ZmQ3OGI5YjkxYTRjNDRkNjZjYjU4MzRjOWNjMWE0MjY5YjYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_aed34594d56543b0aee92ba405071531",
+      "statement": "The sidebar list renders liveness visually with a per-server mounted indicator — `已挂载` vs `未挂载` — driven by the `mounted` field that `list()` returns, so the user can see which configured servers' tools are actually available to the agent. `save` and `remove` both `await refresh()` after the RPC so the sidebar reflects the new mounted state.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/ToolIntegrationsView.tsx#L139-L161",
+          "version": "repo-lines-v1:sha256:8c9661534f6ee2461bca559b2a2898d83d19a573a84efb62a20f1d13568f0230:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkNDViOGM5ZmU5Y2NiNzBiZjk3Y2M2MWUzOWRiYzU5MDhmMmY2YzJlYzk1ZDQ5M2ZiYzk4YzQ5OTVkMzg3ZmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE0MTlhNmRjYzA0ZTIxM2EzYzdhNzdhNDU2YjAxZTc2ZDFlZjc4Y2QwMGJiZWMxZDhmODE0NThmZTkzZWRjNTYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFjYTZhYzJkMzY3ZWZiZGZmZDFlMjI0NTRmMWJjYmQ1NGM4NzQ2MjU0NDE2OTI4NWZlOTM2ZWQwZmU4ZDU5ZWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA5OTMyZjQ4YzkwNmMyOGQ4NDNiZGY3YmU2MDdmNGE1Y2E1NzEzZGQwYmQ2NDIwMzRkYmJjZDEwN2M3MzExNmMifQ"
+        },
+        {
+          "resource": "repo://src/client/ToolIntegrationsView.tsx#L183-L191",
+          "version": "repo-lines-v1:sha256:1106b416e1da2d467cba7d68efd88a70c70b3cf980a4e480249a0a70458a3c0f:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTBiOTYyMGE0YzI5YjIwYmMyZjQ2NmQwNGM2MmY5ODIzMmMzYjc0OTFmZmExZGFiMTcyMDRkZTI1MmZkMWVkOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTE1YTA4NTNkMmZjMjk0ZGY3NWUzZDdjZDQwODk5OGI4Y2ZkNzYzNDYyZWUyYTZhNzFjNGJjODFhNzc0YjkxNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWIzMjE3ZTZhN2UxOWEyZTk1MjA5OTZiZmVlMzMyMjdmNmU5YzJhZGY5ZDdlYTQ3ZjQxZjhmNjM5OWY1MjE1YSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjhiYmI2MzgxYzRlYmZkNDZmMjA4N2Y3NThkYWMzMzIyNjgwMDRkNzY2ZTVkZjY5MTk3NzZhOGFkYWQ5YTQ3NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_1f050f57a878459da87f82de5138e52b",
+      "statement": "The remote wire codec `mcpConfig` mirrors the host `McpConfig` shape: `transport` is `z.enum(['stdio', 'streamable-http'])` and `command`/`args`/`env`/`cwd`/`url`/`headers` are all `.optional()`. The list item extends the config with an optional-free liveness flag — `mcpListItem = mcpConfig.extend({ mounted: z.boolean() })` — so `list` results cross the boundary without needing the `compact()` de-`undefined` stripping used by the lifecycle path.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/remote.ts#L62-L75",
+          "version": "repo-lines-v1:sha256:4b9536bce56f0dad6d2c5ea8bbddc54e1e080b4eed997929c89d56c87bb581c2:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRiY2RlMDQ3ZjljNTgzM2UxNzM3YTk5ZGI4YTlkNGY0ZmNkOGI1ZjViN2IyOTkyYmE5Yzg0NmZjODE0MzE3MGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlhODg5NTM3ZDFiNzM3OGMyNWU0NWM1YTk0ZDZmZTE1ZDFhMjkyYjFlOWFiNWU3MjQ2Nzg5ZDNhZWIxMmU1OGEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzODJhZWRmMTgzZTQ3N2I1MWJkMGMzNDEyZDYxMzQ3M2VkMDVkZmU1YzM4M2M1ZTk0ODI0NmM5MDhmNmUxMWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImMwMmVjNGFlMmU5NzMzMmQ0YTU5ZTg5ZTk3OTE3NmJjYzRmMjJmNWY0NDA3MTZiNWI0ZWE0MGIyNTg2NmU1YTEifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-03T02:25:20.569Z"
+  }
+}

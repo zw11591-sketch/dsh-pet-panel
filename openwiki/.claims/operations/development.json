@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:cb7d2a3bdc5be3e33ceaa3ed8dc1de5771b0876bea337f6382cb5d21ad7d68e5",
+  "claims": [
+    {
+      "id": "claim_b9d547b88cfa425bac0b826928d2a564",
+      "statement": "The tsc type gate (`pnpm run typecheck` → `tsc -b --pretty false`) requires the DeepSeek Harness checkout to be a sibling of this repo, because the source imports `@deepseek-ai/*` packages whose typings come from the harness tree; without the sibling layout the composite project build cannot resolve them.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L47-L58",
+          "version": "repo-lines-v1:sha256:bcb7120e9bdd31682e1846aa136c7d162aa43aae7e27224f198d0e9c7161fa66:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjViYTRhYzg5M2IzOWQ1MTQ5OTg0MzRhOTY4NzIyYjdjM2VhMTMwNWY2YjY5ZGNlMGNhZWE2NmNmMzkzMTQ1ZGQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJmNTc2ZjE5MDEyODIyMzQzYWUwMDI4MzU0NDM0N2VlY2ZlNTg3NjI1ZGNmNDQ2MDAyNzc5OGZkZDYyOWEyNzMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI3ZjMyMDE4MmVhOWIxMGEzYTUxNDk5ZDliNWM2NzM5MWExNWNmYjVhZjQyMTkwZjFhY2I1NjIyNjU1YWFiMDkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjczZjIzMzM0NGE0OWQwZTE3M2U5NjBhZDZjMjZhNmJkOWJmYjEzMmQ0NDJhZmE3OWM2ZjIzYjFlNTg5MWM2ZDYifQ"
+        },
+        {
+          "resource": "repo://package.json#L22-L27",
+          "version": "repo-lines-v1:sha256:c1bf62b4560e90bc0a534eeb7543dd378224b1bdb17ccb630fecdcc7e022843e:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzQ4MzNkNTk0OWMwM2E0MGNhOTUyNDkxNjEwYTY2NTk2NDRiM2FhNDY2MzYyZjc5OTAyMGRiZjE5ODE1NDdkYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGQ1Y2QyZmI0ZjNkZjg4NDUxNTI1NWIzOTUyM2YyZjhiNTQ3MmJlZWE5ZjU2NmZmY2EyMDRkYjgwMjU2MTA0MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWNlNTAxMzE4ODBmMzQ5NzIyNjBiZDQ2MDI4NGM5NWE5NWMwNGU2ZThkN2I0YzcwNGEwNmViMDQ3MGIyZjkzNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDA3MzVlZGE1NWNkZmY4ZGNlYzQ0ZDU4MGQ3MGQyYzI1MGRkZDMzMTM4ZTZjMWMzZDE1YjZjMWU4MDU4MGY4ZiJ9"
+        },
+        {
+          "resource": "repo://tsconfig.json#L16-L21",
+          "version": "repo-lines-v1:sha256:f63022e5b83432ace02cc67d15e536bcbf6c34eea097b1a4a05cb0599ca89044:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDU0ZTM4NzczZGE2NDBiOGQ4OWZkYzBhNTQwOGUyYzhmYjVhZTc1MzRjNTdlMjVhODE5NTBiNjkzODFhMWRjOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMWYzNjE4YjM2OWQzNWE3YWExYjY3NDkwOTBlZTUxN2NiMTRlYjhiMGMzNWIyYjE1NmUyODZmMTdlMGEzZjE1YyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiM2U5Nzc2ZTYzOTkxZTYzOWE4NzVkZDE3NGI5MGUzY2IzZWRjMjM5MzhiNDU3NWYxZTM4MmZhMmRhZmRmZmRiOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjdjOGE0N2MzNTUwMjhmMmNmYzIwNjIzOWRjM2Y0MWE5MmIwZTliZmU5MGRmMjdiNjk5NjI5NmU0NmUxNmVlMSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_85bb4d3e3965493b9f763d40586f922c",
+      "statement": "There is no repository-authored automated test suite: there are no `*.test.ts`/`*.spec.ts` files in `src/` or `scripts/`, and no `vitest`/`jest` config; the `*.test.ts` hits in the repo belong to `node_modules` dependencies. Verification of a change is the type gate (`pnpm run typecheck`), the build (`pnpm run build`), and running the loaded plugin.",
+      "evidence": [
+        {
+          "resource": "repo://package.json#L22-L27",
+          "version": "repo-lines-v1:sha256:c1bf62b4560e90bc0a534eeb7543dd378224b1bdb17ccb630fecdcc7e022843e:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzQ4MzNkNTk0OWMwM2E0MGNhOTUyNDkxNjEwYTY2NTk2NDRiM2FhNDY2MzYyZjc5OTAyMGRiZjE5ODE1NDdkYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGQ1Y2QyZmI0ZjNkZjg4NDUxNTI1NWIzOTUyM2YyZjhiNTQ3MmJlZWE5ZjU2NmZmY2EyMDRkYjgwMjU2MTA0MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWNlNTAxMzE4ODBmMzQ5NzIyNjBiZDQ2MDI4NGM5NWE5NWMwNGU2ZThkN2I0YzcwNGEwNmViMDQ3MGIyZjkzNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDA3MzVlZGE1NWNkZmY4ZGNlYzQ0ZDU4MGQ3MGQyYzI1MGRkZDMzMTM4ZTZjMWMzZDE1YjZjMWU4MDU4MGY4ZiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_87bdb3c14bad4e15baed07a23152a7e4",
+      "statement": "`pnpm run build` is a transpile-and-emit chain that does NOT type check: it runs `tsc -b && tsdown && node scripts/postbuild.mjs` to emit `lib/index.js`, `lib/client.js`, and the `lib/types/` tree; `pnpm run typecheck` is the separate type gate.",
+      "evidence": [
+        {
+          "resource": "repo://package.json#L22-L27",
+          "version": "repo-lines-v1:sha256:c1bf62b4560e90bc0a534eeb7543dd378224b1bdb17ccb630fecdcc7e022843e:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzQ4MzNkNTk0OWMwM2E0MGNhOTUyNDkxNjEwYTY2NTk2NDRiM2FhNDY2MzYyZjc5OTAyMGRiZjE5ODE1NDdkYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGQ1Y2QyZmI0ZjNkZjg4NDUxNTI1NWIzOTUyM2YyZjhiNTQ3MmJlZWE5ZjU2NmZmY2EyMDRkYjgwMjU2MTA0MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWNlNTAxMzE4ODBmMzQ5NzIyNjBiZDQ2MDI4NGM5NWE5NWMwNGU2ZThkN2I0YzcwNGEwNmViMDQ3MGIyZjkzNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDA3MzVlZGE1NWNkZmY4ZGNlYzQ0ZDU4MGQ3MGQyYzI1MGRkZDMzMTM4ZTZjMWMzZDE1YjZjMWU4MDU4MGY4ZiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_b06050fd147f4af8948284dc9944956f",
+      "statement": "`pnpm run watch` runs only `tsdown --watch` and does not re-run `tsc -b` or postbuild, so after editing the host face (`src/index.ts`) the rolldown-emitted `lib/index.js` is not re-overwritten by postbuild; a full `pnpm run build` is required before loading the host from a fresh src change.",
+      "evidence": [
+        {
+          "resource": "repo://package.json#L22-L27",
+          "version": "repo-lines-v1:sha256:c1bf62b4560e90bc0a534eeb7543dd378224b1bdb17ccb630fecdcc7e022843e:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzQ4MzNkNTk0OWMwM2E0MGNhOTUyNDkxNjEwYTY2NTk2NDRiM2FhNDY2MzYyZjc5OTAyMGRiZjE5ODE1NDdkYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGQ1Y2QyZmI0ZjNkZjg4NDUxNTI1NWIzOTUyM2YyZjhiNTQ3MmJlZWE5ZjU2NmZmY2EyMDRkYjgwMjU2MTA0MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWNlNTAxMzE4ODBmMzQ5NzIyNjBiZDQ2MDI4NGM5NWE5NWMwNGU2ZThkN2I0YzcwNGEwNmViMDQ3MGIyZjkzNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDA3MzVlZGE1NWNkZmY4ZGNlYzQ0ZDU4MGQ3MGQyYzI1MGRkZDMzMTM4ZTZjMWMzZDE1YjZjMWU4MDU4MGY4ZiJ9"
+        },
+        {
+          "resource": "repo://scripts/postbuild.mjs#L13-L18",
+          "version": "repo-lines-v1:sha256:1d60725b27daefddf478d081a0b78b8b25456390b91be8cefe5b626ac6fe5d74:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTY1NmVjNWIzMzA3ZmM5MDNjZTk5YjBkNjdhNzUxNjQ3MmU2YmJjYjU1OTI1NzVjZmZhYmFiOGFjZDgxM2UyZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODI0ZTc4NDIzNjU1ZmQwMDliNzVhNTEzYzgwNjU0YTQ4NDcwMWRiNzVjZWI0ZGM5MDAwNWQ1OTJhNGRlNjZkMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMWEzOWVjNWY1MzczZmViMTY1ZWIyN2JjNGUwNzI1NGFmYTI3MjgxZjU2MmU4NTk4OTgyNjJhYzM5ZDc5NjAyYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjEsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDc5YzdlMTU5Y2U3Yzg1NjVhZTcwZmIzNThjNTExYzFhNzk3MDVlNTMzYzBkODYzYTE5MGRhNDMzYjYwNGMxMSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_3ab62de8017c466184c7901b82016c4e",
+      "statement": "The `prepare` script (used by git-source installs) runs `tsc -b && tsdown --config tsdown.prepare.config.ts && node scripts/postbuild.mjs`; unlike `build` it uses a lighter libExternal set (only `@deepseek-ai/dsh-typert-protocol` and `@deepseek-ai/dsh-home-paths` external) because a git-installed package cannot rely on the sibling harness checkout for tsc project references, and types are deliberately not checked there.",
+      "evidence": [
+        {
+          "resource": "repo://package.json#L26-L26",
+          "version": "repo-lines-v1:sha256:25e40697cd4cb81df7376fa83ddfba212a0c1863c34f2d8231b3486f2a64bb85:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjVlNDA2OTdjZDRjYjgxZGY3Mzc2ZmE4M2RkZmJhMjEyYTBjMTg2M2MzNGYyZDgyMzFiMzQ4NmYyYTY0YmI4NSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjVlNDA2OTdjZDRjYjgxZGY3Mzc2ZmE4M2RkZmJhMjEyYTBjMTg2M2MzNGYyZDgyMzFiMzQ4NmYyYTY0YmI4NSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWI1YWZlNjE0OWU1MjJjMTA3YjQ3ZmJlY2I3OTZhNzc2ODVjZGU1Mjk5NTg0NzFmNzY1YTA0NmExY2MxOTVjNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDIxNjk3YjgyYmVlOTBjMTk3ZjY2MDRjNmM4ZWNmOWMzM2QxMDBjZDgxNDAwYjdlMDRhYTk3ZjYxNDVlMzkxNiJ9"
+        },
+        {
+          "resource": "repo://tsdown.prepare.config.ts#L1-L17",
+          "version": "repo-lines-v1:sha256:9f2079f8c1e148b74858634e305faba86d2b0611b8d932f0aaa0b247570fa24a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQwMDdiZmY3NmIwMjUxOThiMzY0NDk1ZjYwODJiM2VjMWFiYWFmOTU4ODQ2NTg3MWM4NDg4MjNkODI0YTBmNGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg1ODBiNzY1MThkYWU5NzlmYWViZDAyMzY3YTI5MjkyYTUwZDk3NjA5MjI1MWEzOGE2Y2UzMDg4MGJhNDI4MjUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_718fd3d54377427fa8a50e2d882d4c6f",
+      "statement": "A git-source install (`dsh plugin --profile web add github:zw11591-sketch/dsh-pet-panel`) triggers the package `prepare` script, and pnpm >= 10 blocks that build until the exact package key is added to the profile's `pnpm-workspace.yaml` under `allowBuilds` (e.g. `allowBuilds: { dsh-pet-panel: true }`), after which the install builds `lib/index.js` + `lib/client.js` from source without type checking.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L26-L43",
+          "version": "repo-lines-v1:sha256:468188fa77fefb41ca004e6a84c4df09bd42d5400054194135edc9992d84b3f3:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRjNDNmYjg5ZGQ3MTM5MTcwNmJiNjU1MzM3MTM5YWU2NmFjMTBmYWNjNDI2MmJjZDI0OGMyMjljZjBlMjVkMDUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY5MTU5Y2EwZGNkYTJmOWY5ZDU0OWJlOWFkMDM2M2MxNzA2M2Y0ZGMyNWY1ODM5ZGYzYzgyZjI0NDljN2MyYTAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM3N2Q3MDJiMGE5ZWI2ZjBmNmY0Mjc0MjFkMmY1ZGRmYzNlM2Q1NWQzMWUxZmJiN2U1MzI2YWQxZWQwOTE3ZGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI3ZjMyMDE4MmVhOWIxMGEzYTUxNDk5ZDliNWM2NzM5MWExNWNmYjVhZjQyMTkwZjFhY2I1NjIyNjU1YWFiMDkifQ"
+        },
+        {
+          "resource": "repo://package.json#L18-L18",
+          "version": "repo-lines-v1:sha256:ba0f1512de239f4f217e6cd44bfcb38138d45f4459c65837b37077ac1b2eb44a:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYmEwZjE1MTJkZTIzOWY0ZjIxN2U2Y2Q0NGJmY2IzODEzOGQ0NWY0NDU5YzY1ODM3YjM3MDc3YWMxYjJlYjQ0YSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYmEwZjE1MTJkZTIzOWY0ZjIxN2U2Y2Q0NGJmY2IzODEzOGQ0NWY0NDU5YzY1ODM3YjM3MDc3YWMxYjJlYjQ0YSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDJhOTkwY2I5OGJiMTVhYzA5MTMxYTU3ZjhiODUyZDBiNzA5MjA0Nzc4MGFkZmYxZGRmZmQ5ZWViZTU1N2YxNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWNlNTAxMzE4ODBmMzQ5NzIyNjBiZDQ2MDI4NGM5NWE5NWMwNGU2ZThkN2I0YzcwNGEwNmViMDQ3MGIyZjkzNCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_276e80764b664f2a84297fdae942a9cc",
+      "statement": "From a local checkout the dev loop is `pnpm run build`, then `dsh plugin --profile web add file:.`, then `dsh --profile web` to load the mounted plugin.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L61-L67",
+          "version": "repo-lines-v1:sha256:f992cba7534bbd87ca1f3e1e3ccb35ca5635f4412c4f3eb85070c2e70a760fd1:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiM2Y5NjIyNjY4NGU2YWNhNGJiNDUxMTJlOTg5MTY5MjQ0NjRlM2UwNmVmYTU2YTAyZWMyZDAwNDdmOTE2MzJlMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDdjMDZjNTYxZDVjMzI3MzQzNjg1MjY4YTQ2YjMzOTFmMzk5OGVlZTg5MGQyYmU1MWYwZDIxY2M0YTUzYWU2ZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWFkMjE2MDg4ODc4MjdmOTliZGY1ZmQwZjIxMzE5ZTdhNGJlOTg4MjJlOTYxYWI0NmU1NDhhNGY0MWQ2NDY1MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTI1NDNlMDJhMjhmMzI4YmEwYjgwMzBlYjBmYzEyNjI4MTIyYzVmODM4Njk3NTNiZmE0MzQ4NjM0ZmZkMjJkNSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_c3c29b572a224938b1eb21e07ff8c54f",
+      "statement": "The scheduled OpenWiki workflow `.github/workflows/openwiki-update.yml` regenerates the `openwiki/` evidence index and the `OPENWIKI:START/END` marker blocks in `AGENTS.md` and `CLAUDE.md`; it runs on a cron schedule or `workflow_dispatch`, installs `openwiki@0.5.0`, runs `openwiki code --update --print`, removes transient `openwiki/.run.json`, and opens a PR adding `openwiki`, `AGENTS.md`, `CLAUDE.md`, and the workflow file.",
+      "evidence": [
+        {
+          "resource": "repo://.github/workflows/openwiki-update.yml#L1-L66",
+          "version": "repo-lines-v1:sha256:0e75671123ef4a21a5ce3c50d338bdf7ff56f35a2a9adc6dc2b9f98be0e0a74d:eyJzZWxlY3RlZExpbmVDb3VudCI6NjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA2MDI3ODdhZjZkY2MwODM0ZGUxMjFjYmIxY2I5NWY5NDU5YjcyMWVhYjAzNDlmMTA1MDFiOTk2YzFjNzdmZmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkYTQxNjY0OTBiMTcyOWI1ZWNiZmFmYmRlMmY1YmFiMDlkMmY3ZWVmZTQ0ZGQ1ZWZkMDZkZmUyMDViYjYxYTciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRkODlkZGU2NjgwODU1NjRmYmRkYzFiZDc3MzAxMGMyNGNhZGViOTViYzQ2ZTcxMTBiMzE5N2NkYmJhN2NkZjgifQ"
+        },
+        {
+          "resource": "repo://AGENTS.md#L1-L10",
+          "version": "repo-lines-v1:sha256:a319ed9ec4cad54b0f94f84000c54d8088f8865b051f43dee476fcff15e7b5ac:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVmMTgwZjljMTI2OTAzYmNjMzMxYWE5NTQ1NmU0OTQ0NGE3ZDRkMDExZThhMmE4M2Y1ZGM4NzAyMzkxODEyZDAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFiNTM5NTNiZmI3MmMxMjYyYmJhZTJlYWNhNzJjYWJmMWFmNDk5MjdhMGJiYTExNTdiMmQ1YmRiMjg1YzRiZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoyLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjMwODlkZjkzZjhiYTU3YTRkZGJmZDhmMDEzOTYyYzM5NzhjZTRkYjY4MTk5YzRkYTY2NjY0OWIwOTk2Y2VkYTkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d779b4c70b8c4666b73a3a78433c012a",
+      "statement": "`lib/index.js` is generated output: `scripts/postbuild.mjs` overwrites it with the tsc-lowered `lib/types/index.js` on every `build`/`prepare` run, so it must not be hand-edited.",
+      "evidence": [
+        {
+          "resource": "repo://.gitignore#L1-L2",
+          "version": "repo-lines-v1:sha256:be486cf04ff7fd1c249ba63f3b8f0f521985878e9b34b0d829eca67641f7f85c:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNGQ1Njk1MmIwZmIxM2JmOGY5YjZjMTNhNmQ0YzM0YTA3NWJhYzNhZjQ0NzYzNmExZGY0MzM1ZDc1NzZlMmY5NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNjc2YjkxZjQ1NWE3OTg4MDQ0NTEwNDg5Mzg3ZmFiMTMyOTRiMzEwYjE2NGZhZTQxMzAxYWM3MzA2OTI0OTdiOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDcxMTdjZGVlYjVhNTE4ODMzMDFhN2Y1ZDQwZTM4Mzg0MjlmYTFiZDVjNmJlZGZiY2ZkYmViMDhlMDQ1NzFiNyJ9"
+        },
+        {
+          "resource": "repo://scripts/postbuild.mjs#L1-L18",
+          "version": "repo-lines-v1:sha256:501dc18903fbf235763a0ad08241c4545adf86ff16b138003ea88f0950792c21:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgyNGU3ODQyMzY1NWZkMDA5Yjc1YTUxM2M4MDY1NGE0ODQ3MDFkYjc1Y2ViNGRjOTAwMDVkNTkyYTRkZTY2ZDAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ3OWM3ZTE1OWNlN2M4NTY1YWU3MGZiMzU4YzUxMWMxYTc5NzA1ZTUzM2MwZDg2M2ExOTBkYTQzM2I2MDRjMTEifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-03T02:25:20.569Z"
+  }
+}
