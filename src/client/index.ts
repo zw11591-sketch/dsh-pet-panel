@@ -52,8 +52,27 @@ function registerPetCommand(ctx: any): void {
   ctx.effect(() => ctx.inputTriggers.registerSource({
     trigger: '/',
     name: 'pet-visibility',
-    candidates: async () => [],
-    onPick: () => 'handled',
+    showGroupTitle: false,
+    // 菜单候选：输入 "/" 时列出 pet 命令（像 /compact 一样可发现、可拾取）。
+    candidates: async (_session: any, req: { query?: string }) => {
+      const q = (req?.query ?? '').toLowerCase()
+      // 空查询（刚输入 "/"）或按前缀匹配 "pet" 时显示。
+      if (q !== '' && !'pet'.startsWith(q)) return []
+      return [{ name: 'pet', description: '切换桌面宠物显隐', hint: 'on | off' }]
+    },
+    onPick: (pick: any) => {
+      // 菜单拾取：切换宠物，并清掉输入框里已键入的 "/..." 片段。
+      petStore.toggle()
+      try {
+        const actx = ctx.sessions?.scope(pick.session?.sessionId)
+        if (actx !== undefined && pick.span) {
+          actx.bail(actx, 'slash/input-consume-token', { guard: { kind: 'span', span: pick.span } })
+        }
+      } catch {
+        // 消费失败不阻塞：宠物已切换。
+      }
+      return 'handled'
+    },
     matchEnter: async (session: { sessionId: string }, line: string) => {
       const m = /^\/pet(?:\s+(on|off|toggle))?$/i.exec(line.trim())
       if (!m) return undefined
