@@ -331,6 +331,8 @@ export interface A2ACard {
   name: string
   description: string
   capabilities: string[]
+  /** 可选的自由文本 soul（persona）：填写后整体覆盖「name+description+capabilities」拼接的默认人设。 */
+  persona?: string
 }
 
 export interface A2AExternalAgent {
@@ -350,7 +352,7 @@ export interface A2AConfig {
 }
 
 const DEFAULT_A2A_CONFIG: A2AConfig = {
-  card: { name: '叠纸游戏-Papergames', description: '', capabilities: [] },
+  card: { name: '叠纸游戏-Papergames', description: '', capabilities: [], persona: '' },
   agents: [],
 }
 
@@ -402,6 +404,7 @@ async function loadA2AConfig(): Promise<A2AConfig> {
           name: typeof p.card.name === 'string' ? p.card.name : DEFAULT_A2A_CONFIG.card.name,
           description: typeof p.card.description === 'string' ? p.card.description : '',
           capabilities: strArray(p.card.capabilities),
+          persona: typeof p.card.persona === 'string' ? p.card.persona : '',
         },
         agents: p.agents
           .filter((a: any) => a && typeof a.name === 'string' && typeof a.url === 'string')
@@ -453,6 +456,7 @@ export class A2AConfigGateway extends TypertRemoteService {
       name: card.name.trim(),
       description: typeof card.description === 'string' ? card.description : '',
       capabilities: strArray(card.capabilities),
+      persona: typeof card.persona === 'string' ? card.persona.trim() : '',
     }
     const config = await this.load()
     config.card = normalized
@@ -781,6 +785,10 @@ function extractInboundText(message: any): string {
  * 这是本插件 agent 人设的单一来源：inbound /a2a 与团队「me」共用同一份。
  */
 function selfPersona(config: A2AConfig): string {
+  // 自由文本 soul 优先：填写了 persona 就整体使用，不再拼接结构化字段。
+  if (config.card.persona && config.card.persona.trim()) {
+    return config.card.persona.trim()
+  }
   return [
     `你是 ${config.card.name}。`,
     config.card.description,

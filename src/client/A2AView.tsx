@@ -39,7 +39,7 @@ export default function A2AView(props: A2AViewProps): React.JSX.Element {
   const [toast, setToast] = useState<{ kind: 'success' | 'error'; text: string } | null>(null)
   const toastTimer = useRef<number | null>(null)
 
-  const [cardForm, setCardForm] = useState({ name: '', description: '', capabilitiesText: '' })
+  const [cardForm, setCardForm] = useState({ name: '', description: '', capabilitiesText: '', persona: '' })
   const [agentForm, setAgentForm] = useState({ name: '', url: '', description: '', capabilitiesText: '', keywordsText: '', examplesText: '' })
 
   // 固定顶部 toast：滚动页面也不影响看到操作反馈；成功 3.5s / 失败 6s 自动消失。
@@ -57,7 +57,7 @@ export default function A2AView(props: A2AViewProps): React.JSX.Element {
     try {
       const c = await api.get()
       setConfig(c)
-      setCardForm({ name: c.card.name, description: c.card.description, capabilitiesText: c.card.capabilities.join(', ') })
+      setCardForm({ name: c.card.name, description: c.card.description, capabilitiesText: c.card.capabilities.join(', '), persona: c.card.persona ?? '' })
     } catch (e) {
       showToast('error', e instanceof Error ? e.message : String(e))
     }
@@ -99,6 +99,7 @@ export default function A2AView(props: A2AViewProps): React.JSX.Element {
         name: cardForm.name.trim(),
         description: cardForm.description,
         capabilities: splitTags(cardForm.capabilitiesText),
+        persona: cardForm.persona.trim(),
       })
       showToast('success', '已保存「我的 Agent Card」')
       await refresh()
@@ -198,6 +199,10 @@ export default function A2AView(props: A2AViewProps): React.JSX.Element {
         <label className={css.field}>
           <span className={css.label}>capabilities（逗号分隔的能力标签）</span>
           <input className={css.input} value={cardForm.capabilitiesText} onChange={(e) => setCard('capabilitiesText', e.target.value)} placeholder="web_search, research, code" />
+        </label>
+        <label className={css.field}>
+          <span className={css.label}>persona / soul（可选，自由文本；填写后整体覆盖上面的 name/description/capabilities 拼接人设）</span>
+          <textarea className={css.textarea} value={cardForm.persona} onChange={(e) => setCard('persona', e.target.value)} placeholder={'留空则用上面三项自动拼接人设。\n\n填写示例：\n你是叠纸公司的资深游戏策划顾问，语气专业克制。\n你只回答游戏开发、策划、调研相关的问题，其他问题婉拒。'} />
         </label>
       </section>
 

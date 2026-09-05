@@ -48,6 +48,7 @@ const a2aCard = z.object({
   name: z.string(),
   description: z.string(),
   capabilities: z.array(z.string()),
+  persona: z.string().optional(),
 })
 const a2aExternalAgent = z.object({
   name: z.string(),
