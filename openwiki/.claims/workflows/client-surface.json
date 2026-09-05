@@ -1,54 +1,54 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:d57ae23f83910acda932abaebdc4d58710004f69775d26e1dcfa3fa18729301e",
+  "pageVersion": "sha256:f16b361b1b0960952d8e2c4ec9d789097da2d29a8beabe549a0fac3ef3cda6af",
   "claims": [
     {
       "id": "claim_83af2386248242d68bc24b8a05544028",
-      "statement": "The browser face mounts into the harness shell purely through ctx.slots.inject into named slot maps, where the slot name and the register({ name, id, order|priority }) identity decide visibility and ordering; there is no imperative React mounting. The dashboard (order 20), skill-forge (30), tool-integrations (40), and a2a-management (50) tabs fill conversation.view; the pet and task-manager-panel (order 100) fill shell.overlay; the Papergames logo/wordmark shadow the brand slots at priority -1; the background switcher (order 10) and task-manager trigger (order 20) fill sidebar.footer.action and conversation.session.header.actions.",
+      "statement": "The browser face mounts into the harness shell purely through ctx.slots.inject into named slot maps, where the slot name and the register({ name, id, order|priority }) identity decide visibility and ordering; there is no imperative React mounting. The dashboard (order 20), skill-forge (30), tool-integrations (40), and a2a-management (50) tabs fill conversation.view; the pet (no order) and team-panel (order 110) fill shell.overlay; the Papergames logo/wordmark shadow the brand slots at priority -1; the team (order 5) and background (order 10) entries fill sidebar.footer.action.",
       "evidence": [
         {
-          "resource": "repo://src/client/index.ts#L120-L157",
-          "version": "repo-lines-v1:sha256:254bce2671a4bbf7515db0c03cb1a26a0e8c5cb2913ea24169282cfbeb331f8f:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNlMWMwNTQzZTIyZWE0ODUwNjc0NDRlZTk0MzA4N2FmZDllMjIwMjAzNmM3ZDMxZDk1MTUxYjIyMTM4MDUxN2EiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3NTMwMmI5MWQ0YjU4YjI2YTlhZTgxZTdhY2I5YzU5NmEyM2YyMmI0YjNjNWZlNzVjZmRiYjQzZTJkYWZjZjMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRiNGYwNmNlYTUzZTg1NjZkYTM5ZmM0MWUyMjgzMjI0NjRkYmMwNTQ0MmRhZmMyYmQ5ZmVjNzY3NjdiOWNiNGEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg2MzYzYjkzODlkNGM2OTQ1NTU2YjdjMGU0Y2YxNjljN2ZhYjFlZGU5OTNlZmJlMTZlMjNiZGM5ZTExY2NhODYifQ"
+          "resource": "repo://src/client/index.ts#L134-L168",
+          "version": "repo-lines-v1:sha256:79ffc38ee859fb45c528ae9d5f3e855703da4f871f63bae4b635bd5058859a5a:eyJzZWxlY3RlZExpbmVDb3VudCI6MzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNlMWMwNTQzZTIyZWE0ODUwNjc0NDRlZTk0MzA4N2FmZDllMjIwMjAzNmM3ZDMxZDk1MTUxYjIyMTM4MDUxN2EiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFiMWEzMmI3ZmUxNzJkMzU5OWZjNzZiZmRkNmQyOTk0NmQyM2Y0NmRiNGIyN2VkZDcxZWU4OWZmZGU2MjEyMjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImExMTYxNzFkYmI3N2Q0ODZlOWM1MmEyMGY5NzhkMjFhYzczOGNlNDZiMzcyM2YzZGU0YzdkMDQ3MWE4MTM4NzgifQ"
         },
         {
-          "resource": "repo://src/client/index.ts#L186-L219",
-          "version": "repo-lines-v1:sha256:af5f5d0e915b4c774fa008d99c75e4fc1c015430ed061b0da048c79571e189ef:eyJzZWxlY3RlZExpbmVDb3VudCI6MzQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNlMWMwNTQzZTIyZWE0ODUwNjc0NDRlZTk0MzA4N2FmZDllMjIwMjAzNmM3ZDMxZDk1MTUxYjIyMTM4MDUxN2EiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYyNjc1MzgxYzRmZTIwZWEzNzdkYTJjNGUwMTE3YjI3YjNmZmQ0ZmNlNjNkMGZkYWM5MjhmZDlhNzZjMGE4YTAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYxMDcwZjE0NTM3ZWJhNjc5Njg4N2ZkNDA0ZWY1MjkxY2VkNzkwZDNiOWJmZTA4Y2M1NjdlOGMxMzQyYmNlMGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQyZGFkODgxODg0ZDYyMDMyM2RlMjVjZDcxMjFkY2ZlYzA5M2QwMWNkMjE2NmQ2MTY4MjRhMWEyM2E2YTRkMDUifQ"
+          "resource": "repo://src/client/index.ts#L196-L228",
+          "version": "repo-lines-v1:sha256:8a2e58051532855663dca8293699c2e03367ff628e3156b6f22d7380b6cda3ee:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNlMWMwNTQzZTIyZWE0ODUwNjc0NDRlZTk0MzA4N2FmZDllMjIwMjAzNmM3ZDMxZDk1MTUxYjIyMTM4MDUxN2EiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI0YjFlOGI0ZDY1ZmRlMjEzNDA3NTE0Y2I5ODUzMzEwZTc2MTVjZTVlOWFjMTgwOWU4MWRlNzJmMmNkZjdkNWYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYxMDcwZjE0NTM3ZWJhNjc5Njg4N2ZkNDA0ZWY1MjkxY2VkNzkwZDNiOWJmZTA4Y2M1NjdlOGMxMzQyYmNlMGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQyZGFkODgxODg0ZDYyMDMyM2RlMjVjZDcxMjFkY2ZlYzA5M2QwMWNkMjE2NmQ2MTY4MjRhMWEyM2E2YTRkMDUifQ"
         }
       ]
     },
     {
       "id": "claim_d102843a9ef947639a3410541745e85a",
-      "statement": "The task-manager-panel slot (TaskManagerView) is registered inside the pet-panel-capabilities child plugin, not the main apply() function, because its inject closure reads remote.skillForge which only resolves after Typert $mount and only inside a child context whose inject array lists remote.skillForge; the main apply() context holds remote but not remote.skillForge and accessing it throws 'without inject'.",
+      "statement": "The capability views and the team-panel slot are registered inside the pet-panel-capabilities child plugin, not the main apply() function, because their inject closures read the mounted Typert namespace services (remote.skillForge, remote.toolIntegrations, remote.a2aConfig, remote.team) which only resolve after Typert $mount and only inside a child context whose inject array lists those sub-namespaces; the main apply() context holds remote but not the mounted sub-namespaces and accessing them throws 'without inject'.",
       "evidence": [
         {
-          "resource": "repo://src/client/index.ts#L147-L157",
-          "version": "repo-lines-v1:sha256:33652d6746dacb50cb4cafa690db150b7628653e8466825ea23c72acfd5174d3:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY0YzRhNTczMDYwZmU3ZDcwZGUzY2ZkYjM5NWQ2Y2Q1ZWNlNjA2YzI3YWQxZTk5N2FmYjAxYzliMDgyMDU3MDEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3NTMwMmI5MWQ0YjU4YjI2YTlhZTgxZTdhY2I5YzU5NmEyM2YyMmI0YjNjNWZlNzVjZmRiYjQzZTJkYWZjZjMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRkM2E1NzBmMGQ2NGMwNjg5NzFkM2QwODI0OWU5M2EwMGFiNzM1NTMxNjA3NTI5OGRlMTg4NmI2NjI3MDE2NDAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg2MzYzYjkzODlkNGM2OTQ1NTU2YjdjMGU0Y2YxNjljN2ZhYjFlZGU5OTNlZmJlMTZlMjNiZGM5ZTExY2NhODYifQ"
+          "resource": "repo://src/client/index.ts#L161-L167",
+          "version": "repo-lines-v1:sha256:9caae5535ae9fa7a499245f0d78c89ce2e6203815cc8af3646f1424b96fc5615:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOWUxNjUyMmIzY2VjN2JmMzY5M2Y2NDE1ZTU3NzZlOGUwMzk2OWUzMzBmOWM0M2UwZjNmOTU2OWNlMTk3MGQ0MSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjA3YTc3MGQ0MDIyM2U3ZGExOWQ2YWEyNjZiYTcyNTJiYTA4MjEwZjcyZGFiNjQ2NTgwZjhiOTUyNjg3ZDZjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNGQzYTU3MGYwZDY0YzA2ODk3MWQzZDA4MjQ5ZTkzYTAwYWI3MzU1MzE2MDc1Mjk4ZGUxODg2YjY2MjcwMTY0MCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODYzNjNiOTM4OWQ0YzY5NDU1NTZiN2MwZTRjZjE2OWM3ZmFiMWVkZTk5M2VmYmUxNmUyM2JkYzllMTFjY2E4NiJ9"
         },
         {
-          "resource": "repo://src/client/index.ts#L222-L228",
-          "version": "repo-lines-v1:sha256:aefa12d98df084b9c1aa2d7aaa08bdd7e65773cfa23d34862b9073c804e46a26:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzFjN2I5ZDg5Y2U0YzBhZjVkM2Q4ZDdjNjU3MjY1ZmU4YzlhZmU0NGQzYmYzY2UzZDlmZWNhYzMwZjBmYjE1OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2JiNjVjNDI4OGNmNzllN2RlNGU2OTQ1ZDM4N2RjZWJmOGJhNTA5MTk4NWRlYzFhMjczZjNjNWY1N2FjMGM2MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWIwNGIyYjU5MWFkMDZhY2FiYWI1ZTliYTEyM2U3MmY1N2MwYjNlY2VjMDU0ZDc3ZWUyZTM3Njc5ZjBiNTdhOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmM4YWIwYzczOGRiOGFjZmYxNjJkNzFhMGIwYTU2YzdiOTdlODk2MDY4ZWIyZTZjNDIyNTk4Mzc1NjMzMzdkOCJ9"
+          "resource": "repo://src/client/index.ts#L231-L237",
+          "version": "repo-lines-v1:sha256:08c938c9c4ba4ee4fbc0b80aa3d97ce43eb2954965db180cea97c50ea9c97fe9:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzFjN2I5ZDg5Y2U0YzBhZjVkM2Q4ZDdjNjU3MjY1ZmU4YzlhZmU0NGQzYmYzY2UzZDlmZWNhYzMwZjBmYjE1OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2JiNjVjNDI4OGNmNzllN2RlNGU2OTQ1ZDM4N2RjZWJmOGJhNTA5MTk4NWRlYzFhMjczZjNjNWY1N2FjMGM2MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzA5NDIzNmE5OGRjNWUyM2NjNzZmYzA0OTVkNzhhOTQyZDYwNDUxOTU5ZWRiOTVlZWM0YzI0Y2MxOWM0MmY1YiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmM4YWIwYzczOGRiOGFjZmYxNjJkNzFhMGIwYTU2YzdiOTdlODk2MDY4ZWIyZTZjNDIyNTk4Mzc1NjMzMzdkOCJ9"
         }
       ]
     },
     {
       "id": "claim_2d0ecb65ef964935b0afd59bad7c2ca4",
-      "statement": "Cross-slot state (pet visibility, task panel open/close) is bridged by module-level publish/subscribe stores (petStore, taskStore) exposing a stable getSnapshot plus subscribe for useSyncExternalStore, because the writer and reader components live in different slot maps and React context cannot cross a slot boundary. Both stores use a boolean snapshot that changes identity only on a real show/hide or open/close transition.",
+      "statement": "Cross-slot state (pet visibility, team panel open/close) is bridged by module-level publish/subscribe stores (petStore, teamPanelStore) exposing a stable getSnapshot plus subscribe for useSyncExternalStore, because the writer and reader components live in different slot maps and React context cannot cross a slot boundary. Both stores use a boolean snapshot that changes identity only on a real show/hide or open/close transition.",
       "evidence": [
         {
           "resource": "repo://src/client/PetView.tsx#L292-L292",
           "version": "repo-lines-v1:sha256:cee9110273053b9d042b95f1ea01969736c2774980e2dc36d29209e3446432af:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2VlOTExMDI3MzA1M2I5ZDA0MmI5NWYxZWEwMTk2OTczNmMyNzc0OTgwZTJkYzM2ZDI5MjA5ZTM0NDY0MzJhZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2VlOTExMDI3MzA1M2I5ZDA0MmI5NWYxZWEwMTk2OTczNmMyNzc0OTgwZTJkYzM2ZDI5MjA5ZTM0NDY0MzJhZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTk2Y2I0ODI2ZmMzMDA3NDI4ZjNlMzVhOTQxNjNkZmMzNDZlZGY2N2ViZjNkOWNmM2QxNzA0NDAxNWM0ZDA4ZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjYyZGI4NjViNTdjNGU1ZjkwYTM3NDRjMTJmYjdiMzY2MGM2YjA5NWE2MGRhOGY0YmNkNGYxNjMxYmVjZGE0ZiJ9"
         },
         {
-          "resource": "repo://src/client/TaskManagerView.tsx#L273-L273",
-          "version": "repo-lines-v1:sha256:8b9ed6d0d4010368cc1cf65962327b53fdc5706d12d8eb25d7acd75e7263c417:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGI5ZWQ2ZDBkNDAxMDM2OGNjMWNmNjU5NjIzMjdiNTNmZGM1NzA2ZDEyZDhlYjI1ZDdhY2Q3NWU3MjYzYzQxNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOGI5ZWQ2ZDBkNDAxMDM2OGNjMWNmNjU5NjIzMjdiNTNmZGM1NzA2ZDEyZDhlYjI1ZDdhY2Q3NWU3MjYzYzQxNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZGEwNTBlYTRkNmE3NGJiNjQ5ZDYzMGIyZjhkMjA1OTc3ZTFiNTdmMDg3N2I1NmJjMzAxNjRhOWM1NTE0OGY4YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMmU1YmZmMmYyZGRlZDI0NTkwMDAyYzkwZDFlOGI3YTk5NTRjOGE4NGU0ZWRjYTc2MmNmNzU5YWIyMGY4ODNmYyJ9"
+          "resource": "repo://src/client/TeamView.tsx#L46-L46",
+          "version": "repo-lines-v1:sha256:a27dbbe299b59486f49658f840ae7f7d87606b289a08f669922b9344ff528f0c:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTI3ZGJiZTI5OWI1OTQ4NmY0OTY1OGY4NDBhZTdmN2Q4NzYwNmIyODlhMDhmNjY5OTIyYjkzNDRmZjUyOGYwYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTI3ZGJiZTI5OWI1OTQ4NmY0OTY1OGY4NDBhZTdmN2Q4NzYwNmIyODlhMDhmNjY5OTIyYjkzNDRmZjUyOGYwYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYWM5MjVlNzczNzE0YjFiMDBkYWM4YjRiZDdlY2Q3ODJjYzA2MjY0NDU2NTZkZGY3N2YzMTUzZTJlNzg4NmY2NCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYThmMjgwZDU1OTE0Y2Q4MTc5ZjcxODJmNjk0YjE0YTNjY2NjNGVmOTdjNjY1MmEyMzU4MmQwNzRhNzc2NGEyNiJ9"
         },
         {
-          "resource": "repo://src/client/petStore.ts#L1-L46",
-          "version": "repo-lines-v1:sha256:bf8330d4735c7cd7db936f0cf05bea209be27d8df26784990a5c5e0934e29c52:eyJzZWxlY3RlZExpbmVDb3VudCI6NDYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkNWNkMmZiNGYzZGY4ODQ1MTUyNTViMzk1MjNmMmY4YjU0NzJiZWVhOWY1NjZmZmNhMjA0ZGI4MDI1NjEwNDEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+          "resource": "repo://src/client/petStore.ts#L1-L47",
+          "version": "repo-lines-v1:sha256:43d9f1d194609748e71f011a55a9dedee958bb023242151d4efaae8d83daee37:eyJzZWxlY3RlZExpbmVDb3VudCI6NDcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
         },
         {
-          "resource": "repo://src/client/taskStore.ts#L1-L45",
-          "version": "repo-lines-v1:sha256:c3f31362b55df051ab93f50e0ab54362dc424aef7bfd8bb76d0bc3f5eeb75f6a:eyJzZWxlY3RlZExpbmVDb3VudCI6NDUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+          "resource": "repo://src/client/teamStore.ts#L1-L45",
+          "version": "repo-lines-v1:sha256:7d5275222bf8bc81f2aaafcc65d12610b8e20d01a57c151d8cccc14d9d22b8c4:eyJzZWxlY3RlZExpbmVDb3VudCI6NDUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
         }
       ]
     },
@@ -112,7 +112,7 @@
       "evidence": [
         {
           "resource": "repo://src/client/theme.ts#L1-L47",
-          "version": "repo-lines-v1:sha256:3da459f733473bd6199b12fe23ef84bc220f0062cbd9f4faf6e9798937dde547:eyJzZWxlY3RlZExpbmVDb3VudCI6NDcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZmViNjBkNGUxMDM1M2Y0ODQ0YWJiYzQ5MzNmNTM3N2U0YzUwNjk3MjkxZTliZjRmMDNhNjc4OWRiN2Y4ZGUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg3NmE2YzA0ZmI1NGEyNjk5NmQ0N2RhODIxZmUxOTA0Yzg2Y2FiNzcxZjczN2FlNDI2M2VkOTUwMDE2MjUzZGQifQ"
+          "version": "repo-lines-v1:sha256:34b209d8d3e823d20b45f4201e26dc7b4a2bced603b0dbda724f7327d1d8b161:eyJzZWxlY3RlZExpbmVDb3VudCI6NTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZmViNjBkNGUxMDM1M2Y0ODQ0YWJiYzQ5MzNmNTM3N2U0YzUwNjk3MjkxZTliZjRmMDNhNjc4OWRiN2Y4ZGUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg3NmE2YzA0ZmI1NGEyNjk5NmQ0N2RhODIxZmUxOTA0Yzg2Y2FiNzcxZjczN2FlNDI2M2VkOTUwMDE2MjUzZGQifQ"
         },
         {
           "resource": "repo://src/client/theme.ts#L50-L57",
@@ -169,42 +169,16 @@
       "statement": "The SkillForge, ToolIntegrations, and A2A conversation.view tabs (orders 30/40/50) are thin CRUD editors that receive an injected api object whose methods are unwrap()-wrapped calls into ctx.remote.skillForge / toolIntegrations / a2aConfig. The views themselves are read-only consumers of the injected api and never touch ctx.remote directly. A2AView derives its card and message URLs from window.location.origin.",
       "evidence": [
         {
-          "resource": "repo://src/client/A2AView.tsx#L29-L32",
-          "version": "repo-lines-v1:sha256:ab74b63c99e03c6ddfc62f4e4412807dc912d72d5317d3c8957012a2b996e439:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMGQ0ZjIxYzJiMzhlMDc1YjcyMTY5MmFiYzBmZTA5NzcwOGJiYjk2ZWQ2NzVkOGRmOTYyY2RjZmNkMDExODYxZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDg1NzZiYTNjNjlhNWU1YTljM2ExM2ExMGU2NTNiZjY4YmNkZjMwNWNlYzc5YjQxMjdlZGM2Y2IzZmExYTE3ZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjIzMzRkZjM0NjI4YzA2YzRkODQ2ZWVjNDFjMmU4NGNhZTNiMTM5MTRhOTgzNjc3MWQ0OWY1NzJjNGUxMDAwNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDRjODg1NTNhMjY3YzIzOTUzMDEzZWRkYzJlMTc0ZDNlOTg3NzJkMTZiY2Q0NjA2NWQyN2ZjNjQzYjNlODQ2MSJ9"
+          "resource": "repo://src/client/A2AView.tsx#L29-L33",
+          "version": "repo-lines-v1:sha256:213c4c52c321a4312a2def05ad09e082529e45a191d11ad884e4451e4e1e6c17:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDg1NzZiYTNjNjlhNWU1YTljM2ExM2ExMGU2NTNiZjY4YmNkZjMwNWNlYzc5YjQxMjdlZGM2Y2IzZmExYTE3ZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzU4NGU2ZWJiMzI1ODE2YzFmMmI2NGNjZGJiZGIyM2IwNzU3ZjQyMTY4NzdhZGE5MzE4NjJiYjljZTM2OTYzZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDRjODg1NTNhMjY3YzIzOTUzMDEzZWRkYzJlMTc0ZDNlOTg3NzJkMTZiY2Q0NjA2NWQyN2ZjNjQzYjNlODQ2MSJ9"
         },
         {
-          "resource": "repo://src/client/SkillForgeView.tsx#L1-L69",
-          "version": "repo-lines-v1:sha256:7783fd58ae3f508a5d916973b6e171a47f223b17e80a6bf23443bbcbcca95073:eyJzZWxlY3RlZExpbmVDb3VudCI6NjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA0MzYzMzY1YTQ5MDcyZTEzNWY4ZGI1YTRhNmZmNDYyYmI1NmY5ZWM4NTc3NWJhZTNiZjk2NmYyN2YwYzM1NzEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdlYjcwMjU3NTkzZGEwNmY2ODJhM2RkZGE1NGE5ZDI2MGQ0ZmM1MTRmNjQ1MjM3ZjVjYTc0YjA4ZjhkYTYxYTYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjEzYTRkNjNkOTQyMDk1OGZlMjZkZmExMDQ0YTlkZjg0MTIyZjE1NDA2ZTM2ZmYxODliYWFiYWYzZDg3NGMxZGUifQ"
+          "resource": "repo://src/client/SkillForgeView.tsx#L1-L23",
+          "version": "repo-lines-v1:sha256:83fd6379730ec42f5a63fcc89bbc3293c2c9141011e0f155c1c3b369b4f00350:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA0MzYzMzY1YTQ5MDcyZTEzNWY4ZGI1YTRhNmZmNDYyYmI1NmY5ZWM4NTc3NWJhZTNiZjk2NmYyN2YwYzM1NzEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJkODM1ZWE4NzlkYzYzNTcxMzBhMWFkOTU2YWZmNDJmYTI3ZjEzYWQ0NGY4YWRmMDYyNDA0NTg4Y2FkMDMyNmUifQ"
         },
         {
-          "resource": "repo://src/client/index.ts#L100-L118",
-          "version": "repo-lines-v1:sha256:fac35ab2c1bafa7b833fda9d1baf92e3435b64d66485a00c45fe1c87ff1a0d80:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZiYWMyZjhmODU2MGZjOTBjYzVmZjRjZmJmOTc3M2VmYWRmY2I2MTNhMTk5MmQzMjZlMDlkOTEyMWU5NmJiYmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxMzQ1MTgwMTA1YjBjNjZhNzdkYWQ1MWJiMzc5MDFhMzczMmM5NjU0YmE0ZGUzOTgxZjgxZTE4MTc1MjQ4YmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRkYjBiODY1ODUzNTU3ODE3ZDQ3Mzk4OWQwNTRjMzNmODgzNzY2YTE4ZGZkNzZhOWMzYmIyMzE0NTg1YTc1ZTgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY5ZDUzNzdkNGZkZWM4MmVjMGQ4MTY3OWYwYTYzOTYzODcyOWFjOTJjMWQ1MjNhY2FlMzA3OWMzMWYxMDhiNDUifQ"
-        }
-      ]
-    },
-    {
-      "id": "claim_a3a478f20da6415f88959478dbaa5d9c",
-      "statement": "The Task Manager is a two-piece surface bridged by taskPanelStore: TaskManagerTrigger (conversation.session.header.actions, order 20) only calls taskPanelStore.openPanel on click, and TaskManagerView (shell.overlay, order 100) is root-scope, returns null when the store reports closed, and renders a full-screen overlay that closes on outside click. The list tab reads projectionValues.todos (a locally-declared TodoItem type mirroring dsh-session to avoid adding the dsh-tool-todo dependency). The flow tab builds a parentId lineage tree and lazily fetches a per-session LifecycleSnapshot via the injected lifecycle wrapper (unwrap of remote.skillForge.lifecycle), caching results and tracking loading/error per node.",
-      "evidence": [
-        {
-          "resource": "repo://src/client/TaskManagerTrigger.tsx#L21-L33",
-          "version": "repo-lines-v1:sha256:f51df7f3e44a7324aa9441cb16116caad3330f26390bb389106330a9bcbf305b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU1NTRjYmRhYTEwODU5M2FlMjBlNWVmZDE0MzhiOGFjOGZiMmFjNDY2OTIyOGMyMzViOTk3N2UwYzYxNGI5YTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU2MjY3OTM1ZmM2MzM0NjVkODQ4YjQwYTRlZDY5NjdlN2I3YTMyM2Y4MWNkNTNjMTEwYWUyMTAyOTY4N2FhMTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU2OTA2MmY4MmViYTYxMjg2NDNiNjViODg1NGNlZTUyZTE3NjFhM2Y3ZmU1ZmQ0YWIxNGJjZTZmMDUwY2Y1ODQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
-        },
-        {
-          "resource": "repo://src/client/TaskManagerView.tsx#L16-L24",
-          "version": "repo-lines-v1:sha256:356a0c561c4bd4a4f9eaff5257502c0eca26cefa96c2603eaa6ea8245a9236fa:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWFmMjJjZjA3MzI1OTJjMjQ3MTQxY2JlNjFlZmExMTAxMjYxMmY1YTMxMjJiOWFmOWJiYWY1MmY1NzI0ZDE5NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWMwNzU5MTE5MTZmNDdjZjE4N2MzNjFmY2Y5MzBhYTM1ZjA2ODdlMzAxMjBkZjAwMDllMjMwNDUxNDhjMmZkZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiY2E3N2ZiODVkNzE0OGU5MmI1ZWJiYzgyMGYzY2JjOTNjMWRhZGY2NDRkMDI0MDUyZmM5MTczYjRmODJmMTFhOCJ9"
-        },
-        {
-          "resource": "repo://src/client/TaskManagerView.tsx#L293-L313",
-          "version": "repo-lines-v1:sha256:687985c759a85cbe558886fc853c8b58f1a4b4dab9664ce532600adce0631a59:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4MTc3MGU3Y2RjMGI3MzVjZTczZGJkMWRhN2JlZjgwZTM3MzQ0YjFhOTdjYTRiODc0ZGIzZWM5YWU3ZmQ2YmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUwNGQ0ZjMzYThjZGVhMmI3ZjlmYWY4ODgwZDM4ZmUyN2I4YTM1NzJjNzFlMDFjNTYwMzhkNTRhNWIxODljMmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNlYTNhYWJiYmJlMTUxZGUwOWM2MGJhNTU2ODQyZDZiYzhiYTM3NzI2ZmY3ZDQ0ZTEwOTUxN2MzOWRlMjU1NTUifQ"
-        },
-        {
-          "resource": "repo://src/client/TaskManagerView.tsx#L51-L68",
-          "version": "repo-lines-v1:sha256:82e90a9d14658b975712525300e7044a66916477ce92a3d156f476057188e49b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZkNzc5OTdhNGQwZTY3OTRmMTNjM2EzMjQ2ZDk3OTdhYTg2MGFiYTZhNDE2YzgyOTAzYzVjYjZkMGRhZDk0YTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhlNWE4ZGVhY2UwODg0MmQ5ZmM5YmVhOGEzZTZhMzQyMGM3Njg4MjE5YzEzOGNjY2ZmYjEwZWZlYjVjYzI2NmUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdmNjkzMjRjNzNiNTZjMWY1OTVmNzg0MDJlNGI5MDQ5M2MxZGFhOTE0OGFhNWQ0MjJiNjY1NzNlOTgwZTZlMGUifQ"
-        },
-        {
-          "resource": "repo://src/client/index.ts#L150-L151",
-          "version": "repo-lines-v1:sha256:955499d0e9fe7a50b1aaca42f6c8725bfb13a7e1d7d9b131a3477dd11f0754e1:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTM3NDcwMTk2NDdlNDhiYjQwMjNkYWQ3MmE4YmY4NDY3MGM1ZGQ5YTg0MmE2OTQ3YjY1MTI3YTE3OWRjMDljNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMmY4MDkzNjQ3MjllMWQwZmI0MDM5MjQzYWY1OGE1MDc1Y2I1YzIxOWYyNTM2ZjI5ZDU1ZmE2NTYyNzAxOThkYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTJmNDhjZmU2N2U4ZjVhMjM3ODVhN2JlYjM2YmNmYzkwNjc4OWFjNmJhOWJjNjJiNTQ3MmU5NWM1YjE4NzQxNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDczZjgyMzFjNmVhNmQxOGNjMjEzNWNkYmNlZTJiYjI0Mjk4N2FkNzNmYWRhYjIwMjk3YTVlNzdmNjkzYzg3NiJ9"
+          "resource": "repo://src/client/index.ts#L98-L118",
+          "version": "repo-lines-v1:sha256:503456938a77ca68f677b7220a59d83b63941dadc6962e2fb7c5eb3883ecfa6f:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg2NGYyNGJlZDdlNzA4MWUyZGZjZjc1ZjMyZDViYTEyYjk0MDkyZjhiOGRmZWUwZWI4YzQ4ZjdhMzNiOTg0MDIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxMzQ1MTgwMTA1YjBjNjZhNzdkYWQ1MWJiMzc5MDFhMzczMmM5NjU0YmE0ZGUzOTgxZjgxZTE4MTc1MjQ4YmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgyMDY4YmQ4MjAyYzYzMjU3NzZkODAyYWU3OWI4ZGY5MGJhNmUxYzA4YmQ3MjkyOGFkMGQ4ZDE2MWIzMjJiZjUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFjOGRmNWU4ODYwNGU3YTkwZTRjOGFlYzk1MDM4NGU4YmMwNWZkODFhOTliZGIyMTFhODAxMDBiNDk1NDZmNjkifQ"
         }
       ]
     },
@@ -258,13 +232,53 @@
         },
         {
           "resource": "repo://src/client/locales.ts#L4-L23",
-          "version": "repo-lines-v1:sha256:0a0e57f7a66b2e1c13f9794c48038abe55059b7556c682eb64aa195a80f8e753:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhZDVjZjc4NTUwOTQ2Mzk3YWExM2U2MmFjNmM1OGVhZjg3ZDI3ZmVkYWRjNjZlNGM3YzAxOTY1NjUyMDhmOWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM3YmU3OGJiMjY5YzYxZmIyOWRkYjU0NjQxMGI2MTJjMTRhMWIxMWE5ZTk0YmI3YWM5ODZlMjc0M2EyMDMxZDMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImYxMGRmNmEzNDk4YzcxNzVjNTI2NzZiYmRjMDFlMzU3MTFhMDkyY2U3ZTdjYmY5OWNkMmIxOTc1NDRmMGQxMDQifQ"
+          "version": "repo-lines-v1:sha256:365eb9c7501d4ced88289612e38d3ee67a528eba2bd5fc6a40a5e814c15f59db:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhZDVjZjc4NTUwOTQ2Mzk3YWExM2U2MmFjNmM1OGVhZjg3ZDI3ZmVkYWRjNjZlNGM3YzAxOTY1NjUyMDhmOWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM3YmU3OGJiMjY5YzYxZmIyOWRkYjU0NjQxMGI2MTJjMTRhMWIxMWE5ZTk0YmI3YWM5ODZlMjc0M2EyMDMxZDMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImYxMGRmNmEzNDk4YzcxNzVjNTI2NzZiYmRjMDFlMzU3MTFhMDkyY2U3ZTdjYmY5OWNkMmIxOTc1NDRmMGQxMDQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ef91440703c649f481e8a57999454fbf",
+      "statement": "The Team Chamber is a two-piece surface bridged by teamPanelStore: TeamTrigger (sidebar.footer.action, order 5) only calls teamPanelStore.openPanel on click, and TeamView (shell.overlay, order 110) is root-scope, returns null when the store reports closed, and renders a full-screen overlay that closes on outside click. On open it refreshes teams and the a2a config (card name + registered external agents), probes external-agent health, then polls health every 15s while open; member status is derived from that probe (me always online, unknown names show unknown).",
+      "evidence": [
+        {
+          "resource": "repo://src/client/TeamTrigger.tsx#L20-L32",
+          "version": "repo-lines-v1:sha256:8ed9452509a27550a511639d42010591cdca38c2c28a5c4e5d77f58e74e10f7f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2NTY4OTczYTExNDQwZjdlMTk2NzAwZjNjNTQ3MmExODQ5ODhiYTE0ZTBiODNjOGE5OGVkZGQ4NDA1OWMwNjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU2MjY3OTM1ZmM2MzM0NjVkODQ4YjQwYTRlZDY5NjdlN2I3YTMyM2Y4MWNkNTNjMTEwYWUyMTAyOTY4N2FhMTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQyOWQ5MzM4ZDU2MTE5NDU4ZjAxNGJjN2Q0OGVkNDk5ZTM0MWFmNmE0YzFkM2M5Y2U2NDM5MWI1MzYwNjE3YjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        },
+        {
+          "resource": "repo://src/client/TeamView.tsx#L103-L124",
+          "version": "repo-lines-v1:sha256:bd8c7716b4f4ff6f9ce811707b99a4d107281ae7f813fe947ef90fdbd8314d8e:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUzM2I0NzgxOGIyOGE4Y2ZjZGQ3YWM2YmJhZjVkMmI1MTZjYThmYjE4NDEzYzI4ZDIwNGQyMjQzNmY2NWViMDgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU3MDhiMDg5YzU5YTllNDcyMDk5ZTU0MTlkYjU5NzdlN2MxNDZmODNjNjZiYWFhZWQyOGE3ZDFhY2Q3MDQzNTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVhM2MwZmU2ODJiYTQ0OGZhNWFlODFlZjQ5YWU5NTI1Y2NhMmMxZmM2ODZiZmExODg5ZmU5YTY2MTFlMDU4MDkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNmZGY0M2QyZmU4MjI1OTJmNWNiZGU5ZDdkNjkwMmRkNTg4NjZiYWJjMTYwOTk3YWFjNDc1YjI4MWRmY2FkMGUifQ"
+        },
+        {
+          "resource": "repo://src/client/TeamView.tsx#L277-L283",
+          "version": "repo-lines-v1:sha256:b2584cbe347878608daf92540ae52e0668fe09ab1c507ae0cb688005fef2dfe8:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2EyZDQwZDliZmYwNmNlMTU0NGIwYzU1ZjcwNDQ2YzhlMWZiZDYzODdmOTQ5ZjYwMGFmNDM4Y2M0MGUxYWVjYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMWI5ZjYyY2JjMzM1OGEyZmRiY2NlNDYwZjgyNDNkNTE1ZmVjNjRmNWViNzZlZTlkNjdiZjY2YTc5MTExNmQxNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDNhZjBkYzhkNmJkNGRiNGFkMmJlNmJkNjI4NDA2MzlhZjM0ZTk1NjkyY2M0YTNkMTNmNjljMzEwZGFlZTc5MSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMGRhZDMxODkxMDU2ZjQwZTU4N2QwOTI5M2FiOGVmNDU4YzlmYWJhMzMzOWRlNmE0ODhlYzBmYjE0NWVmNzAyZSJ9"
+        },
+        {
+          "resource": "repo://src/client/TeamView.tsx#L44-L46",
+          "version": "repo-lines-v1:sha256:56c9882583c6e7dc66fe1635e3564d100dec4aedef536bc7fc088f86ab5cb22f:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMWNjMjBkMzhlZTFkOTBiZjgwMDA0NGFjYTMwZmQ2ZmYyZGE5MTk3MzM4ODI1OWYwYjE4YWFmYjA5NjM0MzZkNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTI3ZGJiZTI5OWI1OTQ4NmY0OTY1OGY4NDBhZTdmN2Q4NzYwNmIyODlhMDhmNjY5OTIyYjkzNDRmZjUyOGYwYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTcyY2QwNzY1MTc4MDJlYmEwYTdmNGMwMWZkYjNhZWI5YzIyYjQ5ZGNmOThiNWI5OGY2NWQ2NzY3NjhiNGYzMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYThmMjgwZDU1OTE0Y2Q4MTc5ZjcxODJmNjk0YjE0YTNjY2NjNGVmOTdjNjY1MmEyMzU4MmQwNzRhNzc2NGEyNiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_be39863826284c7fb0c867209415b629",
+      "statement": "TeamView's chat input autocompletes @member against the open thread's members on a normalized label (lowercase, spaces/hyphens/underscores stripped) and excludes already-mentioned members; send() optimistically appends the local message plus a replying indicator, then appends only role !== 'user' replies so the optimistic user row is not duplicated.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/TeamView.tsx#L210-L246",
+          "version": "repo-lines-v1:sha256:b3c88030cc1f20676872e8ad0d031167b787417fb417c44aadaa908efd8734a4:eyJzZWxlY3RlZExpbmVDb3VudCI6MzcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjczNmE1M2JmYjJlZGYzMTczNzQxZGIxMTlmNWRiMjMyYjIxZDg0OTJjOWVlZGExYTlhNmVhZmQ0NWEzNmNkYjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUxY2QwMDExZWQ2OWI5ZDhiMDAxNTBjYTIxZGVhZjdiOTQ1YzAxM2Y1ZTYwYTU0NmEzYzQxY2E0ZTNlYjUxNWQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgzMDQ1OTRlZjNmZjY0ZTVjZjBkZjJjY2EwZmY3NzM5OTljNWU1YWY4YzA0NDU1Y2RiYjM2MTQ2MGFiNmE0NzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxNTkyNTEwN2JhNmNiODI5YjFjMDNkOWM1YjA2M2IyMDljMzQ3OGMyNGQ0ZmYyODM1NzRhOTFjODIwZWU1MTYifQ"
+        },
+        {
+          "resource": "repo://src/client/TeamView.tsx#L248-L270",
+          "version": "repo-lines-v1:sha256:3be59af8bfb049c8eb7aa6eaa055fba1873f617574017ac254a389d0b661d9dc:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBjMDYzMTE2NDZkMjhiYWQ0M2ZjZDk3YTAwNDlhZDI2Nzg2YjJhOTRmNDJjMGM5OGU3NzQwN2IyZTU2NTRjZDIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRjZDkwMGIxNTgwZTgwNTkwYWMzMjY4YzE2NDQ4N2U1NmFiY2E1MGNjMTVlMTYwYzliYjRjZWIwOTQzMWE5MTAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY2MjRiN2Q3ZGI4ZjdkYTEwNDdmNTcyNjcwY2UyZGE4Mjc3NjBlMDgwZmY0NjNkZTQwMzBmMjcwYWUzMTJhN2MiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjczZjIxMWIxY2YxNjFiMDRmY2Q5ZTRlMDFmOWQxOGIwODIwNzUyZjExMDJiMGRmNzUxYTRmMzk3ZTVhNjQyZjIifQ"
+        },
+        {
+          "resource": "repo://src/client/TeamView.tsx#L528-L530",
+          "version": "repo-lines-v1:sha256:d98734acab2f2b1ae26b485bc979282da04b9f388688380412ea1a2e1f79e44b:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTZlM2QyY2JkNzZjNWI2OGU2YTU5YTQ3NTRkN2MyMWNkNzNlYjI5MGE4NjUwZTE2MjA4NTYyNDFkY2EzYmM2NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTZmMWZlNTAwNDJlYTdmZmEyMzdhN2RlMDQ3MDFlYTgxNGY5YTkwODAyOTEzNjA2NmIzY2IzMWNhMTY1MDY2NiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
         }
       ]
     }
   ],
   "verification": {
     "by": "openwiki/0.5.0",
-    "at": "2026-09-03T02:25:20.569Z"
+    "at": "2026-09-04T14:14:38.291Z"
   }
 }

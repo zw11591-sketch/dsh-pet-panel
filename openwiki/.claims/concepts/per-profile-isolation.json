@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:6bd69c906993d0dd40b21f7185c9bcbc04c2c039b6dc6582042268a072d6d829",
+  "pageVersion": "sha256:eb638b642736603ce0779c0df1a34e5735981d38c9ad84be914dafe8de54d2fd",
   "claims": [
     {
       "id": "claim_6d1e2d4064314707bdf1da2b72a2ae9c",
@@ -163,10 +163,38 @@
           "version": "repo-lines-v1:sha256:e9ffb93603613ca84d7a4f35bec782ba8855658c0fe7b9a6e1f401427cd56795:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTlmZmI5MzYwMzYxM2NhODRkN2E0ZjM1YmVjNzgyYmE4ODU1NjU4YzBmZTdiOWE2ZTFmNDAxNDI3Y2Q1Njc5NSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTlmZmI5MzYwMzYxM2NhODRkN2E0ZjM1YmVjNzgyYmE4ODU1NjU4YzBmZTdiOWE2ZTFmNDAxNDI3Y2Q1Njc5NSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjk4ODM2ZjRkY2RhN2NmY2U5MzcyZDI0ZGIwZWU2MzdmMmVkODNhNWQ0NmNlZjkwYjIyN2FmMDlmYmIyZTY2MyJ9"
         }
       ]
+    },
+    {
+      "id": "claim_ac93cf5cc5554018b04d4f37a53d44fc",
+      "statement": "Team and team-chat data are persisted under the same a2aConfigDir() profile root — teams.json and team-chats/<threadId>.json — so team isolation follows the same profile-dependent fallback heuristic as the A2A registry and splits if a resolver accidentally lands on the global home.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L1089-L1092",
+          "version": "repo-lines-v1:sha256:6696be4636f11b2ac7b728ba8621a37c2dc381ad3d0baad2b4d1b448ba3d0df0:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWJlZWQ2M2FjNmNhZmRkMTkxN2QwOTA2OWM2ZWM2YjFhZmJiY2Q1OWQ0Y2MzMDk5YTNmYjMyYzVmYzcwMjlhMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2IzNDc1MzBjOGY3ZDkxNjBkOTFmNmUyY2FiMjc1N2UyNDVlMDMyMzhiODQ4ZmJiOTE4NWM4MDA2YjYzNDhjMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiY2FjYjE2NDQxMTQzZTQwNDgwMjAzMTQ5NzU3NjIyMjdiMWNjZjE5NzAwNjZkNjZjN2VlZjg1Nzc4ZjY3NmI3MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjBiYjg2ZDlhNjNiZDdjMDNhNGNkNjk5NWNiNjhiMzkwNTBjNmJhYzc3NzEzMzRmMjU3MzQ4M2NjZDliOGZmZiJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L1119-L1121",
+          "version": "repo-lines-v1:sha256:b9817348deeb36427a3833b91c5aebba2a418246b2dc9764b48f08bbd58c6b4e:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzg5ZTM3NTIzNjVhZDZhMjljZGQ3YTUxODBlMjE5NTc1YjgzMzE4MjY3NWNmNGMwNTVhZmRmMzQyOGI0YTY5MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTIyZmFhNTM1YmQyZWEzZDUyZTc0MWVkNDU0NDM1YjdmZTQ5ZTgzNTg2ZTk0M2Q5OGQ4MmJiZmIyNGQxZjVjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMWU1MmJkODBhOTZiOWJhYzUzN2FlNDljNDRjNDM0OWJkYTAyNmM5N2ViMjY1MGVjZWNkNWQ5YTQwNWRhYmMxZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDdlYjI0NTRmZTA1OWUyYTIyMWQ1NDdiODUxYjBjOWU4ZmRkN2ExM2JlYjZlM2QzNmI2NDcxYWJiYmNhYzdmOCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_c662a2c5989945ed9e657d769e7c2293",
+      "statement": "Team thread ids are validated against ^[A-Za-z0-9-]{1,64}$ via THREAD_ID_RE before being used as a filename under team-chats/, blocking path traversal out of the profile's team-chat directory.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L1092-L1092",
+          "version": "repo-lines-v1:sha256:cb347530c8f7d9160d91f6e2cab2757e245e03238b848fbb9185c8006b6348c0:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2IzNDc1MzBjOGY3ZDkxNjBkOTFmNmUyY2FiMjc1N2UyNDVlMDMyMzhiODQ4ZmJiOTE4NWM4MDA2YjYzNDhjMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2IzNDc1MzBjOGY3ZDkxNjBkOTFmNmUyY2FiMjc1N2UyNDVlMDMyMzhiODQ4ZmJiOTE4NWM4MDA2YjYzNDhjMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjExZGM3Njk1NWY0ZjAwZmJmMWUwMWY5OWU4YTY3YjU2ZTBkNTA5M2YzYmQ1MWEzZTY2MDk3YmQ0MWE2MDk3ZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjBiYjg2ZDlhNjNiZDdjMDNhNGNkNjk5NWNiNjhiMzkwNTBjNmJhYzc3NzEzMzRmMjU3MzQ4M2NjZDliOGZmZiJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L1326-L1336",
+          "version": "repo-lines-v1:sha256:5d5aa4f6a267854cdb4c026eb6f64f103529f1b3cbb03bb0aab072fc6b5f4eb3:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMwNGY1ODlkMTdjZDdlMGEyMGM1MDhjM2VkMjJjYzhjODRhZWY0OTYyZmU4Yjk1MDI3NzViZWNlMzNkY2ZmYTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYxZTc2MWVkNTdjOTZlZjQwYWIwZWQwOWM4NmNhYzU3YTk3ZGMzYzZjMDZhNGI4OTA5MTYwMDBmZGU4ZjQxYTkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZmZTA4MzRlNDViNDY2MDVjNjZiOTQxMTQ4MmRjZDgxNDA5N2Q0ODA4ODQ1NzAzMzk1MWRiOWNiZjU4Y2ZiN2EiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJmMzA4OWI1MDE0MTZkNjk3NTQxNTk3MWYxZmZkYjQ1MmM2Y2JkMjdjZWQ3YzQ2YjZlNGRlNTgzNGU1YmM4MmQifQ"
+        }
+      ]
     }
   ],
   "verification": {
     "by": "openwiki/0.5.0",
-    "at": "2026-09-03T03:19:03.904Z"
+    "at": "2026-09-04T14:14:38.291Z"
   }
 }

@@ -1,10 +1,10 @@
-/* A2A management panel. Same token vocabulary as Tool Integrations. */
+/* A2A management panel — unified control spec. */
 
 .page {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding: 24px;
+  padding: 20px;
   height: 100%;
   box-sizing: border-box;
   color: var(--dsw-alias-label-primary);
@@ -13,19 +13,19 @@
 
 .header {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
+  align-items: baseline;
+  gap: 10px;
 }
 
 .title {
   margin: 0;
-  font-size: 22px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .subtitle {
   margin: 0;
-  font-size: 13px;
+  font-size: 12px;
   color: var(--dsw-alias-label-secondary);
 }
 
@@ -33,7 +33,7 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding: 18px;
+  padding: 16px;
   border-radius: 12px;
   background: var(--dsw-alias-bg-module-platform);
   border: 1px solid var(--dsw-alias-border-l2);
@@ -47,8 +47,8 @@
 }
 
 .sectionTitle {
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 13px;
+  font-weight: 600;
 }
 
 .field {
@@ -64,7 +64,8 @@
 }
 
 .input {
-  padding: 8px 10px;
+  height: 34px;
+  padding: 0 12px;
   border-radius: 8px;
   border: 1px solid var(--dsw-alias-border-l2);
   background: var(--dsw-alias-bg-module-platform);
@@ -81,7 +82,7 @@
 .textarea {
   resize: vertical;
   min-height: 64px;
-  padding: 8px 10px;
+  padding: 8px 12px;
   border-radius: 8px;
   border: 1px solid var(--dsw-alias-border-l2);
   background: var(--dsw-alias-bg-module-platform);
@@ -102,8 +103,9 @@
   appearance: none;
   border: none;
   border-radius: 8px;
-  padding: 7px 12px;
-  font-size: 12px;
+  height: 32px;
+  padding: 0 14px;
+  font-size: 13px;
   font-weight: 600;
   cursor: pointer;
   transition: opacity 0.15s ease;
@@ -158,7 +160,7 @@
 
 .agentMain {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 8px;
   min-width: 0;
@@ -167,6 +169,53 @@
 .agentName {
   font-size: 14px;
   font-weight: 600;
+}
+
+/* ---- 存活状态标识：dot + text（同「工具集成」的已挂载/未挂载） ---- */
+
+.statusBadge {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.statusOn {
+  background: var(--dsw-alias-state-success-tertiary, rgba(47, 158, 99, 0.14));
+  color: var(--dsw-alias-state-success, #2f9e63);
+}
+
+.statusOn .statusDot {
+  background: var(--dsw-alias-state-success, #2f9e63);
+}
+
+.statusOff {
+  background: var(--dsw-alias-state-danger-tertiary, rgba(216, 68, 60, 0.14));
+  color: var(--dsw-alias-state-danger, #d8443c);
+}
+
+.statusOff .statusDot {
+  background: var(--dsw-alias-state-danger, #d8443c);
+}
+
+.statusIdle {
+  background: var(--dsw-alias-interactive-bg-hover);
+  color: var(--dsw-alias-label-secondary);
+}
+
+.statusIdle .statusDot {
+  background: var(--dsw-alias-label-tertiary, #9aa3b2);
 }
 
 .agentMeta {
@@ -280,8 +329,8 @@
 .endpointUrl {
   flex: 1;
   min-width: 0;
-  padding: 6px 10px;
-  border-radius: 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
   background: var(--dsw-alias-bg-module-platform);
   border: 1px solid var(--dsw-alias-border-l2);
   font-size: 12px;

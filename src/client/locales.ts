@@ -10,7 +10,6 @@ export type DashboardKey =
   | 'subtitle'
   | 'tab.overview'
   | 'tab.analytics'
-  | 'tab.about'
   | 'skillForge.label'
   | 'toolIntegrations.label'
   | 'a2a.label'
@@ -29,7 +28,6 @@ export const zh: Record<DashboardKey, string> = {
   'subtitle': '实时汇总会话、上下文与 Token 用量指标，全部从框架标准数据派生。',
   'tab.overview': '概览',
   'tab.analytics': '用量分析',
-  'tab.about': '关于',
   'skillForge.label': '技能工坊',
   'toolIntegrations.label': '工具集成',
   'a2a.label': 'A2A 管理',
@@ -42,7 +40,6 @@ export const en: Record<DashboardKey, string> = {
   'subtitle': 'Live session, context, and token-usage metrics, all derived from standard framework data.',
   'tab.overview': 'Overview',
   'tab.analytics': 'Analytics',
-  'tab.about': 'About',
   'skillForge.label': 'Skill Forge',
   'toolIntegrations.label': 'Tool Integrations',
   'a2a.label': 'A2A Management',

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:62f5e622b4e53dc987504463ab91dac15df8eab681db91859e9483cabd7e5439",
+  "pageVersion": "sha256:36445fc33524f0f3ef42b36efecacd3fe9656294b4c3ce8a289b89ff9302e6f5",
   "claims": [
     {
       "id": "claim_ab88e973a7a64369b5b0bd71d29e634b",
@@ -81,34 +81,20 @@
       ]
     },
     {
-      "id": "claim_a24258fab3c14b1e8d2e919cfe71630d",
-      "statement": "lifecycle(sessionId) is the sixth @Remote method on the skillForge namespace, validating the id against /^session-[A-Za-z0-9-]+$/, locating the session's session.jsonl.zstd under the $DSH_HOME/sessions workspace tree, decompressing its zstd frames, folding JSONL records into a flat LifecycleEvent stream, and returning a compacted LifecycleSnapshot; it is a read-only inspection sharing the skillForge namespace rather than a separate lifecycle service.",
-      "evidence": [
-        {
-          "resource": "repo://src/client/remote.ts#L147-L147",
-          "version": "repo-lines-v1:sha256:98f22fae970cf8193085856b8beb9ec5458c1846ae03a5bfde5631fa3e87efea:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOThmMjJmYWU5NzBjZjgxOTMwODU4NTZiOGJlYjllYzU0NThjMTg0NmFlMDNhNWJmZGU1NjMxZmEzZTg3ZWZlYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOThmMjJmYWU5NzBjZjgxOTMwODU4NTZiOGJlYjllYzU0NThjMTg0NmFlMDNhNWJmZGU1NjMxZmEzZTg3ZWZlYSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiN2Y1YWIwZjAxYWJkNTMyYzE5MWRiYjc3NjMwYjI1YzA2ZThmMDJmZThlYjdhYTRjNDQwYzg1ODk1NTlhZWY5NyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjEzYThjM2ExMDAyNDZlNzIyZWM3MDY5ZDA2MzYyZmZlYmJlMmQ1ZGZkYzhkZDFjMzljMmI0OWE0MGFkZDUwZSJ9"
-        },
-        {
-          "resource": "repo://src/index.ts#L303-L410",
-          "version": "repo-lines-v1:sha256:6424d673440c89af43469ec78e8ced859492d518d129c7123b310c50ad6aab35:eyJzZWxlY3RlZExpbmVDb3VudCI6MTA4LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI3NzU4ZGY4NTM5NDIwZDcwNzY5MjQ0MGEyMmM3MzdmYWIyYTViNGIwM2M4NTUwOWI2MWI5NDZlNDU4OWM3MzVkIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJlMjJmYWE1MzViZDJlYTNkNTJlNzQxZWQ0NTQ0MzViN2ZlNDllODM1ODZlOTQzZDk4ZDgyYmJmYjI0ZDFmNWM1IiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJkNmU1ZGNjMTllNThhNzQ2ZDExOWQ4MDY1MTg4NzMyYjNkMGNmNGY4MjQ5NTRmYjY0ZjU2NWI0YTk2Y2VkMTQ1IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJmMGYyMDFlZTAzOGM1MjA5MmU3NTk5NTJhNzM2OTJlNzQ1MzEyYWFiYWFiMTg1NzgxMTAxZDMyMjJhMTk3YWQ0In0"
-        }
-      ]
-    },
-    {
       "id": "claim_d1389ba4cc1743c68fd0c2f26bea0706",
       "statement": "The browser SkillForgeView receives a SkillApi built in src/client/index.ts by wrapping every ctx.remote.skillForge.* call in unwrap(), which throws on the { ok: false } branch so a host-side failure surfaces as a Promise rejection the view renders as an inline error; the view validates the frontmatter name: against /^[A-Za-z0-9_-]{1,64}$/ before calling api.write, mirroring the host assertName().",
       "evidence": [
         {
-          "resource": "repo://src/client/SkillForgeView.tsx#L70-L89",
+          "resource": "repo://src/client/SkillForgeView.tsx#L80-L99",
           "version": "repo-lines-v1:sha256:7cd143f8045391f9a6a4a5c8decf5823fb0cda679a12ba81064a72637b206a33:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFjNjViZjAwNDAwN2QzNWEyZmU4NTIyNGI1MzUwNDVkNDk1ODg3Mjg2YmZmOTMyMjQ5NTU1ZTI5ZjA3MGE1ZWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ5ZjFlYWY3YjRkNDIwZmE1MmNmM2ZjODFkNTk2MTNmOGNmY2ZjZGY0YmQ3Y2I2NmEyNDc0MTRiMTc0ZTA1MzEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkxMjUzMDU2OGI5YTQ4YWNlMGVkMDkyY2U2OTFmZmIwMmJiODcwNzQ3MDQ0ZmI0OTdiY2NiYzNhMDM0ZjdjZmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhiZWM3NjdkNzQwMjAwNjBkNTVlMDk2NGFhMzVjOWIyY2E3NmU5MjgxODFhNjE3N2I2M2JiOGJhNzliMTVlOWEifQ"
         },
         {
-          "resource": "repo://src/client/index.ts#L36-L40",
-          "version": "repo-lines-v1:sha256:6ee71680a1f95cb4e2606bd055165e5a54e72f60dc89cd90e00763951c5e9f55:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTc2ZjVhMDM3MDA1M2JhMjUwNTlhYmQ0YzJjYTM4MDhiYzkzYjI1YzBiYzc4Yjk0NjNkOGIzZmZkOWZjZDUxMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTIyZmFhNTM1YmQyZWEzZDUyZTc0MWVkNDU0NDM1YjdmZTQ5ZTgzNTg2ZTk0M2Q5OGQ4MmJiZmIyNGQxZjVjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNmRiY2RmZTRiOTc1ZGU1YWRjYmYxMWIwNmM3YjdkOThhNWYwZGQwN2U3YTkwMTliMzEzZWY4Y2FlNWFlNWY3YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDcwZjljNTZiYTFmNmIyYmY4MzFkMDE4NWRmMGZkOGE3NTUxNmYyMGNiMzk0NGQ2NmI3NzlmYTAzOWFkY2U2OSJ9"
+          "resource": "repo://src/client/index.ts#L36-L39",
+          "version": "repo-lines-v1:sha256:0756eb844c4dcc1fac632e889451a1bf9718ab9c57d9875fcdb784ab90903e14:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTg5M2QwODFmODZhZWJjNGM3ZWZkNTJjY2I2ZTNjNjAwMDExMjg3MGIxY2RlMTk5MmE3ZGU2NmFkNjUwYTIzZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTIyZmFhNTM1YmQyZWEzZDUyZTc0MWVkNDU0NDM1YjdmZTQ5ZTgzNTg2ZTk0M2Q5OGQ4MmJiZmIyNGQxZjVjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDE0MTk1YTVmYmY3ZGJiNmJiMzE3ZjhkMDU0NzI0MzdmNGMyZmExZjliOTU2NzZiMTUxY2UzMzgwNGY4NDEyOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDcwZjljNTZiYTFmNmIyYmY4MzFkMDE4NWRmMGZkOGE3NTUxNmYyMGNiMzk0NGQ2NmI3NzlmYTAzOWFkY2U2OSJ9"
         },
         {
-          "resource": "repo://src/client/index.ts#L99-L127",
-          "version": "repo-lines-v1:sha256:8a124a295c2b9189e877a0d0c8afe238d7894b4887eff9533f4b1535eb4399d5:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg2NGYyNGJlZDdlNzA4MWUyZGZjZjc1ZjMyZDViYTEyYjk0MDkyZjhiOGRmZWUwZWI4YzQ4ZjdhMzNiOTg0MDIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE4OWU2ZjUzNWFmZTBiN2IwNzcxMDYzMDM3MDA2YTYzYjY2N2E3YTZjNmYwODgxMjg5YjVkMWMxYTVhOTIwNjIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgyMDY4YmQ4MjAyYzYzMjU3NzZkODAyYWU3OWI4ZGY5MGJhNmUxYzA4YmQ3MjkyOGFkMGQ4ZDE2MWIzMjJiZjUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY5ZDUzNzdkNGZkZWM4MmVjMGQ4MTY3OWYwYTYzOTYzODcyOWFjOTJjMWQ1MjNhY2FlMzA3OWMzMWYxMDhiNDUifQ"
+          "resource": "repo://src/client/index.ts#L99-L105",
+          "version": "repo-lines-v1:sha256:6a21d7a9c86b8917e3cb2cc2d6594c580a78bbe9354586e6b1543ab332a5e671:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZmJhYzJmOGY4NTYwZmM5MGNjNWZmNGNmYmY5NzczZWZhZGZjYjYxM2ExOTkyZDMyNmUwOWQ5MTIxZTk2YmJiYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzEzNDUxODAxMDViMGM2NmE3N2RhZDUxYmIzNzkwMWEzNzMyYzk2NTRiYTRkZTM5ODFmODFlMTgxNzUyNDhiZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNGRiMGI4NjU4NTM1NTc4MTdkNDczOTg5ZDA1NGMzM2Y4ODM3NjZhMThkZmQ3NmE5YzNiYjIzMTQ1ODVhNzVlOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTg2ZjQyMGY2MzRmMzhmYjZlNzYyZmY1ZmNjNDdlYjQ5M2IwNGE0NGJjZjY2MzUyMDdhYjNiNzgzMDQ0MTFlNiJ9"
         }
       ]
     },
@@ -129,10 +115,24 @@
           "version": "repo-lines-v1:sha256:5ab1dabadd98c57b6cac770faf247eb1ae7571df8269d5283ee2e8c74f224418:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmZlOTEwMjgyOGM0ZjY0YjdjZDM4YmFjNWU4ZjRmYjYzNjk0ZDE0Y2ZjNjk4YWQ5ZTA2MDA3ZGJhMDBjNDJmMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTk0Zjk2NGQ4MWY4NzljZWE1ZDNlNjUyMDNhZjIzMTk4ZTdjMDQwYTdjNjQ2YmVmZjFhNDlhZWQ4MmM1MzgwMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTZkYjIwYTNlMWZhNDY2NzdmOTE2OGJkYTg3NTUxZDQ5NDI3OGFlN2YzYjE5NmM3NTk3ZGQ3MjU4ODZhNjcyNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmUxYzY0ZGYwMWFkNTZjNTc5NjYwNzE1MThiZDAzMWQzN2VjMTM3MTVhYjRjNjM4MjdmZjg1MjllNjc4NDUwNSJ9"
         }
       ]
+    },
+    {
+      "id": "claim_1437574fca5b4335870bf5c7d6d112d2",
+      "statement": "The skillForge namespace exposes exactly five @Remote methods — list, read, write, delete, and generate — with no lifecycle RPC: the host SkillForgeGateway defines precisely these five methods on the skillForge namespace, and the hand-written TYPERT_REMOTE manifest carries exactly five skillForge descriptors, so the namespace no longer carries a session-lifecycle method.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/remote.ts#L160-L165",
+          "version": "repo-lines-v1:sha256:34392b426463aeae5906a663d568a4e705dd06607029c49e5ca2715125dfa7b3:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYjcxM2RlMWEwMGIxYjZkNGE4MWNmNDFhNGY3MTQwM2E5ZjljZjUxZDg3ZWM0MWExMGY4MzY1NDUxZjc3NmYxZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNmE3MzQyZjllN2ZjMGE0YmNmNTI5MmFhYTY0ZTIyNDQ1YzZkOGUzMTdmOTJkMTFjZDY0ZjkyYTQ5ZDg2M2NmZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiY2YwZjQ2ZWFiN2ZhMmQyMWE2OTc4ZWMyYThjNmYwZDFhMDdkMTQyMTkzN2QxZTM0YjhjMmIyNjg2MmNiZWQ5YiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjEzYThjM2ExMDAyNDZlNzIyZWM3MDY5ZDA2MzYyZmZlYmJlMmQ1ZGZkYzhkZDFjMzljMmI0OWE0MGFkZDUwZSJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L70-L200",
+          "version": "repo-lines-v1:sha256:bca13d2a8e37f1f140254ebc81a55cbd037a4d81cd369492cdab8840c1295f91:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMxLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI5NGI5OGJmYTFiZjk2NjRkZWZlN2NmNDk4ODUxYjQ1NWU1ZDU1MjI0MGE2MDIzZDBhZTRkYmY3MGYyNWY3YTM5IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI3MTM0NTE4MDEwNWIwYzY2YTc3ZGFkNTFiYjM3OTAxYTM3MzJjOTY1NGJhNGRlMzk4MWY4MWUxODE3NTI0OGJmIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI3N2I4MmMxM2Y4YzMxNDZmOWE2ZWZmZTYxNDYxNjMzZWQ2NzA0Zjc4NmI0YzBiYjYyNDFmZDc1NWRhNWRlMGM2IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlYmExZmM2ZGI2YjRmMTU5OGNiNzhjMjg3NWMzYWM0YTQ2Y2MwZmI1MTdiZWZiMDI3ZGFlMjI0N2ZhOGE2NGU5In0"
+        }
+      ]
     }
   ],
   "verification": {
     "by": "openwiki/0.5.0",
-    "at": "2026-09-03T02:25:20.569Z"
+    "at": "2026-09-04T14:14:38.291Z"
   }
 }

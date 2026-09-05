@@ -1,11 +1,8 @@
 ---
 type: workflow
 title: Skill Forge (技能工坊)
-description: The end-to-end Skill Forge flow — the host SkillForgeGateway's list/read/write/delete of per-profile skills/<name>/SKILL.md behind the NAME_RE path-traversal guard and assertName(), the frontmatter name/description parse with fallback to the directory name, the generate() flow that streams a SKILL.md through the current default model (agentDefaultModel.currentSelection, falling back to llm.listProviders/listModels) and surfaces model failures, plus the lifecycle RPC reachable off the same namespace and how SkillForgeView wraps the mirrored SkillApi calls through the client remote and unwrap().
+description: The end-to-end Skill Forge flow — the host SkillForgeGateway's five @Remote methods (list/read/write/delete/generate) over the Typert bridge, the per-profile skills/<name>/SKILL.md layout behind the NAME_RE path-traversal guard and assertName(), the frontmatter name/description parse with directory-name fallback, the generate() model selection that prefers the current default model and falls back to the first registered provider, and how the browser SkillForgeView wraps the mirrored SkillApi through the client remote and unwrap().
 tags: [skill-forge, skill-crud, skill-generate, NAME_RE, path-traversal, assertName, frontmatter, skill-root, per-profile-isolation, skg-gateway, skill-api, remote-bridge, typert-remote]
-verified:
-  - by: openwiki/0.5.0
-    at: 2026-09-03T02:25:20.569Z
 sources:
   - id: openwiki-source-3503e2677e2cb13a4c324b90
     resource: repo://src/client/index.ts
@@ -15,23 +12,23 @@ sources:
     resource: repo://src/client/SkillForgeView.tsx
   - id: openwiki-source-d1fbef09192ffbab6eff0bc2
     resource: repo://src/index.ts
-generated: { by: "openwiki/0.5.0", at: "2026-09-03T02:25:20.569Z" }
+generated: { by: "openwiki/0.5.0", at: "2026-09-04T14:14:38.291Z" }
+verified:
+  - by: openwiki/0.5.0
+    at: 2026-09-04T14:14:38.291Z
 ---
 
 # Skill Forge (技能工坊)
 
 The Skill Forge tab is dsh-pet-panel's self-service **skill authoring surface**: it lets a user list, read, write, and delete the `SKILL.md` files in the **active profile's skill root**, and it can generate a whole `SKILL.md` from a one-line natural-language description using the harness's current default model. The feature is split across the two plugin faces — the host face (`src/index.ts`) owns the filesystem, the `NAME_RE` guard, and the model call; the browser face (`src/client/SkillForgeView.tsx`) owns the editor UI and the mirrored `SkillApi` wrappers over the Typert remote.
 
-The `skillForge` host namespace also carries a sixth, read-only method — `lifecycle(sessionId)` — which reconstructs a session's execution trace from its zstd JSONL log. Though it is not a skill CRUD operation, it lives on this same namespace (see [Session Lifecycle Trace](/openwiki/concepts/session-lifecycle-events.md)); do not move it to a separate namespace without updating both the host Gateway and the client remote manifest.
-
 This page is the workflow in detail. The per-profile isolation invariant it depends on is documented on [Per-Profile Data Isolation](/openwiki/concepts/per-profile-isolation.md), the wire contract on [Client-to-Host Typert Remote Bridge](/openwiki/architecture/typert-remote-bridge.md), and the browser slot that hosts the tab on [Browser Client Surfaces](/openwiki/workflows/client-surface.md).
 
 ## The `skillForge` namespace and the gateway
 
-`SkillForgeGateway` extends `TypertRemoteService`, injects `['llm', 'agentDefaultModel']`, and binds its wire namespace to `skillForge` in its constructor (`repo://src/index.ts#L159-L169`). It exposes six `@Remote` methods — `list`, `read`, `write`, `delete`, `generate`, and `lifecycle` — each returning a **JSON-safe business value** that the Typert framework wraps into the `{ ok: true, value } | { ok: false, error }` envelope (`repo://src/client/remote.ts#L141-L147`). The client never imports this class; it mounts the hand-written `TYPERT_REMOTE` manifest and calls the namespace through `ctx.remote.skillForge.<method>()`.
+`SkillForgeGateway` extends `TypertRemoteService`, injects `['llm', 'agentDefaultModel']`, and binds its wire namespace to `skillForge` in its constructor (`repo://src/index.ts#L58-L68`). It exposes five `@Remote` methods — `list`, `read`, `write`, `delete`, and `generate` — each returning a **JSON-safe business value** that the Typert framework wraps into the `{ ok: true, value } | { ok: false, error }` envelope (`repo://src/client/remote.ts#L140-L155`). The client never imports this class; it mounts the hand-written `TYPERT_REMOTE` manifest and calls the namespace through `ctx.remote.skillForge.<method>()`.
 
-<!-- openwiki: mermaid parse failed and this diagram was converted to a text fence so it does not break rendering. Fix the diagram source and restore the mermaid fence. Parser error: Heuristic: an unescaped angle bracket inside a label breaks rendering; rephrase the label. -->
-```text
+```mermaid
 flowchart TD
     gw["SkillForgeGateway (TypertRemoteService)"]
     inj["inject: llm, agentDefaultModel"]
@@ -41,21 +38,19 @@ flowchart TD
     write["@Remote write"]
     del["@Remote delete"]
     gen["@Remote generate"]
-    life["@Remote lifecycle"]
     inj --> gw --> ns
-    ns --> list --> root["<skillRoot>/<name>/SKILL.md"]
+    ns --> list --> root["skillRoot / name / SKILL.md"]
     ns --> read --> root
     ns --> write --> root
     ns --> del --> root
-    ns --> gen --> llm["llm.stream (default model)"]
-    ns --> life --> sess["$DSH_HOME/sessions/**/session.jsonl.zstd"]
+    ns --> gen --> genllm["llm.stream (default model)"]
 ```
 
-Caption: the `skillForge` namespace — five SKILL.md-facing methods plus the read-only `lifecycle` trace method.
+Caption: the `skillForge` namespace — the five `@Remote` SKILL.md-facing methods and their targets.
 
 ## The path-traversal guard: `NAME_RE` and `assertName`
 
-The single most security-relevant invariant here is that **a skill name can never escape the skill root**. `NAME_RE` is `/^[A-Za-z0-9_-]{1,64}$/` — letters, digits, hyphen, underscore, 1-64 characters — and `assertName()` throws `invalid name: <name>` for anything that is not a non-empty string matching it (`repo://src/index.ts#L14-L21`). Every name that reaches the filesystem is routed through it:
+The single most security-relevant invariant here is that **a skill name can never escape the skill root**. `NAME_RE` is `/^[A-Za-z0-9_-]{1,64}$/` — letters, digits, hyphen, underscore, 1-64 characters — and `assertName()` throws `invalid name: <name>` for anything that is not a non-empty string matching it (`repo://src/index.ts#L14-L20`). Every name that reaches the filesystem is routed through it:
 
 ```ts
 function skillDir(name: string): string {
@@ -67,11 +62,11 @@ function skillFile(name: string): string {
 }
 ```
 
-`repo://src/index.ts#L28-L35`. Because `assertName` rejects `..`, absolute paths, slashes, and any character outside the allowed set, a call like `read('../other')` or `read('../../etc')` is rejected before `join()`, so the resolved path always lands inside `skillRoot()`. `join()` only ever appends the validated single segment plus the fixed `SKILL.md` filename.
+`repo://src/index.ts#L27-L34`. Because `assertName` rejects `..`, absolute paths, slashes, and any character outside the allowed set, a call like `read('../other')` or `read('../../etc')` is rejected before `join()`, so the resolved path always lands inside `skillRoot()`. `join()` only ever appends the validated single segment plus the fixed `SKILL.md` filename.
 
 ## Per-profile root and the `SKILL.md` layout
 
-`skillRoot()` resolves the active profile from `process.argv` and returns the profile skills directory when one is active, else the global home skills directory (`repo://src/index.ts#L23-L26`):
+`skillRoot()` resolves the active profile from `process.argv` and returns the profile skills directory when one is active, else the global home skills directory (`repo://src/index.ts#L22-L25`):
 
 ```ts
 function skillRoot(): string {
@@ -84,27 +79,27 @@ So each skill lives at `<skillRoot>/<name>/SKILL.md` — a single directory per 
 
 ## Frontmatter parsing and name/description fallback
 
-`parseFrontmatter()` (`repo://src/index.ts#L37-L43`) extracts `title` (from the frontmatter `name:` key) and `description` (from the frontmatter `description:` key) by regexing the leading `--- ... ---` block. It is deliberately fault-tolerant:
+`parseFrontmatter()` (`repo://src/index.ts#L37-L42`) extracts `title` (from the frontmatter `name:` key) and `description` (from the frontmatter `description:` key) by regexing the leading `--- ... ---` block. It is deliberately fault-tolerant:
 
 - **No frontmatter at all** → `title: ''`, `description: ''`.
 - **Frontmatter without a `name:`** → `title: ''`.
 - **Frontmatter without a `description:`** → `description: ''`.
 
-The *list* operation then favors the **directory name** over the parsed value: it sets `title: title || name` (so a missing/empty frontmatter `name` falls back to the directory name) and keeps `description` as-is (empty when absent) (`repo://src/index.ts#L181-L193`). This is why the sidebar can display a human-facing `title` while the item key is still the on-disk directory `name`.
+The *list* operation then favors the **directory name** over the parsed value: it sets `title: title || name` (so a missing/empty frontmatter `name` falls back to the directory name) and keeps `description` as-is (empty when absent) (`repo://src/index.ts#L70-L93`). This is why the sidebar can display a human-facing `title` while the item key is still the on-disk directory `name`.
 
 ## The CRUD methods
 
-`list()` (`repo://src/index.ts#L171-L194`) `readdir`s the skill root, keeps only the immediate subdirectories, reads each `<name>/SKILL.md`, parses its frontmatter, fills the fallback title, and returns the array sorted by `name` with `localeCompare`. If the root does not exist yet it returns `{ items: [] }` rather than throwing — a fresh profile with no skills is not an error.
+`list()` (`repo://src/index.ts#L71-L93`) `readdir`s the skill root, keeps only the immediate subdirectories, reads each `<name>/SKILL.md`, parses its frontmatter, fills the fallback title, and returns the array sorted by `name` with `localeCompare`. If the root does not exist yet it returns `{ items: [] }` rather than throwing — a fresh profile with no skills is not an error.
 
-`read(name)` (`repo://src/index.ts#L196-L201`) asserts the name and returns `{ name, content }` from `skillFile(name)`.
+`read(name)` (`repo://src/index.ts#L95-L100`) asserts the name and returns `{ name, content }` from `skillFile(name)`.
 
-`write(name, content)` (`repo://src/index.ts#L203-L209`) asserts the name, `mkdir`s the skill directory with `recursive: true` (so creating a new skill does not need a pre-existing dir), writes `SKILL.md` as UTF-8, and returns `{ name }`.
+`write(name, content)` (`repo://src/index.ts#L102-L108`) asserts the name, `mkdir`s the skill directory with `recursive: true` (so creating a new skill does not need a pre-existing dir), writes `SKILL.md` as UTF-8, and returns `{ name }`.
 
-`delete(name)` (`repo://src/index.ts#L211-L216`) asserts the name and removes the whole skill directory with `rm(..., { recursive: true, force: true })`, returning `{ name }`. `force` makes a missing directory a no-op rather than an error; `recursive` removes the directory and its `SKILL.md` together.
+`delete(name)` (`repo://src/index.ts#L110-L115`) asserts the name and removes the whole skill directory with `rm(..., { recursive: true, force: true })`, returning `{ name }`. `force` makes a missing directory a no-op rather than an error; `recursive` removes the directory and its `SKILL.md` together.
 
 ## The `generate()` flow
 
-`generate(description)` is the model-driven half of the feature. It validates the description is non-empty, **selects a model**, streams the generation, and surfaces any model failure (`repo://src/index.ts#L219-L301`).
+`generate(description)` is the model-driven half of the feature. It validates the description is non-empty, **selects a model**, streams the generation, and surfaces any model failure (`repo://src/index.ts#L118-L200`).
 
 ### Model selection: default preference, then first-provider fallback
 
@@ -133,17 +128,17 @@ if (!provider || !model) {
 }
 ```
 
-`repo://src/index.ts#L225-L249`. The comment in source is explicit: the fallback must not blindly take `providers[0]` as the *primary* choice, because that first registered provider could be an unconfigured or insufficient-balance one (e.g. an unused `deepseek` route). The default model, read live from `agentDefaultModel.currentSelection()` (`AgentDefaultModelConfig`, part of the `agentDefaultModel` service), is tried first. `llm.listProviders()` / `llm.listModels(provider)` (the `LlmRuntime` methods) are the fallback source, and empty results throw a user-facing Chinese error.
+`repo://src/index.ts#L126-L148`. The comment in source is explicit: the fallback must not blindly take `providers[0]` as the *primary* choice, because that first registered provider could be an unconfigured or insufficient-balance one (e.g. an unused `deepseek` route). The default model, read live from `agentDefaultModel.currentSelection()` (`AgentDefaultModelConfig`, part of the `agentDefaultModel` service), is tried first. `llm.listProviders()` / `llm.listModels(provider)` (the `LlmRuntime` methods) are the fallback source, and empty results throw a user-facing Chinese error.
 
 ### Prompt, stream, and failure surfacing
 
-The system prompt instructs the model to emit a DeepSeek-Harness `SKILL.md` — YAML frontmatter with `name` (lowercase-hyphen, e.g. `weather-query`) and a one-sentence `description` containing the trigger scenario, a Markdown body describing usage/steps/commands, a `name` restricted to `[A-Za-z0-9_-]{1,64}`, and concrete executable content. The model is told to output **only** the `SKILL.md` content starting from `---`, with no explanation and no wrapping code fence (`repo://src/index.ts#L251-L263`).
+The system prompt instructs the model to emit a DeepSeek-Harness `SKILL.md` — YAML frontmatter with `name` (lowercase-hyphen, e.g. `weather-query`) and a one-sentence `description` containing the trigger scenario, a Markdown body describing usage/steps/commands, a `name` restricted to `[A-Za-z0-9_-]{1,64}`, and concrete executable content. The model is told to output **only** the `SKILL.md` content starting from `---`, with no explanation and no wrapping code fence (`repo://src/index.ts#L150-L160`).
 
-The call is a hand-built single user message (id via `randomUUID()`, `source: { kind: 'user' }`), streamed with `this.llm.stream({ provider, model, system, messages, temperature: 0.3 })` (`repo://src/index.ts#L265-L278`). The code walks the chunk stream:
+The call is a hand-built single user message (id via `randomUUID()`, `source: { kind: 'user' }`), streamed with `this.llm.stream({ provider, model, system, messages, temperature: 0.3 })` (`repo://src/index.ts#L171-L177`). The code walks the chunk stream:
 
 - accumulates `text-delta` chunks into `text`;
 - on a `finish` chunk whose `reason.kind` is `error` or `aborted`, captures `reason.failure` as the failure.
-- after the loop, if a failure was captured it throws `模型调用失败：<message>（<code>） HTTP <status>` (omitting the parts that are absent) (`repo://src/index.ts#L280-L296`);
+- after the loop, if a failure was captured it throws `模型调用失败：<message>（<code>） HTTP <status>` (omitting the parts that are absent) (`repo://src/index.ts#L179-L199`);
 - if no text came back, it throws `生成失败：模型没有返回内容。`.
 
 ```mermaid
@@ -180,23 +175,19 @@ sequenceDiagram
 
 Caption: the `generate()` request flow — default model first, first-provider fallback, streaming accumulation, and the failure surfacing that renders in the view's error line.
 
-## The `lifecycle` RPC on the namespace
-
-`lifecycle(sessionId)` (`repo://src/index.ts#L303-L410`) is the sixth `@Remote` method of `skillForge`. It validates the session id against `/^session-[A-Za-z0-9-]+$/` (another path-traversal guard), locates the session's `session.jsonl.zstd` under the `$DSH_HOME/sessions` workspace tree, decompresses its zstd frames, folds each JSONL record into a flat `LifecycleEvent`, aggregates the counters and `startedAt`/`endedAt`/`title`, and returns a compacted `LifecycleSnapshot`. It is a host-side **read-only inspection** over the same data surface the client already talks to, which is why it sits under `skillForge` rather than its own namespace. Its reconstruction mechanics, the event-kind switch, and the `compact()` JSON-safety rule are documented on [Session Lifecycle Trace](/openwiki/concepts/session-lifecycle-events.md); the client wires it into the Task Manager through an `unwrap()`-wrapped `ctx.remote.skillForge.lifecycle(sessionId)` inside the capabilities child plugin (`repo://src/client/index.ts#L150-L157`).
-
 ## The browser face: `SkillForgeView` and `SkillApi`
 
-`src/client/SkillForgeView.tsx` receives a `SkillApi` prop — the host remote wrapped into promise-returning helpers (`repo://src/client/SkillForgeView.tsx#L15-L22`). The client's `apply` builds that `skillApi` by wrapping every `ctx.remote.skillForge.*` call in `unwrap()` (which throws on the `{ ok: false }` branch) and registers the view as the `conversation.view` slot with id `skill-forge`, order 30 (`repo://src/client/index.ts#L99-L127`). So a host-side failure surfaces as a `Promise` rejection that the view's `try/catch` renders as the inline error line.
+`src/client/SkillForgeView.tsx` receives a `SkillApi` prop — the host remote wrapped into promise-returning helpers (`repo://src/client/SkillForgeView.tsx#L17-L23`). The client's `registerCapabilityViews` builds that `skillApi` by wrapping every `ctx.remote.skillForge.*` call in `unwrap()` (which throws on the `{ ok: false }` branch) and registers the view as the `conversation.view` slot with id `skill-forge`, order 30 (`repo://src/client/index.ts#L99-L141`). So a host-side failure surfaces as a `Promise` rejection that the view's `try/catch` renders as the inline error line.
 
 The view keeps its own editor state and mirrors the host's name rules in the browser:
 
-- `skeleton(name)` produces a minimal frontmatter + body for a fresh skill (`repo://src/client/SkillForgeView.tsx#L27-L29`).
+- `skeleton(name)` produces a minimal frontmatter + body for a fresh skill (`repo://src/client/SkillForgeView.tsx#L28-L30`).
 - `create()` selects the sentinel `'__new__'` and fills the editor with `skeleton('my-skill')`; the actual on-disk name is decided only on save.
-- `save()` extracts the name **from the frontmatter `name:` line**, not from the sidebar selection, and validates it against the same `/^[A-Za-z0-9_-]{1,64}$/` pattern *before* calling `api.write` (`repo://src/client/SkillForgeView.tsx#L70-L89`). If the frontmatter lacks a valid `name:`, it shows a Chinese error and does not call the host. This mirrors the host `assertName()` — the directory is named after the frontmatter `name`, so a user pasting a `SKILL.md` with a different `name:` will create (or overwrite) a directory under that new name.
+- `save()` extracts the name **from the frontmatter `name:` line**, not from the sidebar selection, and validates it against the same `/^[A-Za-z0-9_-]{1,64}$/` pattern *before* calling `api.write` (`repo://src/client/SkillForgeView.tsx#L80-L99`). If the frontmatter lacks a valid `name:`, it shows a Chinese error and does not call the host. This mirrors the host `assertName()` — the directory is named after the frontmatter `name`, so a user pasting a `SKILL.md` with a different `name:` will create (or overwrite) a directory under that new name.
 - `remove(name)` confirms via `window.confirm`, then `api.delete(name)` and refreshes.
-- `generate()` (the view-side half) calls `api.generate(desc)`, then displays the returned content with a typewriter effect (rapid `setTimeout` stepping 4 chars at a time), and on completion sets the editor content and selects the sentinel `'__generated__'` (`repo://src/client/SkillForgeView.tsx#L118-L145`), which the editor path renders as `智能生成结果`. A failed model call sets the inline error and clears the busy flag.
+- `generate()` (the view-side half) calls `api.generate(desc)`, then displays the returned content with a typewriter effect (rapid `setTimeout` stepping 4 chars at a time), and on completion sets the editor content and selects the sentinel `'__generated__'` (`repo://src/client/SkillForgeView.tsx#L128-L155`), which the editor path renders as `智能生成结果`. A failed model call sets the inline error and clears the busy flag.
 
-The editor path label switches on these sentinels — `__new__` renders `新技能`, `__generated__` renders `智能生成结果`, and any other selection renders `<name>/SKILL.md` (`repo://src/client/SkillForgeView.tsx#L210`). The delete button is hidden for both sentinels, which are not real skills yet.
+The editor path label switches on these sentinels — `__new__` renders `新技能`, `__generated__` renders `智能生成结果`, and any other selection renders `<name>/SKILL.md` (`repo://src/client/SkillForgeView.tsx#L223`). The delete button is hidden for both sentinels, which are not real skills yet.
 
 ## Summary of invariants
 
@@ -204,4 +195,3 @@ The editor path label switches on these sentinels — `__new__` renders `新技�
 - **The directory is named after the frontmatter `name:`**, and the browser mirrors the host name regex before writing, so a malformed or mismatched `name:` is caught client-side and again host-side.
 - **The frontmatter parse is fault-tolerant**, falling back to the directory name for the display title; `description` may be empty.
 - **`generate` prefers the current default model** and only falls back to the first registered provider + model when the default is unavailable; it never assumes `providers[0]` is configured, and it surfaces model failures and empty output as distinct errors.
-- **`lifecycle` is read-only** but lives on the `skillForge` namespace; keep the host `@Remote`, the client manifest descriptor, and the client wrapper in lockstep if it ever moves.

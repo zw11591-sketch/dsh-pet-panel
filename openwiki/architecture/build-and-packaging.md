@@ -5,7 +5,7 @@ description: How dsh-pet-panel compiles and ships its dual host/client halves �
 tags: [build, bundling, packaging, tsdown, rolldown, postbuild, decorators, module-loader, css-modules, dsh-plugin]
 verified:
   - by: openwiki/0.5.0
-    at: 2026-09-03T02:25:20.569Z
+    at: 2026-09-04T14:14:38.291Z
 sources:
   - id: openwiki-source-cdd83677ebacfc37110cded7
     resource: repo://build/tsdown.client.ts
@@ -21,6 +21,8 @@ sources:
     resource: repo://package.json
   - id: openwiki-source-c9068800bd07dd38ed57bc16
     resource: repo://scripts/postbuild.mjs
+  - id: openwiki-source-3503e2677e2cb13a4c324b90
+    resource: repo://src/client/index.ts
   - id: openwiki-source-9574f44db93f6ce7d70675b2
     resource: repo://src/client/remote.ts
   - id: openwiki-source-d1fbef09192ffbab6eff0bc2
@@ -31,12 +33,12 @@ sources:
     resource: repo://tsdown.config.ts
   - id: openwiki-source-11702e57f1561f9dd49999b6
     resource: repo://tsdown.prepare.config.ts
-generated: { by: "openwiki/0.5.0", at: "2026-09-03T02:25:20.569Z" }
+generated: { by: "openwiki/0.5.0", at: "2026-09-04T14:14:38.291Z" }
 ---
 
 # Build, Bundling, and Packaging
 
-dsh-pet-panel is a **dual-face** DeepSeek Harness Web UI plugin that ships two artifacts from one `src/` tree: a Node **host** half (`lib/index.js`, the Gateways/Services the dsh host loads) and a browser **client** half (`lib/client.js`, the panel/pet UI served to browsers). Everything is produced by a single npm script chain driven by `tsc -b`, `tsdown` (rolldown), and a small `scripts/postbuild.mjs` override. The authoritative inputs are `src/`, `tsconfig.json`, and the two tsdown configs; the emitted `lib/*` bundles and the tsc output are the ground truth for what ships.
+dsh-pet-panel is a **dual-face** DeepSeek Harness Web UI plugin that ships two artifacts from one `src/` tree: a Node **host** half (`lib/index.js`, the Gateways/Services the dsh host loads) and a browser **client** half (`lib/client.js`, the panel/pet UI served to browsers). Everything is produced by a single npm script chain driven by `tsc -b`, `tsdown` (rolldown), and a small `scripts/postbuild.mjs` override. The authoritative inputs are `src/`, `tsconfig.json`, and the two tsdown configs; the emitted `lib/*` bundles and the tsc output are the ground truth for what ships. The host face's single entry is `apply(ctx)` in `src/index.ts` (`src/index.ts#L1465-L1473`), which registers seven plugins: the skillForge, toolIntegrations, a2aConfig, and team Typert gateways, the A2A tools handler, the A2A inbound endpoint, and the profile skill provider.
 
 ## Build chain
 
@@ -119,7 +121,7 @@ The loader produces deterministic output: cssExports are sorted so the emitted `
 
 ## Decorator lowering: postbuild
 
-The host half uses Stage-3 `@Remote(...)` decorators from `@deepseek-ai/dsh-typert-protocol` (bare `src/index.ts`). **rolldown does not lower these**, so a raw rolldown `lib/index.js` would keep `@Remote("...")` tokens verbatim and Node's ESM loader would throw `SyntaxError: Invalid or unexpected token` when dsh loads the host face.
+The host half uses Stage-3 `@Remote(...)` decorators from `@deepseek-ai/dsh-typert-protocol` (bare `src/index.ts` — e.g. `@Remote('list')` on `SkillForgeGateway.list`, and `@Remote('listTeams')`/`@Remote('send')` on the team gateway, `src/index.ts#L70-L118`, `#L1207-L1334`). **rolldown does not lower these**, so a raw rolldown `lib/index.js` would keep `@Remote("...")` tokens verbatim and Node's ESM loader would throw `SyntaxError: Invalid or unexpected token` when dsh loads the host face.
 
 tsc **does** lower them (to `__esDecorate`). The `tsc -b` step already emits a correct ESM host bundle at `lib/types/index.js` — the same `export function apply` surface as `src/index.ts` — so `scripts/postbuild.mjs` simply copies it over the rolldown output (`scripts/postbuild.mjs#L1-L18`). The emitted artifacts confirm this: both `lib/index.js` and `lib/types/index.js` carry the lowered `__esDecorate` helpers rather than raw decorator syntax.
 

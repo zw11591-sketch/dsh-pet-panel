@@ -1,0 +1,246 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:a68dbb77bdf5a5c0fec78bca6acac70805739a39b56e0eeee8c9f1e22736d2f5",
+  "claims": [
+    {
+      "id": "claim_e1a7b7a62ed743e6802f21c80e064c9b",
+      "statement": "TeamGateway (registered on the host via apply()) exposes the team feature as a TypertRemoteService with eight @Remote methods — listTeams, createTeam, updateTeam, deleteTeam, listThreads, openThread, getThread, send — and injects ['llm', 'agentDefaultModel'] to answer as the local 'me' agent; it reuses the shared A2A registry (loadA2AConfig, resolveAgent, a2aSendMessage, a2aBaseUrl) instead of owning a separate external-agent list.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L1195-L1205",
+          "version": "repo-lines-v1:sha256:6462b3900846270e4b434b1f606ac16f5f187784055bec5458439fffe9e26632:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI3MGM4M2QxMzVmZjJiYWEwNjg2M2U5YzU4ODI0MzRlM2RiYjE5MGYwN2VhNmZmNjUxNGQxNTY5OTFkZTk1ZDciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxMzQ1MTgwMTA1YjBjNjZhNzdkYWQ1MWJiMzc5MDFhMzczMmM5NjU0YmE0ZGUzOTgxZjgxZTE4MTc1MjQ4YmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYwMzFmNGZjMTI1Njc3MzNmMWI5MThiYzgwYzM2MmM1YmU0ZTc5MzU1MjgwMzM1OGU4MzI2MGExNjAxYzEzMTIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFhOTM0YWNjYzZiMmY0YTFkMDgyODg0ZGQ4ZDk3MWRmMGYzOWFkYmFjZmQyZjU2MjFkMjU2N2M4YmJjMjczN2QifQ"
+        },
+        {
+          "resource": "repo://src/index.ts#L1465-L1473",
+          "version": "repo-lines-v1:sha256:db4df7bc6e7b625642ca9de07581ec29dad32b152162bd8c6040933385220091:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDNlMDU4ODJlNmNlYzEzYzM0NjA0ZTBiMTIwZTg1ZWE1NmYwYjA3ZDVhNmM5N2RiNjVlNDIyZWJlNmVlNDI4OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTIyZmFhNTM1YmQyZWEzZDUyZTc0MWVkNDU0NDM1YjdmZTQ5ZTgzNTg2ZTk0M2Q5OGQ4MmJiZmIyNGQxZjVjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDQ3ZjIyMDNkZTNhY2E2NWE2NWE2MWZiNTcyZWY5NGQxMDljNDc5ZmI0NDMyNmQxOGFlYTM0ZTZiOGI1MzliNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_742e85347664493eaa21733a56177379",
+      "statement": "Team and thread data persist under the per-profile config dir: teams.json holds { teams: Team[] } and team-chats/ stores one JSON file per thread named <threadId>.json; both loaders/helpers tolerate a missing or corrupt file by returning empty data.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L1089-L1092",
+          "version": "repo-lines-v1:sha256:6696be4636f11b2ac7b728ba8621a37c2dc381ad3d0baad2b4d1b448ba3d0df0:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWJlZWQ2M2FjNmNhZmRkMTkxN2QwOTA2OWM2ZWM2YjFhZmJiY2Q1OWQ0Y2MzMDk5YTNmYjMyYzVmYzcwMjlhMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2IzNDc1MzBjOGY3ZDkxNjBkOTFmNmUyY2FiMjc1N2UyNDVlMDMyMzhiODQ4ZmJiOTE4NWM4MDA2YjYzNDhjMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiY2FjYjE2NDQxMTQzZTQwNDgwMjAzMTQ5NzU3NjIyMjdiMWNjZjE5NzAwNjZkNjZjN2VlZjg1Nzc4ZjY3NmI3MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjBiYjg2ZDlhNjNiZDdjMDNhNGNkNjk5NWNiNjhiMzkwNTBjNmJhYzc3NzEzMzRmMjU3MzQ4M2NjZDliOGZmZiJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L1094-L1117",
+          "version": "repo-lines-v1:sha256:2631a4f69035365de3df513b1189af1eaa8b6be4e875ddbc5b19f4973e955ae6:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE4YzVkMjNhNDE3YmRjY2Y5Zjc5YTIwNjFiYWE3NjdlNGRlNzY3OGU3NmQxNmE5ZTM5YzM0N2Q2ZDYwZDg4NjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVjYzBkZmM5NTBiNmNhYjY2Zjg3OGU1NjdiZWIzODUyMmUzMGIxYzY3YzI1OWU0YTUxM2VjYTdhYzdlM2U5ZjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImIzYWJlMDFiZGZmODk0OGYwMDEwZTA4ZGFhMTgyZmFlNmNkZDNmOWY0N2MxOTQxNWJmMDk0NTVkODZiYWFlOWQifQ"
+        },
+        {
+          "resource": "repo://src/index.ts#L1119-L1167",
+          "version": "repo-lines-v1:sha256:4173eb1533edb0e2c332ebdbb6c779983b6a264d8d09ccb9891d2fad11558945:eyJzZWxlY3RlZExpbmVDb3VudCI6NDksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc4OWUzNzUyMzY1YWQ2YTI5Y2RkN2E1MTgwZTIxOTU3NWI4MzMxODI2NzVjZjRjMDU1YWZkZjM0MjhiNGE2OTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFlNTJiZDgwYTk2YjliYWM1MzdhZTQ5YzQ0YzQzNDliZGEwMjZjOTdlYjI2NTBlY2VjZDVkOWE0MDVkYWJjMWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJmODI3YTUyMWYwZGZlZTNjOTU4NGYxNzU4ZjQyYmZlNjAzNjQ4ZmZmNmRjNmUzZjNkOWMyYTRmYzNkOGNmMWEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f0a97769d12643bdb311fae73c87816a",
+      "statement": "Thread ids passed to getThread and send must match THREAD_ID_RE (/^[A-Za-z0-9-]{1,64}$/) before any file access, which is the path-traversal guard preventing a malicious id from escaping team-chats/; loadThread/loadTeams degrade to empty on read or parse failure.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L1092-L1092",
+          "version": "repo-lines-v1:sha256:cb347530c8f7d9160d91f6e2cab2757e245e03238b848fbb9185c8006b6348c0:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2IzNDc1MzBjOGY3ZDkxNjBkOTFmNmUyY2FiMjc1N2UyNDVlMDMyMzhiODQ4ZmJiOTE4NWM4MDA2YjYzNDhjMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2IzNDc1MzBjOGY3ZDkxNjBkOTFmNmUyY2FiMjc1N2UyNDVlMDMyMzhiODQ4ZmJiOTE4NWM4MDA2YjYzNDhjMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjExZGM3Njk1NWY0ZjAwZmJmMWUwMWY5OWU4YTY3YjU2ZTBkNTA5M2YzYmQ1MWEzZTY2MDk3YmQ0MWE2MDk3ZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjBiYjg2ZDlhNjNiZDdjMDNhNGNkNjk5NWNiNjhiMzkwNTBjNmJhYzc3NzEzMzRmMjU3MzQ4M2NjZDliOGZmZiJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L1326-L1337",
+          "version": "repo-lines-v1:sha256:687a3263be5ce200577ed53dcaf4110d6252d9b29676dd73b15515f50099a8a5:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMwNGY1ODlkMTdjZDdlMGEyMGM1MDhjM2VkMjJjYzhjODRhZWY0OTYyZmU4Yjk1MDI3NzViZWNlMzNkY2ZmYTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIyNTM4NDlmNThjODNlMDMyY2QzNTY4Njk3MjYxMTc4YTE1ZjUxYThkOWY5YjBjYzVjZTVlZmZmZWIwMDAyMjAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZmZTA4MzRlNDViNDY2MDVjNjZiOTQxMTQ4MmRjZDgxNDA5N2Q0ODA4ODQ1NzAzMzk1MWRiOWNiZjU4Y2ZiN2EiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM4MGYwMTU4MjdlYzUxNmFiZDMzYTdhNDQ1MmUzYzQ3ZDA4NzI5Nzg3ZDc2MzFlMDI5OGQyNDgzNjMxNTk4YTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_17b5d7706b0b429696b445e25902ced1",
+      "statement": "createTeam and updateTeam force the 'me' member first and de-duplicate the rest: they filter out anything matching isMe() (normalized 'me'/'wo'/'ziwo'/'自己'), unique the remainder via a Set, and prefix {'me', ...rest}.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L1169-L1173",
+          "version": "repo-lines-v1:sha256:7746eb38f1feda66217cbc8f2f067c4bf68696da881b7a600d1c6a120b1da632:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGU1YWZlODJiMzc3ZGQ0Mzk5ZmNiMmNiYWM4N2JlODkxNzY4MTQ4OGYxODk0NTg2MGYzZTgyMDgwYzU5ZWUyZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTIyZmFhNTM1YmQyZWEzZDUyZTc0MWVkNDU0NDM1YjdmZTQ5ZTgzNTg2ZTk0M2Q5OGQ4MmJiZmIyNGQxZjVjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDQ3ZjIyMDNkZTNhY2E2NWE2NWE2MWZiNTcyZWY5NGQxMDljNDc5ZmI0NDMyNmQxOGFlYTM0ZTZiOGI1MzliNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiN2Y1MjZhOGIwZjc2NDNhYzQyZDk4YmFhOTNkMzNhZTEyNThiOGI0ZTM2YzIzYjVmNDlkMDYxNTEwMDM1ZjgxZiJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L1213-L1245",
+          "version": "repo-lines-v1:sha256:66898cd23cfcb01032764b99ab6a806671ac4fbbfed8f48a528d5f919b7ec7e2:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVkYzQ3ZmI0ZWFjYzZjMTVhMTIyNzRhNjc4NWE5NTQwYTM5NDdjMTEzMmE0N2YyZDQxMTE4Y2Q1NmZlM2UzNzgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEyZTU2MzIwNGMwZDhiMTA4MjUxMjc0ODhmYjk2ZTRhODdjYmM1N2Y3MWNiZjAxMjc1ZTBhMjI1ODU2Y2I3ZDkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE0OTJlYjk5OWY5MGI1ZjRiNDQyZmE1OTc5OWFlZDkxM2EzYWMzNDU4M2Q2ZWJkMGMzMzJlYTkzZmJjODJlZGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjlmZWM2NDVmMTBmNDAzM2RjYzAyZTkxNzNjYjAwZWMxYzk0MGIyZTBlMmJkZWM4NmMwNjNjNTk1NWUzMTJjN2MifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_edeb4e9caadb4e86b3f6f02f2fd7524e",
+      "statement": "openThread creates two thread kinds: a group thread (non-empty teamId, empty peer) is one shared thread per team, while a single-chat thread (empty teamId, non-empty peer) is one thread per peer; both return an existing matching thread rather than duplicating.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L1276-L1324",
+          "version": "repo-lines-v1:sha256:3494962bbc3984ab118749e29eb8a4de9ac694f9420dc5bbc474b64ca81779a7:eyJzZWxlY3RlZExpbmVDb3VudCI6NDksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlmOWRmNDRjNWFiYWQxMTJlODk4OTFmYWEzOTFlYjQzOWYxMmJkNWRiMTVjODJlNGFkMThhZWI0YjU0OWI3MTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxMzQ1MTgwMTA1YjBjNjZhNzdkYWQ1MWJiMzc5MDFhMzczMmM5NjU0YmE0ZGUzOTgxZjgxZTE4MTc1MjQ4YmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk2NGQ3MDdhZGZiYjZmZTU0YTRmZWNkYmMwMjI2OTFjZTNmYjFiMGVjZWEwNzI1MGZiMGY5MmU0YWJiODVjMWYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM4N2JiYTY0YmQ1NTM3ZjIwZGQ3ZDgyOWZmNWU1MGM4MmU2MmIyYjk2NGFkZTQ3NjVmMWJiMzRhYzgyY2EyZDYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6a7b8d7d0b0b44efbb19da7b575ae744",
+      "statement": "For group threads refreshMembers re-reads the live team on every getThread and send and overwrites thread.members and thread.title, so adding or removing a team member takes effect immediately rather than being frozen at thread creation.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L1431-L1441",
+          "version": "repo-lines-v1:sha256:2eaaa21f82a62856de2bf45a8c56a0044285f144a8208d33a56ca83563168409:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE2ZjUzZjdjNDFmZWNjYTA3OTc5NmNkMzA4MDRhN2I5NTNlMWFlZDQ5MjFiYzVmOWI1ZGQxNzRjNWJkNDJlZTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxMzQ1MTgwMTA1YjBjNjZhNzdkYWQ1MWJiMzc5MDFhMzczMmM5NjU0YmE0ZGUzOTgxZjgxZTE4MTc1MjQ4YmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgzODRhZDhmNDFiYmEwNzcwYjJkMmM2MWZiM2MyYzExYjAwMWU3MjBiNmMwZDM3YjFiOGQ2MTJjODY1NTMyNTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg2MzYzYjkzODlkNGM2OTQ1NTU2YjdjMGU0Y2YxNjljN2ZhYjFlZGU5OTNlZmJlMTZlMjNiZGM5ZTExY2NhODYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a45f8e294ec84258b22bb22e66b9b65d",
+      "statement": "In a single-chat thread (thread.peer non-null), send routes unconditionally to thread.peer and ignores any @ mentions or broadcast, so the peer name is the sole routing input.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L1353-L1355",
+          "version": "repo-lines-v1:sha256:9ff6047d58cd62f8bf4524ee13e59fffc000ab367ade3a7c0a0ab56b27968410:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDE3ODI5NGJmMGFmNzM0MGRiYzQ0NjkwZTgyMDQ0NDk0MDA5NDhjNGU3NWIwZjhiNzM4YmE5NjdiMzNjM2YzMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZGMzYTAzMmU0NTJiODU2NjQwMGFmNDEyYzlhZTE3MDBhZDcyZDFmOTBhNWI4ZDFmZTMxOWQxYjY4ZWE0ZDg4ZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzA1Nzk1MmIxNzUxZWYzYWM3YWI1YjdmYzRiMjE3Y2RiNjZjZDM5NjZhMWFjZGM0OWM1YzJlOTAyNDEzNDliNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiM2IzZTlkMWU1ZTQyOTFhMjM5NTI3MGY5YTIwNWFlNTI3MzA1ZGM2OWE4MzM2ZDBhNzBjMWUyZWY3Y2E4OTRjMSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_9fa506f9e88746eca9b4869d50e7240c",
+      "statement": "In a group thread, send routes as: no @ mention, or an @all/@所有人/@everyone/@所有人 broadcast, targets all external members (everything except 'me' — 'me' never answers its own broadcast, must be explicitly @me); @name targets each resolved member (isMe → 'me', else resolveAgent restricted to thread members), de-duped via a Set.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L1175-L1187",
+          "version": "repo-lines-v1:sha256:d68c0b05ed08d31e7404cb3e5785f4a9e578240d1bb3a5a48fba1326f6e60c1b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI5MjZmN2ZhZTE3YjczZWQyOGI0YjNmOTY4MjY0ZTliNzFhN2I5ZjgzNjY5YzVjOGExZDczYTRiNDU2OTFhZWIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM4NDk0MjE1ZGJhYmVjNWY4MmU2YWVlODNhNjcxZmM4MmE5YzJhYTUyNmQ4NWY1MzliMTcwZTYzZTdiZWQ1YzEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFkYTYyOWJlN2FlNGUzZTU2MzgwNWM0OGNiYTc2NmM3ZDQ2ZGIzYWQxYTRiMjNjYjllMDFjYzJjNTEwOWRiOTAifQ"
+        },
+        {
+          "resource": "repo://src/index.ts#L1356-L1377",
+          "version": "repo-lines-v1:sha256:0fa863fa2e1290d576596fa447aa13e9f36c99449645f212c0bc6bcb918626b4:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVmNDJhMmIyZGI2Yjk2ODE1NDQyMDc5NjE5MGEyMjkyNmZhNTBiYWUzNzU5ZWNkN2MxZDUxYjhjMDRlYzU1ZjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE0MTlhNmRjYzA0ZTIxM2EzYzdhNzdhNDU2YjAxZTc2ZDFlZjc4Y2QwMGJiZWMxZDhmODE0NThmZTkzZWRjNTYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjlmZjYwNDdkNThjZDYyZjhiZjQ1MjRlZTEzZTU5ZmZmYzAwMGFiMzY3YWRlM2E3YzBhMGFiNTZiMjc5Njg0MTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRkNzBjNmE5YjMyNzNjYjFlYjQ0YjdmOWMyNzA5YTJmYjVmZjI5OTA1MzUxOTFmMGE0ZjY4MWY5MWZkOTZiMWIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a9d6e0ef70984b23a938c542295e3edf",
+      "statement": "Mentions that fail to resolve to a thread member are never sent: they accumulate and are appended as a 'system' message listing the usable member names (未识别 @<names>. 可用成员: <members>), producing a candidate hint rather than silently dropping or mis-routing.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L1379-L1388",
+          "version": "repo-lines-v1:sha256:f69c0d251ce2986f4db72e28ac692f4b189f30ddb163f6ddca6fc8c8c02d2d42:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRlYzJiMjMwOTg5MzA0NjRkM2M3YTM2OTg4NGQ2YThmOTZiNWU5YmQyZTI5Njk1ZjAzZjdhOTdhOTJkNzI4YzUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE0MTlhNmRjYzA0ZTIxM2EzYzdhNzdhNDU2YjAxZTc2ZDFlZjc4Y2QwMGJiZWMxZDhmODE0NThmZTkzZWRjNTYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNhMjkzYmJlZDNhMDdkY2ExNWMwNDNhOTIyM2U4ODliMDFkZmNjNmE1ODc4M2MwODljMWNkYzkxNTFmYjRjOTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdlNDZiZjI3YjM1YzRiNTk4ZDA1MmUzODU4MTU1NDlkYmZiNWMxOGU5OTY4ZWNhYTA2N2EyYWY0OGJjMzc5NzEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c6e50580e4014726bc450d2fdfd17a3d",
+      "statement": "The 'me' target is answered locally by replyAsSelf, which reuses the configured agent card as the persona (name, description, capabilities) and the current default model from agentDefaultModel.currentSelection(), folding the thread history (excluding system messages) into a single user message for multi-turn memory, and making one llm.stream call with no tools/skills/MCP.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L785-L843",
+          "version": "repo-lines-v1:sha256:d5ab815429133029a49fd7f76136684997c1a728c700cb69dd87d5e6a1d4ddbd:eyJzZWxlY3RlZExpbmVDb3VudCI6NTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZjODVjMjdlMjJlMjAzM2NjNWY0ZWViYzQ2NzBjNzczY2IzZTA5MGQ1MGYzNWJlZDY3ODg3NThkMDVjNWM1ZGYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY2OWFiNjYzNjk5MTgyYTVmOTBiNWU1MmNlYjFlMzc0ZTdmMDA0ODI5Mjk2NWUzYjIwMzNkNjcwYTRkYmQ2ZmUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM4OGZiMWM1YzlhMDRhNzRhYTkyY2M1NzJiNGU3YzdhMjhlYjEwMTk4ZWI5YjgyMDlmZmQ2MDQ3YTBmODJiNmMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b42902a994904d3aa38faf91b736461c",
+      "statement": "Each external target is sent via a2aSendMessage(a2aBaseUrl(agent.url), text, prevContextId) where prevContextId is the per-agent value held in thread.contextIds[name]; the returned contextId is written back. If a send fails with a context-matching error and a previous contextId existed, it retries once without the contextId and resets the stored value.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L1389-L1413",
+          "version": "repo-lines-v1:sha256:f7812027c7703b253d4dbf8f50b761008a5463d3457cf9029fc5c8d318dd576b:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdlYjcwMjU3NTkzZGEwNmY2ODJhM2RkZGE1NGE5ZDI2MGQ0ZmM1MTRmNjQ1MjM3ZjVjYTc0YjA4ZjhkYTYxYTYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ3MzE4Mzk5OWMwMGMwYmY0M2Q0OWYyZmM0MWZkMzcyNTJiMjRlYzE5MzAwOTQ0ZGE4NGExMjJjZjcyYjQ0NDEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ3MTI5ZjM3ODc3ZDZlYTI2MzNhMzk0YTQ3YTNiNmNkYWFhM2MyMTk3NjYwNzhiYTkzNTZmYjM3NDA1MDVhYzkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhlMWUxMjgxMDVhMzU4ZjhjYmY5ZDg0ZTFkYTBlYjM1NzEwNzIzNzVmNmM0OTA3MWIwYjkxY2JlYWFjMDEyZTIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_56a3f198050b4c50acd1ec79975b0b78",
+      "statement": "send dispatches targets concurrently via Promise.allSettled, so one agent's failure does not block the others; a rejected target becomes a 'system' message (调用失败: <reason>) and the user message plus every reply/failure plus any unresolved hint are appended and persisted once via saveThread.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L1391-L1428",
+          "version": "repo-lines-v1:sha256:87c1bc93e79ed024b9eeea688e1eaa3572f264d21241b60f0c964838455d2b32:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ0N2ZhODRiZGI0YzY5MTkzMzUyYWM2MmQ1MGIyMWU4OTk2MmFkZGQyYTdmZTIyY2ZjYjNiYjczMWI1MDI3ZGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc4Y2ZlOGVhYTMxOTIwYjI1OTUzODBiZTY2YzIwZTg0MTAzZjdlMDg0MmNlZWZlYjEzNWNmYjhmYmRlODM4NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjViY2I0Y2QyNzhhMGM5MmJhNDcwMjE0MzdmNjJjYzE4M2FkYTRkM2M2ZDk2NzkxNTFlNTNlZTFiZDMyZjk5YWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZiMWI0MjJiMjdmYTJmNTAwZTE0ZDA5NzkwNmUyNDQxNWRiMzlkZWI3YWYxODFiMmE1ZDM2ZmE0MmMwNmE5ZTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_29df031684364bdda9ed16b8f7b886f3",
+      "statement": "deleteTeam only filters the team out of teams.json and does not delete the team's files under team-chats/, so the chat records remain on disk but become unreachable once the team id is gone; this diverges from the client confirm dialog's claim that the team and all its chat records are removed.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/TeamView.tsx#L508-L519",
+          "version": "repo-lines-v1:sha256:3ee530285783bd3bf78c663d72141b869de0a136802219b88427e6aefe492f36:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI5MzRhYWU3ZmYxMjUxYjQ2ZDNhYzk0Y2YyZDdmZWFmMmY5MWZhNzNhMjlmZDlkYzVkMzRhN2JmYzEwYWIwNDIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBlMDA2Mzk5NzZmYTc2MzFhNWRiZDI3ZTNlNGNjMjI3YmI0YzM3MWM3NTVlNjVlNzlkNDlkZDMwMGVkOGY0M2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU5OTZkOTlhYTUyMmE4ZmE1ZDE4Y2M2YTIwMjk0ZTMwYjZmOWEwODEwZGJmZGNmNDhlZDMzMGY2Y2IyOTE0YjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVjMmU5ZWViMjZjY2U1Y2QyODQ1MjNiM2I2ODAxZTJiY2QyOWFlNmZkY2Y4OWM1M2I2NGEyOGY3YjU3ZTYzMTEifQ"
+        },
+        {
+          "resource": "repo://src/index.ts#L1248-L1254",
+          "version": "repo-lines-v1:sha256:7d86b2b9beae05b0e6a54936c74f527f10601bc66ad4424c45f17bf2f57eeba6:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODEyOGI5NjQ1YmNiYjI5NTg4OGNjOGFjNjdlMGY1NjhhMGM2ZDMwZTVlZGE5MGRjYmYzMDI4ZGMyYjkyY2NiZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzEzNDUxODAxMDViMGM2NmE3N2RhZDUxYmIzNzkwMWEzNzMyYzk2NTRiYTRkZTM5ODFmODFlMTgxNzUyNDhiZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzMyNzNkYjkwMzBiYzE4N2ZiMTc0NWFkYzZiZjkxMzU2MTNlODkwZDYzNDk3MDNjZmJkMzBjYjQ5MTNmZTA1MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjkxMTIzZGEzODdlNWM5YmI1ZDkyNTRkN2FlZjVkN2I2MDZjMjVlZjQ2OGYwYTZiZTVlNjRiYjcxNWI4MDgwNiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_48be8d5c297648009fadc2a68817b25d",
+      "statement": "TeamTrigger (in sidebar.footer.action) and TeamView (in shell.overlay) are bridged by the module-level teamPanelStore, a publish/subscribe store exposing isOpen/openPanel/closePanel/toggle/subscribe that satisfies useSyncExternalStore; TeamView reads it via useSyncExternalStore and returns null early when closed, so a closed panel has no DOM.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/TeamTrigger.tsx#L20-L32",
+          "version": "repo-lines-v1:sha256:8ed9452509a27550a511639d42010591cdca38c2c28a5c4e5d77f58e74e10f7f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2NTY4OTczYTExNDQwZjdlMTk2NzAwZjNjNTQ3MmExODQ5ODhiYTE0ZTBiODNjOGE5OGVkZGQ4NDA1OWMwNjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU2MjY3OTM1ZmM2MzM0NjVkODQ4YjQwYTRlZDY5NjdlN2I3YTMyM2Y4MWNkNTNjMTEwYWUyMTAyOTY4N2FhMTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQyOWQ5MzM4ZDU2MTE5NDU4ZjAxNGJjN2Q0OGVkNDk5ZTM0MWFmNmE0YzFkM2M5Y2U2NDM5MWI1MzYwNjE3YjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        },
+        {
+          "resource": "repo://src/client/TeamView.tsx#L277-L277",
+          "version": "repo-lines-v1:sha256:ca2d40d9bff06ce1544b0c55f70446c8e1fbd6387f949f600af438cc40e1aecb:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2EyZDQwZDliZmYwNmNlMTU0NGIwYzU1ZjcwNDQ2YzhlMWZiZDYzODdmOTQ5ZjYwMGFmNDM4Y2M0MGUxYWVjYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2EyZDQwZDliZmYwNmNlMTU0NGIwYzU1ZjcwNDQ2YzhlMWZiZDYzODdmOTQ5ZjYwMGFmNDM4Y2M0MGUxYWVjYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDNhZjBkYzhkNmJkNGRiNGFkMmJlNmJkNjI4NDA2MzlhZjM0ZTk1NjkyY2M0YTNkMTNmNjljMzEwZGFlZTc5MSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODliNGQ1YTI5ZjU0MzVmNDAzNDQxNmExN2FkYjg1MGMzMmNmYjJkNWNkZWYzMGMwNTIwYzg5YTUxZTlkZDk3ZCJ9"
+        },
+        {
+          "resource": "repo://src/client/TeamView.tsx#L46-L46",
+          "version": "repo-lines-v1:sha256:a27dbbe299b59486f49658f840ae7f7d87606b289a08f669922b9344ff528f0c:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTI3ZGJiZTI5OWI1OTQ4NmY0OTY1OGY4NDBhZTdmN2Q4NzYwNmIyODlhMDhmNjY5OTIyYjkzNDRmZjUyOGYwYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTI3ZGJiZTI5OWI1OTQ4NmY0OTY1OGY4NDBhZTdmN2Q4NzYwNmIyODlhMDhmNjY5OTIyYjkzNDRmZjUyOGYwYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYWM5MjVlNzczNzE0YjFiMDBkYWM4YjRiZDdlY2Q3ODJjYzA2MjY0NDU2NTZkZGY3N2YzMTUzZTJlNzg4NmY2NCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYThmMjgwZDU1OTE0Y2Q4MTc5ZjcxODJmNjk0YjE0YTNjY2NjNGVmOTdjNjY1MmEyMzU4MmQwNzRhNzc2NGEyNiJ9"
+        },
+        {
+          "resource": "repo://src/client/teamStore.ts#L1-L45",
+          "version": "repo-lines-v1:sha256:7d5275222bf8bc81f2aaafcc65d12610b8e20d01a57c151d8cccc14d9d22b8c4:eyJzZWxlY3RlZExpbmVDb3VudCI6NDUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2218c60f64534a319a6bcbed65026dcb",
+      "statement": "TeamView.send() optimistically appends the user's message locally and sets a 'replying' indicator, then calls api.send and filters the returned messages to role !== 'user' so the already-displayed own message is not duplicated by the replies and system hints the host returns.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/TeamView.tsx#L248-L270",
+          "version": "repo-lines-v1:sha256:3be59af8bfb049c8eb7aa6eaa055fba1873f617574017ac254a389d0b661d9dc:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBjMDYzMTE2NDZkMjhiYWQ0M2ZjZDk3YTAwNDlhZDI2Nzg2YjJhOTRmNDJjMGM5OGU3NzQwN2IyZTU2NTRjZDIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRjZDkwMGIxNTgwZTgwNTkwYWMzMjY4YzE2NDQ4N2U1NmFiY2E1MGNjMTVlMTYwYzliYjRjZWIwOTQzMWE5MTAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY2MjRiN2Q3ZGI4ZjdkYTEwNDdmNTcyNjcwY2UyZGE4Mjc3NjBlMDgwZmY0NjNkZTQwMzBmMjcwYWUzMTJhN2MiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjczZjIxMWIxY2YxNjFiMDRmY2Q5ZTRlMDFmOWQxOGIwODIwNzUyZjExMDJiMGRmNzUxYTRmMzk3ZTVhNjQyZjIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a78ba4f9c0fb4cb9922375bbdf4ecb3a",
+      "statement": "TeamView refreshes teams, agents, and agent health when the panel opens and then polls a2a.checkAgents() every 15 seconds; memberStatus treats 'me' as always online and reads external members from the health map, defaulting to 'unknown' when there is no probe yet, and silently ignores probe failures.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/TeamView.tsx#L103-L124",
+          "version": "repo-lines-v1:sha256:bd8c7716b4f4ff6f9ce811707b99a4d107281ae7f813fe947ef90fdbd8314d8e:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUzM2I0NzgxOGIyOGE4Y2ZjZGQ3YWM2YmJhZjVkMmI1MTZjYThmYjE4NDEzYzI4ZDIwNGQyMjQzNmY2NWViMDgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU3MDhiMDg5YzU5YTllNDcyMDk5ZTU0MTlkYjU5NzdlN2MxNDZmODNjNjZiYWFhZWQyOGE3ZDFhY2Q3MDQzNTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVhM2MwZmU2ODJiYTQ0OGZhNWFlODFlZjQ5YWU5NTI1Y2NhMmMxZmM2ODZiZmExODg5ZmU5YTY2MTFlMDU4MDkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNmZGY0M2QyZmU4MjI1OTJmNWNiZGU5ZDdkNjkwMmRkNTg4NjZiYWJjMTYwOTk3YWFjNDc1YjI4MWRmY2FkMGUifQ"
+        },
+        {
+          "resource": "repo://src/client/TeamView.tsx#L36-L42",
+          "version": "repo-lines-v1:sha256:b34426fe4b5f49d6e8eb4d50b63ff733382dcdb925a86f77bfd38f76c0729d97:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzRlNDQyNGRkZjlkZWEyNjRkYjdmZWNiNTQ1YmI3MmQ4ZGZjZWE3NmMyMTc0ZTliODJkMGEyZjBlMjcyYjkyMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTFlMzkxNDlmNGFmMWU2NTRjMjBmNWNjMGI1YTE2MzU5OTNjOTI1MmNhNTBiODg3YzJjNTE3ODhmNTA1MWEyZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYWM5MjVlNzczNzE0YjFiMDBkYWM4YjRiZDdlY2Q3ODJjYzA2MjY0NDU2NTZkZGY3N2YzMTUzZTJlNzg4NmY2NCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_152356da8586445c8bcf224f2595e6da",
+      "statement": "src/client/remote.ts declares the 'team' Typert namespace in TYPERT_REMOTE.descriptors and defines the zod wire codecs for Team, ChatMessage, ThreadSummary, Thread (with contextIds: Record<string,string>), and sendResult; the client mounts teamApi/teamA2aApi over them via unwrap().",
+      "evidence": [
+        {
+          "resource": "repo://src/client/index.ts#L119-L132",
+          "version": "repo-lines-v1:sha256:6aaaa9bbfa930d82261ea9bce177990753558f009284a1f74335493b161a98a0:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFiZGFhMjk3OWNlYjlhODUzYTY1N2U3YzBhMGJkN2UwNjJkZDI1NjQ2NTZkZjE3MzQ4NzgyOWM1NmM0ODkzMTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxMzQ1MTgwMTA1YjBjNjZhNzdkYWQ1MWJiMzc5MDFhMzczMmM5NjU0YmE0ZGUzOTgxZjgxZTE4MTc1MjQ4YmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVjMWFmOWE3NzRiYmQ3MGZlYzM5NjNlMGRjZGU5ZTg5OTUyNTZhZDg2ZWI4OWYwOTlhYjQyMWNmMmQxZmZmZTIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY5ZDUzNzdkNGZkZWM4MmVjMGQ4MTY3OWYwYTYzOTYzODcyOWFjOTJjMWQ1MjNhY2FlMzA3OWMzMWYxMDhiNDUifQ"
+        },
+        {
+          "resource": "repo://src/client/remote.ts#L177-L185",
+          "version": "repo-lines-v1:sha256:03b66bb12f362ac86c942ff725bcdee7d3b260f05adef091840890c1e8e083b1:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTZlZmI1OWQ4NmJjMzlhMzcxMWM0Njc0ZjdhYmFlMjhkNWY0NzZiNmJjMDU2MWYzZDMzOWIxZjhmZjQ2ZjNhNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzA0YjAzNWIzZTAxMDEzZTMyNzUxMGMzOWRlYzU4MDRhZTk1ZWFjMDQzMDBiYzc3NTEyOTkzNjgxOWZjNTgwYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTQyMjhhNjc0MmVmNTg4Mzk3YTQ4OTRjMmFhYmU3NDdlYjA5YzI0MWUxZjI1ZTFhMDExYjlmMDIxMGUzMDYwMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjIsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjY4MDNkZjJhOGFjMDI1YzlhNjcxMTA0MGRlYWFhYjZiOGY3OTBjMzIyMTYyMTMzNmM3MGYyM2Q3MjViMGQzYiJ9"
+        },
+        {
+          "resource": "repo://src/client/remote.ts#L78-L117",
+          "version": "repo-lines-v1:sha256:f29dfad74a3632d69fe294078b49068518378adfb207a93384b34180e7577a62:eyJzZWxlY3RlZExpbmVDb3VudCI6NDAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMxYzJiYjliYmY5NmVjMzFiMzFjYzMxYzdmNTc0NmIzMGQyYzUzYWQzMGVjM2Y0OTdmZmYwZmM4NjczYjYwNDciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM1ZjJlNDAzMmM1NmU0ZTQwYzE4NWEzNWVhYWQ4YjBkMGE5MTNjYWZiYTFiZDQ2MDE1Y2IyNmYwZTA0ZjlmMzEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdlMGU3YTJjY2E4MTU4MzdjNzY0OGU2ODMzNTM4ZDUyNDIyZjBlOGI1YzU2ZTA3MWYzZDI4MWNjMTgzYWIxMzkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA5ZGJmN2I4MzM3NWU0ODA0MGY3NDkyYThlZjFlZmRlNTY1MWI3MWI3ZmRlNzFlZTdjOTYyZGEzMmU0NjY2YmMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_02d981f4523a4eacad7c021b2c4cb5f0",
+      "statement": "TeamView's @ autocomplete (updateMention/applyMention) is a client-only typing aid that parses the last unclosed @query, suggests thread members not already mentioned (fuzzy/normalized by normalizeForMatch), and rewrites the input; it has no bearing on the host-side routing decision.",
+      "evidence": [
+        {
+          "resource": "repo://src/client/TeamView.tsx#L210-L246",
+          "version": "repo-lines-v1:sha256:b3c88030cc1f20676872e8ad0d031167b787417fb417c44aadaa908efd8734a4:eyJzZWxlY3RlZExpbmVDb3VudCI6MzcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjczNmE1M2JmYjJlZGYzMTczNzQxZGIxMTlmNWRiMjMyYjIxZDg0OTJjOWVlZGExYTlhNmVhZmQ0NWEzNmNkYjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUxY2QwMDExZWQ2OWI5ZDhiMDAxNTBjYTIxZGVhZjdiOTQ1YzAxM2Y1ZTYwYTU0NmEzYzQxY2E0ZTNlYjUxNWQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgzMDQ1OTRlZjNmZjY0ZTVjZjBkZjJjY2EwZmY3NzM5OTljNWU1YWY4YzA0NDU1Y2RiYjM2MTQ2MGFiNmE0NzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxNTkyNTEwN2JhNmNiODI5YjFjMDNkOWM1YjA2M2IyMDljMzQ3OGMyNGQ0ZmYyODM1NzRhOTFjODIwZWU1MTYifQ"
+        },
+        {
+          "resource": "repo://src/client/TeamView.tsx#L527-L530",
+          "version": "repo-lines-v1:sha256:b922d8d1c6a99b47ecfb9aec0736762e5b93f35bcccba568932a79c45a8e17a1:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTU5MWZjYjdiYThkNzQ3ZDUyOWVmYWMxMjI4ZDU1MjA2MTVlY2UwMGEzNWFlYzIzNGQ2N2E5N2Q4OWZjMmZhYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzQwYzVkM2RjM2E3NzMwNzkzYzg5Mjc5NDhiNTU5NjY0MjA3Zjc5YmE4Nzc3M2MyMTUwMDQ0MzE5NjJmZDQ4OCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-04T14:14:38.291Z"
+  }
+}

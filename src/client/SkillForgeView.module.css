@@ -1,33 +1,38 @@
-/* Skill Forge panel. Colors from the deepsuite alias tokens (--dsw-alias-*)
-   so text keeps contrast in both light/dark and under the Papergames theme. */
+/* Skill Forge panel — unified control spec (32px buttons / 34px inputs / 8px radius /
+   coral accent). Colors from --dsw-alias-* tokens so contrast holds in light/dark
+   and under the Papergames theme. */
 
 .page {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding: 24px;
+  padding: 20px;
   height: 100%;
   box-sizing: border-box;
   color: var(--dsw-alias-label-primary);
 }
 
+/* ---- header: single-line ---- */
+
 .header {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
+  align-items: baseline;
+  gap: 10px;
 }
 
 .title {
   margin: 0;
-  font-size: 22px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .subtitle {
   margin: 0;
-  font-size: 13px;
+  font-size: 12px;
   color: var(--dsw-alias-label-secondary);
 }
+
+/* ---- layout: sidebar + editor ---- */
 
 .layout {
   flex: 1;
@@ -41,7 +46,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding: 14px;
+  padding: 12px;
   border-radius: 12px;
   background: var(--dsw-alias-bg-module-platform);
   border: 1px solid var(--dsw-alias-border-l2);
@@ -61,14 +66,17 @@
   color: var(--dsw-alias-label-secondary);
 }
 
+/* ---- shared buttons ---- */
+
 .newButton,
 .saveButton,
 .dangerButton {
   appearance: none;
   border: none;
   border-radius: 8px;
-  padding: 7px 12px;
-  font-size: 12px;
+  height: 32px;
+  padding: 0 14px;
+  font-size: 13px;
   font-weight: 600;
   cursor: pointer;
   transition: opacity 0.15s ease;
@@ -92,12 +100,30 @@
   cursor: not-allowed;
 }
 
+/* ---- empty state ---- */
+
+.emptyWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 32px 16px;
+  text-align: center;
+}
+
+.emptyIcon {
+  font-size: 28px;
+  line-height: 1;
+}
+
 .empty,
 .placeholder {
   margin: 0;
   font-size: 13px;
   color: var(--dsw-alias-label-tertiary, var(--dsw-alias-label-secondary));
 }
+
+/* ---- skill list ---- */
 
 .list {
   list-style: none;
@@ -110,6 +136,7 @@
 
 .item,
 .itemActive {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -125,6 +152,7 @@
 
 .itemActive {
   background: var(--dsw-alias-state-business-tertiary);
+  box-shadow: inset 2px 0 0 var(--dsw-alias-state-business-primary);
 }
 
 .itemMain {
@@ -158,6 +186,8 @@
   text-overflow: ellipsis;
 }
 
+/* ---- editor ---- */
+
 .editor {
   display: flex;
   flex-direction: column;
@@ -187,8 +217,8 @@
   flex: 1;
   min-height: 0;
   resize: none;
-  padding: 14px;
-  border-radius: 12px;
+  padding: 12px;
+  border-radius: 8px;
   border: 1px solid var(--dsw-alias-border-l2);
   background: var(--dsw-alias-bg-module-platform);
   color: var(--dsw-alias-label-primary);
@@ -201,15 +231,6 @@
 .textarea:focus {
   outline: none;
   border-color: var(--dsw-alias-state-business-primary);
-}
-
-.error {
-  margin: 0;
-  padding: 10px 12px;
-  border-radius: 8px;
-  font-size: 13px;
-  background: var(--dsw-alias-state-danger, #d8443c);
-  color: #fff;
 }
 
 /* ---- 智能生成 ---- */
@@ -232,7 +253,7 @@
 
 .generateTitle {
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .generateHint {
@@ -250,8 +271,8 @@
   flex: 1;
   resize: vertical;
   min-height: 52px;
-  padding: 10px 12px;
-  border-radius: 10px;
+  padding: 8px 12px;
+  border-radius: 8px;
   border: 1px solid var(--dsw-alias-border-l2);
   background: var(--dsw-alias-bg-module-platform);
   color: var(--dsw-alias-label-primary);
@@ -268,8 +289,9 @@
 .generateButton {
   appearance: none;
   border: none;
-  border-radius: 10px;
-  padding: 10px 16px;
+  border-radius: 8px;
+  height: 34px;
+  padding: 0 16px;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
@@ -288,7 +310,7 @@
   max-height: 220px;
   overflow: auto;
   padding: 12px;
-  border-radius: 10px;
+  border-radius: 8px;
   background: var(--dsw-alias-bg-module-platform);
   border: 1px solid var(--dsw-alias-border-l2);
   font-family: var(--ds-font-family-code, ui-monospace, monospace);
@@ -297,4 +319,48 @@
   white-space: pre-wrap;
   word-break: break-word;
   color: var(--dsw-alias-label-primary);
+}
+
+/* ---- toast (fixed top) ---- */
+
+.toastWrap {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10000;
+  pointer-events: none;
+  max-width: calc(100vw - 32px);
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 18px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--dsw-alias-state-success, #2f9e63);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+  animation: sfToastIn 0.18s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.toastError {
+  background: var(--dsw-alias-state-danger, #d8443c);
+}
+
+@keyframes sfToastIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

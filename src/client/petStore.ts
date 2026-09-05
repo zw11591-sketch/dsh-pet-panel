@@ -1,7 +1,7 @@
 /**
  * 宠物显隐的跨 slot 状态桥。命令拦截器（input-trigger source）和宠物本体
  * （shell.overlay 的 PetView）挂在不同 slot，无法用 React context 传递，
- * 用模块级发布订阅 store 桥接（与 taskStore.ts 同款模式）。
+ * 用模块级发布订阅 store 桥接（与 teamStore 同款模式）。
  */
 
 type Listener = () => void

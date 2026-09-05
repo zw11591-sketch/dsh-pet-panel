@@ -1,6 +1,7 @@
 /** 技能工坊：skill 的增删改查页面。读写当前 profile 的 skills/<name>/SKILL.md（per-profile 隔离）。 */
 
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import type { ConvViewProps } from '@deepseek-ai/dsh-client-ui-conversation/client'
 import type { PropsLocale } from '@deepseek-ai/dsh-client-ui-slots'
 import css from './SkillForgeView.module.css'
@@ -36,6 +37,15 @@ export default function SkillForgeView(props: SkillForgeViewProps): React.JSX.El
   const [content, setContent] = useState('')
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const errorTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  // 错误 toast 自动消失。
+  useEffect(() => {
+    if (!error) return
+    if (errorTimer.current) clearTimeout(errorTimer.current)
+    errorTimer.current = setTimeout(() => setError(null), 6000)
+    return () => { if (errorTimer.current) clearTimeout(errorTimer.current) }
+  }, [error])
 
   const refresh = useCallback(async () => {
     try {
@@ -185,7 +195,10 @@ export default function SkillForgeView(props: SkillForgeViewProps): React.JSX.El
             <button className={css.newButton} onClick={create} disabled={busy}>＋ 新建</button>
           </div>
           {items.length === 0 ? (
-            <p className={css.empty}>还没有 skill。点「新建」创建第一个。</p>
+            <div className={css.emptyWrap}>
+              <span className={css.emptyIcon}>🗂️</span>
+              <p className={css.empty}>还没有 skill。点「新建」创建第一个。</p>
+            </div>
           ) : (
             <ul className={css.list}>
               {items.map((item) => (
@@ -229,7 +242,15 @@ export default function SkillForgeView(props: SkillForgeViewProps): React.JSX.El
         </section>
       </div>
 
-      {error && <p className={css.error}>⚠ {error}</p>}
+      {error && typeof document !== 'undefined' && createPortal(
+        <div className={css.toastWrap} role="status" aria-live="polite">
+          <div className={`${css.toast} ${css.toastError}`}>
+            <span>⚠</span>
+            <span>{error}</span>
+          </div>
+        </div>,
+        document.body,
+      )}
     </div>
   )
 }

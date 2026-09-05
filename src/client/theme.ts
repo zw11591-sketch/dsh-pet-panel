@@ -44,6 +44,11 @@ background-attachment:fixed;
 }
 body[data-ds-dark-theme]{
 --dsw-alias-brand-primary-new-colorprimary-new-color:#f36864;
+}
+/* 导航标签（对话/轨迹/会话仪表盘/技能工坊/工具集成/A2A 管理）文字与「设置」统一为 primary 深色；
+   激活态仍由下划线（wSkVaW_tabActive:after 珊瑚条）区分，不靠文字变色。 */
+[role="tab"]{
+color:var(--dsw-alias-label-primary)!important;
 }`
 
 /** Install the Papergames accent ramp into the page's `body` tokens. */

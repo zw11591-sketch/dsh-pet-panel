@@ -1,8 +1,7 @@
 import { Remote, TypertRemoteService } from '@deepseek-ai/dsh-typert-protocol'
 import { dshHomePath } from '@deepseek-ai/dsh-home-paths'
-import { access, mkdir, readdir, readFile, writeFile, rm } from 'node:fs/promises'
+import { mkdir, readdir, readFile, writeFile, rm } from 'node:fs/promises'
 import { randomUUID } from 'node:crypto'
-import { zstdDecompressSync } from 'node:zlib'
 import { join } from 'node:path'
 import { existsSync } from 'node:fs'
 import { defineTool } from '@deepseek-ai/dsh-tools'
@@ -43,106 +42,6 @@ function parseFrontmatter(content: string): { title: string; description: string
 }
 
 // ---- Skill Forge（技能工坊）----
-
-/** 单条执行事件（扁平事件流，前端按 turn/step 分组渲染）。 */
-export interface LifecycleEvent {
-  seq: number
-  time: number
-  kind: string
-  turn?: number
-  step?: number
-  text?: string
-  toolName?: string
-  toolArgs?: string
-  isError?: boolean
-  outcome?: string
-  reason?: string
-  todos?: Array<{ content: string; status: string }>
-}
-
-/** 一个会话的完整执行轨迹快照。 */
-export interface LifecycleSnapshot {
-  title: string
-  turns: number
-  steps: number
-  toolCalls: number
-  approvals: number
-  todoWrites: number
-  startedAt: number
-  endedAt: number
-  events: LifecycleEvent[]
-}
-
-/** zstd 多帧逐帧解压（dsh 每个写入批次一个 frame；单帧 API 只解第一帧）。 */
-function decompressZstdFrames(buf: Buffer): string {
-  const positions: number[] = []
-  for (let i = 0; i <= buf.length - 4; i++) {
-    if (buf[i] === 0x28 && buf[i + 1] === 0xb5 && buf[i + 2] === 0x2f && buf[i + 3] === 0xfd) {
-      positions.push(i)
-    }
-  }
-  if (positions.length === 0) return ''
-  positions.push(buf.length)
-  const parts: string[] = []
-  for (let i = 0; i < positions.length - 1; i++) {
-    try {
-      parts.push(zstdDecompressSync(buf.subarray(positions[i], positions[i + 1])).toString('utf8'))
-    } catch {
-      // 跳过坏帧
-    }
-  }
-  return parts.join('\n')
-}
-
-/** 扫描 sessions 目录，找到指定会话的日志文件。 */
-async function findSessionFile(sessionId: string): Promise<string | null> {
-  const root = dshHomePath('sessions')
-  let workspaces: string[] = []
-  try {
-    const entries = await readdir(root, { withFileTypes: true })
-    workspaces = entries.filter((e) => e.isDirectory()).map((e) => e.name)
-  } catch {
-    return null
-  }
-  for (const ws of workspaces) {
-    const f = join(root, ws, sessionId, 'session.jsonl.zstd')
-    try {
-      await access(f)
-      return f
-    } catch {
-      // 继续找
-    }
-  }
-  return null
-}
-
-/** 从消息 content blocks 提取 text 文本。 */
-function extractText(content: unknown): string {
-  if (!Array.isArray(content)) return ''
-  return content
-    .filter((b: any) => b?.type === 'text')
-    .map((b: any) => b?.text ?? '')
-    .join('\n')
-    .trim()
-}
-
-/** 从 tool-result 消息提取结果文本与错误标记。 */
-function extractToolResult(content: unknown): { text: string; isError: boolean } {
-  if (!Array.isArray(content)) return { text: '', isError: false }
-  const tr = content.find((b: any) => b?.type === 'tool-result')
-  if (!tr) return { text: '', isError: false }
-  const inner = Array.isArray(tr.content) ? tr.content : []
-  const text = inner
-    .filter((b: any) => b?.type === 'text')
-    .map((b: any) => b?.text ?? '')
-    .join('\n')
-    .trim()
-  return { text, isError: tr.isError === true }
-}
-
-function truncate(s: string, n: number): string {
-  return s && s.length > n ? `${s.slice(0, n)}…` : s
-}
 
 /** 剥掉值为 undefined 的字段。
  *  Typert 边界校验要求结果 JSON-safe：zod `.optional()` 解析后仍保留
@@ -298,114 +197,6 @@ class SkillForgeGateway extends TypertRemoteService {
       throw new Error('生成失败：模型没有返回内容。')
     }
     return { content: text.trim() }
-  }
-
-  /** 读取一个会话的完整执行轨迹（turn → step → 工具调用/消息/审批）。 */
-  @Remote('lifecycle')
-  async lifecycle(sessionId: string): Promise<LifecycleSnapshot> {
-    if (typeof sessionId !== 'string' || !/^session-[A-Za-z0-9-]+$/.test(sessionId)) {
-      throw new Error(`invalid session id: ${sessionId}`)
-    }
-    const file = await findSessionFile(sessionId)
-    if (!file) throw new Error(`找不到会话日志：${sessionId}`)
-
-    const buf = await readFile(file)
-    const text = decompressZstdFrames(buf)
-
-    const events: LifecycleEvent[] = []
-    let title = ''
-    let turns = 0
-    let steps = 0
-    let toolCalls = 0
-    let approvals = 0
-    let todoWrites = 0
-    let startedAt = 0
-    let endedAt = 0
-
-    for (const line of text.split('\n')) {
-      if (!line.trim()) continue
-      let rec: any
-      try {
-        rec = JSON.parse(line)
-      } catch {
-        continue
-      }
-      const time = typeof rec.time === 'number' ? rec.time : 0
-      if (startedAt === 0) startedAt = time
-      if (time > 0) endedAt = time
-      const d = rec.data ?? {}
-      const turn = typeof d.turn === 'number' ? d.turn : undefined
-      const step = typeof d.step === 'number' ? d.step : undefined
-
-      switch (rec.type) {
-        case 'session/title':
-          title = typeof d.title === 'string' ? d.title : title
-          break
-        case 'turn/start':
-          if (turn !== undefined) turns = Math.max(turns, turn)
-          events.push(compact({ seq: rec.seq, time, kind: 'turn-start', turn }))
-          break
-        case 'turn/end':
-          events.push(compact({ seq: rec.seq, time, kind: 'turn-end', turn }))
-          break
-        case 'step/start':
-          steps++ // 总步数 = 全部 step/start 事件（step 号每轮重置，不能 Math.max）
-          events.push(compact({ seq: rec.seq, time, kind: 'step-start', turn, step }))
-          break
-        case 'step/end':
-          events.push(compact({ seq: rec.seq, time, kind: 'step-end', turn, step }))
-          break
-        case 'user/message': {
-          const t = extractText(d.content)
-          if (t) events.push(compact({ seq: rec.seq, time, kind: 'user', turn, step, text: truncate(t, 400) }))
-          break
-        }
-        case 'assistant/message': {
-          const blocks = Array.isArray(d.message?.content) ? d.message.content : []
-          const tb = blocks.find((b: any) => b?.type === 'text')
-          if (tb?.text) events.push(compact({ seq: rec.seq, time, kind: 'assistant', turn, step, text: truncate(tb.text, 400) }))
-          break
-        }
-        case 'tool/call':
-          toolCalls++
-          events.push(compact({
-            seq: rec.seq,
-            time,
-            kind: 'tool-call',
-            turn,
-            step,
-            toolName: typeof d.name === 'string' ? d.name : undefined,
-            toolArgs: truncate(typeof d.arguments === 'string' ? d.arguments : JSON.stringify(d.arguments ?? {}), 200),
-          }))
-          break
-        case 'tool/result': {
-          const r = extractToolResult(d.message?.content)
-          const isErr = r.isError || rec.error != null
-          events.push(compact({ seq: rec.seq, time, kind: 'tool-result', turn, step, text: truncate(r.text, 400), isError: isErr }))
-          break
-        }
-        case 'approval/asked':
-          approvals++
-          events.push(compact({ seq: rec.seq, time, kind: 'approval-asked', turn, step, toolName: typeof d.toolName === 'string' ? d.toolName : undefined, reason: truncate(d.reason ?? '', 200) }))
-          break
-        case 'approval/decided':
-          events.push(compact({ seq: rec.seq, time, kind: 'approval-decided', turn, step, outcome: typeof d.outcome === 'string' ? d.outcome : undefined }))
-          break
-        case 'todo/write':
-          todoWrites++
-          events.push(compact({
-            seq: rec.seq, time, kind: 'todo', turn, step,
-            todos: Array.isArray(d.todos)
-              ? d.todos
-                  .filter((t: any) => t && typeof t.content === 'string' && typeof t.status === 'string')
-                  .map((t: any) => ({ content: t.content, status: t.status }))
-              : undefined,
-          }))
-          break
-      }
-    }
-
-    return compact({ title, turns, steps, toolCalls, approvals, todoWrites, startedAt, endedAt, events })
   }
 }
 
@@ -701,6 +492,41 @@ export class A2AConfigGateway extends TypertRemoteService {
     await this.save(config)
     return { name }
   }
+
+  /**
+   * 探测所有已注册外部 agent 的存活状态：GET 其 agent-card 端点（只读、无副作用），
+   * 超时 8s。返回每个 agent 的 online / latencyMs / error，供 UI 实时显示状态标识。
+   */
+  @Remote('checkAgents')
+  async checkAgents(): Promise<{ items: Array<{ name: string; online: boolean; latencyMs: number | null; error: string | null }> }> {
+    const config = await this.load()
+    const items = await Promise.all(config.agents.map(async (agent) => {
+      const endpoint = a2aBaseUrl(agent.url) + '/.well-known/agent-card.json'
+      const start = Date.now()
+      const controller = new AbortController()
+      const timer = setTimeout(() => controller.abort(), 8000)
+      try {
+        const res = await fetch(endpoint, {
+          method: 'GET',
+          headers: { 'Accept': 'application/json' },
+          signal: controller.signal,
+        })
+        clearTimeout(timer)
+        if (!res.ok) {
+          return { name: agent.name, online: false, latencyMs: Date.now() - start, error: `HTTP ${res.status}` }
+        }
+        const data: unknown = await res.json().catch(() => null)
+        if (!data || typeof data !== 'object') {
+          return { name: agent.name, online: false, latencyMs: Date.now() - start, error: 'agent-card 不是合法 JSON' }
+        }
+        return { name: agent.name, online: true, latencyMs: Date.now() - start, error: null }
+      } catch (e) {
+        clearTimeout(timer)
+        return { name: agent.name, online: false, latencyMs: null, error: e instanceof Error ? e.message : String(e) }
+      }
+    }))
+    return { items }
+  }
 }
 
 // ---- A2A outbound 工具（Phase 2）----
@@ -730,13 +556,27 @@ function extractA2AReply(data: any): string {
   return text
 }
 
-/** 向外部 agent 的 JSON-RPC 端点发 message/send，返回回复文本。 */
-async function a2aSendMessage(baseUrl: string, text: string): Promise<string> {
+/** 从 A2A message/send 响应提取多轮对话 contextId（v0.2 Task 与 v0.3 Message 兼容）。 */
+function extractA2AContextId(data: any): string | undefined {
+  const result = data?.result
+  if (!result || typeof result !== 'object') return undefined
+  const candidates = [
+    result.contextId,
+    result.status?.contextId,
+    result.status?.message?.contextId,
+  ]
+  return candidates.find((c) => typeof c === 'string' && c.length > 0)
+}
+
+/** 向外部 agent 的 JSON-RPC 端点发 message/send，返回回复文本（可带上轮 contextId）。 */
+async function a2aSendMessage(baseUrl: string, text: string, contextId?: string): Promise<{ text: string; contextId?: string }> {
   const endpoint = baseUrl.replace(/\/+$/, '') + '/'
+  const params: any = { message: { role: 'user', parts: [{ kind: 'text', text }] } }
+  if (contextId) params.contextId = contextId
   const body = {
     jsonrpc: '2.0',
     method: 'message/send',
-    params: { message: { role: 'user', parts: [{ kind: 'text', text }] } },
+    params,
     id: 1,
   }
   const controller = new AbortController()
@@ -756,7 +596,7 @@ async function a2aSendMessage(baseUrl: string, text: string): Promise<string> {
   }
   if (!res.ok) throw new Error(`a2a: HTTP ${res.status} ${endpoint}`)
   const data = await res.json().catch(() => { throw new Error('a2a: 响应不是 JSON') })
-  return extractA2AReply(data)
+  return { text: extractA2AReply(data), contextId: extractA2AContextId(data) }
 }
 
 /** 归一化 agent name：小写、去空格/连字符/下划线/间隔号，消除 LLM 复述时的字符差异。 */
@@ -897,7 +737,7 @@ function registerA2ATools(ctx: any): void {
           agent: '',
         }
       }
-      const reply = await a2aSendMessage(a2aBaseUrl(target.url), message)
+      const { text: reply } = await a2aSendMessage(a2aBaseUrl(target.url), message)
       return { reply, agent: target.name }
     },
   }))
@@ -936,18 +776,144 @@ function extractInboundText(message: any): string {
     .trim()
 }
 
-/** A2A inbound：暴露 agent card + message/send 端点，驱动真实 agent 回复外部调用。 */
-export class A2AInboundPlugin extends Service {
-  static inject = ['webServer', 'llm', 'agentDefaultModel']
+/**
+ * 以「本 agent」身份轻量回复一条文本（路线 A）：用 agent card 人设 + 当前默认模型
+ * 的 llm.stream 单发回复。可选传入 history（本线程此前的消息）做多轮记忆，让「me」
+ * 与外部 agent 一样能承接上下文。无工具/技能/MCP——完整 agent loop 留作增强。
+ * 供 inbound message/send 与团队群聊里的「me」复用。
+ */
+async function replyAsSelf(
+  llm: any,
+  agentDefaultModel: any,
+  text: string,
+  history?: ChatMessage[],
+): Promise<string> {
+  const config = await loadA2AConfig()
+  const sel = agentDefaultModel.currentSelection()
+  if (!sel?.provider || !sel?.model) throw new Error('没有可用的默认模型，请先在设置里配置模型。')
+  const system = [
+    `你是 ${config.card.name}。`,
+    config.card.description,
+    config.card.capabilities.length
+      ? `你具备以下能力：${config.card.capabilities.join('、')}。`
+      : '',
+    '请用简洁、准确的中文回答用户的问题。',
+  ].filter(Boolean).join('\n')
 
-  private llm: any
+  // 多轮记忆：把线程历史折叠成一段对话记录，作为用户消息的前置上下文。
+  let prompt = text
+  if (history && history.length > 0) {
+    const transcript = history
+      .filter((m) => m.role !== 'system')
+      .map((m) => {
+        if (m.role === 'user') return `用户：${m.text}`
+        const who = m.agent === 'me' ? config.card.name : (m.agent ?? '其他成员')
+        return `${who}：${m.text}`
+      })
+      .join('\n')
+    if (transcript) {
+      prompt = `【以下为此前的对话记录，供你理解上下文】\n${transcript}\n\n【用户最新消息】\n${text}`
+    }
+  }
+
+  const messages = [{
+    id: randomUUID(),
+    role: 'user',
+    content: [{ type: 'text', text: prompt }],
+    source: { kind: 'user' },
+  }]
+
+  const chunks = llm.stream({
+    provider: sel.provider,
+    model: sel.model,
+    system,
+    messages,
+  })
+
+  let reply = ''
+  for await (const chunk of chunks) {
+    if (chunk?.type === 'text-delta') reply += chunk.text
+    else if (chunk?.type === 'finish' && chunk?.reason?.kind === 'error') {
+      const f = chunk.reason.failure
+      throw new Error(`模型调用失败：${f?.message ?? '未知错误'}`)
+    }
+  }
+  if (!reply.trim()) throw new Error('a2a: 模型未返回内容')
+  return reply.trim()
+}
+
+/** 从 agent 会话事件里提取最终 assistant 文本 + 回合结局（对齐 headless runner 的 summarize）。 */
+function summarizeSessionReply(session: any, firstSeq: number): { text: string; reason: any } {
+  let text = ''
+  let reason: any
+  for (const event of session.snapshotEvents(firstSeq)) {
+    if (event.type === 'assistant/message') {
+      const joined = (event.data.message?.content ?? [])
+        .filter((b: any) => b.type === 'text')
+        .map((b: any) => b.text)
+        .join('')
+      if (joined) text = joined
+    } else if (event.type === 'turn/end') {
+      reason = event.data.reason
+    }
+  }
+  return { text, reason }
+}
+
+/** 确保该会话审批策略为「never」：把审批落空变成明确的确定性拒绝。 */
+function ensureApprovalNever(session: any): void {
+  for (let seq = session.seq - 1; seq >= 0; seq -= 1) {
+    const ev = session.eventAt(seq)
+    if (ev?.type === 'approval/policy') {
+      if (ev.data.policy === 'never') return
+      break
+    }
+  }
+  session.append('approval/policy', { policy: 'never' })
+}
+
+/** 收集本回合因审批被拦截的工具（approval/asked 事件即代表有工具请求了审批，在 never 策略下被拒）。 */
+function collectBlockedApprovals(session: any, firstSeq: number): Array<{ tool: string; reason?: string }> {
+  const out: Array<{ tool: string; reason?: string }> = []
+  for (const event of session.snapshotEvents(firstSeq)) {
+    if (event.type === 'approval/asked' && typeof event.data?.toolName === 'string') {
+      out.push({
+        tool: event.data.toolName,
+        ...(typeof event.data?.reason === 'string' && event.data.reason ? { reason: event.data.reason } : {}),
+      })
+    }
+  }
+  return out
+}
+
+/**
+ * A2A inbound：暴露 agent card + message/send 端点，驱动「同一个 dsh agent 运行时」回复外部调用。
+ * 与 WebUI 走同一套 agents.create/resume + followup + whenIdle，因此模型/工具/技能/MCP/多轮记忆
+ * 完全一致。多轮靠 A2A contextId ↔ sessionId：contextId 就是 sessionId，重启后靠 sessionPersistence
+ * resume。审批无交互通道 → 走 dsh 默认 fail-closed（需要审批的工具被拒绝）。
+ */
+export class A2AInboundPlugin extends Service {
+  static inject = ['webServer', 'agents', 'sessions', 'agentDefaultModel']
+
+  private agents: any
+  private sessions: any
   private agentDefaultModel: any
+  /** contextId(=sessionId) → 活体 agent 句柄，进程内复用。 */
+  private live = new Map<string, { agent: any; dispose: () => Promise<void> }>()
+  /** contextId → 串行化锁，避免同一会话并发请求交错。 */
+  private mutex = new Map<string, Promise<unknown>>()
 
   constructor(ctx: any) {
     super(ctx, 'a2a-inbound')
-    this.llm = ctx.llm
+    this.agents = ctx.agents
+    this.sessions = ctx.sessions
     this.agentDefaultModel = ctx.agentDefaultModel
     this.register(ctx)
+    // 卸载时释放所有活体 agent。
+    ctx.effect(() => () => {
+      for (const { dispose } of this.live.values()) void dispose()
+      this.live.clear()
+    }, 'a2a-inbound: dispose live agents')
   }
 
   private register(ctx: any): void {
@@ -991,12 +957,18 @@ export class A2AInboundPlugin extends Service {
         try {
           const parsed = JSON.parse(await readRequestBody(req))
           if (parsed?.method === 'message/send') {
-            const text = await this.handleMessageSend(parsed?.params)
+            const { text, contextId, approvalsBlocked } = await this.handleMessageSend(parsed?.params)
             res.writeHead(200, { 'Content-Type': 'application/json' })
             res.end(JSON.stringify({
               jsonrpc: '2.0',
               id: parsed.id ?? null,
-              result: { kind: 'message', role: 'agent', parts: [{ kind: 'text', text }] },
+              result: {
+                kind: 'message',
+                role: 'agent',
+                parts: [{ kind: 'text', text }],
+                contextId,
+                ...(approvalsBlocked.length > 0 ? { metadata: { approvalsBlocked } } : {}),
+              },
             }))
           } else {
             res.writeHead(400, { 'Content-Type': 'application/json' })
@@ -1010,47 +982,462 @@ export class A2AInboundPlugin extends Service {
     })
   }
 
-  private async handleMessageSend(params: any): Promise<string> {
+  /** 串行化同一 contextId 的并发请求，然后走真实 agent loop。 */
+  private handleMessageSend(params: any): Promise<{ text: string; contextId: string; approvalsBlocked: Array<{ tool: string; reason?: string }> }> {
     const text = extractInboundText(params?.message)
-    if (!text) throw new Error('a2a: message 缺少文本内容')
+    if (!text) return Promise.reject(new Error('a2a: message 缺少文本内容'))
+    const contextId = typeof params?.contextId === 'string' && params.contextId ? params.contextId : undefined
+    const lockKey = contextId ?? '__fresh__'
+    const prev = this.mutex.get(lockKey) ?? Promise.resolve()
+    const next = prev.catch(() => {}).then(() => this.runTurn(contextId, text))
+    this.mutex.set(lockKey, next)
+    return next.finally(() => {
+      if (this.mutex.get(lockKey) === next) this.mutex.delete(lockKey)
+    }) as Promise<{ text: string; contextId: string; approvalsBlocked: Array<{ tool: string; reason?: string }> }>
+  }
 
-    // 轻量 inbound：直接用 llm.stream 以本 agent 身份回复。完整 agent loop
-    // （工具调用/多轮记忆）需 preset 挂载，复杂度高，留作后续增强。
-    const config = await loadA2AConfig()
+  private async runTurn(contextId: string | undefined, text: string): Promise<{ text: string; contextId: string; approvalsBlocked: Array<{ tool: string; reason?: string }> }> {
     const sel = this.agentDefaultModel.currentSelection()
-    const system = [
-      `你是 ${config.card.name}。`,
-      config.card.description,
-      config.card.capabilities.length
-        ? `你具备以下能力：${config.card.capabilities.join('、')}。`
-        : '',
-      '请用简洁、准确的中文回答用户的问题。',
-    ].filter(Boolean).join('\n')
+    if (!sel?.provider || !sel?.model) throw new Error('没有可用的默认模型，请先在设置里配置模型。')
+    const agentOptions = { provider: sel.provider, model: sel.model }
+    const sessionId = contextId ?? randomUUID()
 
-    const messages = [{
+    let live = this.live.get(sessionId)
+    let agent: any
+    let dispose: (() => Promise<void>) | undefined
+    if (live) {
+      agent = live.agent
+    } else {
+      const handle = contextId
+        ? await this.agents.resume({ resumeSessionId: sessionId, agentOptions })
+        : await this.agents.create({ sessionId, meta: { cwd: process.cwd() }, agentOptions })
+      agent = handle.agent
+      dispose = handle.dispose
+      this.live.set(sessionId, { agent, dispose: dispose! })
+    }
+
+    try {
+      await agent.whenIdle()
+      // 审批无交互通道 → 显式 never，把「落空」变成「明确否决」，模型也被告知不要请求越权。
+      ensureApprovalNever(agent.session)
+      const firstSeq = agent.session.seq
+      agent.followup({
+        id: randomUUID(),
+        role: 'user',
+        content: [{ type: 'text', text }],
+        source: { kind: 'user' },
+      })
+      await agent.whenIdle()
+      const { text: reply, reason } = summarizeSessionReply(agent.session, firstSeq)
+      if (!reply.trim()) {
+        if (reason?.kind === 'error' && reason?.error?.message) throw new Error(`模型调用失败：${reason.error.message}`)
+        throw new Error('a2a: 模型未返回内容')
+      }
+      // 持久化会话，供重启后 resume。
+      await this.sessions.flush(agent.session)
+      const approvalsBlocked = collectBlockedApprovals(agent.session, firstSeq)
+      return { text: reply.trim(), contextId: sessionId, approvalsBlocked }
+    } catch (e) {
+      // 失败时释放活体句柄，下次请求重新 create/resume。
+      if (dispose) {
+        this.live.delete(sessionId)
+        await dispose()
+      }
+      throw e
+    }
+  }
+}
+
+// ---- 团队（Team）----
+
+/** 团队成员标识："me" 恒表示自己，其余为 a2a-agents.json 里已注册的 name。 */
+export interface Team {
+  id: string
+  name: string
+  members: string[]
+  createdAt: number
+}
+
+export interface ChatMessage {
+  id: string
+  role: 'user' | 'agent' | 'system'
+  /** role=agent 时：回复方（"me" 或外部 agent name）。 */
+  agent?: string
+  text: string
+  time: number
+}
+
+export interface ThreadSummary {
+  threadId: string
+  teamId: string | null
+  peer: string | null
+  title: string
+  lastTime: number
+}
+
+export interface Thread {
+  threadId: string
+  teamId: string | null
+  peer: string | null
+  title: string
+  members: string[]
+  messages: ChatMessage[]
+  /** 外部 agent 的多轮对话 contextId（A2A 靠它维持记忆）。 */
+  contextIds: Record<string, string>
+}
+
+const TEAMS_FILE = () => join(a2aConfigDir(), 'teams.json')
+const TEAM_CHATS_DIR = () => join(a2aConfigDir(), 'team-chats')
+/** threadId 只允许 uuid 形（字母数字连字符），防路径穿越。 */
+const THREAD_ID_RE = /^[A-Za-z0-9-]{1,64}$/
+
+async function loadTeams(): Promise<Team[]> {
+  try {
+    const raw = await readFile(TEAMS_FILE(), 'utf8')
+    const p = JSON.parse(raw)
+    if (p && typeof p === 'object' && Array.isArray(p.teams)) {
+      return p.teams
+        .filter((t: any) => t && typeof t.id === 'string' && typeof t.name === 'string' && Array.isArray(t.members))
+        .map((t: any) => ({
+          id: t.id,
+          name: t.name,
+          members: t.members.filter((m: unknown): m is string => typeof m === 'string'),
+          createdAt: typeof t.createdAt === 'number' ? t.createdAt : 0,
+        }))
+    }
+  } catch {
+    // 文件不存在/损坏
+  }
+  return []
+}
+
+async function saveTeams(teams: Team[]): Promise<void> {
+  await mkdir(a2aConfigDir(), { recursive: true })
+  await writeFile(TEAMS_FILE(), JSON.stringify({ teams }, null, 2), 'utf8')
+}
+
+function threadFile(threadId: string): string {
+  return join(TEAM_CHATS_DIR(), `${threadId}.json`)
+}
+
+async function loadThread(threadId: string): Promise<Thread | null> {
+  try {
+    const raw = await readFile(threadFile(threadId), 'utf8')
+    const p = JSON.parse(raw)
+    if (!p || typeof p.threadId !== 'string') return null
+    return {
+      threadId: p.threadId,
+      teamId: typeof p.teamId === 'string' ? p.teamId : null,
+      peer: typeof p.peer === 'string' ? p.peer : null,
+      title: typeof p.title === 'string' ? p.title : '',
+      members: Array.isArray(p.members) ? p.members.filter((m: unknown): m is string => typeof m === 'string') : [],
+      messages: Array.isArray(p.messages)
+        ? p.messages
+            .filter((m: any) => m && typeof m.text === 'string')
+            .map((m: any) => compact({
+              id: typeof m.id === 'string' ? m.id : randomUUID(),
+              role: m.role === 'user' || m.role === 'agent' || m.role === 'system' ? m.role : 'system',
+              agent: typeof m.agent === 'string' ? m.agent : undefined,
+              text: m.text,
+              time: typeof m.time === 'number' ? m.time : 0,
+            }))
+        : [],
+      contextIds: p.contextIds && typeof p.contextIds === 'object' ? p.contextIds : {},
+    }
+  } catch {
+    return null
+  }
+}
+
+async function saveThread(thread: Thread): Promise<void> {
+  await mkdir(TEAM_CHATS_DIR(), { recursive: true })
+  await writeFile(threadFile(thread.threadId), JSON.stringify(thread, null, 2), 'utf8')
+}
+
+/** 扫描 team-chats 目录，返回全部 threadId（容错：目录不存在返回空）。 */
+async function listThreadIds(): Promise<string[]> {
+  try {
+    const entries = await readdir(TEAM_CHATS_DIR(), { withFileTypes: true })
+    return entries
+      .filter((e) => e.isFile() && e.name.endsWith('.json'))
+      .map((e) => e.name.slice(0, -'.json'.length))
+  } catch {
+    return []
+  }
+}
+
+/** 归一化成员名（含 "me" 特判）。 */
+function isMe(token: string): boolean {
+  const n = normalizeAgentName(token)
+  return n === 'me' || n === 'wo' || n === 'ziwo' || n === '自己'
+}
+
+/** 从文本提取 @提及 token；@all/@所有人/@everyone 归一化为 'all'。 */
+function parseMentions(text: string): string[] {
+  const tokens: string[] = []
+  const re = /@([^\s@]+)/g
+  let m: RegExpExecArray | null
+  while ((m = re.exec(text)) !== null) {
+    const raw = m[1]
+    const n = normalizeAgentName(raw)
+    if (n === 'all' || n === 'suoyouren' || n === 'everyone' || n === '所有人') tokens.push('all')
+    else tokens.push(raw)
+  }
+  return tokens
+}
+
+/**
+ * 团队路由引擎：把「我」和外部 agent 编成一组，按 @提及路由。
+ * - 单聊线程（peer 非空）：无条件发给该 peer，忽略 @ 与广播。
+ * - 群聊线程：@name 定向、@all 全员、无 @ 广播全员；无法解析的 @ 返回系统提示。
+ * - 外部 agent 带 contextId 维持多轮记忆；"me" 走 replyAsSelf 轻量回复。
+ */
+export class TeamGateway extends TypertRemoteService {
+  static inject = ['llm', 'agentDefaultModel']
+
+  private llm: any
+  private agentDefaultModel: any
+
+  constructor(ctx: any) {
+    super(ctx, 'team')
+    this.llm = ctx.llm
+    this.agentDefaultModel = ctx.agentDefaultModel
+  }
+
+  @Remote('listTeams')
+  async listTeams(): Promise<{ teams: Team[] }> {
+    return { teams: await loadTeams() }
+  }
+
+  @Remote('createTeam')
+  async createTeam(name: string, members: string[]): Promise<{ team: Team }> {
+    if (typeof name !== 'string' || !name.trim()) throw new Error('团队名不能为空')
+    const cleanMembers = Array.isArray(members)
+      ? members.filter((m): m is string => typeof m === 'string' && m.length > 0)
+      : []
+    // 强制含 me 且排第一，其余去重。
+    const rest = [...new Set(cleanMembers.filter((m) => !isMe(m)))]
+    const team: Team = {
       id: randomUUID(),
-      role: 'user',
-      content: [{ type: 'text', text }],
-      source: { kind: 'user' },
-    }]
+      name: name.trim(),
+      members: ['me', ...rest],
+      createdAt: Date.now(),
+    }
+    const teams = await loadTeams()
+    teams.push(team)
+    await saveTeams(teams)
+    return { team }
+  }
 
-    const chunks = this.llm.stream({
-      provider: sel.provider,
-      model: sel.model,
-      system,
-      messages,
-    })
+  @Remote('updateTeam')
+  async updateTeam(id: string, name: string, members: string[]): Promise<{ team: Team }> {
+    if (typeof id !== 'string' || !id) throw new Error('团队 id 不能为空')
+    const teams = await loadTeams()
+    const idx = teams.findIndex((t) => t.id === id)
+    if (idx < 0) throw new Error('团队不存在')
+    const cur = teams[idx]
+    const nextName = typeof name === 'string' && name.trim() ? name.trim() : cur.name
+    const clean = Array.isArray(members) ? members.filter((m): m is string => typeof m === 'string' && m.length > 0) : []
+    const nextMembers = ['me', ...new Set(clean.filter((m) => !isMe(m)))]
+    const team: Team = { ...cur, name: nextName, members: nextMembers }
+    teams[idx] = team
+    await saveTeams(teams)
+    return { team }
+  }
 
-    let reply = ''
-    for await (const chunk of chunks) {
-      if (chunk?.type === 'text-delta') reply += chunk.text
-      else if (chunk?.type === 'finish' && chunk?.reason?.kind === 'error') {
-        const f = chunk.reason.failure
-        throw new Error(`模型调用失败：${f?.message ?? '未知错误'}`)
+  @Remote('deleteTeam')
+  async deleteTeam(id: string): Promise<{ id: string }> {
+    if (typeof id !== 'string' || !id) throw new Error('团队 id 不能为空')
+    const teams = await loadTeams()
+    await saveTeams(teams.filter((t) => t.id !== id))
+    return { id }
+  }
+
+  @Remote('listThreads')
+  async listThreads(teamId: string): Promise<{ threads: ThreadSummary[] }> {
+    if (typeof teamId !== 'string' || !teamId) throw new Error('团队 id 不能为空')
+    const ids = await listThreadIds()
+    const summaries: ThreadSummary[] = []
+    for (const tid of ids) {
+      const t = await loadThread(tid)
+      if (!t || t.teamId !== teamId) continue
+      summaries.push({
+        threadId: t.threadId,
+        teamId: t.teamId,
+        peer: t.peer,
+        title: t.title,
+        lastTime: t.messages.length ? t.messages[t.messages.length - 1].time : 0,
+      })
+    }
+    summaries.sort((a, b) => b.lastTime - a.lastTime)
+    return { threads: summaries }
+  }
+
+  @Remote('openThread')
+  async openThread(teamId: string, peer: string): Promise<{ thread: Thread }> {
+    const tid = typeof teamId === 'string' && teamId ? teamId : null
+    const p = typeof peer === 'string' && peer ? peer : null
+    if (!tid && !p) throw new Error('openThread 需要 teamId 或 peer')
+
+    // 群聊：一个团队一个共享线程；单聊：按 peer 一个线程。
+    if (tid) {
+      const ids = await listThreadIds()
+      for (const t of ids) {
+        const existing = await loadThread(t)
+        if (existing && existing.teamId === tid && existing.peer === null) {
+          return { thread: await this.refreshMembers(existing) }
+        }
+      }
+      const teams = await loadTeams()
+      const team = teams.find((t) => t.id === tid)
+      if (!team) throw new Error('团队不存在')
+      const thread: Thread = {
+        threadId: randomUUID(),
+        teamId: tid,
+        peer: null,
+        title: team.name,
+        members: team.members,
+        messages: [],
+        contextIds: {},
+      }
+      await saveThread(thread)
+      return { thread }
+    }
+
+    // 单聊
+    const ids = await listThreadIds()
+    for (const t of ids) {
+      const existing = await loadThread(t)
+      if (existing && existing.teamId === null && existing.peer === p) return { thread: existing }
+    }
+    const thread: Thread = {
+      threadId: randomUUID(),
+      teamId: null,
+      peer: p,
+      title: p as string,
+      members: ['me', p as string],
+      messages: [],
+      contextIds: {},
+    }
+    await saveThread(thread)
+    return { thread }
+  }
+
+  @Remote('getThread')
+  async getThread(threadId: string): Promise<{ thread: Thread }> {
+    if (typeof threadId !== 'string' || !THREAD_ID_RE.test(threadId)) throw new Error('无效的 threadId')
+    const thread = await loadThread(threadId)
+    if (!thread) throw new Error('线程不存在')
+    return { thread: await this.refreshMembers(thread) }
+  }
+
+  @Remote('send')
+  async send(threadId: string, text: string): Promise<{ messages: ChatMessage[] }> {
+    if (typeof threadId !== 'string' || !THREAD_ID_RE.test(threadId)) throw new Error('无效的 threadId')
+    if (typeof text !== 'string' || !text.trim()) throw new Error('消息不能为空')
+    let thread = await loadThread(threadId)
+    if (!thread) throw new Error('线程不存在')
+    thread = await this.refreshMembers(thread)
+
+    const now = Date.now()
+    const userMsg: ChatMessage = { id: randomUUID(), role: 'user', text: text.trim(), time: now }
+    thread.messages.push(userMsg)
+    const newMessages: ChatMessage[] = [userMsg]
+
+    const config = await loadA2AConfig()
+
+    // 解析目标成员。
+    let targets: string[]
+    let unresolved: string[] = []
+    const externalMembers = thread.members.filter((m) => m !== 'me')
+    if (thread.peer !== null) {
+      // 单聊：无条件发给 peer。
+      targets = [thread.peer]
+    } else {
+      const mentions = parseMentions(text)
+      if (mentions.length === 0) {
+        // 无 @ → 广播外部成员；「me」不自问自答，需要我参与请显式 @me。
+        targets = [...externalMembers]
+      } else if (mentions.includes('all')) {
+        // @all → 同样只广播外部成员。
+        targets = [...externalMembers]
+      } else {
+        targets = []
+        for (const raw of mentions) {
+          if (isMe(raw)) {
+            targets.push('me')
+            continue
+          }
+          const agent = resolveAgent(config.agents.filter((a) => thread.members.includes(a.name)), raw)
+          if (agent) targets.push(agent.name)
+          else unresolved.push(raw)
+        }
+        targets = [...new Set(targets)]
       }
     }
-    if (!reply.trim()) throw new Error('a2a: 模型未返回内容')
-    return reply.trim()
+
+    // 无法解析的 @ → 系统提示候选，不发送。（只入 newMessages，末尾统一持久化，避免重复写入。）
+    if (unresolved.length > 0) {
+      const names = thread.members.map((m) => (m === 'me' ? config.card.name : m)).join('、')
+      newMessages.push({
+        id: randomUUID(),
+        role: 'system',
+        text: `未识别 @${unresolved.join('、@')}。可用成员：${names || '（无）'}`,
+        time: Date.now(),
+      })
+    }
+
+    // 逐个目标并发发送。
+    const results = await Promise.allSettled(
+      targets.map(async (name) => {
+        if (name === 'me') {
+          const reply = await replyAsSelf(this.llm, this.agentDefaultModel, text.trim(), thread.messages.slice(0, -1))
+          return { agent: 'me', text: reply }
+        }
+        const agent = config.agents.find((a) => a.name === name)
+        if (!agent) throw new Error(`外部 agent「${name}」已不存在，请重新注册`)
+        const prev = thread.contextIds[name]
+        try {
+          const { text: reply, contextId } = await a2aSendMessage(a2aBaseUrl(agent.url), text.trim(), prev)
+          if (contextId) thread.contextIds[name] = contextId
+          return { agent: name, text: reply }
+        } catch (e) {
+          // contextId 失效：去掉重试一次，成功后重置。
+          if (prev && e instanceof Error && /context/i.test(e.message)) {
+            const retry = await a2aSendMessage(a2aBaseUrl(agent.url), text.trim())
+            if (retry.contextId) thread.contextIds[name] = retry.contextId
+            return { agent: name, text: retry.text }
+          }
+          throw e
+        }
+      }),
+    )
+
+    for (const r of results) {
+      if (r.status === 'fulfilled') {
+        newMessages.push({ id: randomUUID(), role: 'agent', agent: r.value.agent, text: r.value.text, time: Date.now() })
+      } else {
+        const msg = r.reason instanceof Error ? r.reason.message : String(r.reason)
+        newMessages.push({ id: randomUUID(), role: 'system', text: `调用失败：${msg}`, time: Date.now() })
+      }
+    }
+
+    // 追加到线程并持久化。
+    thread.messages.push(...newMessages.slice(1))
+    await saveThread(thread)
+    return { messages: newMessages }
+  }
+
+  /** 群聊线程成员以团队最新 members 为准（团队增删成员即时生效）。 */
+  private async refreshMembers(thread: Thread): Promise<Thread> {
+    if (thread.teamId === null) return thread
+    const teams = await loadTeams()
+    const team = teams.find((t) => t.id === thread.teamId)
+    if (team) {
+      thread.members = team.members
+      thread.title = team.name
+    }
+    return thread
   }
 }
 
@@ -1082,4 +1469,5 @@ export function apply(ctx: any): void {
   ctx.plugin(A2AConfigGateway)
   ctx.plugin(A2AToolsPlugin)
   ctx.plugin(A2AInboundPlugin)
+  ctx.plugin(TeamGateway)
 }

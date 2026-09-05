@@ -3,9 +3,6 @@ type: workflow
 title: Tool Integrations (工具集成 / MCP)
 description: The end-to-end Tool Integrations flow — the host ToolIntegrationsGateway's list/read/write/delete of per-profile mcp-servers.json backed by the McpConfig shape, the entryFor() loader entry derivation (id mcp-<serverName>, name @deepseek-ai/dsh-mcp-client), the startup mountAll() and write() hot-replace semantics where a save persists the config then unmounts the old loader entry and mounts a new one, the mounted map as the live-vs-stale source of truth, and how ToolIntegrationsView wraps the mirrored McpApi through the client remote and unwrap().
 tags: [tool-integrations, mcp, mcp-servers-json, mcp-client, loader, hot-replace, mountAll, mounted-flag, Gateway, remote-bridge, typert-remote, McpConfig, entryFor]
-verified:
-  - by: openwiki/0.5.0
-    at: 2026-09-03T02:25:20.569Z
 sources:
   - id: openwiki-source-3503e2677e2cb13a4c324b90
     resource: repo://src/client/index.ts
@@ -15,7 +12,10 @@ sources:
     resource: repo://src/client/ToolIntegrationsView.tsx
   - id: openwiki-source-d1fbef09192ffbab6eff0bc2
     resource: repo://src/index.ts
-generated: { by: "openwiki/0.5.0", at: "2026-09-03T02:25:20.569Z" }
+generated: { by: "openwiki/0.5.0", at: "2026-09-04T14:14:38.291Z" }
+verified:
+  - by: openwiki/0.5.0
+    at: 2026-09-04T14:14:38.291Z
 ---
 
 # Tool Integrations (工具集成 / MCP)
@@ -26,18 +26,17 @@ The single most distinctive behavior is the **hot-replace** in `write()`: saving
 
 ## The `toolIntegrations` namespace and the gateway
 
-`ToolIntegrationsGateway` extends `TypertRemoteService`, injects `['loader']`, and binds its wire namespace to `toolIntegrations` in its constructor (`repo://src/index.ts#L431-L442`). It owns a private `mounted = new Map<string, string>()` that maps `serverName` → loader entry id — the authoritative record of which configured server is currently live (`repo://src/index.ts#L435`). It is registered alongside the other host Gateways in `apply()` (`repo://src/index.ts#L1078-L1085`).
+`ToolIntegrationsGateway` extends `TypertRemoteService`, injects `['loader']` via its `static inject`, and binds its wire namespace to `toolIntegrations` in its constructor (`repo://src/index.ts#L228-L233`). It owns a private `mounted = new Map<string, string>()` that maps `serverName` → loader entry id — the authoritative record of which configured server is currently live (`repo://src/index.ts#L226`). It is registered alongside the other host Gateways in `apply()` (`repo://src/index.ts#L1465-L1473`).
 
-It exposes four `@Remote` methods — `list`, `read`, `write`, `delete` — each returning a **JSON-safe business value** that the Typert framework wraps into the `{ ok: true, value } | { ok: false, error }` envelope (`repo://src/client/remote.ts#L148-L152`). The client never imports this class; it mounts the hand-written `TYPERT_REMOTE` manifest and calls the namespace through `ctx.remote.toolIntegrations.<method>()`.
+It exposes four `@Remote` methods — `list`, `read`, `write`, `delete` — each returning a **JSON-safe business value** that the Typert framework wraps into the `{ ok: true, value } | { ok: false, error }` envelope (`repo://src/client/remote.ts#L30-L43`, `repo://src/client/remote.ts#L166-L170`). The client never imports this class; it mounts the hand-written `TYPERT_REMOTE` manifest and calls the namespace through `ctx.remote.toolIntegrations.<method>()`.
 
-<!-- openwiki: mermaid parse failed and this diagram was converted to a text fence so it does not break rendering. Fix the diagram source and restore the mermaid fence. Parser error: Heuristic: an unescaped angle bracket inside a label breaks rendering; rephrase the label. -->
-```text
+```mermaid
 flowchart TD
     gw["ToolIntegrationsGateway (TypertRemoteService)"]
     inj["inject: loader"]
     ns["namespace toolIntegrations"]
-    mcpFile["MCP_FILE() -> <profile>/mcp-servers.json"]
-    mounted["mounted: Map<serverName, loaderId>"]
+    mcpFile["MCP_FILE() -> per-profile mcp-servers.json"]
+    mounted["mounted: Map serverName to loaderId"]
     list["@Remote list"]
     read["@Remote read"]
     write["@Remote write (hot-replace)"]
@@ -56,16 +55,16 @@ Caption: the `toolIntegrations` namespace — four MCP-config methods, the persi
 
 ## The persistence surface: per-profile `mcp-servers.json`
 
-`MCP_FILE()` resolves the active profile from `process.argv` and returns the profile `mcp-servers.json` when one is active, else the global `dshHomePath('mcp-servers.json')` (`repo://src/index.ts#L414-L417`). It is re-derived **fresh on every call** via `profileNameFromArgv(process.argv)`, so the path is always consistent with the process that spawned the plugin (see [Per-Profile Data Isolation](/openwiki/concepts/per-profile-isolation.md) for why this argv derivation is the isolation crux).
+`MCP_FILE()` resolves the active profile from `process.argv` and returns the profile `mcp-servers.json` when one is active, else the global `dshHomePath('mcp-servers.json')` (`repo://src/index.ts#L205-L208`). It is re-derived **fresh on every call** via `profileNameFromArgv(process.argv)`, so the path is always consistent with the process that spawned the plugin (see [Per-Profile Data Isolation](/openwiki/concepts/per-profile-isolation.md) for why this argv derivation is the isolation crux).
 
-- **`loadConfigs()`** (`repo://src/index.ts#L444-L452`) reads and `JSON.parse`s the file. If the file is absent or unparseable it catches and returns `[]` — a fresh profile with no MCP servers is not an error.
-- **`saveConfigs(configs)`** (`repo://src/index.ts#L454-L457`) `mkdir`s the dsh home with `recursive: true` and writes the array as indented (2-space) JSON. `mkdir(dshHomePath(''), ...)` ensures the profile directory exists before the file is written.
+- **`loadConfigs()`** (`repo://src/index.ts#L235-L243`) reads and `JSON.parse`s the file. If the file is absent or unparseable it catches and returns `[]` — a fresh profile with no MCP servers is not an error.
+- **`saveConfigs(configs)`** (`repo://src/index.ts#L245-L248`) `mkdir`s the dsh home with `recursive: true` and writes the array as indented (2-space) JSON. `mkdir(dshHomePath(''), ...)` ensures the profile directory exists before the file is written.
 
-The file stores a **flat JSON array** of `McpConfig` objects, not a map keyed by server name. So `list`/`read`/`write`/`delete` all operate on an array: `read` finds by `serverName` and throws `mcp server not found: <name>` if absent (`repo://src/index.ts#L500-L506`), `write` replaces at the existing index or pushes (`repo://src/index.ts#L511-L513`), and `delete` filters it out (`repo://src/index.ts#L530-L531`).
+The file stores a **flat JSON array** of `McpConfig` objects, not a map keyed by server name. So `list`/`read`/`write`/`delete` all operate on an array: `read` finds by `serverName` and throws `mcp server not found: <name>` if absent (`repo://src/index.ts#L291-L297`), `write` replaces at the existing index or pushes (`repo://src/index.ts#L302-L304`), and `delete` filters it out (`repo://src/index.ts#L318-L321`).
 
 ## The `McpConfig` shape and its transport discrimination
 
-`McpConfig` is declared **in both faces** and mirrors the host-side shape (`repo://src/index.ts#L420-L429`, `repo://src/client/ToolIntegrationsView.tsx#L10-L19`):
+`McpConfig` is declared **in both faces** and mirrors the host-side shape (`repo://src/index.ts#L211-L220`, `repo://src/client/ToolIntegrationsView.tsx#L11-L20`):
 
 ```ts
 interface McpConfig {
@@ -80,13 +79,13 @@ interface McpConfig {
 }
 ```
 
-`saved` / `loaded` configs carry the full shape, but **the per-transport fields are only populated for the matching transport**: `command`/`args`/`env`/`cwd` describe a `stdio` server; `url`/`headers` describe a `streamable-http` server. The `write()` handler in the view builds exactly one branch based on `form.transport` and omits the other fields (`repo://src/client/ToolIntegrationsView.tsx#L124-L135`). The remote zod codec `mcpConfig` mirrors the same structure: `transport` is a `z.enum(['stdio','streamable-http'])` and `command`/`args`/`env`/`cwd`/`url`/`headers` are all `.optional()` (`repo://src/client/remote.ts#L62-L71`).
+`saved` / `loaded` configs carry the full shape, but **the per-transport fields are only populated for the matching transport**: `command`/`args`/`env`/`cwd` describe a `stdio` server; `url`/`headers` describe a `streamable-http` server. The `save()` handler in the view builds exactly one branch based on `form.transport` and omits the other fields (`repo://src/client/ToolIntegrationsView.tsx#L130-L145`). The remote zod codec `mcpConfig` mirrors the same structure: `transport` is a `z.enum(['stdio','streamable-http'])` and `command`/`args`/`env`/`cwd`/`url`/`headers` are all `.optional()` (`repo://src/client/remote.ts#L30-L39`).
 
-The item returned by `list` extends the config with a liveness flag: `mcpListItem = mcpConfig.extend({ mounted: z.boolean() })` (`repo://src/client/remote.ts#L72`), surfaced to the client as `McpSummary extends McpConfig { mounted: boolean }` (`repo://src/client/ToolIntegrationsView.tsx#L21-L23`).
+The item returned by `list` extends the config with a liveness flag: `mcpListItem = mcpConfig.extend({ mounted: z.boolean() })` (`repo://src/client/remote.ts#L40`), surfaced to the client as `McpSummary extends McpConfig { mounted: boolean }` (`repo://src/client/ToolIntegrationsView.tsx#L22-L24`).
 
 ## The loader entry derivation: `entryFor()`
 
-`entryFor(cfg)` is the function that turns a config into a runnable loader entry (`repo://src/index.ts#L474-L481`):
+`entryFor(cfg)` is the function that turns a config into a runnable loader entry (`repo://src/index.ts#L265-L272`):
 
 ```ts
 private entryFor(cfg: McpConfig): { id: string; name: string; config: any } {
@@ -99,17 +98,17 @@ private entryFor(cfg: McpConfig): { id: string; name: string; config: any } {
 }
 ```
 
-The entry id is **deterministic** — `mcp-<serverName>` (`MCP_CLIENT` is the constant `'@deepseek-ai/dsh-mcp-client'`, `repo://src/index.ts#L418`). This is what makes the hot-replace safe: the `mounted` map stores the id returned by `loader.create`, and `unmount()` looks up that id to remove the exact entry. Because the id is deterministic and derived from the serverName (which is the map key), the map's key/value pairing is a one-to-one, self-consistent record.
+The entry id is **deterministic** — `mcp-<serverName>` (`MCP_CLIENT` is the constant `'@deepseek-ai/dsh-mcp-client'`, `repo://src/index.ts#L209`). This is what makes the hot-replace safe: the `mounted` map stores the id returned by `loader.create`, and `unmount()` looks up that id to remove the exact entry. Because the id is deterministic and derived from the serverName (which is the map key), the map's key/value pairing is a one-to-one, self-consistent record.
 
 ## Startup mount: `mountAll()` without blocking construction
 
-The constructor fires `void this.mountAll().catch(() => {})` — **asynchronously and non-blocking** (`repo://src/index.ts#L437-L442`). `mountAll()` loads the configs and, for each, `loader.create(entryFor(cfg))` and records the returned id in `mounted` (`repo://src/index.ts#L460-L472`).
+The constructor fires `void this.mountAll().catch(() => {})` — **asynchronously and non-blocking** (`repo://src/index.ts#L232-L233`). `mountAll()` loads the configs and, for each, `loader.create(entryFor(cfg))` and records the returned id in `mounted` (`repo://src/index.ts#L251-L263`).
 
 The deliberate failure semantics here are a core invariant: **a single server failing to mount does not fail the others**. Each `create` is wrapped in its own `try/catch`; a failure deletes that serverName from `mounted` (so it shows as `mounted: false`) and continues the loop. No exception propagates out of `mountAll` — the catch is swallowed so the non-blocking `mountAll().catch(() => {})` in the constructor never surfaces a rejection.
 
 ## The hot-replace: `write()` persists, then unmounts, then mounts
 
-`write()` is the heart of the feature and the reason the tool integrations panel can take effect live. It performs three ordered steps (`repo://src/index.ts#L508-L525`):
+`write()` is the heart of the feature and the reason the tool integrations panel can take effect live. It performs three ordered steps (`repo://src/index.ts#L299-L316`):
 
 1. **Persist first.** Load the existing configs, replace-or-push the incoming config, and `saveConfigs` to disk.
 2. **Unmount the old.** Call `this.unmount(config.serverName)` to remove the previous loader entry for that server.
@@ -117,10 +116,9 @@ The deliberate failure semantics here are a core invariant: **a single server fa
 
 The mount is wrapped in `try/catch`; on failure the serverName is deleted from `mounted` (so the server shows as `mounted: false`), but **the method still returns `{ serverName }`** — the save succeeded and the disk config is authoritative. The failure is therefore surfaced to the UI through the `mounted` flag on the next `list()`, not as an error rejection. This is why the view can show a server that is configured-but-not-live.
 
-`unmount()` is the other half of the lifecycle and uses a `try/finally` (`repo://src/index.ts#L483-L492`): it looks up the mounted id, and if present, `loader.remove(id)` inside `try`, then unconditionally `mounted.delete(serverName)` in `finally`. This means a `remove` that throws still cleans up the tracked state — the `mounted` map never retains a stale id pointing at an entry that may not exist.
+`unmount()` is the other half of the lifecycle and uses a `try/finally` (`repo://src/index.ts#L274-L283`): it looks up the mounted id, and if present, `loader.remove(id)` inside `try`, then unconditionally `mounted.delete(serverName)` in `finally`. This means a `remove` that throws still cleans up the tracked state — the `mounted` map never retains a stale id pointing at an entry that may not exist.
 
-<!-- openwiki: mermaid parse failed and this diagram was converted to a text fence so it does not break rendering. Fix the diagram source and restore the mermaid fence. Parser error: Heuristic: an unescaped angle bracket inside a label breaks rendering; rephrase the label. -->
-```text
+```mermaid
 sequenceDiagram
     participant View as ToolIntegrationsView
     participant Api as ctx.remote.toolIntegrations
@@ -131,49 +129,49 @@ sequenceDiagram
     View->>Api: write(config)
     Api->>GW: write(config) via RPC
     GW->>Persist: loadConfigs / saveConfigs (replace-or-push)
-    GW->>Loader: unmount(serverName) -> remove(mcp-<name>)
+    GW->>Loader: unmount(serverName) -> remove(mcp-name)
     Loader-->>GW: removed
-    GW->>Loader: create(entryFor(config)) -> mcp-<name>
+    GW->>Loader: create(entryFor(config)) -> mcp-name
     Loader-->>GW: id
     GW->>GW: mounted.set(serverName, id)
-    GW-->>Api: { ok, value: { serverName } }
-    Api-->>View: unwrap -> { serverName }
+    GW-->>Api: ok + value serverName
+    Api-->>View: unwrap -> serverName
     View->>Api: list()
-    Api-->>View: items[] with mounted flags
+    Api-->>View: items with mounted flags
 ```
 
 Caption: the `write()` hot-replace — persist the config, remove the old loader entry, create the new one, then let the next `list()` report liveness via `mounted`.
 
 ## The `mounted` map as the live-vs-stale source of truth
 
-The `mounted` map plus the loader entry lifecycle is the **source of truth for whether a server is live** — not the config file and not a store of catches. `list()` derives each item's `mounted` flag directly from it: `configs.map((c) => ({ ...c, mounted: this.mounted.has(c.serverName) }))` (`repo://src/index.ts#L494-L498`). Because a config can be persisted while its mount failed (or was swapped), the map alone tells the UI whether the server's tools are actually available to the agent. This is why a server that failed to mount at startup or on write shows `mounted: false` with its config still intact and editable.
+The `mounted` map plus the loader entry lifecycle is the **source of truth for whether a server is live** — not the config file and not a store of catches. `list()` derives each item's `mounted` flag directly from it: `configs.map((c) => ({ ...c, mounted: this.mounted.has(c.serverName) }))` (`repo://src/index.ts#L285-L289`). Because a config can be persisted while its mount failed (or was swapped), the map alone tells the UI whether the server's tools are actually available to the agent. This is why a server that failed to mount at startup or on write shows `mounted: false` with its config still intact and editable.
 
 ## The `delete()` flow
 
-`delete()` is the mirror image — it removes the config and then unmounts (`repo://src/index.ts#L527-L534`):
+`delete()` is the mirror image — it removes the config and then unmounts (`repo://src/index.ts#L318-L325`):
 
 1. Load configs, filter out `serverName`, `saveConfigs`.
 2. Call `unmount(serverName)` to remove the live loader entry.
 
-Because deleting a config that was already unmounted is a no-op in `unmount` (no id in the map), `delete` is idempotent for the loader side. The view confirms with `window.confirm(...)` that the server's tools "will immediately become invalid" before calling `api.delete` (`repo://src/client/ToolIntegrationsView.tsx#L149-L162`).
+Because deleting a config that was already unmounted is a no-op in `unmount` (no id in the map), `delete` is idempotent for the loader side. The view confirms with `window.confirm(...)` that the server's tools "will immediately become invalid" before calling `api.delete` (`repo://src/client/ToolIntegrationsView.tsx#L159-L172`).
 
 ## The client panel: `ToolIntegrationsView`
 
-`ToolIntegrationsView` is the browser face. It receives a `McpApi` (`repo://src/client/ToolIntegrationsView.tsx#L26-L31`) and holds local `items: McpSummary[]`, `editing: McpConfig | null`, `busy`, and `error` state (`repo://src/client/ToolIntegrationsView.tsx#L54-L60`). The sidebar lists each server with a name plus a **mounted dot** — `已挂载` vs `未挂载` (`repo://src/client/ToolIntegrationsView.tsx#L183-L191`) — which is exactly the `mounted` flag from `list()`.
+`ToolIntegrationsView` is the browser face. It receives a `McpApi` (`repo://src/client/ToolIntegrationsView.tsx#L27-L32`) and holds local `items: McpSummary[]`, `editing: McpConfig | null`, `busy`, and `error` state (`repo://src/client/ToolIntegrationsView.tsx#L58-L61`). The sidebar lists each server with a name plus a **mounted dot** — `已挂载` vs `未挂载` (`repo://src/client/ToolIntegrationsView.tsx#L200-L203`) — which is exactly the `mounted` flag from `list()`.
 
 Key client behaviors:
 
-- **Refresh on mount and after mutations.** `refresh()` calls `api.list()` (`repo://src/client/ToolIntegrationsView.tsx#L74-L81`); `save` and `remove` both `await refresh()` after the RPC so the sidebar reflects the new mounted state (`repo://src/client/ToolIntegrationsView.tsx#L139-L146`, `#L153-L161`).
-- **Validation before save.** The `serverName` must match `/^[A-Za-z0-9_-]{1,32}$/` (letters, digits, hyphen, underscore, 1-32 chars); otherwise the save bails with an inline error (`repo://src/client/ToolIntegrationsView.tsx#L114-L119`). This mirrors the host's per-profile filename-safety rationale and prevents a server name that would break the `mcp-<serverName>` entry id.
-- **Per-transport form.** The form has separate textareas for `argsText` / `envText` / `headersText`, parsed to arrays/objects at save time. `parsePairs` and `stringifyPairs` convert key=value-per-line text ↔ `Record<string,string>` (`repo://src/client/ToolIntegrationsView.tsx#L36-L52`); `args` is split by newline (`repo://src/client/ToolIntegrationsView.tsx#L126-L127`).
-- **`serverName` is read-only when editing.** While `editing` is set, the name input is disabled (`repo://src/client/ToolIntegrationsView.tsx#L203`). This matters because `write` keys the replace-and-mount off `serverName` — an edited server must keep its identity so the old entry `mcp-<serverName>` is the one that gets removed.
-- **`startEdit` populates the form from `api.read`**, splitting `args` back into newline text and stringifying `env`/`headers` (`repo://src/client/ToolIntegrationsView.tsx#L93-L112`).
+- **Refresh on mount and after mutations.** `refresh()` calls `api.list()` (`repo://src/client/ToolIntegrationsView.tsx#L84-L91`); `save` and `remove` both `await refresh()` after the RPC so the sidebar reflects the new mounted state (`repo://src/client/ToolIntegrationsView.tsx#L149-L167`).
+- **Validation before save.** The `serverName` must match `/^[A-Za-z0-9_-]{1,32}$/` (letters, digits, hyphen, underscore, 1-32 chars); otherwise the save bails with an inline error (`repo://src/client/ToolIntegrationsView.tsx#L124-L129`). This mirrors the host's per-profile filename-safety rationale and prevents a server name that would break the `mcp-<serverName>` entry id.
+- **Per-transport form.** The form has separate textareas for `argsText` / `envText` / `headersText`, parsed to arrays/objects at save time. `parsePairs` and `stringifyPairs` convert key=value-per-line text ↔ `Record<string,string>` (`repo://src/client/ToolIntegrationsView.tsx#L37-L53`); `args` is split by newline (`repo://src/client/ToolIntegrationsView.tsx#L136`).
+- **`serverName` is read-only when editing.** While `editing` is set, the name input is disabled (`repo://src/client/ToolIntegrationsView.tsx#L219`). This matters because `write` keys the replace-and-mount off `serverName` — an edited server must keep its identity so the old entry `mcp-<serverName>` is the one that gets removed.
+- **`startEdit` populates the form from `api.read`**, splitting `args` back into newline text and stringifying `env`/`headers` (`repo://src/client/ToolIntegrationsView.tsx#L103-L122`).
 
 ## How the client wires the `McpApi`
 
-`registerCapabilityViews` in `src/client/index.ts` builds `mcpApi` by wrapping each `ctx.remote.toolIntegrations.<method>()` call in `unwrap()` (`repo://src/client/index.ts#L107-L112`), then injects it into the `conversation.view` slot row `id: 'tool-integrations'` at `order: 40` (`repo://src/client/index.ts#L129-L136`). `unwrap()` collapses the `{ ok, value } | { ok, error }` envelope, throwing on `ok: false` — so a host failure of `read('not-present')` surfaces as the view's inline error.
+`registerCapabilityViews` in `src/client/index.ts` builds `mcpApi` by wrapping each `ctx.remote.toolIntegrations.<method>()` call in `unwrap()` (`repo://src/client/index.ts#L106-L111`), then injects it into the `conversation.view` slot row `id: 'tool-integrations'` at `order: 40` (`repo://src/client/index.ts#L143-L150`). `unwrap()` collapses the `{ ok, value } | { ok, error }` envelope, throwing on `ok: false` — so a host failure of `read('not-present')` surfaces as the view's inline error.
 
-This wiring is subject to the same load-order constraint as the other namespaces: the `TYPERT_REMOTE` manifest must be `$mount`ed onto `ctx.remote` before the child plugin that injects `remote.toolIntegrations` runs. `apply()` mounts the manifest first (`repo://src/client/index.ts#L182`) and defers the capability-view registration to a child plugin whose inject list includes `remote.toolIntegrations` (`repo://src/client/index.ts#L222-L228`) — a namespace is only resolvable after `$mount` (see [Client-to-Host Typert Remote Bridge](/openwiki/architecture/typert-remote-bridge.md)).
+This wiring is subject to the same load-order constraint as the other namespaces: the `TYPERT_REMOTE` manifest must be `$mount`ed onto `ctx.remote` before the child plugin that injects `remote.toolIntegrations` runs. `apply()` mounts the manifest first (`repo://src/client/index.ts#L192-L193`) and defers the capability-view registration to a child plugin whose inject list includes `remote.toolIntegrations` (`repo://src/client/index.ts#L231-L237`) — a namespace is only resolvable after `$mount` (see [Client-to-Host Typert Remote Bridge](/openwiki/architecture/typert-remote-bridge.md)).
 
 ## Invariants and failure semantics
 

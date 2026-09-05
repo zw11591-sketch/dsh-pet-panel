@@ -1,0 +1,26 @@
+/* 侧边栏底部「团队」入口按钮，风格与背景切换器一致。 */
+
+.trigger {
+  cursor: pointer;
+  height: 28px;
+  color: var(--dsw-alias-label-primary);
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  padding: 0 8px;
+  display: inline-flex;
+  font-size: 13px;
+  line-height: 1;
+}
+
+.trigger:hover {
+  background: var(--dsw-alias-interactive-bg-hover);
+  color: var(--dsw-alias-label-primary);
+}
+
+.triggerLabel {
+  white-space: nowrap;
+}

@@ -1,10 +1,10 @@
-/* Tool Integrations panel. Same token vocabulary as Skill Forge. */
+/* Tool Integrations panel — unified control spec (same as Skill Forge). */
 
 .page {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding: 24px;
+  padding: 20px;
   height: 100%;
   box-sizing: border-box;
   color: var(--dsw-alias-label-primary);
@@ -12,19 +12,19 @@
 
 .header {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
+  align-items: baseline;
+  gap: 10px;
 }
 
 .title {
   margin: 0;
-  font-size: 22px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .subtitle {
   margin: 0;
-  font-size: 13px;
+  font-size: 12px;
   color: var(--dsw-alias-label-secondary);
 }
 
@@ -40,7 +40,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding: 14px;
+  padding: 12px;
   border-radius: 12px;
   background: var(--dsw-alias-bg-module-platform);
   border: 1px solid var(--dsw-alias-border-l2);
@@ -66,8 +66,9 @@
   appearance: none;
   border: none;
   border-radius: 8px;
-  padding: 7px 12px;
-  font-size: 12px;
+  height: 32px;
+  padding: 0 14px;
+  font-size: 13px;
   font-weight: 600;
   cursor: pointer;
   transition: opacity 0.15s ease;
@@ -91,6 +92,20 @@
   cursor: not-allowed;
 }
 
+.emptyWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 32px 16px;
+  text-align: center;
+}
+
+.emptyIcon {
+  font-size: 28px;
+  line-height: 1;
+}
+
 .empty {
   margin: 0;
   font-size: 13px;
@@ -108,6 +123,7 @@
 
 .item,
 .itemActive {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 3px;
@@ -123,6 +139,7 @@
 
 .itemActive {
   background: var(--dsw-alias-state-business-tertiary);
+  box-shadow: inset 2px 0 0 var(--dsw-alias-state-business-primary);
 }
 
 .itemMain {
@@ -147,30 +164,50 @@
   color: var(--dsw-alias-label-secondary);
 }
 
-.dotOn,
-.dotOff {
+/* ---- status badge: dot + text ---- */
+
+.statusBadge {
   flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   font-size: 11px;
   font-weight: 600;
-  padding: 1px 6px;
+  padding: 2px 8px;
   border-radius: 999px;
 }
 
-.dotOn {
-  background: var(--dsw-alias-state-success, #2f9e63);
-  color: #fff;
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
 }
 
-.dotOff {
+.statusOn {
+  background: var(--dsw-alias-state-success-tertiary, rgba(47, 158, 99, 0.14));
+  color: var(--dsw-alias-state-success, #2f9e63);
+}
+
+.statusOn .statusDot {
+  background: var(--dsw-alias-state-success, #2f9e63);
+}
+
+.statusOff {
   background: var(--dsw-alias-interactive-bg-hover);
   color: var(--dsw-alias-label-secondary);
 }
+
+.statusOff .statusDot {
+  background: var(--dsw-alias-label-tertiary, #9aa3b2);
+}
+
+/* ---- form ---- */
 
 .form {
   display: flex;
   flex-direction: column;
   gap: 14px;
-  padding: 18px;
+  padding: 16px;
   border-radius: 12px;
   background: var(--dsw-alias-bg-module-platform);
   border: 1px solid var(--dsw-alias-border-l2);
@@ -201,7 +238,8 @@
 }
 
 .input {
-  padding: 8px 10px;
+  height: 34px;
+  padding: 0 12px;
   border-radius: 8px;
   border: 1px solid var(--dsw-alias-border-l2);
   background: var(--dsw-alias-bg-module-platform);
@@ -222,7 +260,7 @@
 .textarea {
   resize: vertical;
   min-height: 72px;
-  padding: 8px 10px;
+  padding: 8px 12px;
   border-radius: 8px;
   border: 1px solid var(--dsw-alias-border-l2);
   background: var(--dsw-alias-bg-module-platform);
@@ -244,11 +282,46 @@
   gap: 8px;
 }
 
-.error {
-  margin: 0;
-  padding: 10px 12px;
-  border-radius: 8px;
+/* ---- toast ---- */
+
+.toastWrap {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10000;
+  pointer-events: none;
+  max-width: calc(100vw - 32px);
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 18px;
+  border-radius: 10px;
   font-size: 13px;
-  background: var(--dsw-alias-state-danger, #d8443c);
+  font-weight: 600;
   color: #fff;
+  background: var(--dsw-alias-state-success, #2f9e63);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+  animation: tiToastIn 0.18s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.toastError {
+  background: var(--dsw-alias-state-danger, #d8443c);
+}
+
+@keyframes tiToastIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

@@ -1,7 +1,8 @@
 /** 工具集成：MCP 服务器增删改查。配置持久化到 ~/.dsh/mcp-servers.json，
  *  保存后 host 侧热替换挂载，agent 立即获得对应工具。 */
 
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import type { ConvViewProps } from '@deepseek-ai/dsh-client-ui-conversation/client'
 import type { PropsLocale } from '@deepseek-ai/dsh-client-ui-slots'
 import css from './ToolIntegrationsView.module.css'
@@ -58,6 +59,15 @@ export default function ToolIntegrationsView(props: ToolIntegrationsViewProps): 
   const [editing, setEditing] = useState<McpConfig | null>(null)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const errorTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  // 错误 toast 自动消失。
+  useEffect(() => {
+    if (!error) return
+    if (errorTimer.current) clearTimeout(errorTimer.current)
+    errorTimer.current = setTimeout(() => setError(null), 6000)
+    return () => { if (errorTimer.current) clearTimeout(errorTimer.current) }
+  }, [error])
 
   // 表单临时字段（args/env/headers 用文本区，保存时解析）
   const [form, setForm] = useState({
@@ -177,14 +187,20 @@ export default function ToolIntegrationsView(props: ToolIntegrationsViewProps): 
             <button className={css.newButton} onClick={startNew} disabled={busy}>＋ 新建</button>
           </div>
           {items.length === 0 ? (
-            <p className={css.empty}>还没有 MCP 服务器。点「新建」接入第一个。</p>
+            <div className={css.emptyWrap}>
+              <span className={css.emptyIcon}>🔌</span>
+              <p className={css.empty}>还没有 MCP 服务器。点「新建」接入第一个。</p>
+            </div>
           ) : (
             <ul className={css.list}>
               {items.map((item) => (
                 <li key={item.serverName} className={item.serverName === editing?.serverName ? css.itemActive : css.item} onClick={() => void startEdit(item.serverName)}>
                   <div className={css.itemMain}>
                     <span className={css.itemName}>{item.serverName}</span>
-                    <span className={item.mounted ? css.dotOn : css.dotOff} title={item.mounted ? '已挂载' : '未挂载'}>{item.mounted ? '已挂载' : '未挂载'}</span>
+                    <span className={`${css.statusBadge} ${item.mounted ? css.statusOn : css.statusOff}`}>
+                      <span className={css.statusDot} />
+                      {item.mounted ? '已挂载' : '未挂载'}
+                    </span>
                   </div>
                   <span className={css.itemMeta}>{item.transport}</span>
                 </li>
@@ -254,7 +270,15 @@ export default function ToolIntegrationsView(props: ToolIntegrationsViewProps): 
         </section>
       </div>
 
-      {error && <p className={css.error}>⚠ {error}</p>}
+      {error && typeof document !== 'undefined' && createPortal(
+        <div className={css.toastWrap} role="status" aria-live="polite">
+          <div className={`${css.toast} ${css.toastError}`}>
+            <span>⚠</span>
+            <span>{error}</span>
+          </div>
+        </div>,
+        document.body,
+      )}
     </div>
   )
 }

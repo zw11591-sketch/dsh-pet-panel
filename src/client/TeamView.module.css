@@ -1,0 +1,632 @@
+/* 团队弹窗：全局悬浮遮罩 + 居中面板，内部双栏（左团队/成员，右聊天）。 */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(15, 17, 21, 0.45);
+  pointer-events: auto;
+}
+
+.panel {
+  width: min(880px, calc(100vw - 48px));
+  height: min(620px, calc(100vh - 96px));
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid rgba(15, 17, 21, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 24px 64px rgba(15, 17, 21, 0.28);
+  overflow: hidden;
+}
+
+.header {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(15, 17, 21, 0.08);
+}
+
+.title {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f1115;
+}
+
+.close {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #64748b;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.close:hover {
+  background: #f1f5f9;
+  color: #0f1115;
+}
+
+.body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  overflow: hidden;
+}
+
+/* ---- 左栏：团队 + 成员 + 线程 ---- */
+
+.sidebar {
+  width: 280px;
+  flex-shrink: 0;
+  border-right: 1px solid rgba(15, 17, 21, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 12px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.sideHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.sideTitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0f1115;
+}
+
+.createBox {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 10px;
+  background: #fafbfc;
+  border: 1px solid rgba(15, 17, 21, 0.06);
+}
+
+.pickTitle {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.pickList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 160px;
+  overflow-y: auto;
+}
+
+.pickItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  color: #334155;
+}
+
+.teamList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.teamItem {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(15, 17, 21, 0.08);
+  background: #ffffff;
+}
+
+.teamItem.active {
+  border-color: #e45753;
+}
+
+.teamRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.teamName {
+  appearance: none;
+  border: none;
+  background: none;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f1115;
+  cursor: pointer;
+  text-align: left;
+}
+
+.memberChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.chip {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #fdf1f0;
+  color: #e45753;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.meChip {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+/* ---- 成员存活状态圆点 ---- */
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex: none;
+}
+
+.dotOnline {
+  background: #22c55e;
+}
+
+.dotOffline {
+  background: #9aa3b2;
+}
+
+.dotUnknown {
+  background: #cbd5e1;
+}
+
+.peerStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.peerOnline {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.peerOffline {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.peerUnknown {
+  background: #f1f5f9;
+  color: #94a3b8;
+}
+
+.threadArea {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-top: 1px solid rgba(15, 17, 21, 0.08);
+  padding-top: 8px;
+}
+
+.threadBtn {
+  appearance: none;
+  border: none;
+  background: transparent;
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: #64748b;
+  text-align: left;
+  cursor: pointer;
+}
+
+.threadBtn:hover {
+  background: #f1f5f9;
+  color: #0f1115;
+}
+
+/* ---- 右栏：聊天 ---- */
+
+.chat {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.chatEmpty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.hint {
+  font-size: 12px;
+  color: #9aa3b2;
+}
+
+.chatHead {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 12px 18px;
+  border-bottom: 1px solid rgba(15, 17, 21, 0.08);
+}
+
+.chatTitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f1115;
+}
+
+.chatMeta {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.msgList {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.msg {
+  max-width: 78%;
+  padding: 9px 13px;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.userMsg {
+  align-self: flex-end;
+  background: #e45753;
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+
+.agentMsg {
+  align-self: flex-start;
+  background: #f1f5f9;
+  border: 1px solid rgba(15, 17, 21, 0.06);
+  border-bottom-left-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.msgAuthor {
+  font-size: 11px;
+  font-weight: 700;
+  color: #e45753;
+}
+
+.msgText {
+  white-space: pre-wrap;
+  color: #334155;
+}
+
+.sysMsg {
+  align-self: center;
+  font-size: 12px;
+  color: #64748b;
+  background: #fafbfc;
+  border: 1px dashed rgba(15, 17, 21, 0.12);
+  border-radius: 8px;
+  padding: 5px 10px;
+  max-width: 85%;
+}
+
+/* ---- 「对方回复中」指示（动画圆点） ---- */
+
+.typingMsg {
+  align-self: flex-start;
+  background: #f1f5f9;
+  border: 1px solid rgba(15, 17, 21, 0.06);
+  border-bottom-left-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #64748b;
+}
+
+.typingDots {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.typingDots i {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #e45753;
+  animation: teamTypingBounce 1.2s infinite ease-in-out;
+}
+
+.typingDots i:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.typingDots i:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes teamTypingBounce {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
+.inputArea {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 18px;
+  border-top: 1px solid rgba(15, 17, 21, 0.08);
+}
+
+.mentionMenu {
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 6px;
+  border-radius: 10px;
+  background: #ffffff;
+  border: 1px solid rgba(15, 17, 21, 0.12);
+  box-shadow: 0 8px 28px rgba(15, 17, 21, 0.2);
+  z-index: 20;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.mentionItem {
+  appearance: none;
+  border: none;
+  background: transparent;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #0f1115;
+  text-align: left;
+  cursor: pointer;
+}
+
+.mentionItem:hover,
+.mentionItemActive {
+  background: #fdf1f0;
+}
+
+/* ---- shared controls ---- */
+
+.input {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(15, 17, 21, 0.12);
+  background: #ffffff;
+  color: #0f1115;
+  font-size: 13px;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #e45753;
+}
+
+.saveButton,
+.ghostButton {
+  appearance: none;
+  border: none;
+  border-radius: 8px;
+  padding: 7px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.saveButton {
+  background: #e45753;
+  color: #fff;
+  align-self: flex-end;
+}
+
+.ghostButton {
+  background: transparent;
+  border: 1px solid rgba(15, 17, 21, 0.12);
+  color: #64748b;
+}
+
+.saveButton:disabled,
+.ghostButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.empty {
+  font-size: 12px;
+  color: #9aa3b2;
+}
+
+/* ---- toast (fixed top) ---- */
+
+.toastWrap {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10000;
+  pointer-events: none;
+  max-width: calc(100vw - 32px);
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 18px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  background: #2f9e63;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+  animation: teamToastIn 0.18s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.toastError {
+  background: #d8443c;
+}
+
+@keyframes teamToastIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---- 删除确认弹窗 ---- */
+
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(15, 17, 21, 0.42);
+  backdrop-filter: blur(2px);
+  animation: teamModalFade 0.16s ease;
+}
+
+.modalCard {
+  width: min(380px, calc(100vw - 40px));
+  padding: 20px;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 12px 44px rgba(15, 17, 21, 0.28);
+  animation: teamModalPop 0.18s ease;
+}
+
+.modalTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f1115;
+}
+
+.modalText {
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #64748b;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.dangerButton {
+  appearance: none;
+  border: none;
+  border-radius: 8px;
+  padding: 7px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #fff;
+  background: #d8443c;
+  transition: opacity 0.15s ease;
+}
+
+.dangerButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@keyframes teamModalFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes teamModalPop {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

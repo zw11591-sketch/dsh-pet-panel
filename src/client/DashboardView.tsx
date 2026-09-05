@@ -13,7 +13,7 @@ import css from './DashboardView.module.css'
 type DashboardViewProps = ConvViewProps & PropsLocale<'dashboard'>
 
 /** Inner page sections, switched by the local tab bar. */
-type Section = 'overview' | 'analytics' | 'about'
+type Section = 'overview' | 'analytics'
 
 /** One day's bucket in the trailing-7-day activity chart. */
 interface DayBucket {
@@ -317,7 +317,6 @@ export function DashboardView(props: DashboardViewProps): React.ReactElement {
   const analysis = useMemo(() => contextAnalysis(sessionsById[sessionId]?.projectionValues), [sessionsById, sessionId])
   const archived = useMemo(() => relatedArchived(sessionsById, archivedIds), [sessionsById, archivedIds])
   const forked = useMemo(() => relatedForks(sessionsById, archivedIds), [sessionsById, archivedIds])
-  const current = sessionsById[sessionId]
 
   return (
     <div className={css.page}>
@@ -327,7 +326,7 @@ export function DashboardView(props: DashboardViewProps): React.ReactElement {
       </header>
 
       <nav className={css.tabs} aria-label="dashboard sections">
-        {(['overview', 'analytics', 'about'] as const).map(id => (
+        {(['overview', 'analytics'] as const).map(id => (
           <button
             key={id}
             type="button"
@@ -538,75 +537,6 @@ export function DashboardView(props: DashboardViewProps): React.ReactElement {
                   )}
                 </div>
               )}
-          </div>
-        </section>
-      )}
-
-      {section === 'about' && (
-        <section className={css.body}>
-          <div className={css.aboutCard}>
-            <p className={css.aboutIntro}>
-              会话仪表盘是一个客户端插件，通过 <code>conversation.view</code> 插槽注册为一个对话
-              Tab 页。它不依赖任何后端服务，所有指标均从框架标准数据实时派生。
-            </p>
-
-            <div className={css.aboutSection}>
-              <span className={css.aboutSectionTitle}>面板能力</span>
-              <ul className={css.capList}>
-                <li className={css.capItem}>
-                  <span className={css.capName}>概览</span>
-                  <span className={css.capDesc}>当前会话上下文占用、会话总量统计、近 7 天活跃度趋势</span>
-                </li>
-                <li className={css.capItem}>
-                  <span className={css.capName}>用量分析</span>
-                  <span className={css.capDesc}>全部会话 Token 消耗排行、当前会话上下文详细分析</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className={css.aboutSection}>
-              <span className={css.aboutSectionTitle}>运行信息</span>
-              <dl className={css.infoGrid}>
-                <div className={css.infoRow}>
-                  <dt className={css.infoKey}>插件</dt>
-                  <dd className={css.infoVal}><code>dsh-pet-panel</code></dd>
-                </div>
-                <div className={css.infoRow}>
-                  <dt className={css.infoKey}>挂载插槽</dt>
-                  <dd className={css.infoVal}><code>conversation.view</code></dd>
-                </div>
-                <div className={css.infoRow}>
-                  <dt className={css.infoKey}>数据来源</dt>
-                  <dd className={css.infoVal}>useSessions · token-meter 投影</dd>
-                </div>
-                <div className={css.infoRow}>
-                  <dt className={css.infoKey}>当前会话</dt>
-                  <dd className={css.infoVal}>{current?.displayTitle ?? '—'}</dd>
-                </div>
-                {current?.agentPreset !== undefined && (
-                  <div className={css.infoRow}>
-                    <dt className={css.infoKey}>Agent 预设</dt>
-                    <dd className={css.infoVal}>{current.agentPreset}</dd>
-                  </div>
-                )}
-                {current?.cwd !== undefined && (
-                  <div className={css.infoRow}>
-                    <dt className={css.infoKey}>工作目录</dt>
-                    <dd className={`${css.infoVal} ${css.infoMono}`}>{current.cwd}</dd>
-                  </div>
-                )}
-                <div className={css.infoRow}>
-                  <dt className={css.infoKey}>会话 ID</dt>
-                  <dd className={`${css.infoVal} ${css.infoMono}`}>{sessionId}</dd>
-                </div>
-              </dl>
-            </div>
-
-            <div className={css.tagRow}>
-              <span className={css.featTag}>纯派生 · 不自建订阅</span>
-              <span className={css.featTag}>主题 token 适配明暗</span>
-              <span className={css.featTag}>useMemo 缓存</span>
-            </div>
           </div>
         </section>
       )}

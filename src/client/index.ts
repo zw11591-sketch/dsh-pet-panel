@@ -20,14 +20,13 @@ import { PetView } from './PetView.tsx'
 import { PapergamesLogo, PapergamesWordmark, applyPapergamesFavicon, applyHeroCopyRewrite } from './brand.tsx'
 import { applyPapergamesTheme } from './theme.ts'
 import { BackgroundSwitcher } from './BackgroundSwitcher.tsx'
-import { TaskManagerView } from './TaskManagerView.tsx'
-import { TaskManagerTrigger } from './TaskManagerTrigger.tsx'
 import { applyBackground, getStoredBackground, applyDim, getStoredDim } from './bg.ts'
 import SkillForgeView, { type SkillApi } from './SkillForgeView.tsx'
 import ToolIntegrationsView, { type McpApi } from './ToolIntegrationsView.tsx'
 import A2AView, { type A2AApi } from './A2AView.tsx'
+import TeamView, { type TeamApi, type TeamA2AApi } from './TeamView.tsx'
+import { TeamTrigger } from './TeamTrigger.tsx'
 import { TYPERT_REMOTE } from './remote.ts'
-import type { LifecycleSnapshot } from './remote.ts'
 import { petStore } from './petStore.ts'
 
 /** Required services: slot registry, locale, and the Typert client remote. */
@@ -115,6 +114,21 @@ function registerCapabilityViews(ctx: any, t: (key: any) => string): void {
     setCard: async (card) => unwrap(await ctx.remote.a2aConfig.setCard(card)),
     upsertAgent: async (externalAgent) => unwrap(await ctx.remote.a2aConfig.upsertAgent(externalAgent)),
     delete: async (name) => unwrap(await ctx.remote.a2aConfig.delete(name)),
+    checkAgents: async () => unwrap(await ctx.remote.a2aConfig.checkAgents()),
+  }
+  const teamApi: TeamApi = {
+    listTeams: async () => unwrap(await ctx.remote.team.listTeams()),
+    createTeam: async (name, members) => unwrap(await ctx.remote.team.createTeam(name, members)),
+    updateTeam: async (id, name, members) => unwrap(await ctx.remote.team.updateTeam(id, name, members)),
+    deleteTeam: async (id) => unwrap(await ctx.remote.team.deleteTeam(id)),
+    listThreads: async (teamId) => unwrap(await ctx.remote.team.listThreads(teamId)),
+    openThread: async (teamId, peer) => unwrap(await ctx.remote.team.openThread(teamId, peer)),
+    getThread: async (threadId) => unwrap(await ctx.remote.team.getThread(threadId)),
+    send: async (threadId, text) => unwrap(await ctx.remote.team.send(threadId, text)),
+  }
+  const teamA2aApi: TeamA2AApi = {
+    get: async () => unwrap(await ctx.remote.a2aConfig.get()),
+    checkAgents: async () => unwrap(await ctx.remote.a2aConfig.checkAgents()),
   }
 
   ctx.slots.inject('conversation.view', () => ctx.slots.register({
@@ -144,17 +158,13 @@ function registerCapabilityViews(ctx: any, t: (key: any) => string): void {
     inject: () => ({ api: a2aApi }),
   }, A2AView))
 
-  // 任务管理面板：挂 shell.overlay，含执行轨迹查询（lifecycle）。
-  // 必须在这里注册：本子插件 inject 了 remote.skillForge（$mount 之后可用），
-  // 主函数 ctx 只有 remote，访问 remote.skillForge 会报 without inject。
-  const lifecycle = async (sessionId: string): Promise<LifecycleSnapshot> =>
-    unwrap(await ctx.remote.skillForge.lifecycle(sessionId))
+  // 团队弹窗：挂 shell.overlay（root scope 全局悬浮层），由 teamStore 控制开合。
   ctx.slots.inject('shell.overlay', () => ctx.slots.register({
     name: 'shell.overlay',
-    id: 'task-manager-panel',
-    order: 100,
-    inject: () => ({ lifecycle }),
-  }, TaskManagerView))
+    id: 'team-panel',
+    order: 110,
+    inject: () => ({ api: teamApi, a2a: teamA2aApi }),
+  }, TeamView))
 }
 
 /**
@@ -208,20 +218,19 @@ export async function apply(ctx: Context): Promise<void> {
   }, PapergamesLogo))
   ctx.slots.inject('sidebar.footer.action', () => ctx.slots.register({
     name: 'sidebar.footer.action',
+    id: 'team',
+    order: 5,
+  }, TeamTrigger))
+  ctx.slots.inject('sidebar.footer.action', () => ctx.slots.register({
+    name: 'sidebar.footer.action',
     id: 'background',
     order: 10,
   }, BackgroundSwitcher))
-  // 任务管理：会话头部入口按钮（与原生 jobs 入口并列）。
-  ctx.slots.inject('conversation.session.header.actions', () => ctx.slots.register({
-    name: 'conversation.session.header.actions',
-    id: 'task-manager',
-    order: 20,
-  }, TaskManagerTrigger))
 
   // Capability views consume the now-mounted remotes.
   ctx.plugin({
     name: 'pet-panel-capabilities',
-    inject: ['slots', 'locale', 'remote', 'remote.skillForge', 'remote.toolIntegrations', 'remote.a2aConfig'],
+    inject: ['slots', 'locale', 'remote', 'remote.skillForge', 'remote.toolIntegrations', 'remote.a2aConfig', 'remote.team'],
     apply: (capCtx: any) => {
       registerCapabilityViews(capCtx, t)
     },

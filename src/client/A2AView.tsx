@@ -5,7 +5,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import type { ConvViewProps } from '@deepseek-ai/dsh-client-ui-conversation/client'
 import type { PropsLocale } from '@deepseek-ai/dsh-client-ui-slots'
-import type { A2ACard, A2AConfig, A2AExternalAgent } from './remote.ts'
+import type { A2ACard, A2AConfig, A2AExternalAgent, A2AHealth } from './remote.ts'
 import css from './A2AView.module.css'
 
 /** The host-face a2aConfig remote, wrapped into promise helpers. */
@@ -14,6 +14,7 @@ export interface A2AApi {
   setCard: (card: A2ACard) => Promise<{ card: A2ACard }>
   upsertAgent: (agent: A2AExternalAgent) => Promise<{ name: string }>
   delete: (name: string) => Promise<{ name: string }>
+  checkAgents: () => Promise<{ items: A2AHealth[] }>
 }
 
 type A2AViewProps = ConvViewProps & PropsLocale<'dashboard'> & { api: A2AApi }
@@ -33,6 +34,8 @@ export default function A2AView(props: A2AViewProps): React.JSX.Element {
 
   const [config, setConfig] = useState<A2AConfig | null>(null)
   const [busy, setBusy] = useState(false)
+  const [health, setHealth] = useState<Record<string, A2AHealth>>({})
+  const [checking, setChecking] = useState(false)
   const [toast, setToast] = useState<{ kind: 'success' | 'error'; text: string } | null>(null)
   const toastTimer = useRef<number | null>(null)
 
@@ -63,6 +66,27 @@ export default function A2AView(props: A2AViewProps): React.JSX.Element {
   useEffect(() => {
     void refresh()
   }, [refresh])
+
+  // 探测所有外部 agent 的存活状态（实时：挂载后立即跑一次，之后每 15s 轮询）。
+  const checkHealth = useCallback(async () => {
+    try {
+      setChecking(true)
+      const { items } = await api.checkAgents()
+      const next: Record<string, A2AHealth> = {}
+      for (const it of items) next[it.name] = it
+      setHealth(next)
+    } catch {
+      // 探测失败静默忽略：下次轮询会自动重试，不打断页面。
+    } finally {
+      setChecking(false)
+    }
+  }, [api])
+
+  useEffect(() => {
+    void checkHealth()
+    const id = window.setInterval(() => void checkHealth(), 15000)
+    return () => window.clearInterval(id)
+  }, [checkHealth])
 
   const saveCard = useCallback(async () => {
     if (!cardForm.name.trim()) {
@@ -103,12 +127,13 @@ export default function A2AView(props: A2AViewProps): React.JSX.Element {
       setAgentForm({ name: '', url: '', description: '', capabilitiesText: '', keywordsText: '', examplesText: '' })
       showToast('success', '已注册外部 agent')
       await refresh()
+      void checkHealth()
     } catch (e) {
       showToast('error', e instanceof Error ? e.message : String(e))
     } finally {
       setBusy(false)
     }
-  }, [api, agentForm, refresh, showToast])
+  }, [api, agentForm, refresh, checkHealth, showToast])
 
   const editAgent = useCallback((a: A2AExternalAgent) => {
     setAgentForm({
@@ -128,12 +153,13 @@ export default function A2AView(props: A2AViewProps): React.JSX.Element {
       await api.delete(name)
       showToast('success', '已删除外部 agent')
       await refresh()
+      void checkHealth()
     } catch (e) {
       showToast('error', e instanceof Error ? e.message : String(e))
     } finally {
       setBusy(false)
     }
-  }, [api, refresh, showToast])
+  }, [api, refresh, checkHealth, showToast])
 
   const copy = useCallback(async (text: string) => {
     try {
@@ -195,18 +221,31 @@ export default function A2AView(props: A2AViewProps): React.JSX.Element {
       <section className={css.card}>
         <div className={css.sectionHead}>
           <span className={css.sectionTitle}>外部 Agent</span>
+          <button className={css.ghostButton} onClick={() => void checkHealth()} disabled={checking}>
+            {checking ? '检测中…' : '刷新状态'}
+          </button>
         </div>
 
         {config && config.agents.length === 0 ? (
           <p className={css.empty}>还没有注册外部 agent。在下方表单填写后点「注册 / 更新」。</p>
         ) : (
           <ul className={css.agentList}>
-            {config?.agents.map((a) => (
+            {config?.agents.map((a) => {
+              const h = health[a.name]
+              const state = h === undefined ? (checking ? 'checking' : 'unknown') : (h.online ? 'on' : 'off')
+              return (
               <li key={a.name} className={css.agentItem}>
                 <div className={css.agentMain}>
                   <span className={css.agentName}>{a.name}</span>
-                  <span className={css.agentMeta}>{a.url}</span>
+                  <span className={`${css.statusBadge} ${state === 'on' ? css.statusOn : state === 'off' ? css.statusOff : css.statusIdle}`}
+                    title={state === 'off' && h?.error ? h.error : undefined}>
+                    <span className={css.statusDot} />
+                    {state === 'on' ? `在线 · ${h.latencyMs ?? 0}ms`
+                      : state === 'off' ? '离线'
+                      : state === 'checking' ? '检测中…' : '未检测'}
+                  </span>
                 </div>
+                <span className={css.agentMeta}>{a.url}</span>
                 {a.description && <span className={css.agentDesc}>{a.description}</span>}
                 <div className={css.agentRow}>
                   {a.capabilities.map((c) => <span key={c} className={css.tag}>{c}</span>)}
@@ -215,7 +254,8 @@ export default function A2AView(props: A2AViewProps): React.JSX.Element {
                   <button className={css.dangerButton} onClick={() => void removeAgent(a.name)} disabled={busy}>删除</button>
                 </div>
               </li>
-            ))}
+              )
+            })}
           </ul>
         )}
 
