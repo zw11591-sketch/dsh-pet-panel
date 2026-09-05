@@ -777,21 +777,11 @@ function extractInboundText(message: any): string {
 }
 
 /**
- * 以「本 agent」身份轻量回复一条文本（路线 A）：用 agent card 人设 + 当前默认模型
- * 的 llm.stream 单发回复。可选传入 history（本线程此前的消息）做多轮记忆，让「me」
- * 与外部 agent 一样能承接上下文。无工具/技能/MCP——完整 agent loop 留作增强。
- * 供 inbound message/send 与团队群聊里的「me」复用。
+ * 从 agent card（a2a-agents.json）构建「本 agent」的 soul（persona）文本。
+ * 这是本插件 agent 人设的单一来源：inbound /a2a 与团队「me」共用同一份。
  */
-async function replyAsSelf(
-  llm: any,
-  agentDefaultModel: any,
-  text: string,
-  history?: ChatMessage[],
-): Promise<string> {
-  const config = await loadA2AConfig()
-  const sel = agentDefaultModel.currentSelection()
-  if (!sel?.provider || !sel?.model) throw new Error('没有可用的默认模型，请先在设置里配置模型。')
-  const system = [
+function selfPersona(config: A2AConfig): string {
+  return [
     `你是 ${config.card.name}。`,
     config.card.description,
     config.card.capabilities.length
@@ -799,47 +789,6 @@ async function replyAsSelf(
       : '',
     '请用简洁、准确的中文回答用户的问题。',
   ].filter(Boolean).join('\n')
-
-  // 多轮记忆：把线程历史折叠成一段对话记录，作为用户消息的前置上下文。
-  let prompt = text
-  if (history && history.length > 0) {
-    const transcript = history
-      .filter((m) => m.role !== 'system')
-      .map((m) => {
-        if (m.role === 'user') return `用户：${m.text}`
-        const who = m.agent === 'me' ? config.card.name : (m.agent ?? '其他成员')
-        return `${who}：${m.text}`
-      })
-      .join('\n')
-    if (transcript) {
-      prompt = `【以下为此前的对话记录，供你理解上下文】\n${transcript}\n\n【用户最新消息】\n${text}`
-    }
-  }
-
-  const messages = [{
-    id: randomUUID(),
-    role: 'user',
-    content: [{ type: 'text', text: prompt }],
-    source: { kind: 'user' },
-  }]
-
-  const chunks = llm.stream({
-    provider: sel.provider,
-    model: sel.model,
-    system,
-    messages,
-  })
-
-  let reply = ''
-  for await (const chunk of chunks) {
-    if (chunk?.type === 'text-delta') reply += chunk.text
-    else if (chunk?.type === 'finish' && chunk?.reason?.kind === 'error') {
-      const f = chunk.reason.failure
-      throw new Error(`模型调用失败：${f?.message ?? '未知错误'}`)
-    }
-  }
-  if (!reply.trim()) throw new Error('a2a: 模型未返回内容')
-  return reply.trim()
 }
 
 /** 从 agent 会话事件里提取最终 assistant 文本 + 回合结局（对齐 headless runner 的 summarize）。 */
@@ -887,33 +836,129 @@ function collectBlockedApprovals(session: any, firstSeq: number): Array<{ tool: 
 }
 
 /**
- * A2A inbound：暴露 agent card + message/send 端点，驱动「同一个 dsh agent 运行时」回复外部调用。
- * 与 WebUI 走同一套 agents.create/resume + followup + whenIdle，因此模型/工具/技能/MCP/多轮记忆
- * 完全一致。多轮靠 A2A contextId ↔ sessionId：contextId 就是 sessionId，重启后靠 sessionPersistence
- * resume。审批无交互通道 → 走 dsh 默认 fail-closed（需要审批的工具被拒绝）。
+ * 共享的「本 agent」真 agent loop 执行器：inbound /a2a 与团队「me」共用，保证两个
+ * 入口同运行时、同 soul（card persona）、同审批策略（never）、同记忆（session 持久化）。
+ * sessionId 即 dsh 会话 id：inbound 用 A2A contextId，团队「me」用 threadId。
  */
-export class A2AInboundPlugin extends Service {
-  static inject = ['webServer', 'agents', 'sessions', 'agentDefaultModel']
+export class SelfAgentService extends Service {
+  static inject = ['agents', 'sessions', 'agentDefaultModel']
 
   private agents: any
   private sessions: any
   private agentDefaultModel: any
-  /** contextId(=sessionId) → 活体 agent 句柄，进程内复用。 */
+  /** sessionId → 活体 agent 句柄，进程内复用。 */
   private live = new Map<string, { agent: any; dispose: () => Promise<void> }>()
-  /** contextId → 串行化锁，避免同一会话并发请求交错。 */
+  /** sessionId → 串行化锁，避免同一会话并发请求交错。 */
   private mutex = new Map<string, Promise<unknown>>()
 
   constructor(ctx: any) {
-    super(ctx, 'a2a-inbound')
+    super(ctx, 'selfAgent')
     this.agents = ctx.agents
     this.sessions = ctx.sessions
     this.agentDefaultModel = ctx.agentDefaultModel
-    this.register(ctx)
     // 卸载时释放所有活体 agent。
     ctx.effect(() => () => {
       for (const { dispose } of this.live.values()) void dispose()
       this.live.clear()
-    }, 'a2a-inbound: dispose live agents')
+    }, 'selfAgent: dispose live agents')
+  }
+
+  /** 串行化同一 sessionId 的并发请求，然后走真 agent loop。 */
+  turn(sessionId: string, text: string): Promise<{ text: string; approvalsBlocked: Array<{ tool: string; reason?: string }> }> {
+    const prev = this.mutex.get(sessionId) ?? Promise.resolve()
+    const next = prev.catch(() => {}).then(() => this.runTurn(sessionId, text))
+    this.mutex.set(sessionId, next)
+    return next.finally(() => {
+      if (this.mutex.get(sessionId) === next) this.mutex.delete(sessionId)
+    }) as Promise<{ text: string; approvalsBlocked: Array<{ tool: string; reason?: string }> }>
+  }
+
+  private async runTurn(sessionId: string, text: string): Promise<{ text: string; approvalsBlocked: Array<{ tool: string; reason?: string }> }> {
+    const sel = this.agentDefaultModel.currentSelection()
+    if (!sel?.provider || !sel?.model) throw new Error('没有可用的默认模型，请先在设置里配置模型。')
+    const agentOptions = { provider: sel.provider, model: sel.model }
+    const persona = selfPersona(await loadA2AConfig())
+
+    let live = this.live.get(sessionId)
+    let agent: any
+    let dispose: (() => Promise<void>) | undefined
+    if (live) {
+      agent = live.agent
+    } else {
+      // soul：把 card persona 注入该 agent 的 deployment:persona section（覆盖 preset 默认人设）。
+      const setup = (agentCtx: any): void => {
+        agentCtx.systemPrompt.section({
+          name: 'deployment:persona',
+          order: agentCtx.systemPrompt.getSectionOrder('DEPLOYMENT_PERSONA'),
+          text: persona,
+        })
+      }
+      // 优先 resume 已持久化会话；不存在则 create 新会话。
+      const handle = await this.resumeOrCreate(sessionId, agentOptions, setup)
+      agent = handle.agent
+      dispose = handle.dispose
+      this.live.set(sessionId, { agent, dispose: dispose! })
+    }
+
+    try {
+      await agent.whenIdle()
+      // 审批无交互通道 → 显式 never，把「落空」变成「明确否决」，模型也被告知不要请求越权。
+      ensureApprovalNever(agent.session)
+      const firstSeq = agent.session.seq
+      agent.followup({
+        id: randomUUID(),
+        role: 'user',
+        content: [{ type: 'text', text }],
+        source: { kind: 'user' },
+      })
+      await agent.whenIdle()
+      const { text: reply, reason } = summarizeSessionReply(agent.session, firstSeq)
+      if (!reply.trim()) {
+        if (reason?.kind === 'error' && reason?.error?.message) throw new Error(`模型调用失败：${reason.error.message}`)
+        throw new Error('selfAgent: 模型未返回内容')
+      }
+      // 持久化会话，供重启后 resume。
+      await this.sessions.flush(agent.session)
+      const approvalsBlocked = collectBlockedApprovals(agent.session, firstSeq)
+      return { text: reply.trim(), approvalsBlocked }
+    } catch (e) {
+      // 失败时释放活体句柄，下次请求重新 create/resume。
+      if (dispose) {
+        this.live.delete(sessionId)
+        await dispose()
+      }
+      throw e
+    }
+  }
+
+  /** resume 优先，未持久化则 create。 */
+  private async resumeOrCreate(sessionId: string, agentOptions: any, setup: any): Promise<{ agent: any; dispose: () => Promise<void> }> {
+    try {
+      return await this.agents.resume({ resumeSessionId: sessionId, agentOptions, setup })
+    } catch (e) {
+      const notFound = (e as any)?.name === 'SessionPersistenceNotFoundError' || /not found/i.test(String((e as any)?.message ?? ''))
+      if (!notFound) throw e
+      return await this.agents.create({ sessionId, meta: { cwd: process.cwd() }, agentOptions, setup })
+    }
+  }
+}
+
+/**
+ * A2A inbound：暴露 agent card + message/send 端点，驱动「同一个 dsh agent 运行时」回复外部调用。
+ * 实际执行委托给共享的 SelfAgentService，因此与团队「me」走同一套 agents.create/resume +
+ * followup + whenIdle，模型/工具/技能/MCP/多轮记忆/人设/审批策略完全一致。多轮靠 A2A
+ * contextId ↔ sessionId：contextId 就是 sessionId，重启后靠 sessionPersistence resume。
+ * 审批无交互通道 → never 策略 fail-closed（需要审批的工具被拒），并回传 approvalsBlocked。
+ */
+export class A2AInboundPlugin extends Service {
+  static inject = ['webServer', 'selfAgent']
+
+  private selfAgent: SelfAgentService
+
+  constructor(ctx: any) {
+    super(ctx, 'a2a-inbound')
+    this.selfAgent = ctx.selfAgent
+    this.register(ctx)
   }
 
   private register(ctx: any): void {
@@ -982,69 +1027,17 @@ export class A2AInboundPlugin extends Service {
     })
   }
 
-  /** 串行化同一 contextId 的并发请求，然后走真实 agent loop。 */
+  /** 解析 A2A 参数，交给共享的 selfAgent.turn 执行。contextId 即 sessionId。 */
   private handleMessageSend(params: any): Promise<{ text: string; contextId: string; approvalsBlocked: Array<{ tool: string; reason?: string }> }> {
     const text = extractInboundText(params?.message)
     if (!text) return Promise.reject(new Error('a2a: message 缺少文本内容'))
     const contextId = typeof params?.contextId === 'string' && params.contextId ? params.contextId : undefined
-    const lockKey = contextId ?? '__fresh__'
-    const prev = this.mutex.get(lockKey) ?? Promise.resolve()
-    const next = prev.catch(() => {}).then(() => this.runTurn(contextId, text))
-    this.mutex.set(lockKey, next)
-    return next.finally(() => {
-      if (this.mutex.get(lockKey) === next) this.mutex.delete(lockKey)
-    }) as Promise<{ text: string; contextId: string; approvalsBlocked: Array<{ tool: string; reason?: string }> }>
-  }
-
-  private async runTurn(contextId: string | undefined, text: string): Promise<{ text: string; contextId: string; approvalsBlocked: Array<{ tool: string; reason?: string }> }> {
-    const sel = this.agentDefaultModel.currentSelection()
-    if (!sel?.provider || !sel?.model) throw new Error('没有可用的默认模型，请先在设置里配置模型。')
-    const agentOptions = { provider: sel.provider, model: sel.model }
     const sessionId = contextId ?? randomUUID()
-
-    let live = this.live.get(sessionId)
-    let agent: any
-    let dispose: (() => Promise<void>) | undefined
-    if (live) {
-      agent = live.agent
-    } else {
-      const handle = contextId
-        ? await this.agents.resume({ resumeSessionId: sessionId, agentOptions })
-        : await this.agents.create({ sessionId, meta: { cwd: process.cwd() }, agentOptions })
-      agent = handle.agent
-      dispose = handle.dispose
-      this.live.set(sessionId, { agent, dispose: dispose! })
-    }
-
-    try {
-      await agent.whenIdle()
-      // 审批无交互通道 → 显式 never，把「落空」变成「明确否决」，模型也被告知不要请求越权。
-      ensureApprovalNever(agent.session)
-      const firstSeq = agent.session.seq
-      agent.followup({
-        id: randomUUID(),
-        role: 'user',
-        content: [{ type: 'text', text }],
-        source: { kind: 'user' },
-      })
-      await agent.whenIdle()
-      const { text: reply, reason } = summarizeSessionReply(agent.session, firstSeq)
-      if (!reply.trim()) {
-        if (reason?.kind === 'error' && reason?.error?.message) throw new Error(`模型调用失败：${reason.error.message}`)
-        throw new Error('a2a: 模型未返回内容')
-      }
-      // 持久化会话，供重启后 resume。
-      await this.sessions.flush(agent.session)
-      const approvalsBlocked = collectBlockedApprovals(agent.session, firstSeq)
-      return { text: reply.trim(), contextId: sessionId, approvalsBlocked }
-    } catch (e) {
-      // 失败时释放活体句柄，下次请求重新 create/resume。
-      if (dispose) {
-        this.live.delete(sessionId)
-        await dispose()
-      }
-      throw e
-    }
+    return this.selfAgent.turn(sessionId, text).then(({ text: reply, approvalsBlocked }) => ({
+      text: reply,
+      contextId: sessionId,
+      approvalsBlocked,
+    }))
   }
 }
 
@@ -1190,18 +1183,17 @@ function parseMentions(text: string): string[] {
  * 团队路由引擎：把「我」和外部 agent 编成一组，按 @提及路由。
  * - 单聊线程（peer 非空）：无条件发给该 peer，忽略 @ 与广播。
  * - 群聊线程：@name 定向、@all 全员、无 @ 广播全员；无法解析的 @ 返回系统提示。
- * - 外部 agent 带 contextId 维持多轮记忆；"me" 走 replyAsSelf 轻量回复。
+ * - 外部 agent 带 contextId 维持多轮记忆；「me」走共享的 SelfAgentService（真 agent loop，
+ *   与 inbound /a2a 同运行时、同人设、同审批、同记忆）。
  */
 export class TeamGateway extends TypertRemoteService {
-  static inject = ['llm', 'agentDefaultModel']
+  static inject = ['selfAgent']
 
-  private llm: any
-  private agentDefaultModel: any
+  private selfAgent: SelfAgentService
 
   constructor(ctx: any) {
     super(ctx, 'team')
-    this.llm = ctx.llm
-    this.agentDefaultModel = ctx.agentDefaultModel
+    this.selfAgent = ctx.selfAgent
   }
 
   @Remote('listTeams')
@@ -1391,7 +1383,9 @@ export class TeamGateway extends TypertRemoteService {
     const results = await Promise.allSettled(
       targets.map(async (name) => {
         if (name === 'me') {
-          const reply = await replyAsSelf(this.llm, this.agentDefaultModel, text.trim(), thread.messages.slice(0, -1))
+          // 「me」走共享真 agent loop，sessionId = threadId：同一线程多次 @me 共享记忆，
+          // 与 inbound /a2a 同运行时、同人设、同审批、同记忆。
+          const { text: reply } = await this.selfAgent.turn(threadId, text.trim())
           return { agent: 'me', text: reply }
         }
         const agent = config.agents.find((a) => a.name === name)
@@ -1468,6 +1462,7 @@ export function apply(ctx: any): void {
   ctx.plugin(ToolIntegrationsGateway)
   ctx.plugin(A2AConfigGateway)
   ctx.plugin(A2AToolsPlugin)
+  ctx.plugin(SelfAgentService)
   ctx.plugin(A2AInboundPlugin)
   ctx.plugin(TeamGateway)
 }
